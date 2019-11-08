@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.shicha.yzmgt.aircb.AirResult;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
@@ -20,6 +20,9 @@ public class DeviceService {
 	
 	@Autowired
 	IDeviceDao deviceDao;
+	
+	@Autowired
+	AirCbService airService;
 	
 	@Autowired
 	IDevcieSettingDao deviceSettingDao;
@@ -51,9 +54,19 @@ public class DeviceService {
 		return deviceSettingDao.findByDeviceNo(deviceNo);
 	}
 	
-	public void addDeviceSetting(DeviceSetting setting) {
+	public AirResult addDeviceSetting(DeviceSetting[] settings) {
+		deviceSettingDao.deleteAll();
+		long[] value = new long[settings.length * 2];
+		int idx = 0;
+		for(DeviceSetting setting : settings) {
+			deviceSettingDao.save(setting);
+			value[idx++] = setting.getOffTime();
+			value[idx++] = setting.getOnTime();
+		}
 		
-		deviceSettingDao.save(setting);
+		AirResult result = airService.setPullUpDownPeriod(settings[0].getDeviceNo(), value);
+		
+		return result;
 	}
 	
 	public void removeDeviceSetting(DeviceSetting setting) {

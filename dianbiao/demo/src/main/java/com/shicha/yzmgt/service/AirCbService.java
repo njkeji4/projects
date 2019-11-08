@@ -1,6 +1,8 @@
 package com.shicha.yzmgt.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,7 +38,7 @@ public class AirCbService {
 		
 		Object o = result.getData();
 		
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = new ObjectMapper();		
 		MeterStatus status = objectMapper.convertValue(o, MeterStatus.class);
 		log.info(status.getActionEnergy()+"");
 		
@@ -44,14 +46,14 @@ public class AirCbService {
 		return result;
 	}
 	
-	public AirResult pullDown(String addr) {
+	public AirResult switchOff(String addr) {
 		CbCommand command = new CbCommand(2, addr);
 		AirResult result = aircb.getData(command);
 		
 		return result;
 	}
 	
-	public AirResult pullUp(String addr) {
+	public AirResult switchOn(String addr) {
 		CbCommand command = new CbCommand(3, addr);
 		AirResult result = aircb.getData(command);
 		
@@ -105,6 +107,47 @@ public class AirCbService {
 	
 	public AirResult setPeriod(String addr, int value) {
 		CbCommand command = new CbCommand(8, addr, value);
+		AirResult result = aircb.getData(command);
+		
+		return result;
+	}
+	
+	private String getHHMMSS(long v) {
+		
+		Calendar c = Calendar.getInstance();
+		c.setTimeInMillis(v);
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("HHmmss");
+		String result = sdf.format(c.getTime());
+		
+		//String result = c.get(Calendar.HOUR_OF_DAY)+""+c.get(Calendar.MINUTE)+""+c.get(Calendar.SECOND);
+		
+		System.out.println(result);
+		return result;//c.get(Calendar.HOUR_OF_DAY)+""+c.get(Calendar.MINUTE)+""+c.get(Calendar.SECOND);
+	}
+	
+	
+	public AirResult setPullUpDownPeriod(String addr, long[] value) {
+		
+		log.info("value.length="+value.length);
+		if(value.length > 8) {
+			AirResult result= new AirResult(9);
+			result.setCmdStat(false);
+			result.setMsg("value length >8" + value.length);
+			return result;
+		}
+		//String date= "010100020200030300040400050500060600070700080800";
+		String date="";
+		for(int i = 0; i < value.length; i++) {
+			date+=this.getHHMMSS(value[i]);
+		}
+		for(int i = value.length; i < 8; i++)
+			date += "000000";
+		
+		System.out.println("date="+date);
+			
+		
+		CbCommand command = new CbCommand(9, addr, date);
 		AirResult result = aircb.getData(command);
 		
 		return result;

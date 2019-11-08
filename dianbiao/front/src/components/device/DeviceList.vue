@@ -2,9 +2,11 @@
 	<div class="main-content" style="padding:3px;">
 		<el-row :gutter=20 class="toolbar searchparam">
 			
-			<el-col  :span=5 class="search-action-wrap" style="margin-bottom:10px;">
+			<el-col  :span=24 class="search-action-wrap" style="margin-bottom:10px;">
 				<div style="float:left">		
-					<!--el-button size="small" @click="addDevice">增加设备</el-button-->
+					<el-button size="small" @click="addDevice">增加设备</el-button>
+					<el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
+					<el-button size="small" @click="onDevice" :disabled="this.sels.length === 0" :loading="actionLoading">合闸</el-button>
 					<!--el-button size="small" @click="batchRemove" :disabled="this.sels.length === 0">删除设备</el-button-->
 					<el-button size="small" @click="settingDevice" :disabled="this.sels.length !== 1">设置自动拉合闸时间</el-button>				
 				</div>				
@@ -22,9 +24,9 @@
 				<el-table-column header-align="center"  type="selection">				
 				</el-table-column>
 				
-				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="240"></el-table-column>
+				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>
 				
-				<el-table-column  prop="deviceNo" label="设备编号" width="200" sortable="custom"></el-table-column>				
+				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>				
 						
 				<el-table-column  prop="status" label="设备状态" width="120" sortable="custom">
 					<template slot-scope="scope">						
@@ -32,20 +34,22 @@
 					</template>
 				</el-table-column>
 
-				<el-table-column  sortable="custom" prop="SwitchStat" label="开关状态" width="240">
+				<el-table-column  sortable="custom" prop="SwitchStat" label="开关状态" width="140">
 					<template slot-scope="scope">						
-						<el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" close-transition>{{scope.row.status == '0'?'拉闸':'合闸'}}</el-tag>					
+						<el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" close-transition>{{scope.row.status == '0'?'合闸':'拉闸'}}</el-tag>					
 					</template>
 				</el-table-column>
 			
-				<el-table-column  sortable="custom" prop="GroupactionEnergy" label="组合有功电能量" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="ActionEnergy" label="正向有功电能量" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="ReactionEnergy" label="反向有功电能量" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="vol" label="电压" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="cur" label="电流" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="ActionPower" label="有功功率" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="Freq" label="电网频率" width="240"></el-table-column>
-				<el-table-column  sortable="custom" prop="Factor" label="功率因数" width="240"></el-table-column>
+				<el-table-column  sortable="custom" prop="actionEnergy" label="正向有功电能量" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="reactionEnergy" label="反向有功电能量" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="vol" label="电压" width="80"></el-table-column>
+				<el-table-column  sortable="custom" prop="cur" label="电流" width="80"></el-table-column>
+				<el-table-column  sortable="custom" prop="actionPower" label="有功功率" width="140"></el-table-column>
+				<el-table-column  sortable="custom" prop="freq" label="电网频率" width="140"></el-table-column>
+				<el-table-column  sortable="custom" prop="factor" label="功率因数" width="140"></el-table-column>
+
+				<el-table-column  sortable="custom" prop="groupactionEnergy" label="组合有功电能量" width="240"></el-table-column>
+				
 			</el-table>
 		</section>
 
@@ -82,6 +86,7 @@
 					status:'',
 					groupId:''
 				},
+				actionLoading:false,
 				groups:[],
 				groupMaps:{},
 				devices: [],
@@ -142,7 +147,61 @@
 			},
 			
 			addDevice() {
-				this.getDeviceList();
+				
+			},
+
+			offDevice() {
+				var row;
+				if(this.sels && this.sels.length > 0) {
+					row = this.sels[0];
+				}else
+					return;
+				
+				this.actionLoading=true;
+				AdminAPI.switchOffDevice(row).then(({
+					data: data
+				}) => {
+					this.actionLoading=false;
+					console.log(data);
+					if(data !== null) {
+						this.$message(data.message);
+						
+					} else {
+						this.$message({
+							messsage: `拉闸失败:${data.message}`,
+							type: 'error'
+						})
+					}
+				});
+				
+				
+			},
+
+			onDevice() {
+				var row;
+				if(this.sels && this.sels.length > 0) {
+					row = this.sels[0];
+				}else
+					return;
+
+				this.actionLoading=true;
+				AdminAPI.switchOnDevice(row).then(({
+					data: data
+				}) => {
+					this.actionLoading=false;
+					console.log(data.message);
+					if(data !== null) {
+						this.$message(data.message);
+						
+					} else {
+						this.$message({
+							messsage: `合闸失败:${data.message}`,
+							type: 'error'
+						})
+					}
+				});
+				
+
 			},
 
 			settingDevice(){
@@ -178,6 +237,7 @@
 				}) => {
 					if(jsonData !== null) {
 						this.devices = jsonData;
+						this.total=this.devices.length;
 					} else {
 						this.$message({
 							messsage: `获取设备列表失败:${data.msg}`,

@@ -8,43 +8,49 @@
                 
                 <el-col  :span=24 class="search-action-wrap" style="margin-bottom:10px;">
                     
-							<el-time-picker  v-model="actionTime" placeholder="拉合闸时间">
+							拉闸时间：<el-time-picker  v-model="offTime" placeholder="拉闸时间">
                             </el-time-picker >
+
+                            合闸时间：<el-time-picker  v-model="onTime" placeholder="合闸时间">
+                            </el-time-picker >                    
                     
-                            <el-select clearable size="small" v-model="action" placeholder="拉合闸" style="margin-left:10px;">
-                                    <el-option  label="拉闸" value="0"></el-option>
-                                    <el-option  label="合闸" value="1"></el-option>
-                            </el-select>
-                    
-                    
-                    <el-button style="margin-left:10px;" size="small" type="primary" @click="batchEdidtSubmit" :loading="batchConfigLoading">增加</el-button>
+                    <el-button style="margin-left:10px;" size="small" type="primary" @click="addOffOnTime" :loading="batchConfigLoading">增加</el-button>
                 </el-col>
             </el-row>	
+
+           
+
 		</el-form>
 	
         <section class="grid-content">
-			<el-table :data="devices" resizable border highlight-current-row stripe  ref="table" 
-			  class="cmcc-cell-nowrap">
+			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table" 
+			  class="cmcc-cell-nowrap" >
 
 				<el-table-column header-align="center"  type="selection">				
 				</el-table-column>
 				
 				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="240"></el-table-column>
 			
-                <el-table-column  sortable="custom" prop="action" label="拉合闸" width="240">
-					<template slot-scope="scope">						
-						<el-tag :type="scope.row.action == '0' ? 'success' : 'danger'" close-transition>{{scope.row.action == '0'?'拉闸':'合闸'}}</el-tag>					
-					</template>
-				</el-table-column>
-
-				<el-table-column  sortable="custom" prop="actionTime" label="时间" width="240">
+				<el-table-column  sortable="custom" prop="offTime" label="拉闸时间" width="240">
                     <template slot-scope="scope">
-						{{scope.row.actionTime | dateFormat}}
+						{{scope.row.offTime | dateFormat}}
+					</template>
+                </el-table-column>
+
+                <el-table-column  sortable="custom" prop="onTime" label="合闸时间" width="240">
+                    <template slot-scope="scope">
+						{{scope.row.onTime | dateFormat}}
 					</template>
                 </el-table-column>
 
 			</el-table>
 		</section>
+
+
+         <div slot="footer" class="dialog-footer">
+			    <el-button size="small" @click="modalVisible = false">取消</el-button>
+			    <el-button size="small" type="primary" @click="batchEdidtSubmit" :loading="batchConfigLoading">提交</el-button>
+		</div>
 
 	</el-dialog>
 </template>
@@ -67,22 +73,24 @@ export default {
            modalVisible: true,			
            batchConfigLoading: false,           
            title: '',
-           devices:[],
-           action:'',
-           actionTime:'',
+           devices:[],           
+           offTime:'',
+           onTime:'',
+           listLoading:false,
            batchEditForm:{
                name:'',
-               action:'',
-               actionTime:''
+              offTime:'',
+                onTime:'',
            },
            batchEditFormRules: {
-                actionTime: [
-                    { required: true, message: '选择时间', trigger: 'change' },
+                offTime: [
+                    { required: true, message: '选择拉闸时间', trigger: 'change' },
                     //{validator : nameCheck, trigger: 'blur'}
                 ],
-                action:[
-                    { required: true, message: '选择操作', trigger: 'change' },
-                ]
+                 onTime: [
+                    { required: true, message: '选择合闸时间', trigger: 'change' },
+                    //{validator : nameCheck, trigger: 'blur'}
+                ],
            },
         };
     },
@@ -103,6 +111,26 @@ export default {
         this.getSetting();
     },
     methods: {
+        
+        addOffOnTime(){
+            if(this.devices.length >= 4){
+                console.log(this.devices.length);
+                this.$message.error('最多只能添加4组拉合闸时间!');                
+                return;
+            }
+            
+            if(this.offTime === '' || this.onTime === ''){
+                this.$message.error('拉合闸时间不能为空!');  
+                return;
+            }
+            this.devices.push( {
+                    offTime:Date.parse(this.offTime), 
+                    onTime:Date.parse(this.onTime),  
+                    deviceNo:this.deviceInfo.deviceNo,
+                    deviceName:this.deviceInfo.deviceName
+                });
+            
+        },
 
         getSetting(){
              AdminAPI.getDeviceSetting({deviceNo:this.deviceInfo.deviceNo}).then(({
@@ -120,20 +148,19 @@ export default {
         },
 
 		batchEdidtSubmit() {            
-
+             this.listLoading=true;
 			this.$refs.batchEditForm.validate(valid => {
 				if(valid) {		
-                   
+                  
 					AdminAPI.addDeviceSetting(
-                            {
-                                actionTime:Date.parse(this.actionTime), 
-                                action:this.action, 
-                                deviceNo:this.deviceInfo.deviceNo,
-                                deviceName:this.deviceInfo.deviceName}
+                            
+                                this.devices
+                           
                     ).then(({data}) => {
+                        this.listLoading=false;
 						if(data.status === 0) {
 							this.$message({
-								message: '添加成功!'
+								message: data.message
 							});
 							this.$emit('data', {});
 							this.modalVisible = false;
@@ -142,6 +169,7 @@ export default {
 						}
 						
 					}).catch(() => {
+                        this.listLoading=false;
 						this.$message.error('修改设备信息失败!');
 					});
 				}

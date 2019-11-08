@@ -24,8 +24,9 @@ public class DeviceSetting {
 	String deviceNo;
 	String deviceName;
 	
-	long actionTime;
-	int action;
+	long offTime;
+	long onTime;	
+	
 	public String getId() {
 		return id;
 	}
@@ -44,18 +45,16 @@ public class DeviceSetting {
 	public void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
 	}
-	public long getActionTime() {
-		return actionTime;
+	public long getOffTime() {
+		return offTime;
 	}
-	public void setActionTime(long actionTime) {
-		this.actionTime = actionTime;
+	public void setOffTime(long offTime) {
+		this.offTime = offTime;
 	}
-	public int getAction() {
-		return action;
+	public long getOnTime() {
+		return onTime;
 	}
-	public void setAction(int action) {
-		this.action = action;
-	}
-	
-	
+	public void setOnTime(long onTime) {
+		this.onTime = onTime;
+	}	
 }

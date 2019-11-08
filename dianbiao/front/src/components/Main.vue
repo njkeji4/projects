@@ -10,8 +10,8 @@
 							font-weight: 300; line-height: 50px; height: 50px;">
 							
 					
-					<span v-show="!isCollapse">移动物联</span>
-					<span v-show="isCollapse">中</span>
+					<span v-show="!isCollapse">智能电表</span>
+					<span v-show="isCollapse">电</span>
 
 				</el-header>
 
@@ -53,7 +53,7 @@
 					<div style="color: #fff;
 							font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 							font-weight: 400; line-height: 50px; height: 50px;float:left;">					 
-						管理系统
+						智能电表管理系统
 					</div>
 
 					<div style="float:right">

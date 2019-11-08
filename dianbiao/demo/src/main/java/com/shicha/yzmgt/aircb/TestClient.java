@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,21 +25,22 @@ public class TestClient {
 	@Autowired
 	AirCbService airService;
 	
+	
 	@RequestMapping(value="/{cmd}", method=RequestMethod.GET)
 	public AirResult exeCmd(
 			@PathVariable("cmd") Integer cmd,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
-		String addr="address";
+		String addr="111111111111";
 		
 		if(cmd == 1)
 			return airService.getDeviceStatus(addr);
 		
 		if(cmd == 2)
-			return airService.pullDown(addr);
+			return airService.switchOff(addr);
 	
 		if(cmd == 3)
-			return airService.getDeviceStatus(addr);
+			return airService.switchOn(addr);
 		
 		if(cmd == 4)
 			return airService.getPullTime(addr);
@@ -53,7 +55,10 @@ public class TestClient {
 			return airService.setThresh(addr,10);
 		
 		if(cmd == 8)
-			return airService.setPeriod(addr,10);
+			return airService.setPeriod(addr,1);
+		
+		if(cmd == 9)
+			return airService.setPullUpDownPeriod(addr, new long[] {1573125378000l,1573125302000l});
 		
 		return null;
 	}

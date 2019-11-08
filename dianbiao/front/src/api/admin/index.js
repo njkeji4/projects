@@ -16,6 +16,10 @@ export const getDeviceList = () => { return axios.get(`${prefix}/device/get?_t=$
 
 export const getDeviceSetting = (param) => { return axios.post(`${prefix}/device/setting/get`,param); };
 
+export const switchOffDevice = (param) => { return axios.post(`${prefix}/device/off`,param); };
+
+export const switchOnDevice = (param) => { return axios.post(`${prefix}/device/on`,param); };
+
 export const addDeviceSetting = (param) => { return axios.post(`${prefix}/device/setting/add`,param); };
 
 export const searchDevice = (param) => { return axios.post(`${prefix}/device/searchDevice`,param); };

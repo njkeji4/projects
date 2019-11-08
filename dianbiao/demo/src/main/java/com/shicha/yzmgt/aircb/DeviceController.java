@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.domain.APIResult;
+import com.shicha.yzmgt.service.AirCbService;
 import com.shicha.yzmgt.service.DeviceService;
 
 @RestController
@@ -27,6 +28,9 @@ public class DeviceController {
 	
 	@Autowired
 	DeviceService deviceService;
+	
+	@Autowired
+	AirCbService airService;
 	
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	public List<Device> getDevices(
@@ -49,6 +53,26 @@ public class DeviceController {
 		return new APIResult(0);
 	}
 	
+	@RequestMapping(value="/off", method=RequestMethod.POST)
+	public APIResult offDevice(
+			@RequestBody Device device,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		AirResult result= airService.switchOff(device.getDeviceNo());
+		
+		return new APIResult(result.isCmdStat()?0:1,result.getMsg());
+	}
+	
+	@RequestMapping(value="/on", method=RequestMethod.POST)
+	public APIResult onDevice(
+			@RequestBody Device device,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		AirResult result=airService.switchOn(device.getDeviceNo());
+		
+		return new APIResult(result.isCmdStat()?0:1,result.getMsg());
+	}
+	
 	@RequestMapping(value="/del", method=RequestMethod.POST)
 	public APIResult delDevice(
 			@RequestBody Device device,
@@ -62,12 +86,14 @@ public class DeviceController {
 	
 	@RequestMapping(value="/setting/add", method=RequestMethod.POST)
 	public APIResult addSetting(
-			@RequestBody DeviceSetting setting,
+			@RequestBody DeviceSetting[] setting,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{		
 		
-		deviceService.addDeviceSetting(setting);
+		AirResult result = deviceService.addDeviceSetting(setting);
+		log.info(result.isCmdStat()+""+result.getMsg());
+		log.info(result.getMsg());
 		
-		return new APIResult(0);
+		return new APIResult(result.isCmdStat()?0:1, result.getMsg());
 	}
 	
 	@RequestMapping(value="/setting/del", method=RequestMethod.POST)

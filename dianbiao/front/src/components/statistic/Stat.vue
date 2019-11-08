@@ -5,11 +5,11 @@
           <div class="box-header">总计</div>
           <div class="box-body">           
               <div class="small-box bar-green">
-                <p>认证通过:</p><h3>{{usedcersuccCount}}</h3>
+                <p>在线电表:</p><h3>{{usedcersuccCount}}</h3>
               </div>     
-              <div class="small-box bar-yellow"><p> 认证失败:</p><h3>{{usedcerfailCount}}</h3></div>  
-              <div class="small-box bar-red"><p> 黑名单告警:</p><h3>{{usedalarmCount}}</h3></div>   
-              <div class="small-box bar-blue"> <p>设备数:</p><h3>{{deviceCount}}</h3></div>   
+              <div class="small-box bar-yellow"><p> 离线电表:</p><h3>{{usedcerfailCount}}</h3></div>  
+              <div class="small-box bar-red"><p> 合闸电表:</p><h3>{{usedalarmCount}}</h3></div>   
+              <div class="small-box bar-blue"> <p>拉闸电表:</p><h3>{{deviceCount}}</h3></div>   
 
           </div>
         </div>
@@ -46,7 +46,7 @@ export default {
         usedcersuccCount:90,
         usedcerfailCount:10,
 
-        deviceCount:100,
+        deviceCount:40,
         onlineCount:90,
         offlineCount:10,
 
@@ -152,7 +152,7 @@ export default {
           {name:"失败",value:this.cerfailCount},
           {name:"告警",value:this.alarmCount}];
         cerPieOption.legend.data=["成功","失败","告警"];
-        cerPieOption.title.text="认证";
+        cerPieOption.title.text="操作";
 
         devicePieOption.series.data=[
           {name:"在线",value:this.onlineCount},
@@ -168,8 +168,8 @@ export default {
   },
   mounted() {
       this.todayDate=Filters.dateFormat(new Date());
-			this.gettodayData();
-      //this.loadData();
+			//this.gettodayData();
+      this.loadData();
 		}
 }
 </script>

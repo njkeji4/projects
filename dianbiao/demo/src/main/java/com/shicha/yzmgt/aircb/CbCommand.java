@@ -25,6 +25,14 @@ public class CbCommand {
 	}
 	
 	
+	public CbCommand(int cmd, String addr, String data) {
+		this.cmd = cmd;
+		HashMap<String, Object> t = new HashMap<String, Object>();
+		t.put("addr", addr);
+		t.put("data", data);
+		param = t;
+	}
+	
 
 	public int getCmd() {
 		return cmd;

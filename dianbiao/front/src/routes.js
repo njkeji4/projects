@@ -35,6 +35,14 @@ let routes = [
             },
             
             {
+                path: 'stat',
+                component: MainStat,
+                name:'',
+                title:'统计',
+                iconCls: 'versionmanagement'
+            },
+
+            {
                 path:'*',
                 hidden:true,
                 redirect:{
