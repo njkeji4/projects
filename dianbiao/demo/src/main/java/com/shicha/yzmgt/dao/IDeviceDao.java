@@ -18,6 +18,7 @@ public interface IDeviceDao extends JpaRepository<Device, String>,JpaSpecificati
 	
 	Device findByDeviceName(String name);
 	
+	Device findByDeviceNo(String deviceNo);
 }
 
 

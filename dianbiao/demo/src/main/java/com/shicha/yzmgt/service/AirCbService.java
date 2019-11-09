@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shicha.yzmgt.aircb.TestClient;
+import com.shicha.yzmgt.bean.Device;
+import com.shicha.yzmgt.dao.IDeviceDao;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shicha.yzmgt.aircb.AirResult;
@@ -27,12 +29,28 @@ public class AirCbService {
 	@Autowired
 	IAirCB aircb;
 	
+	@Autowired
+	IDeviceDao deviceDao;
+	
 	public AirResult getDeviceStatus(String addr) {
+		log.info("addr="+addr);
+		Device device = deviceDao.findByDeviceNo(addr);
+		if(device == null) {
+			log.info("device is not registered :"+addr);
+		}
+		
 		CbCommand command = new CbCommand(1, addr);
-		AirResult result = aircb.getData(command);
+		AirResult result = aircb.getData(command);		
 		
 		if(result.getData() == null) {
 			log.info("device is offline");
+			
+			if(device != null)
+			{
+				device.setStatus(Device.device_status_offline);
+				deviceDao.save(device);
+			}
+			
 			return result;
 		}
 		
@@ -43,10 +61,18 @@ public class AirCbService {
 		log.info(status.getActionEnergy()+"");
 		
 		
+		if(device != null) {		
+			device.syncDevice(status);			
+			device.setStatus(Device.device_status_online);
+			deviceDao.save(device);
+		}		
+		
 		return result;
 	}
 	
 	public AirResult switchOff(String addr) {
+		log.info("addr="+addr);
+		
 		CbCommand command = new CbCommand(2, addr);
 		AirResult result = aircb.getData(command);
 		
@@ -54,6 +80,8 @@ public class AirCbService {
 	}
 	
 	public AirResult switchOn(String addr) {
+		log.info("addr="+addr);
+		
 		CbCommand command = new CbCommand(3, addr);
 		AirResult result = aircb.getData(command);
 		
@@ -61,6 +89,8 @@ public class AirCbService {
 	}
 	
 	public AirResult getPullTime(String addr) {
+		log.info("addr="+addr);
+		
 		CbCommand command = new CbCommand(4, addr);
 		AirResult result = aircb.getData(command);
 		
@@ -85,6 +115,7 @@ public class AirCbService {
 	}
 	
 	public AirResult readThresh(String addr) {
+		log.info("addr="+addr);
 		CbCommand command = new CbCommand(5, addr);
 		AirResult result = aircb.getData(command);
 		
@@ -92,6 +123,8 @@ public class AirCbService {
 	}
 	
 	public AirResult readPeriod(String addr) {
+		log.info("addr="+addr);
+		
 		CbCommand command = new CbCommand(6, addr);
 		AirResult result = aircb.getData(command);
 		
@@ -99,6 +132,8 @@ public class AirCbService {
 	}
 	
 	public AirResult setThresh(String addr, double value) {
+		log.info("addr="+addr);
+		
 		CbCommand command = new CbCommand(7, addr, value);
 		AirResult result = aircb.getData(command);
 		
@@ -106,6 +141,8 @@ public class AirCbService {
 	}
 	
 	public AirResult setPeriod(String addr, int value) {
+		log.info("addr="+addr);
+		
 		CbCommand command = new CbCommand(8, addr, value);
 		AirResult result = aircb.getData(command);
 		
@@ -128,6 +165,8 @@ public class AirCbService {
 	
 	
 	public AirResult setPullUpDownPeriod(String addr, long[] value) {
+		
+		log.info("addr="+addr);
 		
 		log.info("value.length="+value.length);
 		if(value.length > 8) {

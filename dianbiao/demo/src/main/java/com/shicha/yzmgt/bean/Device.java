@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.shicha.yzmgt.aircb.MeterStatus;
+
 @Entity(name="device")
 @Table(indexes={
 			@Index(name="deviceNo_Index",columnList="deviceNo")
@@ -18,8 +20,8 @@ public class Device {
 	public static int device_status_online = 0;
 	public static int device_status_offline = 1;
 	
-	public static int device_switch_close = 0;  //0-拉闸
-	public static int device_switch_open = 1;	//1-合闸
+	public static int device_switch_close = 0;  //0-合闸
+	public static int device_switch_open = 1;	//1-拉闸
 	
 	
 	@Id
@@ -48,6 +50,19 @@ public class Device {
 	@Column(nullable=false, columnDefinition="INT default 1")
 	Integer status = 1;		//1 offline, 0 online
 
+	
+	public void syncDevice(MeterStatus meter) {
+		GroupactionEnergy = meter.GroupactionEnergy;
+		ActionEnergy = meter.ActionEnergy;
+		ReactionEnergy= meter.ReactionEnergy;
+		vol=meter.vol;
+		cur=meter.cur;
+		ActionPower=meter.ActionPower;
+		Freq=meter.Freq;
+		Factor=meter.Factor;
+		SwitchStat=meter.SwitchStat;
+		DateTime=meter.DataTime;		
+	}
 
 	public Integer getStatus() {
 		return status;

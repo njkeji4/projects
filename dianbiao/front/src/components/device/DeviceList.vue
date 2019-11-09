@@ -34,9 +34,9 @@
 					</template>
 				</el-table-column>
 
-				<el-table-column  sortable="custom" prop="SwitchStat" label="开关状态" width="140">
+				<el-table-column  sortable="custom" prop="switchStat" label="开关状态" width="140">
 					<template slot-scope="scope">						
-						<el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" close-transition>{{scope.row.status == '0'?'合闸':'拉闸'}}</el-tag>					
+						<el-tag :type="scope.row.switchStat == 0 ? 'success' : 'danger'" close-transition>{{scope.row.switchStat == 0?'合闸':'拉闸'}}</el-tag>					
 					</template>
 				</el-table-column>
 			
@@ -71,10 +71,10 @@
 	import { AdminAPI } from '../../api';
 	import { openModal } from '../../common/js/modal';
 
-	import DeviceEditDlg from './DeviceEditDlg';
-	//import DeviceGroupAddDlg from './BindDeviceDlg';
+	import DeviceEditDlg from './SettingDevice';
+	import AddDeviceDlg from './AddDevice';
 	const openDeviceEditDlg = openModal(DeviceEditDlg);
-	//const openDeviceGroupAddDlg = openModal(DeviceGroupAddDlg);
+	const openAddDeviceDlg = openModal(AddDeviceDlg);
 
 	export default {
 		data() {
@@ -147,7 +147,12 @@
 			},
 			
 			addDevice() {
-				
+				openAddDeviceDlg().then((data) => {
+					
+					if(data !== undefined){
+						this.getDeviceList();
+					}
+				});
 			},
 
 			offDevice() {
