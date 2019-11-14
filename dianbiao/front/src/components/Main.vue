@@ -72,7 +72,7 @@
 
 				</el-header>
 
-				<el-main style="background-color: #ecf0f5; box-sizing: border-box;">
+				<el-main style="background-color: #ecf0f5; box-sizing: border-box;margin:0px;padding:0px;overflow-x:hidden;">
 					
 					<transition name="fade" mode="out-in">
 						<router-view/>

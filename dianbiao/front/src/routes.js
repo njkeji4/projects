@@ -6,6 +6,7 @@ import DataList from './components/datamgt/DataList.vue';
 import BlackList from './components/blacklist/BlackList.vue';
 import Settings from './components/settings/SystemSettings.vue';
 import MainStat from './components/statistic/Stat.vue';
+import MainStat2 from './components/statistic/Stat2.vue';
 import Alarm from './components/alarm/AlarmList.vue';
 import Usermgt from './components/user/UserManagement.vue';
 import versionmgt from './components/version/VersionManagement.vue';
@@ -36,7 +37,7 @@ let routes = [
             
             {
                 path: 'stat',
-                component: MainStat,
+                component: MainStat2,
                 name:'',
                 title:'统计',
                 iconCls: 'versionmanagement'
