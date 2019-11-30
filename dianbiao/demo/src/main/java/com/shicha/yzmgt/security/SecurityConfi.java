@@ -41,7 +41,7 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter implements WebMv
 					//"/advertisement/**",
 					//"/version/**",
 					//"/user/add",
-					"/test/**","/getdata","/device/**",
+					"/test/**","/getdata",
 					 "/terminal/**",
 					"/index.html", "/favico.ico", "/css/**", "/fonts/**", "/img/**", "/js/**"
 					);			

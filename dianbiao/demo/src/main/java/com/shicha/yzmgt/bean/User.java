@@ -54,7 +54,7 @@ public class User {
 	@Column(nullable=false, columnDefinition="INT default 0")
 	int errorTimes = 0;
 	
-	
+	String groupName;
 	
 	public String getRole() {
 		return role;
@@ -115,5 +115,15 @@ public class User {
 	public void setErrorTimes(int errorTimes) {
 		this.errorTimes = errorTimes;
 	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	
+	
 	
 }

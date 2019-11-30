@@ -11,18 +11,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.shicha.yzmgt.bean.Device;
+import com.shicha.yzmgt.bean.UserCmd;
 
 
 @Repository
-public interface IDeviceDao extends JpaRepository<Device, String>,JpaSpecificationExecutor<Device>{
+public interface IUserCmdDao extends JpaRepository<UserCmd, String>,JpaSpecificationExecutor<UserCmd>{
 	
-	Device findByDeviceName(String name);
-	
-	Device findByDeviceNo(String deviceNo);
-	
-	List<Device> findByGroupName(String name);
-	
-	
+	List<UserCmd> findByGroupName(String groupName);
 }
 
 

@@ -20,36 +20,53 @@ public class Device {
 	public static int device_status_online = 0;
 	public static int device_status_offline = 1;
 	
-	public static int device_switch_close = 0;  //0-合闸
-	public static int device_switch_open = 1;	//1-拉闸
+	public static int device_switch_close = 0;  //0-合闸状态
+	public static int device_switch_open = 1;	//其他值是拉闸状态
 	
 	
 	@Id
-	@Column(name="id", nullable=false, length=36)
-	@GenericGenerator(name="system-uuid", strategy="uuid2")
-	@GeneratedValue(generator="system-uuid")
-	String id;
-	
 	String deviceNo;
+
+	String deviceName;
 	
+	@Column(nullable=false, columnDefinition="Double default 0")
 	double GroupactionEnergy;  //组合有功电能量
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double ActionEnergy;       //":65.21,       #正向有功电能量
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double ReactionEnergy;     //:219.3,     #反向有功电能量
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double vol;               //":220.5,    #电压
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double cur; //":1.503,    #电流
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double ActionPower; //":0.3254,   #有功功率
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double Freq;//":49.92,   #电网频率
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
     double Factor;//":0.953,     #功率因数
-    int SwitchStat;//":1,     #开关状态： 0-拉闸， 1-合闸
+	
+	@Column(nullable=false, columnDefinition="INT default 0")
+    int SwitchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态-合闸
+		
     String DateTime;//": "2019-04-11 14:15:00" #数据时间
     
+	@Column(nullable=false, columnDefinition="Double default 0")
     double threshValue; //
 	
-	String deviceName;
 		
 	@Column(nullable=false, columnDefinition="INT default 1")
 	Integer status = 1;		//1 offline, 0 online
-
+	
+	String userName;
+	String groupName;
 	
 	public void syncDevice(MeterStatus meter) {
 		GroupactionEnergy = meter.GroupactionEnergy;
@@ -83,13 +100,6 @@ public class Device {
 		this.deviceNo = deviceNo;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public double getGroupactionEnergy() {
 		return GroupactionEnergy;
@@ -185,5 +195,22 @@ public class Device {
 
 	public void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}	
+	
 }

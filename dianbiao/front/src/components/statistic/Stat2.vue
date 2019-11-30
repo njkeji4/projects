@@ -12,7 +12,12 @@
            </el-col>
           <el-col :span="12" class="" style="height:100%;position:relative;">
                <div ref="map" class="mapcontainer"></div>
-               <div style="color:white;position:relative;left:0px;top:0px;">online count  </div>
+               <div style="color:white;position:absolute;left:20px;top:10px;">
+                  <el-button type="success" circle></el-button> <span style="line-height:26px;vertical-align:middle;"> 在线:{{onlineCount}}</span>                
+                </div>
+                <div style="color:white;position:absolute;left:20px;top:50px;">                  
+                  <el-button type="danger" circle></el-button><span style="line-height:26px;vertical-align:middle;"> 离线:{{offlineCount}}</span>
+                </div>
           </el-col>
         </el-row>
 </template>
@@ -34,8 +39,8 @@ export default {
         cersuccCount:9000,
         cerfailCount:1000,
 
-        usedcerCount:100,
-        usedcersuccCount:90,
+        usedcerCount:10000,
+        usedcersuccCount:900,
         usedcerfailCount:10,
 
         deviceCount:100,
@@ -44,6 +49,10 @@ export default {
 
         alarmCount:5,
         usedalarmCount:50,
+
+        devices:[{name:'test',status:0,lanlat:'107.736419707031,26.8329177070313'},
+          {name:'test',status:1,lanlat:'106.242139921875,25.7986794257813'}],
+        deviceGroups:[{name:'g1',succ:10,fail:20,alarm:1},{name:'g2',succ:10,fail:20,alarm:1}],
 
         pageSize: 10,
         page: 1,
@@ -84,13 +93,16 @@ export default {
             this.usedcerfailCount = data.data.totalFail;
             this.usedcerCount = this.usedcersuccCount + this.usedcerfailCount;
             this.usedalarmCount = data.data.totalAlarmCount;
+
+            this.devices= data.data.devices;
+            this.deviceGroups = data.data.groups;
           }					
 				}).catch((err) => {
 					this.$message.error('Error', err);
 
 				});
       },
-      loadData(){
+      loadPie(){
         let cerPieOption = CustomChart.pie();//this.pie();
         let devicePieOption = CustomChart.pie();//this.pie();
         
@@ -98,17 +110,18 @@ export default {
         let devicePie = echarts.init(this.$refs.devicePie);
 
         cerPieOption.series.data=[
+          {name:"成功",value: this.usedcersuccCount},
+          {name:"失败",value:this.usedcerfailCount},
+          {name:"告警",value:this.usedalarmCount}];
+        cerPieOption.legend.data=["成功","失败","告警"];
+        cerPieOption.title.text="总计";
+
+        devicePieOption.series.data=[
           {name:"成功",value: this.cersuccCount},
           {name:"失败",value:this.cerfailCount},
           {name:"告警",value:this.alarmCount}];
-        cerPieOption.legend.data=["成功","失败","告警"];
-        cerPieOption.title.text="操作";
-
-        devicePieOption.series.data=[
-          {name:"在线",value:this.onlineCount},
-          {name:"离线",value:this.offlineCount}];
-        devicePieOption.legend.data=["在线","离线"];
-        devicePieOption.title.text="设备";
+        devicePieOption.legend.data=["成功","失败","告警"];
+        devicePieOption.title.text="今日";
 
         certPie.setOption(cerPieOption);
         devicePie.setOption(devicePieOption);
@@ -116,14 +129,87 @@ export default {
         
       },
       loadMap(){
-        
+             var offline = {
+                name: 'offline',
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                data: [
+                    {name:'one', value:[107.736419707031,26.8329177070313,1]}                   
+                ],
+                symbolSize: 20,
+                label: {
+                    normal: {
+                        formatter:'{b}',
+                        color:'white',
+                        position:'right',
+                        show: false
+                    },
+                    emphasis: {
+                        show: false,
+                        formatter:'{b}',
+                    }
+                },
+                itemStyle: {
+                    emphasis: {
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }
+                }
+            };
+            var online={
+                name: 'online',
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                data: [ 
+                ],
+                symbolSize: 20,
+                label: {
+                    normal: {
+                        formatter:'{b}',
+                        color:'white',
+                        position:'right',
+                        show: false
+                    },
+                    emphasis: {
+                        show: false,
+                        formatter:'{b}',
+                    }
+                },
+                itemStyle: {
+                    emphasis: {
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }
+                }
+            }
             echarts.registerMap('qiannan', Qiannan);
             var chart = echarts.init(this.$refs.map);
-
-            chart.setOption(CustomChart.map());
+            var mapOption = CustomChart.map();
+           
+            for(var i = 0; i  < this.devices.length; i++){
+                var lanlat = this.devices[i].lanlat.split(",");
+                if(this.devices[i].status == 0){
+                  online.data.push({name:this.devices[i].name,value:[lanlat[0],lanlat[1],10]});
+                }else{
+                  offline.data.push({name:this.devices[i].name,value:[lanlat[0],lanlat[1],1]});
+                }
+            }
+            mapOption.series=[online,offline];
+            chart.setOption(mapOption);
       },
       loadBar(){        
-          let barOption = CustomChart.bar();         
+          let barOption = CustomChart.bar(); 
+          barOption.xAxis.data=[];
+         
+          var succ={ name:'成功',type: 'bar',data: []},fail={name:'失败',type: 'bar',data: []},alarm={name:'告警',type: 'bar',data: []};
+          
+          for(var i = 0; i < this.deviceGroups.length; i++){
+            barOption.xAxis.data.push(this.deviceGroups[i].name);
+            succ.data.push(this.deviceGroups[i].succ);
+            fail.data.push(this.deviceGroups[i].fail);
+            alarm.data.push(this.deviceGroups[i].alarm);
+          }   
+          barOption.series = [succ,fail,alarm]; 
           let bar = echarts.init(this.$refs.groupBar);
           bar.setOption(barOption);
       },
@@ -131,7 +217,7 @@ export default {
   mounted() {
 			//this.gettodayData();
 
-      this.loadData();
+      this.loadPie();
 
       this.loadMap();
 

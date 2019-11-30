@@ -23,8 +23,7 @@
 			</el-table-column>
 			<el-table-column  prop="groupName"  label="组名" align="center">
 			</el-table-column>
-			<el-table-column  prop="deviceCount"  label="设备数" align="center">
-			</el-table-column>
+			
 			
 			
 		</el-table>

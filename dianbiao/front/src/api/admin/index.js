@@ -14,6 +14,9 @@ export const removeUsers = (param) => { return axios.post(`${prefix}/user/delete
 //device
 export const getDeviceList = () => { return axios.get(`${prefix}/device/get?_t=${Date.now()}`); };
 
+export const getDeviceCmdList = () => { return axios.get(`${prefix}/devicecmd/get?_t=${Date.now()}`); };
+
+
 export const getDeviceSetting = (param) => { return axios.post(`${prefix}/device/setting/get`,param); };
 
 export const addDevice = (param) => { return axios.post(`${prefix}/device/add`,param); };
@@ -26,7 +29,7 @@ export const addDeviceSetting = (param) => { return axios.post(`${prefix}/device
 
 export const searchDevice = (param) => { return axios.post(`${prefix}/device/searchDevice`,param); };
 
-export const deleteDevices = (param) => { return axios.post(`${prefix}/device/delete`,param); };
+export const deleteDevices = (param) => { return axios.post(`${prefix}/device/del`,param); };
 
 export const updateDevice = (param) => { return axios.post(`${prefix}/device/update`,param); };
 
@@ -48,7 +51,7 @@ export const getExistedVersions = () => { return axios.get(`${prefix}/version/ex
 
 export const removeVersion = (param) => { return axios.post(`${prefix}/version/delete`,param); };
 
-export const uploadUrl = `${prefix}/version/upload`;
+export const uploadUrl = `${prefix}/device/upload`;
 export const websocketurl = `${prefix}/websocket`;
 
 //setting

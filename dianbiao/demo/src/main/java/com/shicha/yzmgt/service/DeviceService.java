@@ -1,17 +1,29 @@
 package com.shicha.yzmgt.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shicha.yzmgt.aircb.AirResult;
 import com.shicha.yzmgt.bean.Device;
+import com.shicha.yzmgt.bean.DeviceGroup;
 import com.shicha.yzmgt.bean.DeviceSetting;
+import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
+import com.shicha.yzmgt.dao.IUserDao;
+import com.shicha.yzmgt.domain.DeviceSettingDomain;
 
 @Service
 public class DeviceService {
@@ -22,6 +34,12 @@ public class DeviceService {
 	IDeviceDao deviceDao;
 	
 	@Autowired
+	IUserDao	userDao;
+	
+	@Autowired
+	UserCmdService cmdService;
+	
+	@Autowired
 	AirCbService airService;
 	
 	@Autowired
@@ -29,7 +47,37 @@ public class DeviceService {
 	
 	public List<Device> getAll(){
 		
-		return deviceDao.findAll();
+		String userName = null;
+		try{
+			userName = SecurityContextHolder.getContext().getAuthentication().getName();			
+			if(userName == null)
+				return null;
+			
+			User user = userDao.findByName(userName);
+			if(user.getRole().equals(User.ROLE_ADMIN)) {
+				return deviceDao.findAll();
+			}
+			
+			return deviceDao.findByGroupName(user.getGroupName());//.findAll();
+			
+		}catch(Exception ex) {
+			return null;
+		}
+		
+	}
+	
+	public User getCurrentUser() {
+		String userName = null;
+		try{
+			userName = SecurityContextHolder.getContext().getAuthentication().getName();			
+			if(userName == null)
+				return null;
+			
+			User user = userDao.findByName(userName);
+			return user;
+		}catch(Exception ex) {
+			return null;
+		}
 	}
 	
 	public boolean deviceNameExisted(Device d) {
@@ -38,13 +86,18 @@ public class DeviceService {
 	}
 	
 	public void addDevice(Device d) {
-		
-		if(deviceDao.findByDeviceName(d.getDeviceName()) == null)
+		User user= getCurrentUser();		
+		if(user!=null && !user.getRole().equals(User.ROLE_ADMIN)) {			
+			d.setGroupName(user.getGroupName());
+		}
+		if(deviceDao.findByDeviceName(d.getDeviceName()) == null) {
 			deviceDao.save(d);
+		}
 	}
 	
-	public void delDevice(Device d) {
-		deviceDao.deleteById(d.getId());
+	public void delDevice(String[] ids) {
+		for(String id : ids)
+			deviceDao.deleteById(id);
 	}
 	
 	
@@ -54,23 +107,106 @@ public class DeviceService {
 		return deviceSettingDao.findByDeviceNo(deviceNo);
 	}
 	
-	public AirResult addDeviceSetting(DeviceSetting[] settings) {
-		deviceSettingDao.deleteAll();
+	public AirResult addDeviceSetting(DeviceSettingDomain settingDomain) {
+		String[]ids = settingDomain.getIds();
+		DeviceSetting[]settings = settingDomain.getSettings();
+		
+		for(String id : ids)
+			deviceSettingDao.deleteByDeviceNo(id);	
+		
 		long[] value = new long[settings.length * 2];
 		int idx = 0;
-		for(DeviceSetting setting : settings) {
-			deviceSettingDao.save(setting);
+		for(DeviceSetting setting : settings) {			
 			value[idx++] = setting.getOffTime();
 			value[idx++] = setting.getOnTime();
+			for(String id : ids) {
+				Device d = deviceDao.findByDeviceNo(id);
+				if(d == null)continue;
+				DeviceSetting ds=new DeviceSetting();
+				ds.setDeviceName(d.getDeviceName());
+				ds.setDeviceNo(d.getDeviceNo());
+				ds.setOffTime(setting.getOffTime());
+				ds.setOnTime(setting.getOnTime());
+				deviceSettingDao.save(ds);
+			}
 		}
 		
-		AirResult result = airService.setPullUpDownPeriod(settings[0].getDeviceNo(), value);
+		User user= getCurrentUser();
+		String userName = user == null?null:user.getName();
+		String groupName = user == null?null:user.getGroupName();
 		
-		return result;
+		for(String id : ids) {					
+			airService.setPullUpDownPeriod(id, value,userName,groupName);
+		}
+		
+		return null;
 	}
 	
 	public void removeDeviceSetting(DeviceSetting setting) {
 		
 		deviceSettingDao.deleteById(setting.getId());
+	}
+	
+	public boolean importDeviceFromFile(MultipartFile file, String userName) {
+		
+		String fname = file.getOriginalFilename();
+		if(fname.length() <= 3) {
+			return false;
+		}
+		
+		User user = this.getCurrentUser();
+		if(user == null) {
+			log.info("user is null");
+			return false;
+		}
+		
+		Workbook wb = null;		
+		String last3str = fname.substring(fname.length() - 3);
+		try {
+			
+			boolean is2003 = true;
+			if(last3str.equals("xls")) {	//<=excel2003
+				wb = new HSSFWorkbook(file.getInputStream());
+			}else {	//excel 2007
+				wb = new XSSFWorkbook(file.getInputStream());
+				is2003 = false;
+			}
+			Sheet sheet = wb.getSheetAt(0);
+			int lastRowNum = sheet.getLastRowNum();
+//			if(is2003) {
+//				lastRowNum++;
+//			}
+			
+			log.info("lastrownumber:"+lastRowNum);
+			
+			List<Device> bl = new ArrayList<Device>();
+			
+			for(int i = 1; i <= lastRowNum; i++) {
+				Row row = sheet.getRow(i);
+				
+				String name = row.getCell(0).getStringCellValue();
+				if(name == null || name.length() == 0) {
+					break;
+				}
+				String cardNo = row.getCell(1).getStringCellValue();
+					
+				Device d = new Device();
+				d.setDeviceName(name);
+				d.setDeviceNo(cardNo);
+				d.setGroupName(user.getGroupName());
+				
+				bl.add(d);
+			}
+			
+			wb.close();
+			
+			deviceDao.saveAll(bl);
+			
+			return true;
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}		
 	}
 }

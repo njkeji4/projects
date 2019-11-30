@@ -12,8 +12,8 @@
 			</el-form-item>
 
 			<el-form-item label="管理组" prop="groups">
-				<el-select clearable size="small" v-model="addForm.groupIds" multiple placeholder="请选择">
-					<el-option v-for="item in groups" :label="item.groupName" :value="item.groupId"></el-option>
+				<el-select clearable size="small" v-model="addForm.groupName" placeholder="请选择">
+					<el-option v-for="item in groups" :label="item.groupName" :value="item.groupName"></el-option>
 				</el-select>
 			</el-form-item>
 			
@@ -47,7 +47,7 @@
 				submitLoading: false,
 				roles: [{"name":"管理员组","role":"ROLE_ADMIN"},
 						{"name":"普通用户组","role":"ROLE_USER"},
-						{"name":"广告用户","role":"ROLE_AD"}],
+						],
 				formRules: {
 					name: [
 						{ required: true, message: '请输入用户名', trigger: 'blur' },
@@ -60,7 +60,8 @@
 				addForm: {
 					name:'',					
 					role:'',
-					groupIds:[]					
+					groupName:'',
+									
 				},
 			};          
         },

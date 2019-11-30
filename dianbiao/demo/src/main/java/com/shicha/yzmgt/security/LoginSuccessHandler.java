@@ -28,7 +28,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 		User user = new User();
 		user.setName((String)auth.getPrincipal());
 		
-		request.getSession().setAttribute("userName", user.getName());
+		//request.getSession().setAttribute("userName", user.getName());
 
 		Iterator<? extends GrantedAuthority> it  = auth.getAuthorities().iterator();
 		while(it.hasNext()) {

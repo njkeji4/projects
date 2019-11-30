@@ -23,7 +23,8 @@ public class UserDomain {
 	String name;
 	String password;
 	String role;
-	String[]groupIds;
+	//String[]groupIds;
+	String groupName;
 	
 	public UserDomain() {
 		super();
@@ -42,11 +43,11 @@ public class UserDomain {
 		this.role = role;
 	}
 
-	public String[] getGroupIds() {
-		return groupIds;
+	public String getGroupName() {
+		return groupName;
 	}
 
-	public void setGroupIds(String[] groupIds) {
-		this.groupIds = groupIds;
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 }

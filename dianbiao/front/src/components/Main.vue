@@ -19,7 +19,10 @@
 					<el-menu :default-active="$route.path" unique-opened router :collapse="isCollapse"
 						style="background-color: transparent; border-right:none; height:100%;">
 
-						<template v-for="(item,index) in sideMenuRouter">
+						<template v-for="(item,index) in sideMenuRouter" 
+							v-if="sysUserInfo.role === 'ROLE_ADMIN' 
+									|| (sysUserInfo.role === 'ROLE_USER' && !item.admin)">									
+							
 							<el-submenu :index="index+''" v-if="item.children">
 								<template slot="title" class="test">
 									<i :class="item.iconCls"/>
@@ -34,6 +37,7 @@
 							</el-menu-item>
 
 						</template>
+
 					</el-menu>
 				</el-main>
 				

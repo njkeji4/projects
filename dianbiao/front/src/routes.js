@@ -2,6 +2,7 @@ import Main from './components/Main.vue';
 import HoldView from './components/HoldView.vue';
 import Login from './components/Login.vue';
 import DeviceList from './components/device/DeviceList.vue';
+import DeviceCmd from './components/device/DeviceCmd.vue';
 import DataList from './components/datamgt/DataList.vue';
 import BlackList from './components/blacklist/BlackList.vue';
 import Settings from './components/settings/SystemSettings.vue';
@@ -37,11 +38,28 @@ let routes = [
             
             {
                 path: 'stat',
-                component: MainStat2,
+                component: DeviceCmd,
                 name:'',
-                title:'统计',
+                title:'查看命令',
                 iconCls: 'versionmanagement'
             },
+            {
+                path: 'user',
+                component: Usermgt,
+                name:'',
+                title:'用户管理',
+                iconCls: 'user',
+                admin:1,
+            },
+            {
+                path: 'group',
+                component: groupMgt,
+                name:'',
+                title:'组管理',
+                iconCls: 'group',
+                admin:1
+            },
+
 
             {
                 path:'*',

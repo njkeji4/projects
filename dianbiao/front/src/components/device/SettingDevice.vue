@@ -15,7 +15,12 @@
                             </el-time-picker >                    
                     
                     <el-button style="margin-left:10px;" size="small" type="primary" @click="addOffOnTime" :loading="batchConfigLoading">增加</el-button>
+                    <el-button style="margin-left:10px;" size="small" type="primary" @click="delOffOnTime" 
+                        :disabled="this.sels.length == 0">删除</el-button>
                 </el-col>
+
+                 
+
             </el-row>	
 
            
@@ -24,9 +29,12 @@
 	
         <section class="grid-content">
 			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table" 
-			  class="cmcc-cell-nowrap" >
+			  class="cmcc-cell-nowrap"  @selection-change="handleSelectionChange" >
 
 				<el-table-column header-align="center"  type="selection">				
+				</el-table-column>
+
+                	<el-table-column header-align="center"  type="index">				
 				</el-table-column>
 				
 				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="240"></el-table-column>
@@ -76,6 +84,7 @@ export default {
            devices:[],           
            offTime:'',
            onTime:'',
+           sels: [], //列表选中列
            listLoading:false,
            batchEditForm:{
                name:'',
@@ -98,7 +107,7 @@ export default {
 		
 	},
     created() {                
-        this.title = `设备编号: ${this.deviceInfo.deviceNo}`; 
+        this.title = `设备编号: ${this.deviceInfo[0].deviceNo} 等`; 
     },
 
     filters: {
@@ -111,7 +120,14 @@ export default {
         this.getSetting();
     },
     methods: {
+        handleSelectionChange: function(sels) {
+				this.sels = sels;			
+		},
+        delOffOnTime(){
         
+            this.devices = this.devices.filter(t => !this.sels.some(s => s.id === t.id))
+
+        },
         addOffOnTime(){
             if(this.devices.length >= 4){
                 console.log(this.devices.length);
@@ -123,24 +139,26 @@ export default {
                 this.$message.error('拉合闸时间不能为空!');  
                 return;
             }
+            var id=this.devices.length+1;
             this.devices.push( {
                     offTime:Date.parse(this.offTime), 
                     onTime:Date.parse(this.onTime),  
-                    deviceNo:this.deviceInfo.deviceNo,
-                    deviceName:this.deviceInfo.deviceName
+                    deviceNo:this.deviceInfo[0].deviceNo,
+                    deviceName:this.deviceInfo[0].deviceName,
+                    id:id
                 });
             
         },
 
         getSetting(){
-             AdminAPI.getDeviceSetting({deviceNo:this.deviceInfo.deviceNo}).then(({
+             AdminAPI.getDeviceSetting({deviceNo:this.deviceInfo[0].deviceNo}).then(({
 					data: jsonData
 				}) => {
 					if(jsonData !== null) {
 						this.devices = jsonData;
 					} else {
 						this.$message({
-							messsage: `获取设备列表失败:${data.msg}`,
+							messsage: `获取设备拉合闸时间失败:${data.msg}`,
 							type: 'error'
 						})
 					}
@@ -149,13 +167,12 @@ export default {
 
 		batchEdidtSubmit() {            
              this.listLoading=true;
+           
 			this.$refs.batchEditForm.validate(valid => {
 				if(valid) {		
                   
-					AdminAPI.addDeviceSetting(
-                            
-                                this.devices
-                           
+					AdminAPI.addDeviceSetting(                            
+                                {ids:this.deviceInfo.map(item=>item.deviceNo),settings:this.devices}                           
                     ).then(({data}) => {
                         this.listLoading=false;
 						if(data.status === 0) {

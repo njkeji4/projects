@@ -29,7 +29,10 @@ public class DeviceScanTask {
 	@Autowired
 	AirCbService airService;
 	
-	@Scheduled(fixedRate = 1000 * 60 * 1)
+	@Value("${device.heartbeat:1}")
+	int heartBeat;
+	
+	@Scheduled(fixedRate = 1000 * 60 * 10)
 	public void scanDevice() {		
 		try {
 			List<Device> list = deviceDao.findAll();

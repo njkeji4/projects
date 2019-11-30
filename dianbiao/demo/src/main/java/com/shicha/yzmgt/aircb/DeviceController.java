@@ -9,14 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceSetting;
+import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.domain.APIResult;
+import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.service.AirCbService;
 import com.shicha.yzmgt.service.DeviceService;
 
@@ -55,45 +60,49 @@ public class DeviceController {
 	
 	@RequestMapping(value="/off", method=RequestMethod.POST)
 	public APIResult offDevice(
-			@RequestBody Device device,
+			@RequestBody String[]ids,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
-		AirResult result= airService.switchOff(device.getDeviceNo());
+		User user= deviceService.getCurrentUser();
+		String userName = user == null?null:user.getName();
+		String groupName = user == null?null:user.getGroupName();
+		airService.switchOff(ids,userName,groupName);
 		
-		return new APIResult(result.isCmdStat()?0:1,result.getMsg());
+		return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
 	public APIResult onDevice(
-			@RequestBody Device device,
+			@RequestBody String[] ids,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
-		AirResult result=airService.switchOn(device.getDeviceNo());
+		User user= deviceService.getCurrentUser();
+		String userName = user == null?null:user.getName();
+		String groupName = user == null?null:user.getGroupName();
+		AirResult result=airService.switchOn(ids,userName,groupName);
 		
-		return new APIResult(result.isCmdStat()?0:1,result.getMsg());
+		return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/del", method=RequestMethod.POST)
 	public APIResult delDevice(
-			@RequestBody Device device,
+			@RequestBody String[]ids,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
 		
-		deviceService.delDevice(device);
+		deviceService.delDevice(ids);
 		
 		return new APIResult(0);
 	}
 	
 	@RequestMapping(value="/setting/add", method=RequestMethod.POST)
 	public APIResult addSetting(
-			@RequestBody DeviceSetting[] setting,
+			@RequestBody DeviceSettingDomain settingDomain,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{		
 		
-		AirResult result = deviceService.addDeviceSetting(setting);
-		log.info(result.isCmdStat()+""+result.getMsg());
-		log.info(result.getMsg());
+		deviceService.addDeviceSetting(settingDomain);
 		
-		return new APIResult(result.isCmdStat()?0:1, result.getMsg());
+		return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/setting/del", method=RequestMethod.POST)
@@ -112,5 +121,21 @@ public class DeviceController {
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
 		return deviceService.getByDeviceNo(setting.getDeviceNo());
+	}
+	
+	@RequestMapping(value="/upload", method=RequestMethod.POST)
+	public APIResult uploadBlacklist(
+			@RequestParam("uploadFile") MultipartFile file,	
+			HttpServletRequest req, HttpServletResponse response) throws IOException{		
+		
+			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+			
+			boolean result = deviceService.importDeviceFromFile(file, userName);
+			
+			if(result)
+				return new APIResult(0);
+			else
+				return new APIResult(1, "导入文件失败");
+		
 	}
 }

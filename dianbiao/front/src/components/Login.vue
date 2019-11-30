@@ -4,21 +4,20 @@
       <!--img height="55px" src="../assets/img/timg.jpg" style="position:fixed;right:540px; top:50px;"/-->
       <div style="font:'微软雅黑'; font-size:40px;position:fixed;right:215px; top:50px; 
               color:#40a1db;vertical-align:top;line-height:55px;vertical-align:middle;">
-       
+        人证核验管理系统
      </div>
     
     <div style="float:left;margin-top:0px;width:60%;">    
         <img style="width:100%;" src="../assets/img/login-poto.gif" />
     </div>
 
-    <el-form :model="loginForm" :rules="loginFormRule" ref="loginForm" label-position="left" 
-          label-width="0px" class="demo-ruleForm login-container">
+    <el-form :model="loginForm" :rules="loginFormRule" ref="loginForm" label-position="left" label-width="0px" class="demo-ruleForm login-container">
       <h3 class="title"> 输入用户名，密码进行系统管理	</h3>
       <el-form-item prop="name">
-        <el-input type="text" v-model="loginForm.name" value="demo" auto-complete="off" placeholder="账号" @keyup.native.enter="submit"></el-input>
+        <el-input type="text" v-model="loginForm.name" auto-complete="off" placeholder="账号" @keyup.native.enter="submit"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" v-model="loginForm.password" value="demo" auto-complete="off" placeholder="密码" @keyup.native.enter="submit"></el-input>
+        <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码" @keyup.native.enter="submit"></el-input>
       </el-form-item>
       <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
       <el-form-item style="width:100%;">
@@ -76,13 +75,59 @@
 		
       submit() {
 
-       console.log(">>>>>");
+        if(0){//for test
             this.$router.push({
-                    path: '/device'
+                    path: '/statis'
                   });
 
                   return;
-       
+        }
+
+        var loginParams = {
+                name:this.loginForm.name,
+                password:md5(this.loginForm.password)
+        };
+
+        var _this = this;
+        this.$refs.loginForm.validate((valid) => {
+            if(valid) {
+              
+              this.logining = true;
+              
+              AdminAPI.login(loginParams)
+                  .then(({data}) =>
+                  {           
+                      if(data.status === 0){      
+                        this.loginForm.role = data.data.role;                  
+                        this.update(this.loginForm);
+                        var firstpage='/statis';
+
+                        if(data.data.role==='ROLE_AD')
+                        {
+                            firstpage='/adv/adv';
+                        }
+                        this.$router.push({
+                          path: firstpage
+                        });
+                      }else{            
+                        this.$message({
+                              message: data.msg,
+                              type: 'error'
+                            });
+                      }
+                      this.logining = false;
+                  })
+                  .catch(ex =>
+                  {
+                   this.$message({
+                              message: "登陆错误",
+                              type: 'error'
+                            });
+                    this.logining = false;
+                  });
+            }//end if(valid)
+          },
+        );
 		  },//end submit method       
 
       test(){

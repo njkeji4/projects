@@ -2,70 +2,31 @@
 	<div class="main-content" style="padding:3px;">
 		<el-row :gutter=20 class="toolbar searchparam">
 			
-			<el-col  :span=20 class="search-action-wrap" style="margin-bottom:10px;">
-				<div style="float:left">		
-					<el-button size="small" @click="addDevice">增加设备</el-button>
-					<el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
-					<el-button size="small" @click="onDevice" :disabled="this.sels.length === 0" :loading="actionLoading">合闸</el-button>
-					<el-button size="small" @click="batchRemove" :disabled="this.sels.length === 0">删除设备</el-button>
-					<el-button size="small" @click="settingDevice" :disabled="this.sels.length == 0">设置自动拉合闸时间</el-button>			
-						
-				</div>
-			</el-col>
-
-			<el-col :span=4>
-				<el-upload class='ensure' 
-						ref="uploadForm"
-						name="uploadFile"
-						
-						:action="uploadUrl"  
-						
-						:auto-upload="true"				
-						:on-success="uploadSuc"
-						:on-error="uploadFail"
-						:show-file-list='false'
-						>	
-						<el-button size="small" type="primary">导入设备</el-button>
-					</el-upload>
-			</el-col>
-			
 		</el-row>
 
 		<section class="grid-content">
-			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table" 
-			 @selection-change="handleSelectionChange" 
+			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table"			  
 			 @sort-change="handleSortChange"
 			  class="cmcc-cell-nowrap">
-
-				<el-table-column header-align="center"  type="selection">				
-				</el-table-column>
 				
-				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>
-				
-				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>				
-						
-				<el-table-column  prop="status" label="设备状态" width="120" sortable="custom">
-					<template slot-scope="scope">						
-						<el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" close-transition>{{scope.row.status == '0'?'在线':'离线'}}</el-tag>					
-					</template>
+				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>				
+				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="cmdName" label="命令" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="status" label="执行状态" width="150" sortable="custom">
+					<template slot-scope="scope">
+						{{scope.row.status | statusFormt }}
+					</template></el-table-column>
 				</el-table-column>
-
-				<el-table-column  sortable="custom" prop="switchStat" label="开关状态" width="140">
-					<template slot-scope="scope">						
-						<el-tag :type="scope.row.switchStat == 0 ? 'success' : 'danger'" close-transition>{{scope.row.switchStat == 0?'合闸':'拉闸'}}</el-tag>					
-					</template>
-				</el-table-column>
-
-				<el-table-column  sortable="custom" prop="groupactionEnergy" label="组合有功电能量" width="150"></el-table-column>
-				
-				<el-table-column  sortable="custom" prop="actionEnergy" label="正向有功电能量" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="reactionEnergy" label="反向有功电能量" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="vol" label="电压" width="80"></el-table-column>
-				<el-table-column  sortable="custom" prop="cur" label="电流" width="80"></el-table-column>
-				<el-table-column  sortable="custom" prop="actionPower" label="有功功率" width="140"></el-table-column>
-				<el-table-column  sortable="custom" prop="freq" label="电网频率" width="140"></el-table-column>
-				<el-table-column  sortable="custom" prop="factor" label="功率因数" width="140"></el-table-column>
-
+				<el-table-column  prop="retMessage" label="返回消息" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="cmdTime" label="执行时间" width="160" sortable="custom">
+					<template slot-scope="scope">
+						{{scope.row.cmdTime | dateFormat('yyyy-MM-dd hh:mm:ss') }}
+					</template></el-table-column>
+				<el-table-column  prop="retTime" label="完成时间" width="160" sortable="custom">
+					<template slot-scope="scope">
+						{{scope.row.retTime | dateFormat('yyyy-MM-dd hh:mm:ss') }}
+					</template></el-table-column>				
+					
 			
 			</el-table>
 		</section>
@@ -85,16 +46,14 @@
 	import Vue from 'vue'
 	import { mapGetters, mapActions } from 'vuex';
 	import util from '../../common/js/util';
+	import Filters from '../../common/js/filters';
 	import { AdminAPI } from '../../api';
 	import { openModal } from '../../common/js/modal';
 
 	import DeviceEditDlg from './SettingDevice';
 	import AddDeviceDlg from './AddDevice';
-	import DeviceUpload from './DeviceUpload.vue';
-
 	const openDeviceEditDlg = openModal(DeviceEditDlg);
 	const openAddDeviceDlg = openModal(AddDeviceDlg);
-	const openImportDeviceDlg = openModal(DeviceUpload);
 
 	export default {
 		data() {
@@ -106,7 +65,6 @@
 					status:'',
 					groupId:''
 				},
-				uploadUrl:AdminAPI.uploadUrl,
 				actionLoading:false,
 				groups:[],
 				groupMaps:{},
@@ -138,6 +96,8 @@
 			}
 		},
 		filters: {
+			dateFormat: Filters.dateFormat,
+			statusFormt:(v) => {if(v==0)return '执行中';if(v==1)return '成功';if(v==2)return '失败';},
 			groupIdFormat:(v,maps) => {return maps[v];}
 		},
 		computed: {
@@ -176,15 +136,6 @@
 				});
 			},
 
-			importDevice(){
-				openImportDeviceDlg().then((data) => {
-					
-					if(data !== undefined){
-						this.getDeviceList();
-					}
-				});
-			},
-
 			offDevice() {
 				var row;
 				if(this.sels && this.sels.length > 0) {
@@ -192,9 +143,8 @@
 				}else
 					return;
 				
-				var ids = this.sels.map(item => item.deviceNo)			
 				this.actionLoading=true;
-				AdminAPI.switchOffDevice(ids).then(({
+				AdminAPI.switchOffDevice(row).then(({
 					data: data
 				}) => {
 					this.actionLoading=false;
@@ -221,8 +171,7 @@
 					return;
 
 				this.actionLoading=true;
-				var ids = this.sels.map(item => item.deviceNo)	
-				AdminAPI.switchOnDevice(ids).then(({
+				AdminAPI.switchOnDevice(row).then(({
 					data: data
 				}) => {
 					this.actionLoading=false;
@@ -248,7 +197,7 @@
 				}
 				openDeviceEditDlg({
 					data: {
-						deviceInfo: this.sels
+						deviceInfo: row
 					}
 				}).then((data) => {
 					
@@ -266,10 +215,10 @@
 				this.page = val;				
 				this.getDeviceList();
 			},
-			getDeviceList() {
+			getDeviceCmdList() {
 
 				this.listLoading = true;
-				AdminAPI.getDeviceList().then(({
+				AdminAPI.getDeviceCmdList().then(({
 					data: jsonData
 				}) => {
 					if(jsonData !== null) {
@@ -277,7 +226,7 @@
 						this.total=this.devices.length;
 					} else {
 						this.$message({
-							messsage: `获取设备列表失败:${data.msg}`,
+							messsage: `获取设备执行命令失败:${data.msg}`,
 							type: 'error'
 						})
 					}
@@ -306,51 +255,12 @@
 				}				
 				return list;
 			},			
-			uploadSuc(res, file, fileList){
-				if(res.status === 0){
-					this.$message({
-						message: '上传成功!',
-						type: 'success'
-					});
-					this.getDeviceList();
-					
-				}else{
-					this.$message.error('上传文件失败!'+res.msg);
-				}
-			},
-			uploadFail(err){
-				this.$message({
-						message: '上传失败!'+err,
-						type: 'error'
-					});
-			},
-			batchRemove(){
-					
-				if(this.sels && this.sels.length > 0) {					
-				}else
-					return;
-
-				var ids = this.sels.map(item => item.deviceNo)	
-				AdminAPI.deleteDevices(ids).then(({
-					data: data
-				}) => {	
-					if(data !== null) {
-						this.$message('操作成功');
-						this.getDeviceList();
-					} else {
-						this.$message({
-							messsage: `操作失败:${data.message}`,
-							type: 'error'
-						})
-					}
-				});
-			}
 		},
 		created() {
 			
 		},
 		mounted() {
-			this.getDeviceList();
+			this.getDeviceCmdList();
 		}
 	}
 </script>
