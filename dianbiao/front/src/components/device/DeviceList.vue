@@ -2,7 +2,7 @@
 	<div class="main-content" style="padding:3px;">
 		<el-row :gutter=20 class="toolbar searchparam">
 			
-			<el-col  :span=20 class="search-action-wrap" style="margin-bottom:10px;">
+			<el-col  :span=10 class="search-action-wrap" style="margin-bottom:10px;">
 				<div style="float:left">		
 					<el-button size="small" @click="addDevice">增加设备</el-button>
 					<el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
@@ -11,6 +11,19 @@
 					<el-button size="small" @click="settingDevice" :disabled="this.sels.length == 0">设置自动拉合闸时间</el-button>			
 						
 				</div>
+			</el-col>
+			<el-col :span=10 class="paramleft">
+				<el-form :inline="true" size="small" :model="searchForm" class="search-form" label-width="6em" ref="searchForm">
+					<el-form-item label="" prop="deviceName">
+						<el-input size="small" v-model="searchForm.deviceName" placeholder="设备名称"></el-input>
+					</el-form-item>
+					<el-form-item label="" prop="deviceNo">
+						<el-input size="small" v-model="searchForm.deviceNo" placeholder="设备编号"></el-input>
+					</el-form-item>
+
+					<el-button size="small" @click="searchDevice">查询</el-button>
+					
+				</el-form>
 			</el-col>
 
 			<el-col :span=4>
@@ -100,11 +113,8 @@
 		data() {
 			return {				
 				searchForm: { 
-					name:'',
-					versionNo:'',
-					deviceNo:'',
-					status:'',
-					groupId:''
+					deviceName:'',					
+					deviceNo:'',				
 				},
 				uploadUrl:AdminAPI.uploadUrl,
 				actionLoading:false,
@@ -119,7 +129,7 @@
 					order: 'descending'
 				},
 				orderBy: [{
-					name: 'sn',
+					name: 'deviceNo',
 					order: 'DESC'
 				}],
 				listLoading: false,
@@ -133,7 +143,7 @@
 				// table event data
 				deviceParamsConfigVisible: false,
 				selectedDevice: null,
-				sort:'name',
+				sort:'deviceNo',
 				order:'desc'
 			}
 		},
@@ -144,8 +154,12 @@
 
 		},
 		watch: {
-			
-		},
+			'$route'(to,from){
+				if(from.fullPath !== to.fullPath){
+					this.getDeviceList();
+				}
+			}
+		},		
 		methods: {		
 
 			handleSortChange(col){		
@@ -226,7 +240,7 @@
 					data: data
 				}) => {
 					this.actionLoading=false;
-					console.log(data.message);
+					
 					if(data !== null) {
 						this.$message(data.message);
 						
@@ -268,13 +282,21 @@
 			},
 			getDeviceList() {
 
+				var searchParams = _.omitBy(this.searchForm, (item) => item == "" || _.isNil(item));
+				searchParams.page = this.page - 1;
+				searchParams.size = this.pageSize;
+				searchParams.sort=this.sort;//"deviceNo";
+				searchParams.order=this.order;//"asc";
+				
 				this.listLoading = true;
-				AdminAPI.getDeviceList().then(({
+				AdminAPI.searchDevice(searchParams).then(({
 					data: jsonData
 				}) => {
-					if(jsonData !== null) {
-						this.devices = jsonData;
-						this.total=this.devices.length;
+					if(jsonData.status === 0) {
+						this.total = jsonData.data.total;
+						this.devices = jsonData.data.content;
+						this.total = jsonData.data.totalElements;
+						this.listLoading = false;
 					} else {
 						this.$message({
 							messsage: `获取设备列表失败:${data.msg}`,
@@ -282,7 +304,6 @@
 						})
 					}
 				});
-				this.listLoading = false;
 			},
 		
 			// context menu

@@ -4,7 +4,7 @@
       <!--img height="55px" src="../assets/img/timg.jpg" style="position:fixed;right:540px; top:50px;"/-->
       <div style="font:'微软雅黑'; font-size:40px;position:fixed;right:215px; top:50px; 
               color:#40a1db;vertical-align:top;line-height:55px;vertical-align:middle;">
-        人证核验管理系统
+        智能电表管理系统
      </div>
     
     <div style="float:left;margin-top:0px;width:60%;">    

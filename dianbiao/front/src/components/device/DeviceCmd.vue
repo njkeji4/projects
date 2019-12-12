@@ -59,11 +59,9 @@
 		data() {
 			return {				
 				searchForm: { 
-					name:'',
-					versionNo:'',
+					deviceName:'',					
 					deviceNo:'',
-					status:'',
-					groupId:''
+					cmdName:''					
 				},
 				actionLoading:false,
 				groups:[],
@@ -91,7 +89,7 @@
 				// table event data
 				deviceParamsConfigVisible: false,
 				selectedDevice: null,
-				sort:'name',
+				sort:'cmdTime',
 				order:'desc'
 			}
 		},
@@ -124,87 +122,7 @@
 			
 			searchDevice() {
 				this.page = 1;
-				this.getDeviceList();
-			},
-			
-			addDevice() {
-				openAddDeviceDlg().then((data) => {
-					
-					if(data !== undefined){
-						this.getDeviceList();
-					}
-				});
-			},
-
-			offDevice() {
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
-				}else
-					return;
-				
-				this.actionLoading=true;
-				AdminAPI.switchOffDevice(row).then(({
-					data: data
-				}) => {
-					this.actionLoading=false;
-					console.log(data);
-					if(data !== null) {
-						this.$message(data.message);
-						
-					} else {
-						this.$message({
-							messsage: `拉闸失败:${data.message}`,
-							type: 'error'
-						})
-					}
-				});
-				
-				
-			},
-
-			onDevice() {
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
-				}else
-					return;
-
-				this.actionLoading=true;
-				AdminAPI.switchOnDevice(row).then(({
-					data: data
-				}) => {
-					this.actionLoading=false;
-					console.log(data.message);
-					if(data !== null) {
-						this.$message(data.message);
-						
-					} else {
-						this.$message({
-							messsage: `合闸失败:${data.message}`,
-							type: 'error'
-						})
-					}
-				});
-				
-
-			},
-
-			settingDevice(){
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
-				}
-				openDeviceEditDlg({
-					data: {
-						deviceInfo: row
-					}
-				}).then((data) => {
-					
-					if(data !== undefined){
-						this.getDeviceList();
-					}
-				});
+				this.getDeviceCmdList();
 			},
 			
 			handleSizeChange(size) {
@@ -213,20 +131,29 @@
 			},
 			handleCurrentChange(val) {
 				this.page = val;				
-				this.getDeviceList();
+				this.getDeviceCmdList();
 			},
 			getDeviceCmdList() {
 
 				this.listLoading = true;
-				AdminAPI.getDeviceCmdList().then(({
+
+				var searchParams = _.omitBy(this.searchForm, (item) => item == "" || _.isNil(item));
+				searchParams.page = this.page - 1;
+				searchParams.size = this.pageSize;
+				searchParams.sort=this.sort;//"deviceNo";
+				searchParams.order=this.order;//"asc";
+
+				AdminAPI.getDeviceCmdList(searchParams).then(({
 					data: jsonData
 				}) => {
-					if(jsonData !== null) {
-						this.devices = jsonData;
-						this.total=this.devices.length;
+					if(jsonData.status === 0) {
+						this.total = jsonData.data.total;
+						this.devices = jsonData.data.content;
+						this.total = jsonData.data.totalElements;
+						this.listLoading = false;
 					} else {
 						this.$message({
-							messsage: `获取设备执行命令失败:${data.msg}`,
+							messsage: `获取设备命令失败:${data.msg}`,
 							type: 'error'
 						})
 					}

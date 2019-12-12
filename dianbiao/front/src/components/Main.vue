@@ -183,7 +183,7 @@
 				var stompClient = Stomp.over(socket);
 				stompClient.connect({}, () => {
 					//stompClient.send("/app/hello", {}, 'hello');
-					stompClient.subscribe('/topic/greetings/'+this.sysUserInfo.name,(msg) => {
+					stompClient.subscribe('/topic/greetings/'+this.sysUserInfo.name,(msg) => {						
 						this.openAlarm(msg);
 					});
 				}, (err) => {
@@ -191,18 +191,20 @@
 				});
 			},
 			openAlarm(msg){
-				this.$alert("有新告警",'告警',{confirmButtonText:'确定'});
-				document.getElementById("alarmAudio").play();	
+				console.log("msg:" +  msg.body);
+				//this.$alert("操作结果通知",msg,{confirmButtonText:'确定'});
+				this.$message(msg.body);
+				//document.getElementById("alarmAudio").play();	
 
 				//console.log("get alarm==========");
 				this.$router.push({
-					path: '/alarm?'+Date.now()
+					path: '/device?'+Date.now()
 				});		
 			},
 
 		},
 		created() {
-			//this.connectToWebsocket();
+			this.connectToWebsocket();
 		},
 		mounted() {
 			if(!this.loadUserFromSession()) {

@@ -14,7 +14,9 @@ export const removeUsers = (param) => { return axios.post(`${prefix}/user/delete
 //device
 export const getDeviceList = () => { return axios.get(`${prefix}/device/get?_t=${Date.now()}`); };
 
-export const getDeviceCmdList = () => { return axios.get(`${prefix}/devicecmd/get?_t=${Date.now()}`); };
+//export const getDeviceCmdList = () => { return axios.get(`${prefix}/devicecmd/get?_t=${Date.now()}`); };
+
+export const getDeviceCmdList = (param) => { return axios.post(`${prefix}/devicecmd/search`,param); };
 
 
 export const getDeviceSetting = (param) => { return axios.post(`${prefix}/device/setting/get`,param); };
