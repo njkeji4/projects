@@ -38,11 +38,11 @@ public class TestClient {
 		if(cmd == 1)
 			return airService.getDeviceStatus(addr);
 		
-		if(cmd == 2)
-			return airService.switchOff(new String[] {addr},null,null);
-	
-		if(cmd == 3)
-			return airService.switchOn(new String[] {addr},null,null);
+//		if(cmd == 2)
+//			return airService.switchOff(new String[] {addr},null,null);
+//	
+//		if(cmd == 3)
+//			return airService.switchOn(new String[] {addr},null,null);
 		
 		if(cmd == 4)
 			return airService.getPullTime(addr,null,null);

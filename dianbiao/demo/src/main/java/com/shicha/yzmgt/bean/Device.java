@@ -30,13 +30,13 @@ public class Device {
 	String deviceName;
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
-	double GroupactionEnergy;  //组合有功电能量
+	double groupactionEnergy;  //组合有功电能量
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
-    double ActionEnergy;       //":65.21,       #正向有功电能量
+    double actionEnergy;       //":65.21,       #正向有功电能量
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
-    double ReactionEnergy;     //:219.3,     #反向有功电能量
+    double reactionEnergy;     //:219.3,     #反向有功电能量
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
     double vol;               //":220.5,    #电压
@@ -45,18 +45,18 @@ public class Device {
     double cur; //":1.503,    #电流
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
-    double ActionPower; //":0.3254,   #有功功率
+    double actionPower; //":0.3254,   #有功功率
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
-    double Freq;//":49.92,   #电网频率
+    double freq;//":49.92,   #电网频率
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
-    double Factor;//":0.953,     #功率因数
+    double factor;//":0.953,     #功率因数
 	
 	@Column(nullable=false, columnDefinition="INT default 0")
-    int SwitchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态-合闸
+    int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态-合闸
 		
-    String DateTime;//": "2019-04-11 14:15:00" #数据时间
+    String dateTime;//": "2019-04-11 14:15:00" #数据时间
     
 	@Column(nullable=false, columnDefinition="Double default 0")
     double threshValue; //
@@ -69,60 +69,56 @@ public class Device {
 	String groupName;
 	
 	public void syncDevice(MeterStatus meter) {
-		GroupactionEnergy = meter.GroupactionEnergy;
-		ActionEnergy = meter.ActionEnergy;
-		ReactionEnergy= meter.ReactionEnergy;
+		groupactionEnergy = meter.GroupactionEnergy;
+		actionEnergy = meter.ActionEnergy;
+		reactionEnergy= meter.ReactionEnergy;
 		vol=meter.vol;
 		cur=meter.cur;
-		ActionPower=meter.ActionPower;
-		Freq=meter.Freq;
-		Factor=meter.Factor;
-		SwitchStat=meter.SwitchStat;
-		DateTime=meter.DataTime;		
+		actionPower=meter.ActionPower;
+		freq=meter.Freq;
+		factor=meter.Factor;
+		switchStat=meter.SwitchStat;
+		dateTime=meter.DataTime;		
 	}
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public Device() {}
-	
-	
-	
 	public String getDeviceNo() {
 		return deviceNo;
 	}
+
 	public void setDeviceNo(String deviceNo) {
 		this.deviceNo = deviceNo;
 	}
 
+	public String getDeviceName() {
+		return deviceName;
+	}
+
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
+	}
 
 	public double getGroupactionEnergy() {
-		return GroupactionEnergy;
+		return groupactionEnergy;
 	}
 
 	public void setGroupactionEnergy(double groupactionEnergy) {
-		GroupactionEnergy = groupactionEnergy;
+		this.groupactionEnergy = groupactionEnergy;
 	}
 
 	public double getActionEnergy() {
-		return ActionEnergy;
+		return actionEnergy;
 	}
 
 	public void setActionEnergy(double actionEnergy) {
-		ActionEnergy = actionEnergy;
+		this.actionEnergy = actionEnergy;
 	}
 
 	public double getReactionEnergy() {
-		return ReactionEnergy;
+		return reactionEnergy;
 	}
 
 	public void setReactionEnergy(double reactionEnergy) {
-		ReactionEnergy = reactionEnergy;
+		this.reactionEnergy = reactionEnergy;
 	}
 
 	public double getVol() {
@@ -142,43 +138,43 @@ public class Device {
 	}
 
 	public double getActionPower() {
-		return ActionPower;
+		return actionPower;
 	}
 
 	public void setActionPower(double actionPower) {
-		ActionPower = actionPower;
+		this.actionPower = actionPower;
 	}
 
 	public double getFreq() {
-		return Freq;
+		return freq;
 	}
 
 	public void setFreq(double freq) {
-		Freq = freq;
+		this.freq = freq;
 	}
 
 	public double getFactor() {
-		return Factor;
+		return factor;
 	}
 
 	public void setFactor(double factor) {
-		Factor = factor;
+		this.factor = factor;
 	}
 
 	public int getSwitchStat() {
-		return SwitchStat;
+		return switchStat;
 	}
 
 	public void setSwitchStat(int switchStat) {
-		SwitchStat = switchStat;
+		this.switchStat = switchStat;
 	}
 
 	public String getDateTime() {
-		return DateTime;
+		return dateTime;
 	}
 
 	public void setDateTime(String dateTime) {
-		DateTime = dateTime;
+		this.dateTime = dateTime;
 	}
 
 	public double getThreshValue() {
@@ -189,12 +185,12 @@ public class Device {
 		this.threshValue = threshValue;
 	}
 
-	public String getDeviceName() {
-		return deviceName;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setDeviceName(String deviceName) {
-		this.deviceName = deviceName;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public String getUserName() {
@@ -211,6 +207,8 @@ public class Device {
 
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
-	}	
+	}
+
+	
 	
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ import com.shicha.yzmgt.aircb.MeterStatus;
 @Service
 public class AirCbService {
 
-	private static final Logger log = LoggerFactory.getLogger(TestClient.class);
+	private static final Logger log = LoggerFactory.getLogger(AirCbService.class);
 	
 	@Autowired
 	IAirCB aircb;
@@ -36,6 +37,9 @@ public class AirCbService {
 	
 	@Autowired
 	UserCmdService cmdService;
+	
+	@Autowired
+	private SimpMessagingTemplate webSocket;
 	
 	@Async
 	public AirResult getDeviceStatus(String addr) {
@@ -48,8 +52,8 @@ public class AirCbService {
 		CbCommand command = new CbCommand(1, addr);
 		AirResult result = aircb.getData(command);		
 		
-		if(result.getData() == null) {
-			log.info("device is offline");
+		if(result.getData() == null || !result.isCmdStat()) {
+			log.info("get device data failed, device is offline");
 			
 			if(device != null)
 			{
@@ -64,11 +68,9 @@ public class AirCbService {
 		
 		ObjectMapper objectMapper = new ObjectMapper();		
 		MeterStatus status = objectMapper.convertValue(o, MeterStatus.class);
-		log.info(status.getActionEnergy()+"");
-		
 		
 		if(device != null) {		
-			device.syncDevice(status);			
+			device.syncDevice(status);
 			device.setStatus(Device.device_status_online);
 			deviceDao.save(device);
 		}		
@@ -77,38 +79,61 @@ public class AirCbService {
 	}
 	
 	@Async
-	public AirResult switchOff(String[] ids, String userName, String groupName) {
-		//log.info("addr="+addr);
-		for(String addr : ids) {
-			Device device = deviceDao.findByDeviceNo(addr);
-			if(device == null) {
-				log.info("device isnot existed:"+addr);
-				return null;
-			}
-			UserCmd userCmd = new UserCmd(2,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
-			String cmdId = cmdService.newCmd(userCmd);
-			
-			CbCommand command = new CbCommand(2, addr);
-			AirResult result = aircb.getData(command);
-			
-			cmdService.updateCmdStatus(cmdId, result.isCmdStat()?UserCmd.cmd_status_ok:UserCmd.cmd_status_fail,result.getMsg(),null);
+	public AirResult switchOff(String addr, String userName, String groupName) {
+		log.info("addr="+addr);
+		
+		Device device = deviceDao.findByDeviceNo(addr);
+		if(device == null) {
+			log.info("device isnot existed:"+addr);
+			return null;
 		}
+		UserCmd userCmd = new UserCmd(2,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+		String cmdId = cmdService.newCmd(userCmd);
+		
+		CbCommand command = new CbCommand(2, addr);
+		AirResult result = aircb.getData(command);
+		
+		cmdService.updateCmdStatus(cmdId, result.isCmdStat()?UserCmd.cmd_status_ok:UserCmd.cmd_status_fail,result.getMsg(),null);
+		
+		if(result.isCmdStat()) {
+			device.setSwitchStat(Device.device_switch_open);
+			deviceDao.save(device);
+		}
+		
+		String target = "/topic/greetings/" + userName;
+		if(result.isCmdStat())
+			webSocket.convertAndSend(target, addr+"拉闸成功");
+		else
+			webSocket.convertAndSend(target, addr+"拉闸失败");
+		
 		return null;
 	}
 	
 	@Async
-	public AirResult switchOn(String[] ids, String userName, String groupName) {
+	public AirResult switchOn(String addr, String userName, String groupName) {
+		log.info("addr="+addr);
 		
-		for(String addr:ids) {
-			Device device = deviceDao.findByDeviceNo(addr);
-			UserCmd userCmd = new UserCmd(3,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
-			String cmdId = cmdService.newCmd(userCmd);
-			
-			CbCommand command = new CbCommand(3, addr);
-			AirResult result = aircb.getData(command);
-			
-			cmdService.updateCmdStatus(cmdId, result.isCmdStat()?UserCmd.cmd_status_ok:UserCmd.cmd_status_fail,result.getMsg(),null);
-		}
+		Device device = deviceDao.findByDeviceNo(addr);
+		UserCmd userCmd = new UserCmd(3,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+		String cmdId = cmdService.newCmd(userCmd);
+		
+		CbCommand command = new CbCommand(3, addr);
+		AirResult result = aircb.getData(command);
+		
+		cmdService.updateCmdStatus(cmdId, result.isCmdStat()?UserCmd.cmd_status_ok:UserCmd.cmd_status_fail,result.getMsg(),null);
+		
+		if(result.isCmdStat()) {
+			device.setSwitchStat(Device.device_switch_close);
+			deviceDao.save(device);
+		}		
+		
+		String target = "/topic/greetings/" + userName;
+		
+		if(result.isCmdStat())
+			webSocket.convertAndSend(target, addr+"合闸成功");
+		else
+			webSocket.convertAndSend(target, addr+"合闸失败");
+		
 		return null;
 	}
 	

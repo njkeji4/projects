@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
+import com.shicha.yzmgt.domain.SearchDevice;
 import com.shicha.yzmgt.service.AirCbService;
 import com.shicha.yzmgt.service.DeviceService;
 
@@ -42,6 +44,16 @@ public class DeviceController {
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
 		return deviceService.getAll();
+	}
+	
+	@RequestMapping(value="/searchDevice", method=RequestMethod.POST)
+	public APIResult searchDevices(
+			@RequestBody SearchDevice search,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		Page<Device>devices = deviceService.searchDevice(search);
+		
+		return new APIResult(0, "", devices);
 	}
 	
 	
@@ -66,7 +78,8 @@ public class DeviceController {
 		User user= deviceService.getCurrentUser();
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
-		airService.switchOff(ids,userName,groupName);
+		for(String addr : ids)
+			airService.switchOff(addr,userName,groupName);
 		
 		return new APIResult(0,"命令已经发送");
 	}
@@ -79,7 +92,8 @@ public class DeviceController {
 		User user= deviceService.getCurrentUser();
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
-		AirResult result=airService.switchOn(ids,userName,groupName);
+		for(String addr : ids)
+			airService.switchOn(addr,userName,groupName);
 		
 		return new APIResult(0,"命令已经发送");
 	}

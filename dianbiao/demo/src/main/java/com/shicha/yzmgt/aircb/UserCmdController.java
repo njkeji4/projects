@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,8 @@ import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.UserCmd;
 import com.shicha.yzmgt.domain.APIResult;
+import com.shicha.yzmgt.domain.SeachUserCmd;
+import com.shicha.yzmgt.domain.SearchDevice;
 import com.shicha.yzmgt.service.AirCbService;
 import com.shicha.yzmgt.service.DeviceService;
 import com.shicha.yzmgt.service.UserCmdService;
@@ -43,4 +46,14 @@ public class UserCmdController {
 		
 		return cmdService.getAll();
 	}	
+	
+	@RequestMapping(value="/search", method=RequestMethod.POST)
+	public APIResult searchDevices(
+			@RequestBody SeachUserCmd search,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		Page<UserCmd>cmds = cmdService.searchCmd(search);
+		
+		return new APIResult(0, "", cmds);
+	}
 }

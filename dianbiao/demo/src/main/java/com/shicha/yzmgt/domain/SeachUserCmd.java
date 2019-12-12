@@ -1,18 +1,16 @@
 package com.shicha.yzmgt.domain;
 
-
-
-public class SearchDevice {
+public class SeachUserCmd {
 
 	String deviceName;	
 	String deviceNo;
-	Integer status;
-	Integer switchStat;
+	
+	String cmdName;
 	
 	Integer page = 0;
 	Integer size = 10;
-	String sort="deviceNo";
-	String order = "asc";//"dsc"
+	String sort="cmdTime";
+	String order = "desc";//"dsc"
 	
 	String groupName;
 
@@ -32,20 +30,12 @@ public class SearchDevice {
 		this.deviceNo = deviceNo;
 	}
 
-	public Integer getStatus() {
-		return status;
+	public String getCmdName() {
+		return cmdName;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public Integer getSwitchStat() {
-		return switchStat;
-	}
-
-	public void setSwitchStat(Integer switchStat) {
-		this.switchStat = switchStat;
+	public void setCmdName(String cmdName) {
+		this.cmdName = cmdName;
 	}
 
 	public Integer getPage() {
@@ -88,7 +78,4 @@ public class SearchDevice {
 		this.groupName = groupName;
 	}
 	
-	
-	
-
 }
