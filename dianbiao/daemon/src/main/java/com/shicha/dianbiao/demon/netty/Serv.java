@@ -2,12 +2,13 @@ package com.shicha.dianbiao.demon.netty;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-
+import com.shicha.dianbiao.demon.controller.INotifyHost;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -25,6 +26,9 @@ public class Serv implements  ApplicationListener<ApplicationReadyEvent>{
 	
 	@Value("${serv.tcpport:8302}")
 	int port;
+	
+	@Autowired
+	INotifyHost notifyhost;
 	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -54,7 +58,7 @@ public class Serv implements  ApplicationListener<ApplicationReadyEvent>{
 		                 public void initChannel(SocketChannel ch) throws Exception {
 		                	 
 		                	 
-		                     ch.pipeline().addLast(new DeviceMessageDecoder());
+		                     ch.pipeline().addLast(new DeviceMessageDecoder(notifyhost));
 		                     
 		                 }
 		                 

@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.shicha.dianbiao.demon.controller.INotifyHost;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -17,8 +21,14 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 	private static byte[] reg = {0x55,(byte)0xaa,0x55,(byte)0xaa};
 	private static byte[] reg2 = {0x66,(byte)0xaa,0x66,(byte)0xaa};
 	
-	//private static byte[] res = {(byte)0xfe,(byte)0xfe,(byte)0xfe,(byte)0xfe};
 	
+	//public DeviceMessageDecoder(){}
+	
+	public DeviceMessageDecoder(INotifyHost notifyhost){
+		this.notifyhost = notifyhost;
+	}
+	
+	INotifyHost notifyhost;
 	
 	public String getAddr(byte[] bytes, int start) {
 		if(bytes.length < start+6 ) {			
@@ -36,23 +46,6 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		
 		return addr;
 	}
-	
-//	public String getAddr2(byte[] bytes, int start) {
-//		if(bytes.length < start+6 ) {			
-//			return null;
-//		}
-//		
-//		String addr="";
-//		for(int i = start+5; i >= 0; i--) {
-//			  int v = bytes[i] & 0xFF;
-//		        String hv = Integer.toHexString(v);
-//		        if(hv.length() < 2)
-//		        	hv = "0"+hv;
-//		        addr += hv;
-//		}
-//		
-//		return addr;
-//	}
 	
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
@@ -99,8 +92,16 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 					Device.setDeviceStatus(addr, 1);
 					log.info(addr + " heartbeat");					
 				}else {
-					log.info(addr + "heartbeat without login");
+					log.info(addr + "heartbeat");
 					Device.add(ctx, 1, addr, type);
+				}
+				
+				try{
+				
+					notifyhost.postHeartBeat(addr);
+					
+					}catch(Exception ex) {
+					ex.printStackTrace();
 				}
 			}
 			
@@ -109,8 +110,11 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			return;			
 		}
 		
+		//receive response message from device
+		
 		//reset the first 4		
 		in.resetReaderIndex();
+		
 		in.markReaderIndex();
 		
 		int count = 0;
@@ -123,23 +127,32 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			in.resetReaderIndex();			
 			return;
 		}
+		
+		//read message head  addr+0x68 +control code+datalen
 		byte[] resHead = new byte[CmdRes.headLength];
 		resHead[0] = 0x68;
 		in.readBytes(resHead,1,CmdRes.headLength - 1);
+		
 		int dataLen = CmdRes.getBodyLen(resHead);
 		
 		if(in.readableBytes() < dataLen + CmdRes.tailLength) {
 			in.resetReaderIndex();
 			return;
 		}
-		in.resetReaderIndex();
 		
+		in.resetReaderIndex();		
 		byte[]message = new byte[CmdRes.headLength + dataLen + CmdRes.tailLength];
 		in.readBytes(message);
 		
 		CmdRes res = CmdRes.parse(message);
 		
 		log.info(res.getAddr() + " got response: " +  res.getResponse());
+		
+		try{			
+			notifyhost.postCmdResult(res);			
+		}catch(Exception ex) {
+			ex.printStackTrace();			
+		}
 		
 	}
 	

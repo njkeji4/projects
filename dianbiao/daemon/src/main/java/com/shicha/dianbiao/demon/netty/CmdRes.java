@@ -1,6 +1,12 @@
 package com.shicha.dianbiao.demon.netty;
 
-//message from device after send a request
+/**
+ * receive response message from device
+ * 
+ * after receive response message:
+ *   1. parse it
+ *   2. post it back to host
+*/
 public class CmdRes {
 	
 	int status;
@@ -39,7 +45,7 @@ public class CmdRes {
 		if(buf.length < 7)
 			return null;
 		String h="";
-		for(int i = 6; i >=0; i--) {
+		for(int i = 6; i >=1; i--) {
 			String t = Integer.toHexString(buf[i] & 0xff);
 			if(t.length() == 1)
 				t = "0" + t;
@@ -61,11 +67,16 @@ public class CmdRes {
 		res.setAddr(addr);
 		res.setResponse(Utils.byte2str(buf));
 		
+		int type = 1;
+		Device d = Device.getDevice(addr);
+		if(d != null )
+			type = d.getType();
+		
 		switch(ctlCode) {
 		
 		case 0x91://query ok
 			res.setStatus(status_ok);
-			res.setData(new MeterData(buf));
+			res.setData(new MeterData(buf, type));
 			break;
 		
 		case 0xd1://query fail
