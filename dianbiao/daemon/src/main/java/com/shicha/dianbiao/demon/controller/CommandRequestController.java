@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shicha.dianbiao.demon.domain.APIResult;
+import com.shicha.dianbiao.demon.domain.AutoOnOff;
 import com.shicha.dianbiao.demon.netty.Device;
 import com.shicha.dianbiao.demon.netty.DeviceMessageDecoder;
 
@@ -23,15 +24,21 @@ import com.shicha.dianbiao.demon.netty.DeviceMessageDecoder;
 public class CommandRequestController {
 
 	private static final Logger log = LoggerFactory.getLogger(CommandRequestController.class);
-		
+	
+	
+	
 	@RequestMapping(value="/read", method=RequestMethod.POST)
 	public APIResult readData(
 			@RequestBody String addr,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 					
-			int ret = Device.queryCmd(addr);						
+			int ret = Device.queryCmd(addr);	
+			String message= null;
+			if(ret == -1) {
+				message="device is offline";
+			}
 		
-			return new APIResult(ret);
+			return new APIResult(ret,message);
 	}
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
@@ -41,7 +48,12 @@ public class CommandRequestController {
 			
 			int ret = Device.switchOnCmd(addr);
 		
-			return new APIResult(ret);
+			String message= null;
+			if(ret == -1) {
+				message="device is offline";
+			}
+		
+			return new APIResult(ret,message);
 	}
 	
 	@RequestMapping(value="/off", method=RequestMethod.POST)
@@ -51,7 +63,27 @@ public class CommandRequestController {
 			
 			int ret = Device.switchOffCmd(addr);
 		
-			return new APIResult(ret);
+			String message= null;
+			if(ret == -1) {
+				message="device is offline";
+			}
+		
+			return new APIResult(ret,message);
+	}
+	
+	@RequestMapping(value="/autoonoff", method=RequestMethod.POST)
+	public APIResult settingAutoOnOff(
+			@RequestBody AutoOnOff setting,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			int ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes());
+		
+			String message= null;
+			if(ret == -1) {
+				message="device is offline";
+			}
+		
+			return new APIResult(ret,message);
 	}
 	
 	

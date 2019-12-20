@@ -90,6 +90,41 @@ public class Device {
 		return cmd(addr,buff);
 	}
 	
+	public static int setAutoSwitchOnOff(String addr, int[]offon) {//off on off on off on off on
+		
+		int[] times = new int[8];
+		for(int i = 0; i < offon.length; i++)
+			times[i] = offon[i];
+		
+		if(offon.length < 8) {
+			for(int i = offon.length; i < 8; i++) {
+				times[i] = 0x999999;
+			}
+		}
+		
+		byte[] buf = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,(byte)0x14   ,(byte)0x24 
+						,(byte)0x34 ,(byte)0x33 ,(byte)0x35 ,(byte)0x37  ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x63 ,(byte)0x63 ,(byte)0x63 ,(byte)0x63 
+						,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x34 ,(byte)0x33 ,(byte)0x33 ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x36 ,(byte)0x33 ,(byte)0x33 ,(byte)0x37 ,(byte)0x33 ,(byte)0x33 ,(byte)0x38 ,(byte)0x33 ,(byte)0x33 ,(byte)0x39 ,(byte)0x33 ,(byte)0x33 ,(byte)0x3A 
+						,(byte)0x4B ,(byte)0x16 };
+		
+		
+		//encode time
+		int start = 26;
+		for(int i = 0; i < 8; i++) {
+			int second = times[i] & 0xff;
+			int minute = (times[i] &0xff00) >> 8;
+			int hour = (times[i] & 0xff0000) >> 16;
+			
+			buf[start++] = (byte)(0x33 + second);
+			buf[start++] = (byte)(0x33 + minute);
+			buf[start++] = (byte)(0x33 + hour);			
+		}
+		
+		
+		return cmd(addr,buf);
+		
+	}
+	
 	
 	public static void encodeAddress(byte[] buf, String addr) {
 		while(addr.length() < 12) {

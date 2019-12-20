@@ -95,7 +95,7 @@
 		},
 		filters: {
 			dateFormat: Filters.dateFormat,
-			statusFormt:(v) => {if(v==0)return '执行中';if(v==1)return '成功';if(v==2)return '失败';},
+			statusFormt:(v) => {if(v==2)return '执行中';if(v==0)return '成功';if(v==1)return '失败';},
 			groupIdFormat:(v,maps) => {return maps[v];}
 		},
 		computed: {

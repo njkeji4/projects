@@ -1,6 +1,7 @@
 package com.shicha.yzmgt.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -34,6 +35,7 @@ import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
 import com.shicha.yzmgt.dao.IUserDao;
+import com.shicha.yzmgt.domain.AutoOnOff;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.domain.SearchDevice;
 
@@ -52,7 +54,7 @@ public class DeviceService {
 	UserCmdService cmdService;
 	
 	@Autowired
-	AirCbService airService;
+	AirCbService2 airService;
 	
 	@Autowired
 	IDevcieSettingDao deviceSettingDao;
@@ -156,6 +158,7 @@ public class DeviceService {
 		if(user!=null && !user.getRole().equals(User.ROLE_ADMIN)) {			
 			d.setGroupName(user.getGroupName());
 		}
+		d.setLastHeartBeatTime(0l);
 		if(deviceDao.findByDeviceName(d.getDeviceName()) == null) {
 			deviceDao.save(d);
 		}
@@ -173,18 +176,32 @@ public class DeviceService {
 		return deviceSettingDao.findByDeviceNo(deviceNo);
 	}
 	
-	public AirResult addDeviceSetting(DeviceSettingDomain settingDomain) {
+	private int getbcdTime(long t) {
+		if(t == 0) {
+			return 0x999999;
+		}
+		Calendar d= Calendar.getInstance();
+		d.setTimeInMillis(t);
+		int h = d.get(Calendar.HOUR_OF_DAY);
+		int m = d.get(Calendar.MINUTE);
+		
+		return ((h << 8) | m) << 8 ;
+		
+	}
+	public void addDeviceSetting(DeviceSettingDomain settingDomain) {
 		String[]ids = settingDomain.getIds();
 		DeviceSetting[]settings = settingDomain.getSettings();
 		
 		for(String id : ids)
 			deviceSettingDao.deleteByDeviceNo(id);	
 		
-		long[] value = new long[settings.length * 2];
+		int[] value = new int[settings.length * 2];
 		int idx = 0;
-		for(DeviceSetting setting : settings) {			
-			value[idx++] = setting.getOffTime();
-			value[idx++] = setting.getOnTime();
+		for(DeviceSetting setting : settings) {		
+			
+			value[idx++] = getbcdTime(setting.getOffTime());
+			value[idx++] = getbcdTime(setting.getOnTime());
+			
 			for(String id : ids) {
 				Device d = deviceDao.findByDeviceNo(id);
 				if(d == null)continue;
@@ -201,11 +218,9 @@ public class DeviceService {
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
 		
-		for(String id : ids) {					
-			airService.setPullUpDownPeriod(id, value,userName,groupName);
-		}
-		
-		return null;
+		for(String id : ids) {
+			airService.setAutoOffOn(new AutoOnOff(id,  value), userName, groupName);
+		}		
 	}
 	
 	public void removeDeviceSetting(DeviceSetting setting) {

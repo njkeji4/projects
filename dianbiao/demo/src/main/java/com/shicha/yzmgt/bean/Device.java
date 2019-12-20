@@ -26,8 +26,58 @@ public class Device {
 	
 	@Id
 	String deviceNo;
-
 	String deviceName;
+	@Column(nullable=false, columnDefinition="INT default 1")
+	Integer status = 1;		//1 offline, 0 online	
+	
+	@Column(nullable=false, columnDefinition="BIGINT default 0")
+	Long lastHeartBeatTime;
+	
+	String userName;
+	String groupName;	
+	
+	String cmdId;		//一个设备一次只能执行一条命令，必须等待返回或者超时
+	Long cmdTime;		//发送命令时间
+	
+	
+	//////data field
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double allEnergy;  //组合有功总电量		
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double allJianEnvery;  //组合有功尖费率电量		
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double allFengEnvery;  //组合有功峰费率电量		
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double allPingEnvery;  //组合有功平费率电量
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double allGuEnvery; //组合有功谷费率电量/
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double avol;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double bvol;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double cvol;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double acur;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double bcur;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double ccur;
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double aActionPower;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double bActionPower;
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double cActionPower;
+	
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double afactor;//":0.953,     #功率因数
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double bfactor;//":0.953,     #功率因数
+	@Column(nullable=false, columnDefinition="Double default 0")
+	double cfactor;//":0.953,     #功率因数
+	 
 	
 	@Column(nullable=false, columnDefinition="Double default 0")
 	double groupactionEnergy;  //组合有功电能量
@@ -54,7 +104,7 @@ public class Device {
     double factor;//":0.953,     #功率因数
 	
 	@Column(nullable=false, columnDefinition="INT default 0")
-    int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态-合闸
+    int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态
 		
     String dateTime;//": "2019-04-11 14:15:00" #数据时间
     
@@ -62,23 +112,40 @@ public class Device {
     double threshValue; //
 	
 		
-	@Column(nullable=false, columnDefinition="INT default 1")
-	Integer status = 1;		//1 offline, 0 online
 	
-	String userName;
-	String groupName;
 	
 	public void syncDevice(MeterStatus meter) {
-		groupactionEnergy = meter.GroupactionEnergy;
-		actionEnergy = meter.ActionEnergy;
-		reactionEnergy= meter.ReactionEnergy;
-		vol=meter.vol;
-		cur=meter.cur;
-		actionPower=meter.ActionPower;
-		freq=meter.Freq;
-		factor=meter.Factor;
-		switchStat=meter.SwitchStat;
-		dateTime=meter.DataTime;		
+		allEnergy = meter.allEnergy;  //组合有功总电量		
+		allJianEnvery	=meter.allJianEnvery;
+		allFengEnvery	=meter.allFengEnvery;
+		allPingEnvery   =meter.allPingEnvery ;
+		allGuEnvery     =meter.allGuEnvery  ; 
+		avol=   meter.avol;
+		bvol=   meter.bvol;
+		cvol=   meter.cvol;
+		    
+		acur=   meter.acur;
+		bcur=   meter.bcur;
+		ccur=   meter.ccur;
+		
+		aActionPower=meter.aActionPower;
+		bActionPower=meter.bActionPower;
+		cActionPower=meter.cActionPower;
+		
+		afactor=meter.afactor;
+		bfactor=meter.bfactor;
+		cfactor=meter.cfactor;
+		
+		
+		groupactionEnergy  =meter.groupactionEnergy	;
+		actionEnergy       =meter.actionEnergy    ;        
+		reactionEnergy     =meter.reactionEnergy  ;      
+		vol                =meter.vol            ;  
+		cur                =meter.cur              ;
+		actionPower        =meter.actionPower   ;   
+		freq               =meter.freq        ;     
+		factor             =meter.factor     ;      
+		switchStat         =meter.switchStat    ;   
 	}
 
 	public String getDeviceNo() {
@@ -209,6 +276,165 @@ public class Device {
 		this.groupName = groupName;
 	}
 
+	public double getAllEnergy() {
+		return allEnergy;
+	}
+
+	public void setAllEnergy(double allEnergy) {
+		this.allEnergy = allEnergy;
+	}
+
+	public double getAllJianEnvery() {
+		return allJianEnvery;
+	}
+
+	public void setAllJianEnvery(double allJianEnvery) {
+		this.allJianEnvery = allJianEnvery;
+	}
+
+	public double getAllFengEnvery() {
+		return allFengEnvery;
+	}
+
+	public void setAllFengEnvery(double allFengEnvery) {
+		this.allFengEnvery = allFengEnvery;
+	}
+
+	public double getAllPingEnvery() {
+		return allPingEnvery;
+	}
+
+	public void setAllPingEnvery(double allPingEnvery) {
+		this.allPingEnvery = allPingEnvery;
+	}
+
+	public double getAllGuEnvery() {
+		return allGuEnvery;
+	}
+
+	public void setAllGuEnvery(double allGuEnvery) {
+		this.allGuEnvery = allGuEnvery;
+	}
+
+	public double getAvol() {
+		return avol;
+	}
+
+	public void setAvol(double avol) {
+		this.avol = avol;
+	}
+
+	public double getBvol() {
+		return bvol;
+	}
+
+	public void setBvol(double bvol) {
+		this.bvol = bvol;
+	}
+
+	public double getCvol() {
+		return cvol;
+	}
+
+	public void setCvol(double cvol) {
+		this.cvol = cvol;
+	}
+
+	public double getAcur() {
+		return acur;
+	}
+
+	public void setAcur(double acur) {
+		this.acur = acur;
+	}
+
+	public double getBcur() {
+		return bcur;
+	}
+
+	public void setBcur(double bcur) {
+		this.bcur = bcur;
+	}
+
+	public double getCcur() {
+		return ccur;
+	}
+
+	public void setCcur(double ccur) {
+		this.ccur = ccur;
+	}
+
+	public double getaActionPower() {
+		return aActionPower;
+	}
+
+	public void setaActionPower(double aActionPower) {
+		this.aActionPower = aActionPower;
+	}
+
+	public double getbActionPower() {
+		return bActionPower;
+	}
+
+	public void setbActionPower(double bActionPower) {
+		this.bActionPower = bActionPower;
+	}
+
+	public double getcActionPower() {
+		return cActionPower;
+	}
+
+	public void setcActionPower(double cActionPower) {
+		this.cActionPower = cActionPower;
+	}
+
+	public double getAfactor() {
+		return afactor;
+	}
+
+	public void setAfactor(double afactor) {
+		this.afactor = afactor;
+	}
+
+	public double getBfactor() {
+		return bfactor;
+	}
+
+	public void setBfactor(double bfactor) {
+		this.bfactor = bfactor;
+	}
+
+	public double getCfactor() {
+		return cfactor;
+	}
+
+	public void setCfactor(double cfactor) {
+		this.cfactor = cfactor;
+	}
+
+	public Long getLastHeartBeatTime() {
+		return lastHeartBeatTime;
+	}
+
+	public void setLastHeartBeatTime(Long lastHeartBeatTime) {
+		this.lastHeartBeatTime = lastHeartBeatTime;
+	}
+
+	public String getCmdId() {
+		return cmdId;
+	}
+
+	public void setCmdId(String cmdId) {
+		this.cmdId = cmdId;
+	}
+
+	public Long getCmdTime() {
+		return cmdTime;
+	}
+
+	public void setCmdTime(Long cmdTime) {
+		this.cmdTime = cmdTime;
+	}	
 	
 	
 }

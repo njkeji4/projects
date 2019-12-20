@@ -1,4 +1,4 @@
-package com.shicha.dianbiao.demon.netty;
+package com.shicha.yzmgt.domain;
 
 /**
  * receive response message from device
@@ -53,68 +53,6 @@ public class CmdRes {
 			h += t;
 		}
 		return h;
-	}
-	
-	public static CmdRes parse(byte[] buf) {
-		if(!hasEnoughBytes(buf)) {
-			return null;
-		}
-		
-		CmdRes res = new CmdRes();
-		int ctlCode = buf[8] & 0xff;
-		String addr = getAddr(buf);
-		
-		res.setCtlCode(ctlCode);
-		res.setAddr(addr);
-		res.setResponse(Utils.byte2str(buf));
-		
-		int type = 1;
-		Device d = Device.getDevice(addr);
-		if(d != null )
-			type = d.getType();
-		
-		switch(ctlCode) {
-		
-		case 0x91://query ok
-			res.setStatus(status_ok);
-			res.setData(new MeterData(buf, type));
-			res.setCmdCode(0);
-			break;
-		
-		case 0xd1://query fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));
-			res.setCmdCode(0);
-			break;
-		
-		case 0x9c://onoff ok
-			res.setStatus(status_ok);
-			res.setCmdCode(1);
-			break;
-		
-		case 0xdc://onff fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));	
-			res.setCmdCode(1);
-			break;
-			
-		case 0x94:	//set auto on off ok
-			res.setStatus(status_ok);
-			res.setCmdCode(8);
-			break;
-			
-		case 0xd4: //set auto on off fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));
-			res.setCmdCode(8);
-			break;
-			
-		default:
-			break;
-		}
-		
-		
-		return res;
 	}
 
 	public int getStatus() {
@@ -172,4 +110,6 @@ public class CmdRes {
 	public void setCmdCode(int cmdCode) {
 		this.cmdCode = cmdCode;
 	}
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.shicha.yzmgt.aircb;
+package com.shicha.yzmgt.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +25,7 @@ import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.domain.SearchDevice;
 import com.shicha.yzmgt.service.AirCbService;
+import com.shicha.yzmgt.service.AirCbService2;
 import com.shicha.yzmgt.service.DeviceService;
 
 @RestController
@@ -34,10 +35,10 @@ public class DeviceController {
 	private static final Logger log = LoggerFactory.getLogger(DeviceController.class);
 	
 	@Autowired
-	DeviceService deviceService;
+	DeviceService deviceService;	
 	
 	@Autowired
-	AirCbService airService;
+	AirCbService2 airService;
 	
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	public List<Device> getDevices(
@@ -78,8 +79,9 @@ public class DeviceController {
 		User user= deviceService.getCurrentUser();
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
-		for(String addr : ids)
+		for(String addr : ids) {
 			airService.switchOff(addr,userName,groupName);
+		}
 		
 		return new APIResult(0,"命令已经发送");
 	}
@@ -102,7 +104,6 @@ public class DeviceController {
 	public APIResult delDevice(
 			@RequestBody String[]ids,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
-		
 		
 		deviceService.delDevice(ids);
 		

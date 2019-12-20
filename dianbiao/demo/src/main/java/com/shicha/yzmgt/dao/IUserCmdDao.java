@@ -18,6 +18,8 @@ import com.shicha.yzmgt.bean.UserCmd;
 public interface IUserCmdDao extends JpaRepository<UserCmd, String>,JpaSpecificationExecutor<UserCmd>{
 	
 	List<UserCmd> findByGroupName(String groupName);
+	
+	List<UserCmd> findByDeviceNoAndCmdCode(String deviceNo, int cmdCode);
 }
 
 
