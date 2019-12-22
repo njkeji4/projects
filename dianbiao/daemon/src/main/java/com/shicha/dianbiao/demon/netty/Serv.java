@@ -41,7 +41,6 @@ public class Serv implements  ApplicationListener<ApplicationReadyEvent>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void run() throws Exception {

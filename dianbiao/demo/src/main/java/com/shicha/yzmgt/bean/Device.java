@@ -33,6 +33,9 @@ public class Device {
 	@Column(nullable=false, columnDefinition="BIGINT default 0")
 	Long lastHeartBeatTime;
 	
+	@Column(nullable=false, columnDefinition="BIGINT default 0")
+	Long lastDataTime;
+	
 	String userName;
 	String groupName;	
 	
@@ -104,9 +107,7 @@ public class Device {
     double factor;//":0.953,     #功率因数
 	
 	@Column(nullable=false, columnDefinition="INT default 0")
-    int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态
-		
-    String dateTime;//": "2019-04-11 14:15:00" #数据时间
+    int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态   
     
 	@Column(nullable=false, columnDefinition="Double default 0")
     double threshValue; //
@@ -235,15 +236,7 @@ public class Device {
 	public void setSwitchStat(int switchStat) {
 		this.switchStat = switchStat;
 	}
-
-	public String getDateTime() {
-		return dateTime;
-	}
-
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
-	}
-
+	
 	public double getThreshValue() {
 		return threshValue;
 	}
@@ -434,7 +427,14 @@ public class Device {
 
 	public void setCmdTime(Long cmdTime) {
 		this.cmdTime = cmdTime;
+	}
+
+	public Long getLastDataTime() {
+		return lastDataTime;
+	}
+
+	public void setLastDataTime(Long lastDataTime) {
+		this.lastDataTime = lastDataTime;
 	}	
-	
 	
 }

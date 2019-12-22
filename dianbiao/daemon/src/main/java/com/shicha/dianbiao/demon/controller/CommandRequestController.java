@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shicha.dianbiao.demon.domain.APIResult;
 import com.shicha.dianbiao.demon.domain.AutoOnOff;
+import com.shicha.dianbiao.demon.domain.RawCmd;
 import com.shicha.dianbiao.demon.netty.Device;
 import com.shicha.dianbiao.demon.netty.DeviceMessageDecoder;
 
@@ -23,9 +24,7 @@ import com.shicha.dianbiao.demon.netty.DeviceMessageDecoder;
 @RequestMapping("/command")
 public class CommandRequestController {
 
-	private static final Logger log = LoggerFactory.getLogger(CommandRequestController.class);
-	
-	
+	private static final Logger log = LoggerFactory.getLogger(CommandRequestController.class);	
 	
 	@RequestMapping(value="/read", method=RequestMethod.POST)
 	public APIResult readData(
@@ -86,5 +85,29 @@ public class CommandRequestController {
 			return new APIResult(ret,message);
 	}
 	
+	public static void calcCS(byte[] buf) {
+		int sum = 0;
+		for(int i = 4; i < buf.length-2; i++) {
+			sum += buf[i];
+			sum = sum % 256;
+		}
+		
+		System.out.println("cs="+sum);
+		
+		buf[buf.length - 2] = (byte)sum;
+	}
+	
+	@RequestMapping(value="/raw", method=RequestMethod.POST)
+	public APIResult rawCommand(
+			@RequestBody RawCmd raw,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			byte[] buff = raw.getBuff();
+			calcCS(buff);
+			
+			Device.cmd(raw.getAddr(), buff);//raw.getBuff());
+			
+			return new APIResult(0);
+	}
 	
 }

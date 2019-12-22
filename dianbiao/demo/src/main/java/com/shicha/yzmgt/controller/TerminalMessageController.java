@@ -35,8 +35,7 @@ public class TerminalMessageController {
 			HttpServletRequest req, HttpServletResponse response) throws IOException{			
 		
 			log.info("receive post message from daemon:" + cmdRes.getResponse());
-		
-			//JSONObject obj = new JSONObject()
+			
 			ObjectMapper mapper = new ObjectMapper();
 			log.info(mapper.writeValueAsString(cmdRes));
 			

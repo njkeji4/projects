@@ -1,5 +1,7 @@
 package com.shicha.dianbiao.demon.netty;
 
+import com.shicha.dianbiao.demon.domain.Command;
+
 /**
  * receive response message from device
  * 
@@ -62,6 +64,7 @@ public class CmdRes {
 		
 		CmdRes res = new CmdRes();
 		int ctlCode = buf[8] & 0xff;
+		int cmdCode = Command.getCmdCode(buf);
 		String addr = getAddr(buf);
 		
 		res.setCtlCode(ctlCode);
@@ -75,38 +78,43 @@ public class CmdRes {
 		
 		switch(ctlCode) {
 		
-		case 0x91://query ok
+		case 0x91://read ok
 			res.setStatus(status_ok);
-			res.setData(new MeterData(buf, type));
-			res.setCmdCode(0);
+			if(cmdCode == 0) {
+				res.setData(new MeterData(buf, type));
+				res.setCmdCode(Command.READ_METER);
+			}else {
+				res.setCmdCode(cmdCode);
+				res.setData(buf);
+			}
 			break;
 		
-		case 0xd1://query fail
+		case 0xd1://read fail
 			res.setStatus(status_fail);
 			res.setMessage("error code:"+ (buf[10] & 0xff));
-			res.setCmdCode(0);
+			res.setCmdCode(Command.READ_METER);
+			break;
+			
+		case 0x94:	//write ok
+			res.setStatus(status_ok);
+			res.setCmdCode(Command.WRITE_METER);
+			break;
+			
+		case 0xd4: //write fail
+			res.setStatus(status_fail);
+			res.setMessage("error code:"+ (buf[10] & 0xff));
+			res.setCmdCode(Command.WRITE_METER);
 			break;
 		
 		case 0x9c://onoff ok
 			res.setStatus(status_ok);
-			res.setCmdCode(1);
+			res.setCmdCode(Command.OFF);
 			break;
 		
 		case 0xdc://onff fail
 			res.setStatus(status_fail);
 			res.setMessage("error code:"+ (buf[10] & 0xff));	
-			res.setCmdCode(1);
-			break;
-			
-		case 0x94:	//set auto on off ok
-			res.setStatus(status_ok);
-			res.setCmdCode(8);
-			break;
-			
-		case 0xd4: //set auto on off fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));
-			res.setCmdCode(8);
+			res.setCmdCode(Command.OFF);
 			break;
 			
 		default:

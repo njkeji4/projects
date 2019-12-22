@@ -195,12 +195,31 @@ public class AirCbService2 {
 	
 	public void getCmdResponse(CmdRes res) {
 		
+		log.info("report command response from device:" + res.getAddr() + ":" + res.getResponse());
+		
 		Device d = deviceDao.findByDeviceNo(res.getAddr());
+		if(d == null) {
+			log.info("device:" + res.getAddr() + " is not registered in system");
+			return;
+		}
+		
+		//device report meter data
+		if(res.getCmdCode() == 0 && res.getStatus() == 0) {//meter data report
+			ObjectMapper objectMapper = new ObjectMapper();		
+			MeterStatus meter = objectMapper.convertValue(res.getData(), MeterStatus.class);			
+			d.syncDevice(meter);
+			d.setLastDataTime(System.currentTimeMillis());
+			deviceDao.save(d);
+			return;
+		}
+		
+		
 		if(d.getCmdId() == null) {
 			log.info("no command is executing on this device:" + res.getResponse());
 			return;
 		}
 		
+		//update command status
 		Optional<UserCmd> opt = userCmdDao.findById(d.getCmdId());
 		UserCmd userCmd = null;
 		if(opt.isPresent() && opt.get().getStatus() == UserCmd.cmd_status_processing) {
@@ -213,17 +232,13 @@ public class AirCbService2 {
 			userCmdDao.save(userCmd);
 		}
 		
+		//update device
 		d.setCmdId(null);
 		d.setCmdTime(null);
-				
+		
+		//update device if response is ok
 		if(res.getStatus() == 0 && userCmd != null) {
-			if(userCmd.getCmdCode() == 0) {//update device 
-				
-				ObjectMapper objectMapper = new ObjectMapper();		
-				MeterStatus meter = objectMapper.convertValue(res.getData(), MeterStatus.class);
-				d.syncDevice(meter);
-				
-			}else if(userCmd.getCmdCode() == 1 ) {	//拉闸
+			if(userCmd.getCmdCode() == 1 ) {	//拉闸
 				
 				d.setSwitchStat(Device.device_switch_open);
 				
@@ -231,16 +246,12 @@ public class AirCbService2 {
 				
 				d.setSwitchStat(Device.device_switch_close);
 				
-			}else if(userCmd.getCmdCode() == 8) {	//设置自动拉合闸时间
-				
-				
-			}else {
-				log.info("unsupport command ");
 			}
 		}
 		
 		deviceDao.save(d);
 		
+		//socket
 		if(userCmd != null && userCmd.getCmdCode() != 0) {//websocket send response
 			
 			String message = res.getAddr();		

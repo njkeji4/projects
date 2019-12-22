@@ -43,7 +43,8 @@ public class DeviceScanTask {
 	@Scheduled(fixedRate = 1000 * 60 * 10)
 	public void scanDevice() {		
 		try {
-			List<Device> list = deviceDao.findAll();
+			//List<Device> list = deviceDao.findAll();
+			List<Device> list = deviceDao.findByStatus(Device.device_status_online);
 			if(list == null || list.size() == 0) {
 				return;
 			}
@@ -55,7 +56,7 @@ public class DeviceScanTask {
 					continue;
 				}
 				
-				airService2.getDeviceStatus(d.getDeviceNo());				
+				//airService2.getDeviceStatus(d.getDeviceNo());				
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();

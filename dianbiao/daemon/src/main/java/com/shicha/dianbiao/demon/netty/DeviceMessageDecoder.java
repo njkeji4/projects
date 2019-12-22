@@ -80,7 +80,7 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			
 			String addr = getAddr(response, 6);  
 			
-			if(addr.equals("440221933404"))type=1;  //only for xinjiang testing
+			if(addr.equals("440221933405"))type=1;  //only for xinjiang testing
 			
 			if(response[5] == 1) { //login
 				Device.add(ctx, 0, addr, type);

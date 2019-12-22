@@ -4,11 +4,15 @@ public class MeterData {
 
 	public MeterData() {}
 	
-	public MeterData(byte[] buf, int type) {		
-		if(type == 0) {
-			parseSingle(buf);
-		}else {
-			parseTriple(buf);
+	public MeterData(byte[] buf, int type) {	
+		try {
+			if(type == 0) {
+				parseSingle(buf);
+			}else {
+				parseTriple(buf);
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
 		}
 	}
 	
