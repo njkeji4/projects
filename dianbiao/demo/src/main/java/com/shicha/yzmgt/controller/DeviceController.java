@@ -24,7 +24,6 @@ import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.domain.SearchDevice;
-import com.shicha.yzmgt.service.AirCbService;
 import com.shicha.yzmgt.service.AirCbService2;
 import com.shicha.yzmgt.service.DeviceService;
 

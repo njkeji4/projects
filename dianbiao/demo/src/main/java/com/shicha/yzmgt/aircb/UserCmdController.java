@@ -15,13 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shicha.yzmgt.bean.Device;
-import com.shicha.yzmgt.bean.DeviceSetting;
+
 import com.shicha.yzmgt.bean.UserCmd;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.SeachUserCmd;
-import com.shicha.yzmgt.domain.SearchDevice;
-import com.shicha.yzmgt.service.AirCbService;
 import com.shicha.yzmgt.service.DeviceService;
 import com.shicha.yzmgt.service.UserCmdService;
 
@@ -36,9 +33,6 @@ public class UserCmdController {
 	
 	@Autowired
 	UserCmdService cmdService;
-	
-	@Autowired
-	AirCbService airService;
 	
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	public List<UserCmd> getDevices(

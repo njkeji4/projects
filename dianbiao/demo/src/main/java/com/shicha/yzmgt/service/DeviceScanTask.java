@@ -30,9 +30,7 @@ public class DeviceScanTask {
 	@Autowired
 	DeviceService deviceService;
 	
-	@Autowired
-	AirCbService airService;
-	
+		
 	@Autowired
 	AirCbService2 airService2;
 	

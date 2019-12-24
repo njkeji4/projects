@@ -30,11 +30,11 @@ public class Device {
 	@Column(nullable=false, columnDefinition="INT default 1")
 	Integer status = 1;		//1 offline, 0 online	
 	
-	@Column(nullable=false, columnDefinition="BIGINT default 0")
-	Long lastHeartBeatTime;
+	@Column(nullable=true, columnDefinition="BIGINT default 0")
+	Long lastHeartBeatTime = 0l;
 	
-	@Column(nullable=false, columnDefinition="BIGINT default 0")
-	Long lastDataTime;
+	@Column(nullable=true, columnDefinition="BIGINT default 0")
+	Long lastDataTime = 0l;
 	
 	String userName;
 	String groupName;	
