@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class MeterStatus {
 	
+	String deviceNo;
+	
 	public double allEnergy;  //组合有功总电量		
 	public double allJianEnvery;  //组合有功尖费率电量		
 	public double allFengEnvery;  //组合有功峰费率电量		
@@ -250,5 +252,11 @@ public class MeterStatus {
 		this.switchStat = switchStat;
 	}
 
-	
+	public String getDeviceNo() {
+		return deviceNo;
+	}
+
+	public void setDeviceNo(String deviceNo) {
+		this.deviceNo = deviceNo;
+	}
 }

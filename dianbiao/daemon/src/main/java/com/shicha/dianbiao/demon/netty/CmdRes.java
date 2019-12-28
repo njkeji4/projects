@@ -70,6 +70,7 @@ public class CmdRes {
 		res.setCtlCode(ctlCode);
 		res.setAddr(addr);
 		res.setResponse(Utils.byte2str(buf));
+		res.setCmdCode(cmdCode);
 		
 		int type = 1;
 		Device d = Device.getDevice(addr);
@@ -80,11 +81,9 @@ public class CmdRes {
 		
 		case 0x91://read ok
 			res.setStatus(status_ok);
-			if(cmdCode == 0) {
-				res.setData(new MeterData(buf, type));
-				res.setCmdCode(Command.READ_METER);
-			}else {
-				res.setCmdCode(cmdCode);
+			if(cmdCode == 0) {	//read meter data
+				res.setData(new MeterData(buf, type, addr));
+			}else {		//read other data
 				res.setData(buf);
 			}
 			break;
@@ -92,36 +91,29 @@ public class CmdRes {
 		case 0xd1://read fail
 			res.setStatus(status_fail);
 			res.setMessage("error code:"+ (buf[10] & 0xff));
-			res.setCmdCode(Command.READ_METER);
 			break;
 			
 		case 0x94:	//write ok
 			res.setStatus(status_ok);
-			res.setCmdCode(Command.WRITE_METER);
 			break;
 			
 		case 0xd4: //write fail
 			res.setStatus(status_fail);
 			res.setMessage("error code:"+ (buf[10] & 0xff));
-			res.setCmdCode(Command.WRITE_METER);
 			break;
 		
 		case 0x9c://onoff ok
 			res.setStatus(status_ok);
-			res.setCmdCode(Command.OFF);
 			break;
 		
 		case 0xdc://onff fail
 			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));	
-			res.setCmdCode(Command.OFF);
+			res.setMessage("error code:"+ (buf[10] & 0xff));
 			break;
 			
 		default:
 			break;
-		}
-		
-		
+		}		
 		return res;
 	}
 

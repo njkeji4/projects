@@ -23,13 +23,8 @@ public class Device {
 	String addr;
 	int type;		//0 -danxiang  1-sanxiang
 	ChannelHandlerContext ctx;
-	
-	//statis
-	int heartbeatCount;
-	int loginCount;
-	int cmdCount;
-	int resokCount;
-	int resfailCount;
+	CmdRes cmdRes;
+	boolean busy;   //0:available  1:busy
 	
 	public Device() {}
 	
@@ -214,17 +209,24 @@ public class Device {
 	
 	public static int cmd(String addr, byte[] buf) {
 		
+		Device d = Device.getDevice(addr);
+		if(d == null || d.getStatus() == 0 || d.getCtx() == null) {
+			log.info("try to send comamnd to device:" + addr + " but , it  is offline or busy, just return -1");
+			return -1;
+		}
+		if(d.isBusy()) {
+			log.info("try to send another command to device:" + addr + "but, it is busy with another command");
+			return -2;
+		}
+		
 		encodeAddress(buf, addr);		
 		calcCS(buf);
 		
+		d.setBusy(true);		
+		
 		log.info("send request:" +  addr + "  " + Utils.byte2str(buf));
 		
-		if(map.get(addr)== null || map.get(addr).getStatus() == 0 || map.get(addr).getCtx() == null) {
-			log.info("try to send comamnd to device:" + addr + " but , it  is offline, just return -1");
-			return -1;
-		}
-		
-		map.get(addr).getCtx().writeAndFlush(Unpooled.copiedBuffer(buf));
+		d.getCtx().writeAndFlush(Unpooled.copiedBuffer(buf));
 		
 		return 0;
 	}	
@@ -291,43 +293,20 @@ public class Device {
 		this.ctx = ctx;
 	}
 
-	public int getHeartbeatCount() {
-		return heartbeatCount;
+	public CmdRes getCmdRes() {
+		return cmdRes;
 	}
 
-	public void setHeartbeatCount(int heartbeatCount) {
-		this.heartbeatCount = heartbeatCount;
+	public void setCmdRes(CmdRes cmdRes) {
+		this.cmdRes = cmdRes;
 	}
 
-	public int getLoginCount() {
-		return loginCount;
+	public boolean isBusy() {
+		return busy;
 	}
 
-	public void setLoginCount(int loginCount) {
-		this.loginCount = loginCount;
-	}
-
-	public int getCmdCount() {
-		return cmdCount;
-	}
-
-	public void setCmdCount(int cmdCount) {
-		this.cmdCount = cmdCount;
-	}
-
-	public int getResokCount() {
-		return resokCount;
-	}
-
-	public void setResokCount(int resokCount) {
-		this.resokCount = resokCount;
-	}
-
-	public int getResfailCount() {
-		return resfailCount;
-	}
-
-	public void setResfailCount(int resfailCount) {
-		this.resfailCount = resfailCount;
-	}
+	public void setBusy(boolean busy) {
+		this.busy = busy;
+	}	
+	
 }

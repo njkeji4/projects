@@ -27,7 +27,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shicha.yzmgt.aircb.AirResult;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceGroup;
 import com.shicha.yzmgt.bean.DeviceSetting;

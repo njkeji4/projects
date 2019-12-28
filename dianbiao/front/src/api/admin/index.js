@@ -35,6 +35,8 @@ export const deleteDevices = (param) => { return axios.post(`${prefix}/device/de
 
 export const updateDevice = (param) => { return axios.post(`${prefix}/device/update`,param); };
 
+export const searchStat = (param) => { return axios.post(`${prefix}/devicestat/search`,param); };
+
 //device group
 export const getDeviceGroups = () => { return axios.get(`${prefix}/devicegroup/list?_t=${Date.now()}`); };
 export const addGroup = (param) => { return axios.post(`${prefix}/devicegroup/add`,param); };

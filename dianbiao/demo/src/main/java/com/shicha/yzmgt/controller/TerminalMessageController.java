@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.shicha.yzmgt.aircb.MeterStatus;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.CmdRes;
 import com.shicha.yzmgt.service.AirCbService2;
@@ -29,17 +29,14 @@ public class TerminalMessageController {
 	@Autowired
 	AirCbService2 service;
 	
-	@RequestMapping(value="/cmdresult", method=RequestMethod.POST)
+	@RequestMapping(value="/period", method=RequestMethod.POST)
 	public APIResult cmdResponse(
-			@RequestBody CmdRes cmdRes,
+			@RequestBody MeterStatus meter,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{			
 		
-			log.info("receive post message from daemon:" + cmdRes.getResponse());
+			log.info("receive period report message:" + meter.getDeviceNo());			
 			
-			ObjectMapper mapper = new ObjectMapper();
-			log.info(mapper.writeValueAsString(cmdRes));
-			
-			service.getCmdResponse(cmdRes);
+			service.getPeriodReport(meter);
 			
 			return new APIResult(0);
 	}

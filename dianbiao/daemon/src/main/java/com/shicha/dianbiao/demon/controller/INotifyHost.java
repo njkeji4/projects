@@ -6,13 +6,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shicha.dianbiao.demon.domain.APIResult;
 import com.shicha.dianbiao.demon.netty.CmdRes;
+import com.shicha.dianbiao.demon.netty.MeterData;
 
 
 @FeignClient(url = "${post.host}",name="notificationHost")
 public interface INotifyHost {
 
-	@RequestMapping(method = RequestMethod.POST, value = "/cmdresult")
-	APIResult postCmdResult(CmdRes res);
+	//@RequestMapping(method = RequestMethod.POST, value = "/cmdresult")
+	//APIResult postCmdResult(CmdRes res);
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/period")
+	APIResult postPeriod(MeterData meter);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/heartbeat")
 	APIResult postHeartBeat(String addr);

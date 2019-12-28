@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.shicha.dianbiao.demon.controller.INotifyHost;
+import com.shicha.dianbiao.demon.domain.Command;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -148,8 +149,22 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		
 		log.info(res.getAddr() + " got response: " +  res.getResponse());
 		
-		try{			
-			notifyhost.postCmdResult(res);			
+		try{		
+			
+			Device d = Device.getDevice(res.getAddr());
+			
+			//抄表上报消息
+			if(res.getCmdCode() == Command.READ_METER) {
+				notifyhost.postPeriod((MeterData)res.getData());
+				return;
+			}
+			
+			//其他主机发送的请求消息
+			if(d != null) {
+				d.notifyAll();
+				d.setBusy(false);
+			}
+			
 		}catch(Exception ex) {
 			ex.printStackTrace();			
 		}

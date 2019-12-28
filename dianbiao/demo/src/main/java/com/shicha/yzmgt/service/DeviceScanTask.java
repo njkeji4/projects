@@ -11,8 +11,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.shicha.yzmgt.bean.Device;
+import com.shicha.yzmgt.bean.DeviceStat;
 import com.shicha.yzmgt.bean.UserCmd;
 import com.shicha.yzmgt.dao.IDeviceDao;
+import com.shicha.yzmgt.dao.IDeviceStatDao;
 import com.shicha.yzmgt.dao.IUserCmdDao;
 import com.shicha.yzmgt.util.Util;
 
@@ -25,14 +27,8 @@ public class DeviceScanTask {
 	IDeviceDao deviceDao;
 	
 	@Autowired
-	IUserCmdDao userCmdDao;
+	IDeviceStatDao deviceStatDao;
 	
-	@Autowired
-	DeviceService deviceService;
-	
-		
-	@Autowired
-	AirCbService2 airService2;
 	
 	@Value("${device.heartbeat:10}")
 	int heartBeat;
@@ -51,18 +47,50 @@ public class DeviceScanTask {
 				if(System.currentTimeMillis()- d.getLastHeartBeatTime() > heartBeat * 60 * 1000) {
 					d.setStatus(Device.device_status_offline);
 					deviceDao.save(d);
-					continue;
-				}
-				
-				//airService2.getDeviceStatus(d.getDeviceNo());				
+				}	
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
+	
 	//clear command,timeout
-	@Scheduled(fixedRate = 1000 * 60)
+	@Scheduled(cron = "0 0 0 * * ?")
+	public void doStatis() {		
+		try {
+			
+			long yesterday = Util.getPreviousDay(System.currentTimeMillis());	
+			
+			log.info("midnight task start to calc :" + Util.formatDate(yesterday));
+			
+			List<Device> list = deviceDao.findAll();
+			if(list == null || list.size() == 0) {
+				return;
+			}
+			for(Device d : list) {				
+				
+				long todayOnTime = d.getTodayOnTime() + (d.getSwitchStat() == 0? (System.currentTimeMillis() - d.getOnTime())/60000 : 0);
+				DeviceStat stat = new DeviceStat(d.getDeviceNo(), yesterday, 
+						d.getTodayEnergy(),todayOnTime, d.getDeviceName(), d.getGroupName());
+				
+				d.setLastEnergy(d.getActionEnergy());
+				d.setTodayOnTime(0);
+				d.setOnTime(System.currentTimeMillis());				
+				
+				deviceStatDao.save(stat);
+				deviceDao.save(d);
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		log.info("midnight task finished");
+	}	
+		
+	/*
+	//clear command,timeout
+	//@Scheduled(fixedRate = 1000 * 60)
 	public void scanDevice2() {		
 		try {
 			List<Device> list = deviceDao.findByCmdIdIsNotNull();
@@ -92,5 +120,5 @@ public class DeviceScanTask {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-	}	
+	}	*/
 }

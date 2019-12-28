@@ -1,22 +1,14 @@
 package com.shicha.yzmgt.service;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
 
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shicha.yzmgt.aircb.AirResult;
-import com.shicha.yzmgt.aircb.CbCommand;
-import com.shicha.yzmgt.aircb.IAirCB;
-import com.shicha.yzmgt.aircb.MeterPeriod;
 import com.shicha.yzmgt.aircb.MeterStatus;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.UserCmd;
@@ -47,88 +39,61 @@ public class AirCbService2 {
 	@Autowired
 	private SimpMessagingTemplate webSocket;	
 	
-	public boolean beforeCommand(int cmd, Device device, String addr, String userName, String groupName) {
-		log.info("addr="+addr);
-		
-		
-		if(device == null) {
-			log.info("device isnot existed:"+addr);
-			return false;
-		}
-		
-		if(device.getCmdId() != null) {
-			UserCmd userCmd = new UserCmd(cmd,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
-			
-			userCmd.setStatus(UserCmd.cmd_status_fail);
-			userCmd.setRetMessage("还有命令在执行中，这条命令没有执行");
-			userCmd.setRetTime(System.currentTimeMillis());
-			cmdService.newCmd(userCmd);
-			
-			log.info("还有命令在执行中，这条命令没有执行:"+addr);
-			
-			return false;//new APIResult(1, "还有命令在执行中，这条命令没有执行");
-		}
-		return true;
-	}
+//	public boolean beforeCommand(int cmd, Device device, String addr, String userName, String groupName) {
+//		log.info("addr="+addr);
+//		
+//		
+//		if(device == null) {
+//			log.info("device isnot existed:"+addr);
+//			return false;
+//		}
+//		
+//		if(device.getCmdId() != null) {
+//			UserCmd userCmd = new UserCmd(cmd,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+//			
+//			userCmd.setStatus(UserCmd.cmd_status_fail);
+//			userCmd.setRetMessage("还有命令在执行中，这条命令没有执行");
+//			userCmd.setRetTime(System.currentTimeMillis());
+//			cmdService.newCmd(userCmd);
+//			
+//			log.info("还有命令在执行中，这条命令没有执行:"+addr);
+//			
+//			return false;//new APIResult(1, "还有命令在执行中，这条命令没有执行");
+//		}
+//		return true;
+//	}
 	
-	public void checkReturn(int cmd, APIResult ret, Device device, String addr, String userName, String groupName) {
+	public void checkReturn(String cmdId, APIResult ret, String addr, String userName) {
 		
-		UserCmd userCmd = new UserCmd(cmd,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+		Optional<UserCmd>option = userCmdDao.findById(cmdId);
+		if(!option.isPresent()) {
+			return;
+		}
+		UserCmd userCmd = option.get();		
 		
-		if(ret.getStatus() != 0) {
-			userCmd.setStatus(UserCmd.cmd_status_fail);
-			userCmd.setRetMessage(ret.getMessage());
-			userCmd.setRetTime(System.currentTimeMillis());
-			cmdService.newCmd(userCmd);
-			
-			if(userCmd != null && userCmd.getCmdCode() != 0) {//websocket send response
+		userCmd.setStatus(ret.getStatus() == 0 ? UserCmd.cmd_status_ok : UserCmd.cmd_status_fail);
+		userCmd.setRetMessage(ret.getMessage());
+		userCmd.setRetTime(System.currentTimeMillis());
+		
+		userCmdDao.save(userCmd);
 				
-				String message = addr;		
-				String target = "/topic/greetings/" + userName;
-				message +=  UserCmd.cmd_name[userCmd.getCmdCode()] +  "失败: " + ret.getMessage();			
-				webSocket.convertAndSend(target, message);
-			}
-			
-			return ;
-		}
 		
-		String cmdId = cmdService.newCmd(userCmd);
-		
-		device.setCmdId(cmdId);
-		device.setCmdTime(System.currentTimeMillis());
-		deviceDao.save(device);
+		String message = addr;		
+		String target = "/topic/greetings/" + userName;
+		message +=  UserCmd.cmd_name[userCmd.getCmdCode()] ;	
+		message +=  (ret.getStatus() == 0 ? "操作成功" : "操作失败");	
+		webSocket.convertAndSend(target, message);
 	}
+
 	
-	public APIResult getDeviceStatus(String addr) {
-		log.info("addr="+addr);
-		Device device = deviceDao.findByDeviceNo(addr);
-		int cmd = 0;
-		
-		if(!beforeCommand(cmd, device, addr, "admin", null)) {
-			return new APIResult(1);
-		}		
-		
-		APIResult ret = new APIResult(1);
-		
-		try{
-			ret = client.read(addr);
-		}catch(Exception ex) {
-			ret.setMessage(ex.getMessage());
-		}
-		
-		checkReturn(cmd, ret, device, addr, "admin", null);
-		
-		return ret;
-	}
-	
+	@Async
 	public APIResult switchOff(String addr, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(addr);
 		int cmd = 1;
 		
-		log.info("befor cmmand");
-		if(!beforeCommand(cmd, device, addr, userName, groupName)) {
-			return new APIResult(1);
-		}		
+		UserCmd userCmd = new UserCmd(cmd,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+		String cmdId = cmdService.newCmd(userCmd);		
+
 		
 		APIResult ret = new APIResult(1);
 		try{
@@ -141,19 +106,19 @@ public class AirCbService2 {
 		
 		log.info("check return");
 		
-		checkReturn(cmd, ret, device, addr, userName, groupName);
+		checkReturn(cmdId, ret, addr, userName);
 		
 		return ret;
 	}
 	
-	
+	@Async
 	public APIResult switchOn(String addr, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(addr);
 		int cmd = 2;
 		
-		if(!beforeCommand(cmd, device, addr, userName, groupName)) {
-			return new APIResult(1);
-		}		
+		UserCmd userCmd = new UserCmd(cmd,null,addr,device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+		String cmdId = cmdService.newCmd(userCmd);		
+
 		
 		APIResult ret = new APIResult(1);
 		try{
@@ -164,19 +129,19 @@ public class AirCbService2 {
 			ret.setMessage(ex.getMessage());
 		}
 		
-		checkReturn(cmd, ret, device, addr, userName, groupName);
+		checkReturn(cmdId, ret, addr, userName);
 		
 		return ret;
 		
 	}	
 	
+	@Async
 	public APIResult setAutoOffOn(AutoOnOff auto, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(auto.getAddr());
 		int cmd = 8;
 		
-		if(!beforeCommand(cmd, device, auto.getAddr(), userName, groupName)) {
-			return new APIResult(1);
-		}		
+		UserCmd userCmd = new UserCmd(cmd,null,auto.getAddr(),device.getDeviceName(), userName, groupName, UserCmd.cmd_status_processing);
+		String cmdId = cmdService.newCmd(userCmd);
 		
 		APIResult ret = new APIResult(1);
 		try{
@@ -187,12 +152,41 @@ public class AirCbService2 {
 			ret.setMessage(ex.getMessage());
 		}
 		
-		checkReturn(cmd, ret, device, auto.getAddr(), userName, groupName);
+		checkReturn(cmdId, ret, auto.getAddr(), userName);
 		
 		return ret;
 	}	
 	
 	
+	public void getPeriodReport(MeterStatus meter) {
+		
+		Device d = deviceDao.findByDeviceNo(meter.getDeviceNo());
+		if(d == null) {
+			log.info("device:" + meter.getDeviceNo() + " is not registered in system");
+			return;
+		}
+		
+		int pre = d.getSwitchStat();				
+		d.syncDevice(meter);			
+		d.setLastDataTime(System.currentTimeMillis());
+		
+		//合闸-》拉闸,统计这次拉闸的时间
+		if(pre == 0 && d.getSwitchStat() != 0) {
+			d.setTodayOnTime(d.getTodayOnTime() + (System.currentTimeMillis() - d.getOnTime()) / 60000);
+		}
+		//拉闸--》合闸，更新合闸时间
+		if(pre != 0 && d.getSwitchStat() == 0) {
+			d.setOnTime(System.currentTimeMillis());
+		}
+		
+		d.setTodayEnergy(d.getActionEnergy() - d.getLastEnergy());
+		
+		deviceDao.save(d);
+		
+		
+	}
+	
+	/*
 	public void getCmdResponse(CmdRes res) {
 		
 		log.info("report command response from device:" + res.getAddr() + ":" + res.getResponse());
@@ -205,11 +199,26 @@ public class AirCbService2 {
 		
 		//device report meter data
 		if(res.getCmdCode() == 0 && res.getStatus() == 0) {//meter data report
+			int pre = d.getSwitchStat();
+			
 			ObjectMapper objectMapper = new ObjectMapper();		
 			MeterStatus meter = objectMapper.convertValue(res.getData(), MeterStatus.class);			
-			d.syncDevice(meter);
+			d.syncDevice(meter);			
 			d.setLastDataTime(System.currentTimeMillis());
+			
+			//合闸-》拉闸
+			if(pre == 0 && d.getSwitchStat() != 0) {
+				d.setTodayOnTime(d.getTodayOnTime() + (System.currentTimeMillis() - d.getOnTime()) / 60000);
+			}
+			//拉闸--》合闸
+			if(pre != 0 && d.getSwitchStat() == 0) {
+				d.setOnTime(System.currentTimeMillis());
+			}
+			
+			d.setTodayEnergy(d.getActionEnergy() - d.getLastEnergy());
+			
 			deviceDao.save(d);
+			
 			return;
 		}
 		
@@ -260,7 +269,7 @@ public class AirCbService2 {
 			webSocket.convertAndSend(target, message);
 		}
 		
-	}
+	}*/
 	
 	public void getHeartBeat(String addr) {
 		

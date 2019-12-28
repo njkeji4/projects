@@ -3,17 +3,10 @@ import HoldView from './components/HoldView.vue';
 import Login from './components/Login.vue';
 import DeviceList from './components/device/DeviceList.vue';
 import DeviceCmd from './components/device/DeviceCmd.vue';
-import DataList from './components/datamgt/DataList.vue';
-import BlackList from './components/blacklist/BlackList.vue';
-import Settings from './components/settings/SystemSettings.vue';
-import MainStat from './components/statistic/Stat.vue';
-import MainStat2 from './components/statistic/Stat2.vue';
-import Alarm from './components/alarm/AlarmList.vue';
 import Usermgt from './components/user/UserManagement.vue';
-import versionmgt from './components/version/VersionManagement.vue';
 import groupMgt from './components/group/GroupManagement.vue';
-import advMgt from './components/adv/AdvManagement.vue';
-import advDownload from './components/adv/AdvDownloadResult.vue';
+import DeviceStat from './components/device/DeviceStat.vue';
+
 
 let routes = [  
     {
@@ -38,6 +31,14 @@ let routes = [
             
             {
                 path: 'stat',
+                component: DeviceStat,
+                name:'',
+                title:'设备统计',
+                iconCls: 'performancemanagement'
+            },
+
+            {
+                path: 'cmd',
                 component: DeviceCmd,
                 name:'',
                 title:'查看命令',

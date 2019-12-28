@@ -4,7 +4,8 @@ public class MeterData {
 
 	public MeterData() {}
 	
-	public MeterData(byte[] buf, int type) {	
+	public MeterData(byte[] buf, int type, String deviceNo) {	
+		this.deviceNo = deviceNo;
 		try {
 			if(type == 0) {
 				parseSingle(buf);
@@ -74,17 +75,16 @@ public class MeterData {
 			v[idx++] = (buf[i] -0x33 ) & 0x0f;
 		}
 		
-		double p = 1;
-		if(sublen != 0) {
-			int t = sublen;
-			while(t-- != 0 ) p = p /  10;
-		}
-		
-		double sum = 0;
+		double p = Math.pow(10, -sublen);		
+		double sum = 0;		
 		for(int i = v.length - 1; i >= 0 ; i--) {
 			sum += v[i] * p;
 			p = p*10;
 		}
+		
+		//保留小数
+		double pow = Math.pow(10, sublen);			
+		sum = (double)Math.round(sum * pow)/pow;
 		
 		return sum;
 	}
@@ -125,6 +125,9 @@ public class MeterData {
     double freq;//":49.92,   #电网频率		
     double factor;//":0.953,     #功率因数	
     int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态-合闸
+    
+    String deviceNo;
+    
 	public double getAllEnergy() {
 		return allEnergy;
 	}
@@ -331,5 +334,15 @@ public class MeterData {
 
 	public void setSwitchStat(int switchStat) {
 		this.switchStat = switchStat;
+	}
+
+	public String getDeviceNo() {
+		return deviceNo;
+	}
+
+	public void setDeviceNo(String deviceNo) {
+		this.deviceNo = deviceNo;
 	}    
+	
+	
 }

@@ -40,8 +40,12 @@ public class Device {
 	String groupName;	
 	
 	String cmdId;		//一个设备一次只能执行一条命令，必须等待返回或者超时
-	Long cmdTime;		//发送命令时间
+	Long cmdTime;		//发送命令时间	
 	
+	double lastEnergy = 0;
+	double todayEnergy = 0;
+	long onTime = 0;
+	long todayOnTime = 0;
 	
 	//////data field
 	@Column(nullable=false, columnDefinition="Double default 0")
@@ -435,6 +439,37 @@ public class Device {
 
 	public void setLastDataTime(Long lastDataTime) {
 		this.lastDataTime = lastDataTime;
-	}	
-	
+	}
+
+	public double getLastEnergy() {
+		return lastEnergy;
+	}
+
+	public void setLastEnergy(double lastEnergy) {
+		this.lastEnergy = lastEnergy;
+	}
+
+	public double getTodayEnergy() {
+		return todayEnergy;
+	}
+
+	public void setTodayEnergy(double todayEnergy) {
+		this.todayEnergy = todayEnergy;
+	}
+
+	public long getOnTime() {
+		return onTime;
+	}
+
+	public void setOnTime(long onTime) {
+		this.onTime = onTime;
+	}
+
+	public long getTodayOnTime() {
+		return todayOnTime;
+	}
+
+	public void setTodayOnTime(long todayOnTime) {
+		this.todayOnTime = todayOnTime;
+	}		
 }
