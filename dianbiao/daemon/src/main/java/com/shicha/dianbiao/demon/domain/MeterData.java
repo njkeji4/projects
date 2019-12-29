@@ -1,4 +1,4 @@
-package com.shicha.dianbiao.demon.netty;
+package com.shicha.dianbiao.demon.domain;
 
 public class MeterData {
 

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.shicha.yzmgt.aircb.MeterStatus;
+import com.shicha.yzmgt.domain.MeterStatus;
 
 @Entity(name="device")
 @Table(indexes={

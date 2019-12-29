@@ -19,7 +19,7 @@ public class Device {
 	private static HashMap<String, Device>map = new HashMap<String, Device>();
 	private static HashMap<ChannelHandlerContext, String>ctxmap = new HashMap<ChannelHandlerContext, String>();
 	
-	int status;   	//0-login  1-normal
+	int status;   	//0-login  1-normal 
 	String addr;
 	int type;		//0 -danxiang  1-sanxiang
 	ChannelHandlerContext ctx;
@@ -48,26 +48,20 @@ public class Device {
 	public static void add(ChannelHandlerContext ctx, int status, String addr, int type) {
 		map.put(addr, new Device(ctx,status,addr,type));
 		ctxmap.put(ctx,addr);
+	}	
+	
+	public static String remove(ChannelHandlerContext ctx) {
+		String addr = ctxmap.get(ctx);
+		if(ctxmap.get(ctx) != null) {
+			map.remove(ctxmap.get(ctx));
+			ctxmap.remove(ctx);
+		}		
+		return addr;
 	}
 	
-	
+	//////////////////// read command
 	//read data
-	public static int queryCmd(String addr) {
-	
-		/*
-		//danxiang 0
-		byte[] buff0 = {(byte)0xFE, (byte)0xFE ,(byte)0xFE ,(byte)0xFE ,0x68 ,0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,(byte)0x11 ,(byte)0x04 ,(byte)0x34 ,(byte)0x43 ,(byte)0x93 ,(byte)0x37 ,(byte)0x5f ,(byte)0x16};
-		
-		//san xiang 1
-		byte[] buff1 = {(byte)0xFE, (byte)0xFE ,(byte)0xFE ,(byte)0xFE ,0x68 ,0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,(byte)0x11 ,(byte)0x04 ,(byte)0x39 ,(byte)0x45 ,(byte)0x93 ,(byte)0x37 ,(byte)0x5f ,(byte)0x16};
-		
-		int type = 1;
-		if(map.get(addr) != null)
-			type = map.get(addr).getType();
-		
-		byte[] buff = type == 0? buff0 : buff1;
-		
-		cmd(addr,buff);*/
+	public static int readMeter(String addr) {
 		
 		int type = 1;
 		if(map.get(addr) != null)
@@ -81,11 +75,42 @@ public class Device {
 		return readCmd(addr, code);
 	}
 	
+	public static int readDate(String addr) {
+		byte[] code = {0x04, 0x00, 0x01, 0x01};
+		
+		return readCmd(addr, code);
+	}
+	
+	public static int readTime(String addr) {
+		byte[] code = {0x04, 0x00, 0x01, 0x02};
+		
+		return readCmd(addr, code);
+	}	
+	
+	public static int readAutoOnOff(String addr) {
+		byte[] code = {0x04, 0x02, 0x00, 0x01};
+		
+		return readCmd(addr, code);
+	}
+	
+	public static int readPeriod(String addr) {
+		byte[] code = {0x04, 0x04, 0x04, 0x00};
+		
+		int type = 1;
+		if(map.get(addr) != null)
+			type = map.get(addr).getType();		
+		
+		if(type == 1) {
+			code = new byte[]{0x04, 0x00, 0x01, 0x0d};
+		}
+		
+		return readCmd(addr, code);
+	}
+	
 	public static int switchOffCmd(String addr) {
 		byte[] buff = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,
 				(byte)0x1C ,(byte)0x10 ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x4D ,(byte)0x33 ,(byte)0x46 ,(byte)0x59 ,(byte)0x42 ,(byte)0x45 ,(byte)0x3F ,(byte)0x16 ,(byte)0xC3 ,(byte)0x16};
-		
-		
+				
 		return cmd(addr,buff);
 	}
 	
@@ -106,7 +131,7 @@ public class Device {
 		
 		if(offon.length < 8) {
 			for(int i = offon.length; i < 8; i++) {
-				times[i] = 0x999999;
+				times[i] = 0x636363;//0x999999;
 			}
 		}
 		
@@ -119,34 +144,19 @@ public class Device {
 			int minute = (times[i] &0xff00) >> 8;
 			int hour = (times[i] & 0xff0000) >> 16;
 			
+			//bcd
+			hour = hour / 10 * 16 + hour % 10; 
+			minute = minute / 10 * 16 + minute % 10;
+			second = second / 10 * 16 + second % 10;
+			
 			data[idx++] = (byte)(0x33 + second);
 			data[idx++] = (byte)(0x33 + minute);
 			data[idx++] = (byte)(0x33 + hour);			
 		}	
 		
 		return writeCmd(addr, dataid, data);
-		
-		/*
-		byte[] buf = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,(byte)0x14   ,(byte)0x24 
-						,(byte)0x34 ,(byte)0x33 ,(byte)0x35 ,(byte)0x37  ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x63 ,(byte)0x63 ,(byte)0x63 ,(byte)0x63 
-						,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x34 ,(byte)0x33 ,(byte)0x33 ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x36 ,(byte)0x33 ,(byte)0x33 ,(byte)0x37 ,(byte)0x33 ,(byte)0x33 ,(byte)0x38 ,(byte)0x33 ,(byte)0x33 ,(byte)0x39 ,(byte)0x33 ,(byte)0x33 ,(byte)0x3A 
-						,(byte)0x4B ,(byte)0x16 };
-		
-		
-		//encode time
-		int start = 26;
-		for(int i = 0; i < 8; i++) {
-			int second = times[i] & 0xff;
-			int minute = (times[i] &0xff00) >> 8;
-			int hour = (times[i] & 0xff0000) >> 16;
-			
-			buf[start++] = (byte)(0x33 + second);
-			buf[start++] = (byte)(0x33 + minute);
-			buf[start++] = (byte)(0x33 + hour);			
-		}		
-		
-		return cmd(addr,buf);*/
 	}	
+	
 	
 	public static int readCmd(String addr, byte[] opcode) {
 		int fixLen = 20;
@@ -212,16 +222,17 @@ public class Device {
 		Device d = Device.getDevice(addr);
 		if(d == null || d.getStatus() == 0 || d.getCtx() == null) {
 			log.info("try to send comamnd to device:" + addr + " but , it  is offline or busy, just return -1");
-			return -1;
+			return 1;
 		}
 		if(d.isBusy()) {
 			log.info("try to send another command to device:" + addr + "but, it is busy with another command");
-			return -2;
+			return 2;
 		}
 		
 		encodeAddress(buf, addr);		
 		calcCS(buf);
 		
+		d.setCmdRes(null);
 		d.setBusy(true);		
 		
 		log.info("send request:" +  addr + "  " + Utils.byte2str(buf));
@@ -252,15 +263,8 @@ public class Device {
 		buf[buf.length - 2] = (byte)sum;
 	}
 	
-	public static String remove(ChannelHandlerContext ctx) {
-		String addr = ctxmap.get(ctx);
-		if(ctxmap.get(ctx) != null) {
-			map.remove(ctxmap.get(ctx));
-			ctxmap.remove(ctx);
-		}		
-		return addr;
-	}
-
+	
+	//////////////////// set get
 	public int getStatus() {
 		return status;
 	}
@@ -308,5 +312,4 @@ public class Device {
 	public void setBusy(boolean busy) {
 		this.busy = busy;
 	}	
-	
 }

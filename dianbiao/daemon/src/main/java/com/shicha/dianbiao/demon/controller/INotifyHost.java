@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shicha.dianbiao.demon.domain.APIResult;
+import com.shicha.dianbiao.demon.domain.MeterData;
 import com.shicha.dianbiao.demon.netty.CmdRes;
-import com.shicha.dianbiao.demon.netty.MeterData;
 
 
 @FeignClient(url = "${post.host}",name="notificationHost")

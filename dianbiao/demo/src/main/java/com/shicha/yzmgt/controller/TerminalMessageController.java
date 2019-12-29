@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shicha.yzmgt.aircb.MeterStatus;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.CmdRes;
+import com.shicha.yzmgt.domain.MeterStatus;
 import com.shicha.yzmgt.service.AirCbService2;
 
 

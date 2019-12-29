@@ -12,12 +12,26 @@ public class Command {
 	public static int ON = 2;
 	public static int WRITE_METER = 8;	//write ok
 	
+	public static int READ_TIME = 101;
+	public static int READ_DATE = 102;
+	public static int READ_AUTOONOFF = 103;
+	public static int READ_PERIOD_1 = 104;
+	public static int READ_PERIOD_3 = 105;
+	
+	
+	
 	public static final Map<String,Integer> map = new HashMap<String,Integer>() ;
 	
 	static {
-	       map.put("04601001",READ_METER) ;	//单相集抄
-	       
+	       map.put("04601001",READ_METER) ;	//单相集抄	       
 	       map.put("04601206",READ_METER) ; //三相集抄
+	       
+	       map.put("04000101",READ_DATE) ; //
+	       map.put("04000102",READ_TIME) ; //
+	       map.put("04020001",READ_AUTOONOFF) ; //
+	       map.put("04040400",READ_PERIOD_1) ; //
+	       map.put("0400010D",READ_PERIOD_3) ; //
+	       
 	  }
 	
 	

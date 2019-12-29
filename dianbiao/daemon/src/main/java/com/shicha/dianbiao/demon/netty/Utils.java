@@ -14,6 +14,15 @@ public class Utils {
 		
 	}
 	
+	public static int bcd(byte b) {
+		
+		int t = (b & 0xff) - 0x33;
+		
+		t = (t & 0x0f) + (t >> 4) * 10;
+		
+		return t;
+	}
+	
 	public static String byte2str(byte[] byteArray) {
 	    if (byteArray == null || byteArray.length ==0) {
 	        return null;

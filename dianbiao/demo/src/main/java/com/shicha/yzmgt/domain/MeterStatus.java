@@ -1,4 +1,4 @@
-package com.shicha.yzmgt.aircb;
+package com.shicha.yzmgt.domain;
 
 import javax.persistence.Column;
 

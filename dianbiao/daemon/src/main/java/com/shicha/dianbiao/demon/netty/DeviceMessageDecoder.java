@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.shicha.dianbiao.demon.controller.INotifyHost;
 import com.shicha.dianbiao.demon.domain.Command;
+import com.shicha.dianbiao.demon.domain.MeterData;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -144,12 +145,11 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		in.resetReaderIndex();		
 		byte[]message = new byte[CmdRes.headLength + dataLen + CmdRes.tailLength];
 		in.readBytes(message);
-		
-		CmdRes res = CmdRes.parse(message);
-		
-		log.info(res.getAddr() + " got response: " +  res.getResponse());
-		
+				
 		try{		
+			
+			CmdRes res = CmdRes.parse(message);			
+			log.info(res.getAddr() + " got response: " +  res.getResponse());
 			
 			Device d = Device.getDevice(res.getAddr());
 			
@@ -160,9 +160,13 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			}
 			
 			//其他主机发送的请求消息
-			if(d != null) {
-				d.notifyAll();
-				d.setBusy(false);
+			if(d != null && d.isBusy()) {
+				d.setCmdRes(res);				
+				synchronized(d) {
+					d.notifyAll();
+				}				
+			}else {
+				log.info("receive response, but it is too late, ignor this response");
 			}
 			
 		}catch(Exception ex) {

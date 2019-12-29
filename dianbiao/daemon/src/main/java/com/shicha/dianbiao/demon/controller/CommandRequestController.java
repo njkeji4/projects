@@ -26,8 +26,85 @@ public class CommandRequestController {
 
 	private static final Logger log = LoggerFactory.getLogger(CommandRequestController.class);	
 	
-	@Value("${cmd.timeout:60}")
+	public static int CMD_EXE_OK = 0;
+	public static int CMD_EXE_OFFLINE = 1;
+	public static int CMD_EXE_BUSY = 2;
+	public static int CMD_EXE_TIMEOUT = 3;
+	
+	public static int CMD_EXE_FAIL = 4;
+	
+	public static String[] MESSAGES = {"", "Device Offline", "Device busy", "Command timeout","Command failed:"};
+	
+	
+	@Value("${cmd.timeout:30}")
 	int cmdTimeout;		
+	
+	@RequestMapping(value="/get/time", method=RequestMethod.POST)
+	public APIResult getTime(
+			@RequestBody String addr,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			int ret = Device.readTime(addr);			
+			if(ret != 0) {
+				return new APIResult(ret,MESSAGES[ret]);
+			}
+		
+			return waitResult(addr);
+	}
+	
+	@RequestMapping(value="/get/date", method=RequestMethod.POST)
+	public APIResult getDate(
+			@RequestBody String addr,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			int ret = Device.readDate(addr);		
+			if(ret != 0) {
+				return new APIResult(ret,MESSAGES[ret]);
+			}
+		
+			return waitResult(addr);
+	}
+	
+	@RequestMapping(value="/get/period", method=RequestMethod.POST)
+	public APIResult readPeriod(
+			@RequestBody String addr,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			int ret = Device.readPeriod(addr);			
+			if(ret != 0) {
+				return new APIResult(ret,MESSAGES[ret]);
+			}
+		
+			return waitResult(addr);
+	}
+	
+	@RequestMapping(value="/get/autoonoff", method=RequestMethod.POST)
+	public APIResult getAutoOnOff(
+			@RequestBody String addr,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			int ret = Device.readAutoOnOff(addr);
+			if(ret != 0) {
+				return new APIResult(ret,MESSAGES[ret]);
+			}
+			
+			return waitResult(addr);
+			
+	}
+	
+	@RequestMapping(value="/set/period", method=RequestMethod.POST)
+	public APIResult setPeriod(
+			@RequestBody String addr,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+			
+			int ret = Device.switchOnCmd(addr);			
+			if(ret != 0) {
+				return new APIResult(ret,MESSAGES[ret]);
+			}
+		
+			return waitResult(addr);
+	}
+	
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
 	public APIResult devcieon(
@@ -36,7 +113,7 @@ public class CommandRequestController {
 			
 			int ret = Device.switchOnCmd(addr);			
 			if(ret != 0) {
-				return new APIResult(ret,"device status is not right");
+				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
 			return waitResult(addr);
@@ -49,7 +126,7 @@ public class CommandRequestController {
 			
 			int ret = Device.switchOffCmd(addr);
 			if(ret != 0) {
-				return new APIResult(ret,"device status is not right");
+				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
 			return waitResult(addr);
@@ -62,12 +139,14 @@ public class CommandRequestController {
 			
 			int ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes());
 			if(ret != 0) {
-				return new APIResult(ret,"device status is not right");
+				return new APIResult(ret,MESSAGES[ret]);
 			}
 			
 			return waitResult(setting.getAddr());
 			
 	}
+	
+	
 	
 	@RequestMapping(value="/raw", method=RequestMethod.POST)
 	public APIResult rawCommand(
@@ -79,22 +158,21 @@ public class CommandRequestController {
 			
 			int ret = Device.cmd(raw.getAddr(), buff);
 			if(ret != 0 ) {
-				return new APIResult(ret);
+				return new APIResult(ret,MESSAGES[ret]);
 			}
 			
 			return waitResult(raw.getAddr());
 	}
 	
+	/*
 	@RequestMapping(value="/read", method=RequestMethod.POST)
 	public APIResult readData(
 			@RequestBody String addr,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
-			int ret = Device.queryCmd(addr);	
-			String message= null;
+			int ret = Device.readMeter(addr);			
 			if(ret == -1) {
-				message="device is in wrong status";
-				return new APIResult(ret,message);
+				return new APIResult(ret,MESSAGES[ret]);
 			}
 			
 			Device d = Device.getDevice(addr);
@@ -122,7 +200,7 @@ public class CommandRequestController {
 			d.setCmdRes(null);
 			
 			return result;
-	}
+	}*/
 	
 	public APIResult waitResult(String addr) {
 		
@@ -138,23 +216,18 @@ public class CommandRequestController {
 			log.error("wait for command result exception:" + ex.getMessage());
 		}
 		
+		d.setBusy(false);
+		
 		CmdRes res = d.getCmdRes();
 		if(res == null) {
-			log.info("command timeout");
-			return new APIResult(-2, "command timeout");
+			log.info("command timeout");			
+			return new APIResult(CMD_EXE_TIMEOUT, MESSAGES[CMD_EXE_TIMEOUT]);
 		}
 		
-		log.info("get command result");
-	
-		APIResult result =  new APIResult(
-									res.getCmdCode(),
-									res.getMessage() + ":"+ res.getResponse(),
-									res.getData()
-								);
+		log.info("get command result:"+res.getResponse());
 		
-		d.setCmdRes(null);
-		
-		return result;
+		int ret = res.getStatus();	
+		return new APIResult(ret, MESSAGES[ret] + res.getResponse(), res.getData());
 	}
 	
 	public static void calcCS(byte[] buf) {

@@ -1,6 +1,11 @@
 package com.shicha.dianbiao.demon.netty;
 
+import com.shicha.dianbiao.demon.domain.AutoOnOff;
 import com.shicha.dianbiao.demon.domain.Command;
+import com.shicha.dianbiao.demon.domain.MeterData;
+import com.shicha.dianbiao.demon.domain.MeterDate;
+import com.shicha.dianbiao.demon.domain.MeterPeriod;
+import com.shicha.dianbiao.demon.domain.MeterTime;
 
 /**
  * receive response message from device
@@ -11,7 +16,7 @@ import com.shicha.dianbiao.demon.domain.Command;
 */
 public class CmdRes {
 	
-	int status;
+	int status;			//-1 offline,-2 busy  0 ok
 	String message;
 	Object data;
 	int ctlCode;
@@ -81,9 +86,22 @@ public class CmdRes {
 		
 		case 0x91://read ok
 			res.setStatus(status_ok);
-			if(cmdCode == 0) {	//read meter data
+			if(cmdCode == Command.READ_METER) {	
 				res.setData(new MeterData(buf, type, addr));
-			}else {		//read other data
+				
+			}else if(cmdCode == Command.READ_TIME){		
+				res.setData(new MeterTime(buf));
+				
+			}else if(cmdCode == Command.READ_DATE){
+				res.setData(new MeterDate(buf));
+				
+			}else if(cmdCode == Command.READ_AUTOONOFF){
+				res.setData(new AutoOnOff(buf));
+				
+			}else if (cmdCode == Command.READ_PERIOD_1 || cmdCode == Command.READ_PERIOD_3){
+				res.setData(new MeterPeriod(buf));
+				
+			}else {
 				res.setData(buf);
 			}
 			break;

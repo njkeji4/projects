@@ -9,7 +9,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shicha.yzmgt.aircb.MeterStatus;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.UserCmd;
 import com.shicha.yzmgt.controller.IDaemon;
@@ -18,6 +17,7 @@ import com.shicha.yzmgt.dao.IUserCmdDao;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.AutoOnOff;
 import com.shicha.yzmgt.domain.CmdRes;
+import com.shicha.yzmgt.domain.MeterStatus;
 
 @Service
 public class AirCbService2 {
@@ -104,7 +104,12 @@ public class AirCbService2 {
 			ret.setMessage(ex.getMessage());
 		}
 		
-		log.info("check return");
+		if(ret.getStatus() == 0) {
+			device.setSwitchStat(Device.device_switch_open);
+			deviceDao.save(device);
+		}
+		
+		log.info("check return:"+ret);
 		
 		checkReturn(cmdId, ret, addr, userName);
 		
@@ -127,6 +132,11 @@ public class AirCbService2 {
 		}catch(Exception ex) {
 			
 			ret.setMessage(ex.getMessage());
+		}
+		
+		if(ret.getStatus() == 0) {
+			device.setSwitchStat(Device.device_switch_close);
+			deviceDao.save(device);
 		}
 		
 		checkReturn(cmdId, ret, addr, userName);
