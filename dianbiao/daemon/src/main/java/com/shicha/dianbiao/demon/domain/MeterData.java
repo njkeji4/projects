@@ -1,6 +1,6 @@
 package com.shicha.dianbiao.demon.domain;
 
-public class MeterData {
+public class MeterData extends Meter{
 
 	public MeterData() {}
 	

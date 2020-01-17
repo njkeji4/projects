@@ -2,7 +2,7 @@ package com.shicha.dianbiao.demon.domain;
 
 import com.shicha.dianbiao.demon.netty.Utils;
 
-public class MeterTime {
+public class MeterTime extends Meter{
 
 	int hour;
 	int minute;

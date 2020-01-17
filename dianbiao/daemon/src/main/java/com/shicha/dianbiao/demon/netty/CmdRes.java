@@ -1,12 +1,11 @@
 package com.shicha.dianbiao.demon.netty;
 
-import com.shicha.dianbiao.demon.domain.AutoOnOff;
-import com.shicha.dianbiao.demon.domain.Command;
-import com.shicha.dianbiao.demon.domain.MeterData;
-import com.shicha.dianbiao.demon.domain.MeterDate;
-import com.shicha.dianbiao.demon.domain.MeterPeriod;
-import com.shicha.dianbiao.demon.domain.MeterTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.shicha.dianbiao.demon.controller.CommandRequestController;
+import com.shicha.dianbiao.demon.domain.Command;
+import com.shicha.dianbiao.demon.domain.Meter;
 /**
  * receive response message from device
  * 
@@ -16,7 +15,9 @@ import com.shicha.dianbiao.demon.domain.MeterTime;
 */
 public class CmdRes {
 	
-	int status;			//-1 offline,-2 busy  0 ok
+	private static final Logger log = LoggerFactory.getLogger(CmdRes.class);	
+	
+	int status;			
 	String message;
 	Object data;
 	int ctlCode;
@@ -25,10 +26,60 @@ public class CmdRes {
 	int cmdCode;
 	
 	public static int status_ok=0;
-	public static int status_fail=1;
+	public static int status_fail=4;
 	
 	public static int headLength=10;
 	public static int tailLength=2;
+	
+	public static CmdRes parse(byte[] buf) {
+		if(!hasEnoughBytes(buf)) {
+			return null;
+		}
+		
+		CmdRes res = new CmdRes();
+		int ctlCode = buf[8] & 0xff;
+		int cmdCode = Command.getCmdCode(buf);
+		String addr = getAddr(buf);
+		
+		res.setCtlCode(ctlCode);
+		res.setAddr(addr);
+		res.setResponse(Utils.byte2str(buf));
+		res.setCmdCode(cmdCode);
+		
+		int type = 1;
+		Device d = Device.getDevice(addr);
+		if(d != null )
+			type = d.getType();
+		
+		switch(ctlCode) {
+		
+		case 0x91://read ok
+			res.setStatus(status_ok);		
+			Meter.parseReadData(buf, res, addr, cmdCode, type);
+			break;
+			
+		case 0x94:	//write ok
+		case 0x9c:  //onoff ok
+		case 0x9a:  //电量清零
+			res.setStatus(status_ok);
+			break;
+			
+		case 0xd1://read fail
+		case 0xd4: //write fail
+		case 0xda: //电量清零
+		case 0xdc://onff fail
+			res.setStatus(status_fail);
+			res.setMessage("error code:"+ (buf[10] & 0xff));
+			break;	
+			
+		default:
+			log.info("unknow control code:" + ctlCode);
+			res.setStatus(status_fail);
+			res.setMessage("error code:"+ (buf[10] & 0xff));
+			break;
+		}		
+		return res;
+	}
 	
 	public static boolean hasEnoughBytes(byte[] buff) {
 		if(buff.length < headLength)
@@ -60,79 +111,6 @@ public class CmdRes {
 			h += t;
 		}
 		return h;
-	}
-	
-	public static CmdRes parse(byte[] buf) {
-		if(!hasEnoughBytes(buf)) {
-			return null;
-		}
-		
-		CmdRes res = new CmdRes();
-		int ctlCode = buf[8] & 0xff;
-		int cmdCode = Command.getCmdCode(buf);
-		String addr = getAddr(buf);
-		
-		res.setCtlCode(ctlCode);
-		res.setAddr(addr);
-		res.setResponse(Utils.byte2str(buf));
-		res.setCmdCode(cmdCode);
-		
-		int type = 1;
-		Device d = Device.getDevice(addr);
-		if(d != null )
-			type = d.getType();
-		
-		switch(ctlCode) {
-		
-		case 0x91://read ok
-			res.setStatus(status_ok);
-			if(cmdCode == Command.READ_METER) {	
-				res.setData(new MeterData(buf, type, addr));
-				
-			}else if(cmdCode == Command.READ_TIME){		
-				res.setData(new MeterTime(buf));
-				
-			}else if(cmdCode == Command.READ_DATE){
-				res.setData(new MeterDate(buf));
-				
-			}else if(cmdCode == Command.READ_AUTOONOFF){
-				res.setData(new AutoOnOff(buf));
-				
-			}else if (cmdCode == Command.READ_PERIOD_1 || cmdCode == Command.READ_PERIOD_3){
-				res.setData(new MeterPeriod(buf));
-				
-			}else {
-				res.setData(buf);
-			}
-			break;
-		
-		case 0xd1://read fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));
-			break;
-			
-		case 0x94:	//write ok
-			res.setStatus(status_ok);
-			break;
-			
-		case 0xd4: //write fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));
-			break;
-		
-		case 0x9c://onoff ok
-			res.setStatus(status_ok);
-			break;
-		
-		case 0xdc://onff fail
-			res.setStatus(status_fail);
-			res.setMessage("error code:"+ (buf[10] & 0xff));
-			break;
-			
-		default:
-			break;
-		}		
-		return res;
 	}
 
 	public int getStatus() {

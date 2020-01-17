@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shicha.dianbiao.demon.domain.APIResult;
 import com.shicha.dianbiao.demon.domain.AutoOnOff;
 import com.shicha.dianbiao.demon.domain.RawCmd;
+import com.shicha.dianbiao.demon.domain.ReadCommand;
+import com.shicha.dianbiao.demon.domain.WriteCommand;
 import com.shicha.dianbiao.demon.netty.CmdRes;
 import com.shicha.dianbiao.demon.netty.Device;
 
@@ -30,80 +33,105 @@ public class CommandRequestController {
 	public static int CMD_EXE_OFFLINE = 1;
 	public static int CMD_EXE_BUSY = 2;
 	public static int CMD_EXE_TIMEOUT = 3;
-	
 	public static int CMD_EXE_FAIL = 4;
+	public static int CMD_UNSUPPORT = 5;	
 	
-	public static String[] MESSAGES = {"", "Device Offline", "Device busy", "Command timeout","Command failed:"};
-	
-	
+	public static String[] MESSAGES = {"", "Device Offline", "Device busy", "Command timeout","Command failed:","unsupported command"};
+		
 	@Value("${cmd.timeout:30}")
 	int cmdTimeout;		
 	
-	@RequestMapping(value="/get/time", method=RequestMethod.POST)
-	public APIResult getTime(
-			@RequestBody String addr,
+	@RequestMapping(value="/read", method=RequestMethod.POST)
+	public APIResult getData(
+			@RequestBody ReadCommand cmd,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			int ret = Device.readTime(addr);			
+			int ret = Device.readData(cmd.getAddr(), cmd.getType());			
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
-			return waitResult(addr);
+			return waitResult(cmd.getAddr());
 	}
 	
-	@RequestMapping(value="/get/date", method=RequestMethod.POST)
-	public APIResult getDate(
-			@RequestBody String addr,
+	@RequestMapping(value="/write", method=RequestMethod.POST)
+	public APIResult setData(
+			@RequestBody WriteCommand cmd,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			int ret = Device.readDate(addr);		
+			int ret = Device.writeData(cmd.getAddr(), cmd.getType(), cmd.getBuf());			
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
-			return waitResult(addr);
+			return waitResult(cmd.getAddr());
 	}
 	
-	@RequestMapping(value="/get/period", method=RequestMethod.POST)
-	public APIResult readPeriod(
-			@RequestBody String addr,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-			
-			int ret = Device.readPeriod(addr);			
-			if(ret != 0) {
-				return new APIResult(ret,MESSAGES[ret]);
-			}
-		
-			return waitResult(addr);
-	}
+//	@RequestMapping(value="/get/time", method=RequestMethod.POST)
+//	public APIResult getTime(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readTime(addr);			
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+//	
+//	@RequestMapping(value="/get/date", method=RequestMethod.POST)
+//	public APIResult getDate(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readDate(addr);		
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+//	
+//	@RequestMapping(value="/get/period", method=RequestMethod.POST)
+//	public APIResult readPeriod(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readPeriod(addr);			
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+//	
+//	@RequestMapping(value="/get/autoonoff", method=RequestMethod.POST)
+//	public APIResult getAutoOnOff(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readAutoOnOff(addr);
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//			
+//			return waitResult(addr);
+//			
+//	}
 	
-	@RequestMapping(value="/get/autoonoff", method=RequestMethod.POST)
-	public APIResult getAutoOnOff(
-			@RequestBody String addr,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-			
-			int ret = Device.readAutoOnOff(addr);
-			if(ret != 0) {
-				return new APIResult(ret,MESSAGES[ret]);
-			}
-			
-			return waitResult(addr);
-			
-	}
-	
-	@RequestMapping(value="/set/period", method=RequestMethod.POST)
-	public APIResult setPeriod(
-			@RequestBody String addr,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-			
-			int ret = Device.switchOnCmd(addr);			
-			if(ret != 0) {
-				return new APIResult(ret,MESSAGES[ret]);
-			}
-		
-			return waitResult(addr);
-	}
+//	@RequestMapping(value="/set/period", method=RequestMethod.POST)
+//	public APIResult setPeriod(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.switchOnCmd(addr);			
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
 	
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
@@ -144,9 +172,7 @@ public class CommandRequestController {
 			
 			return waitResult(setting.getAddr());
 			
-	}
-	
-	
+	}	
 	
 	@RequestMapping(value="/raw", method=RequestMethod.POST)
 	public APIResult rawCommand(
@@ -163,44 +189,6 @@ public class CommandRequestController {
 			
 			return waitResult(raw.getAddr());
 	}
-	
-	/*
-	@RequestMapping(value="/read", method=RequestMethod.POST)
-	public APIResult readData(
-			@RequestBody String addr,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-		
-			int ret = Device.readMeter(addr);			
-			if(ret == -1) {
-				return new APIResult(ret,MESSAGES[ret]);
-			}
-			
-			Device d = Device.getDevice(addr);
-			
-			try {
-				synchronized(d) {
-					d.wait(cmdTimeout * 1000);
-				}
-			}catch(Exception ex) {
-				ex.printStackTrace();
-				log.error(ex.getMessage());
-			}
-			
-			CmdRes res = d.getCmdRes();
-			if(res == null) {
-				return new APIResult(-2, "command timeout");
-			}
-		
-			APIResult result =  new APIResult(
-										res.getCmdCode(),
-										res.getMessage() + ":"+ res.getResponse(),
-										res.getData()
-									);
-			
-			d.setCmdRes(null);
-			
-			return result;
-	}*/
 	
 	public APIResult waitResult(String addr) {
 		

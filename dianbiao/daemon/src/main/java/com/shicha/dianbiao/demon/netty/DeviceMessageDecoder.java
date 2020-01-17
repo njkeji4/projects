@@ -145,6 +145,8 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		in.resetReaderIndex();		
 		byte[]message = new byte[CmdRes.headLength + dataLen + CmdRes.tailLength];
 		in.readBytes(message);
+		
+		log.info("receive message:" + Utils.byte2str(message));
 				
 		try{		
 			

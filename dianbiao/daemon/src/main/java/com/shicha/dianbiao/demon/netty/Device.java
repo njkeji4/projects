@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.shicha.dianbiao.demon.controller.CommandRequestController;
+import com.shicha.dianbiao.demon.domain.Command;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -59,7 +60,50 @@ public class Device {
 		return addr;
 	}
 	
-	//////////////////// read command
+	//////////////////// read command	
+	public static int readData(String addr, String dataType) {
+		int type = 0;
+		if(map.get(addr) != null)
+			type = map.get(addr).getType();
+		
+		byte[] code = null;
+		if(type == 0) {
+			code = Command.readCmdMap.get(dataType);
+		}else {
+			code = Command.readCmdMap3.get(dataType);
+		}
+		
+		if(code == null) {
+			return CommandRequestController.CMD_UNSUPPORT;
+		}
+		
+		return readCmd(addr, code);
+	}
+	
+	public static int writeData(String addr, String dataType, byte[] buf) {
+		int type = 0;
+		if(map.get(addr) != null)
+			type = map.get(addr).getType();
+		
+		byte[] code = null;
+		if(type == 0) {
+			code = Command.readCmdMap.get(dataType);
+		}else {
+			code = Command.readCmdMap3.get(dataType);
+		}
+		
+		if(code == null) {
+			return CommandRequestController.CMD_UNSUPPORT;
+		}
+		
+		for(int i = 0; i < buf.length; i++) {
+			buf[i] = (byte)(buf[i] + 0x33);
+		}
+		
+		return writeCmd(addr, code, buf);
+	}
+	
+	/*
 	//read data
 	public static int readMeter(String addr) {
 		
@@ -106,6 +150,7 @@ public class Device {
 		
 		return readCmd(addr, code);
 	}
+	*/
 	
 	public static int switchOffCmd(String addr) {
 		byte[] buff = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,

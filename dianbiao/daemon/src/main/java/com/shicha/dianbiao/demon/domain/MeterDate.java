@@ -2,7 +2,7 @@ package com.shicha.dianbiao.demon.domain;
 
 import com.shicha.dianbiao.demon.netty.Utils;
 
-public class MeterDate {
+public class MeterDate extends Meter{
 
 	int week;
 	int day;

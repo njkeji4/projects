@@ -2,7 +2,7 @@ package com.shicha.dianbiao.demon.domain;
 
 import com.shicha.dianbiao.demon.netty.Utils;
 
-public class MeterPeriod {
+public class MeterPeriod extends Meter{
 
 	int minute;
 	
