@@ -37,6 +37,10 @@ export const updateDevice = (param) => { return axios.post(`${prefix}/device/upd
 
 export const searchStat = (param) => { return axios.post(`${prefix}/devicestat/search`,param); };
 
+export const getOverview = (param) => { return axios.post(`${prefix}/devicestat/overview`,param); };
+
+export const getOverviewMonthdays = (param) => { return axios.get(`${prefix}/devicestat/overview/monthdays/${param}`); };
+
 //device group
 export const getDeviceGroups = () => { return axios.get(`${prefix}/devicegroup/list?_t=${Date.now()}`); };
 export const addGroup = (param) => { return axios.post(`${prefix}/devicegroup/add`,param); };

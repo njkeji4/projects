@@ -6,6 +6,7 @@ import DeviceCmd from './components/device/DeviceCmd.vue';
 import Usermgt from './components/user/UserManagement.vue';
 import groupMgt from './components/group/GroupManagement.vue';
 import DeviceStat from './components/device/DeviceStat.vue';
+import Overview from './components/device/Overview.vue';
 
 
 let routes = [  
@@ -20,6 +21,13 @@ let routes = [
         component: Main,
         name: '',
         children:[
+            {
+                path: 'overview',
+                component: Overview,
+                name:'',
+                title:'首页',
+                iconCls: 'TACmanagement'
+            },
             
             {
                 path: 'device',
@@ -66,7 +74,7 @@ let routes = [
                 path:'*',
                 hidden:true,
                 redirect:{
-                    path: '/device'
+                    path: '/overview'
                 }
             }
         ]

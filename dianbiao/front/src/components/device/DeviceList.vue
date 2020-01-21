@@ -69,15 +69,16 @@
 					</template>
 				</el-table-column>
 
-				<el-table-column  sortable="custom" prop="groupactionEnergy" label="组合有功电能量" width="150"></el-table-column>
+				<!--el-table-column  sortable="custom" prop="groupactionEnergy" label="组合有功电能量" width="150">
+				</el-table-column-->
 				
-				<el-table-column  sortable="custom" prop="actionEnergy" label="正向有功电能量" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="reactionEnergy" label="反向有功电能量" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="vol" label="电压" width="80"></el-table-column>
-				<el-table-column  sortable="custom" prop="cur" label="电流" width="80"></el-table-column>
-				<el-table-column  sortable="custom" prop="actionPower" label="有功功率" width="140"></el-table-column>
-				<el-table-column  sortable="custom" prop="freq" label="电网频率" width="140"></el-table-column>
-				<el-table-column  sortable="custom" prop="factor" label="功率因数" width="140"></el-table-column>
+				<el-table-column  sortable="custom" prop="actionEnergy" label="电量(KW)" width="150"></el-table-column>
+				<!--el-table-column  sortable="custom" prop="reactionEnergy" label="反向有功电能量" width="150"></el-table-column-->
+				<el-table-column  sortable="custom" prop="vol" label="电压" width="120"></el-table-column>
+				<el-table-column  sortable="custom" prop="cur" label="电流" ></el-table-column>
+				<!--el-table-column  sortable="custom" prop="actionPower" label="有功功率" width="140"></el-table-column-->
+				<!--el-table-column  sortable="custom" prop="freq" label="电网频率" width="140"></el-table-column>
+				<el-table-column  sortable="custom" prop="factor" label="功率因数" width="140"></el-table-column-->
 
 			
 			</el-table>
