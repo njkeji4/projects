@@ -63,6 +63,8 @@ public class AirCbService2 {
 //		return true;
 //	}
 	
+	
+	
 	public void checkReturn(String cmdId, APIResult ret, String addr, String userName) {
 		
 		Optional<UserCmd>option = userCmdDao.findById(cmdId);
@@ -83,8 +85,7 @@ public class AirCbService2 {
 		message +=  UserCmd.cmd_name[userCmd.getCmdCode()] ;	
 		message +=  (ret.getStatus() == 0 ? "操作成功" : "操作失败");	
 		webSocket.convertAndSend(target, message);
-	}
-
+	}	
 	
 	@Async
 	public APIResult switchOff(String addr, String userName, String groupName) {

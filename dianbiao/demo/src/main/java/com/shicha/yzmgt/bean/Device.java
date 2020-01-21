@@ -47,6 +47,8 @@ public class Device {
 	long onTime = 0;
 	long todayOnTime = 0;
 	
+	long totalOnTime = 0;
+	
 	//////data field
 	@Column(nullable=false, columnDefinition="Double default 0")
 	double allEnergy;  //组合有功总电量		
@@ -114,10 +116,7 @@ public class Device {
     int switchStat;//":1,     #开关状态： 0-合闸， 其他--拉闸状态   
     
 	@Column(nullable=false, columnDefinition="Double default 0")
-    double threshValue; //
-	
-		
-	
+    double threshValue; //	
 	
 	public void syncDevice(MeterStatus meter) {
 		allEnergy = meter.allEnergy;  //组合有功总电量		
@@ -471,5 +470,15 @@ public class Device {
 
 	public void setTodayOnTime(long todayOnTime) {
 		this.todayOnTime = todayOnTime;
+	}
+
+	public long getTotalOnTime() {
+		return totalOnTime;
+	}
+
+	public void setTotalOnTime(long totalOnTime) {
+		this.totalOnTime = totalOnTime;
 	}		
+	
+	
 }

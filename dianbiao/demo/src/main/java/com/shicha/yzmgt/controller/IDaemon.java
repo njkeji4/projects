@@ -14,6 +14,9 @@ public interface IDaemon {
 	@RequestMapping(method = RequestMethod.POST, value = "/command/read")
 	APIResult read(String addr);
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/command/get")
+	APIResult getData(String addr);
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/command/on")
 	APIResult swtichon(String addr);
 	
@@ -21,5 +24,5 @@ public interface IDaemon {
 	APIResult switchoff(String addr);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/command/autoonoff")
-	APIResult swtichonoff(AutoOnOff setting);
+	APIResult swtichonoff(AutoOnOff setting);	
 }

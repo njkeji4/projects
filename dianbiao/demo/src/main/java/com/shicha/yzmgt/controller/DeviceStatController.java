@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceStat;
 import com.shicha.yzmgt.domain.APIResult;
+import com.shicha.yzmgt.domain.OverviewData;
 import com.shicha.yzmgt.domain.SearchDevice;
 import com.shicha.yzmgt.domain.SearchStat;
 import com.shicha.yzmgt.service.DeviceStatService;
@@ -40,4 +42,24 @@ public class DeviceStatController {
 		
 		return new APIResult(0, "", stat);
 	}
+	
+	@RequestMapping(value="/overview", method=RequestMethod.POST)
+	public APIResult overview(			
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		OverviewData overview = statService.getOverview();
+		
+		return new APIResult(0, "", overview);
+	}
+	
+	@RequestMapping(value="/overview/monthdays/{yearmonth}", method=RequestMethod.GET)
+	public APIResult overviewMonthDays(
+			@PathVariable(name="yearmonth") long yearmonth,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		OverviewData overview = statService.getOverviewMonthDays(yearmonth);
+		
+		return new APIResult(0, "", overview);
+	}
+	
 }

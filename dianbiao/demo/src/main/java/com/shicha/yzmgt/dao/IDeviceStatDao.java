@@ -17,6 +17,28 @@ import com.shicha.yzmgt.bean.DeviceStat;
 @Repository
 public interface IDeviceStatDao extends JpaRepository<DeviceStat, String>,JpaSpecificationExecutor<DeviceStat>{
 	
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value="select new com.shicha.yzmgt.bean.DeviceStat(sum(energy),sum(ontime),month) from device_stat where groupName=:groupName and month >= :fromdate group by month")
+	List<DeviceStat> last12Month( @Param("groupName") String groupName, @Param("fromdate") long fromdate);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value="select new com.shicha.yzmgt.bean.DeviceStat(sum(energy),sum(ontime),month) from device_stat where month >= :fromdate group by month")
+	List<DeviceStat> last12Month(@Param("fromdate") long fromdate);
+	
+	@Transactional
+	@Modifying
+	@Query(value="select new com.shicha.yzmgt.bean.DeviceStat(sum(energy),sum(ontime),statDate) from device_stat where month =:month group by statDate")
+	List<DeviceStat> getStatByMonth(@Param("month") long month);
+	
+	@Transactional
+	@Modifying
+	@Query(value="select new com.shicha.yzmgt.bean.DeviceStat(sum(energy),sum(ontime),statDate) from device_stat where groupName=:groupName and month =:month group by statDate")
+	List<DeviceStat> getStatByMonth(@Param("groupName") String groupName, @Param("month") long month);
 }
 
 

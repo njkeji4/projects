@@ -55,7 +55,7 @@ public class DeviceScanTask {
 	}
 	
 	
-	//clear command,timeout
+	//统计任务
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void doStatis() {		
 		try {
@@ -71,9 +71,11 @@ public class DeviceScanTask {
 			for(Device d : list) {				
 				
 				long todayOnTime = d.getTodayOnTime() + (d.getSwitchStat() == 0? (System.currentTimeMillis() - d.getOnTime())/60000 : 0);
+				todayOnTime =  todayOnTime / 60;
 				DeviceStat stat = new DeviceStat(d.getDeviceNo(), yesterday, 
-						d.getTodayEnergy(),todayOnTime, d.getDeviceName(), d.getGroupName());
+						d.getTodayEnergy(),todayOnTime, d.getDeviceName(), d.getGroupName());					
 				
+				d.setTotalOnTime(d.getTotalOnTime() + todayOnTime);
 				d.setLastEnergy(d.getActionEnergy());
 				d.setTodayOnTime(0);
 				d.setOnTime(System.currentTimeMillis());				
@@ -87,38 +89,5 @@ public class DeviceScanTask {
 		}
 		log.info("midnight task finished");
 	}	
-		
-	/*
-	//clear command,timeout
-	//@Scheduled(fixedRate = 1000 * 60)
-	public void scanDevice2() {		
-		try {
-			List<Device> list = deviceDao.findByCmdIdIsNotNull();
-			if(list == null || list.size() == 0) {
-				return;
-			}
-			
-			for(Device d : list) {			
-				if(System.currentTimeMillis()- d.getCmdTime() > 60 * 1000) {
-					
-					Optional<UserCmd> opt = userCmdDao.findById(d.getCmdId());					
-					if(opt.isPresent() && opt.get().getStatus() == UserCmd.cmd_status_processing) {
-						UserCmd userCmd = opt.get();
-						userCmd.setStatus(UserCmd.cmd_status_fail);
-						userCmd.setRetMessage("超时没有返回");
-						userCmd.setRetTime(System.currentTimeMillis());
-						
-						userCmdDao.save(userCmd);
-					}
-					
-					d.setCmdId(null);
-					d.setCmdTime(null);
-					deviceDao.save(d);
-					continue;
-				}	
-			}
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
-	}	*/
+	
 }

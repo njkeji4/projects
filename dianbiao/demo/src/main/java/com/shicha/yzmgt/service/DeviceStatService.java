@@ -38,6 +38,7 @@ import com.shicha.yzmgt.dao.IDeviceStatDao;
 import com.shicha.yzmgt.dao.IUserDao;
 import com.shicha.yzmgt.domain.AutoOnOff;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
+import com.shicha.yzmgt.domain.OverviewData;
 import com.shicha.yzmgt.domain.SearchDevice;
 import com.shicha.yzmgt.domain.SearchStat;
 
@@ -47,7 +48,10 @@ public class DeviceStatService {
 	private static final Logger log = LoggerFactory.getLogger(DeviceStatService.class);
 	
 	@Autowired
-	IDeviceStatDao stateDao;
+	IDeviceStatDao statDao;
+	
+	@Autowired
+	IDeviceDao deviceDao;
 	
 	@Autowired
 	IUserDao	userDao;
@@ -69,7 +73,7 @@ public class DeviceStatService {
 		String sort = search.getSort();		
 		Pageable pageable = PageRequest.of(search.getPage(), search.getSize(), Sort.by(orderBy, sort));	
 		
-		return stateDao.findAll(new Specification<DeviceStat>() {
+		return statDao.findAll(new Specification<DeviceStat>() {
 
 			@Override
 			public Predicate toPredicate(Root<DeviceStat> root, CriteriaQuery<?> criteria, CriteriaBuilder builder) {
@@ -110,5 +114,83 @@ public class DeviceStatService {
 			return null;
 		}
 	}
+	
+	public OverviewData getOverview() {
+		
+		OverviewData overview = new OverviewData();
+		User user = getCurrentUser();
+		if(user == null) {
+			return overview;
+		}
+		int online = 0;
+		int offline = 0;
+		int on = 0;
+		int off = 0;		
+		List<Device> tops = null;
+		List<DeviceStat>monthStat = null;		
+		List<DeviceStat>dayStat = null;
+		
+		if(user.getRole().equals(User.ROLE_ADMIN)) {
+			 online = deviceDao.getCountByStatus(0);
+			 offline = deviceDao.getCountByStatus(1);
+			 on = deviceDao.getCountByStat(0);
+			 off = deviceDao.getOffDeviceCount();
+			 
+			 tops = deviceDao.top10Devices();
+			 
+			 monthStat = statDao.last12Month(System.currentTimeMillis() - 365l * 24 * 3600 * 1000);
+			 
+			 dayStat = statDao.getStatByMonth(DeviceStat.caclMonth(System.currentTimeMillis()));
+			 
+		}else {
+			online = deviceDao.getCountByStatus(0,user.getGroupName());
+			offline = deviceDao.getCountByStatus(1,user.getGroupName());
+			on = deviceDao.getCountByStat(0,user.getGroupName());
+			off = deviceDao.getOffDeviceCount(user.getGroupName());
+			
+			tops = deviceDao.top10Devices(user.getGroupName());
+			
+			monthStat = statDao.last12Month(user.getGroupName(), System.currentTimeMillis() - 365l * 24 * 3600 * 1000);
+			
+			dayStat = statDao.getStatByMonth(user.getGroupName(),DeviceStat.caclMonth(System.currentTimeMillis()));
+		
+		}
+		
+		overview.setOnlineCount(online);
+		overview.setOfflineCount(offline);
+		overview.setOnCount(on);
+		overview.setOffCount(off);		
+		overview.setTop10(tops);
+		overview.setMonths(monthStat);
+		overview.setDays(dayStat);
+		
+		return overview;
+	}
+	
+	public OverviewData getOverviewMonthDays(long yearmonth) {
+		
+		OverviewData overview = new OverviewData();
+		User user = getCurrentUser();
+		if(user == null) {
+			return overview;
+		}
+		
+		List<DeviceStat>dayStat = null;
+		
+		if(user.getRole().equals(User.ROLE_ADMIN)) {
+			
+			 dayStat = statDao.getStatByMonth(yearmonth);
+			 
+		}else {
+			
+			dayStat = statDao.getStatByMonth(user.getGroupName(),yearmonth);
+		
+		}
+		
+		overview.setDays(dayStat);
+		
+		return overview;
+	}
+	
 	
 }

@@ -27,6 +27,35 @@ public interface IDeviceDao extends JpaRepository<Device, String>,JpaSpecificati
 	List<Device> findByGroupName(String name);
 	
 	
+	@Query(value="select count(*) from device where status=:status and group_name=:groupName",nativeQuery=true)
+	int getCountByStatus(@Param("status") int status, @Param("groupName") String groupName);
+	
+	
+	@Query(value="select count(*) from device where status = 0 and switch_stat=:stat and group_name=:groupName",nativeQuery=true)
+	int getCountByStat(@Param("stat") int stat, @Param("groupName") String groupName);
+	
+	
+	@Query(value="select count(*) from device where status=:status",nativeQuery=true)
+	int getCountByStatus(@Param("status") int status);
+	
+	
+	@Query(value="select count(*) from device where status = 0 and switch_stat=:stat",nativeQuery=true)
+	int getCountByStat(@Param("stat") int stat);
+	
+	@Query(value="select count(*) from device where status = 0 and switch_stat != 0",nativeQuery=true)
+	int getOffDeviceCount();
+	
+	@Query(value="select count(*) from device where status = 0 and switch_stat != 0 and group_name=:groupName",nativeQuery=true)
+	int getOffDeviceCount(@Param("groupName") String groupName);
+	
+	
+	
+	@Query(value="select * from device order by action_energy desc limit 10;",nativeQuery=true)
+	List<Device> top10Devices();
+	
+	
+	@Query(value="select * from device where group_name=:groupName order by action_energy desc limit 10;",nativeQuery=true)
+	List<Device> top10Devices( @Param("groupName") String groupName);	
 }
 
 
