@@ -17,7 +17,7 @@
 					</template></el-table-column>
 				</el-table-column>
 				<el-table-column  prop="energy" label="电量" width="150" sortable="custom"></el-table-column>
-				<el-table-column  prop="ontime" label="合闸时长(分钟)"  sortable="custom"></el-table-column>	
+				<el-table-column  prop="ontime" label="合闸时长(小时)"  sortable="custom"></el-table-column>	
 			
 			</el-table>
 		</section>

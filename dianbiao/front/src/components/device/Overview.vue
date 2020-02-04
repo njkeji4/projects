@@ -277,8 +277,8 @@ export default {
         this.getMonthDays(this.months[param.dataIndex].statDate);
       },
       getYM(v){
-         var d =  new Date(v);
-         return (d.getFullYear()+'').substr(2,2)+"年"+d.getMonth()+1 +"月";
+         var d =  new Date(v);        
+         return (d.getFullYear()+'').substr(2,2)+"年"+(d.getMonth()+1) +"月";
       },
       getDay(v){
          var d =  new Date(v);
