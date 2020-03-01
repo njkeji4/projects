@@ -156,7 +156,11 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			Device d = Device.getDevice(res.getAddr());
 			
 			//抄表上报消息
-			if(res.getCmdCode() == Command.READ_METER) {
+			if(res.getCmdCode() == Command.READ_METER || res.getCmdCode() == Command.READ_METER3) {
+				
+				Device.setDeviceStatus(res.getAddr(), 1);
+				
+				d.setType(res.getCmdCode() == Command.READ_METER ? 0 : 1);				
 				notifyhost.postPeriod((MeterData)res.getData());
 				return;
 			}
@@ -168,7 +172,7 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 					d.notifyAll();
 				}				
 			}else {
-				log.info("receive response, but it is too late, ignor this response");
+				log.warn("receive response, but it is too late, ignor this response");
 			}
 			
 		}catch(Exception ex) {
@@ -237,7 +241,7 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		 
 		 //String addr = Device.reApp.get(ctx);
 		 
-		 log.info("---disconnect  ---"+addr);
+		 log.warn("---disconnect  ---"+addr);
 		  
 		  //App.remove(ctx);
 		  //App.remove(addr);
@@ -257,11 +261,11 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 
         String addr = Device.remove(ctx);
 		 
-        log.info("---exceptionCaught  ---"+addr);
+        log.error("---exceptionCaught  ---"+addr);
 		 
-		  ctx.close();
+		ctx.close();
 		  
-		  ctx = null;
+		ctx = null;
     }
 
 }

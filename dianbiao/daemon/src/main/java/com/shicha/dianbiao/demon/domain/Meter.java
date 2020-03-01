@@ -8,7 +8,8 @@ public class Meter {
 		
 		switch(cmdCode) {
 			case Command.READ_METER:
-				res.setData(new MeterData(buf, type, addr));
+			case Command.READ_METER3:
+				res.setData(new MeterData(buf, cmdCode == Command.READ_METER ? 0 : 1, addr));
 				break;
 				
 			case Command.READ_DATE:

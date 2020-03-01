@@ -208,7 +208,7 @@ public class CommandRequestController {
 		
 		CmdRes res = d.getCmdRes();
 		if(res == null) {
-			log.info("command timeout");			
+			log.warn("command timeout");			
 			return new APIResult(CMD_EXE_TIMEOUT, MESSAGES[CMD_EXE_TIMEOUT]);
 		}
 		
