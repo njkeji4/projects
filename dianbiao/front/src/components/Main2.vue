@@ -1,54 +1,63 @@
 <template>	
 		<el-container style="height:100%;min-height:100vh;">
 
-			<el-aside width="50px">
-			<el-container style="height:100%;"> <!-- this style is very important-->
+			<el-aside :width="isCollapse?'50px':'200px'"><el-container style="height:100%;"> <!-- this style is very important-->
 					
-				<el-header  style="background-color: #3c8dbc;
-							       color: #fff;padding:0;
-							       font-size:30px; line-height: 50px; height: 50px;">
+				<el-header 
+					style=" background-color: #3c8dbc;
+							color: #fff;
+							font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+							font-weight: 300; line-height: 50px; height: 50px;">
+							
 					
-					<i class="el-icon-eleme"/>
+					<span v-show="!isCollapse">智能电表</span>
+					<span v-show="isCollapse">电</span>
 
 				</el-header>
 
 				<el-main class="side-menu">
-					<div style="background-color: transparent;  height:100%;">
+					<el-menu :default-active="$route.path" unique-opened router :collapse="isCollapse"
+						style="background-color: transparent; border-right:none; height:100%;">
 
 						<template v-for="(item,index) in sideMenuRouter" 
 							v-if="sysUserInfo.role === 'ROLE_ADMIN' 
 									|| (sysUserInfo.role === 'ROLE_USER' && !item.admin)">									
 							
-							<div :index="index+''" v-if="item.children">
-								<i :class="item.iconCls"/>
-								<div slot="title">{{item.title}}</div>
-								<div v-for="(child, i) in item.children" :index="i+''" v-if="!child.hidden" @click="nav(item.path + '/' + child.path)">
+							<el-submenu :index="index+''" v-if="item.children">
+								<template slot="title" class="test">
+									<i :class="item.iconCls"/>
+									<span slot="title">{{item.title}}</span>
+								</template>
+								<el-menu-item v-for="(child, i) in item.children" :index="i+''" v-if="!child.hidden" @click="nav(item.path + '/' + child.path)">
 									<i :class="child.iconCls"></i><span>{{child.title}}</span>
-								</div>
-							</div>
-
-							<div v-else  tabindex="0" :index="index+''" @click="nav(item.path)" class="menu-item">
-								<i :class="item.iconCls" class="menu-icon"></i>
-								<div class="menu-text">{{item.title }}</div>
-							</div>
+								</el-menu-item>
+							</el-submenu>
+							<el-menu-item v-else :index="index+''" @click.native="nav(item.path)" >
+								<i :class="item.iconCls"></i><span>{{item.title}}</span>
+							</el-menu-item>
 
 						</template>
 
-					</div>
+					</el-menu>
 				</el-main>
 				
-			</el-container>
-			</el-aside>
+			</el-container></el-aside>
 			
 			<el-container>
 
 				<el-header style="background-color: #367fa9;color: #fff;
 								 line-height: 50px;height: 50px;">
+				
+					
+					<div style="float:left" >
+						<i class="el-icon-s-fold pointer" v-show="!isCollapse" @click="collapse();"/>
+						<i class="el-icon-s-unfold pointer" v-show="isCollapse" @click="collapse();"/>
+					</div>
 					
 					<div style="color: #fff;
 							font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 							font-weight: 400; line-height: 50px; height: 50px;float:left;">					 
-						智能空开管理系统
+						智能电表管理系统
 					</div>
 
 					<div style="float:right">
@@ -67,9 +76,7 @@
 
 				</el-header>
 
-				<el-main style="background-color: #ecf0f5; 
-								box-sizing: border-box;
-								margin:0px;padding:0px;overflow-x:hidden;">
+				<el-main style="background-color: #ecf0f5; box-sizing: border-box;margin:0px;padding:0px;overflow-x:hidden;">
 					
 					<transition name="fade" mode="out-in">
 						<router-view/>
@@ -77,10 +84,10 @@
 
 				</el-main>
 
-				<!--el-footer style="line-height: 40px; height: 40px; 
+				<el-footer style="line-height: 40px; height: 40px; 
 							border-top:1px solid #d2d6de; text-align: left;">
 						Copyright © 2014-2019 中移动物联网有限公司  All rights reserved. 
-				</el-footer-->
+				</el-footer>
 
 			</el-container>
 
@@ -105,7 +112,7 @@
 	export default {
 		data() {
 			return {	
-				isCollapse: true,
+				isCollapse: false,
 				sysUserName: '',
 			}
 		},
@@ -129,7 +136,6 @@
 				this.isCollapse = !this.isCollapse;
 			},
 			nav(path) {
-				console.log("path="+path);
 				this.$router.push('/' + path);
 			},
 			
@@ -210,16 +216,15 @@
 
 <style lang="scss">
 	.el-aside{
-		overflow:hidden;
+		overflow-x:hidden;
 	}
 	.el-main{
 		height:100%;
-		overflow:hidden;
 	}
 
 	/******** start to define side menu CSS */
 	.side-menu{
-		background-color: rgb(47,71,133);
+		background-color: #222d32;
 		padding-left:0px;
 		padding-right:0px;
 		
@@ -287,6 +292,94 @@
 		height:50px;
 	}
 	
+	.header_icon {
+		height: 29px;
+		width: 30px;
+		margin: 15px 0;
+		float: left;
+		margin-right: 10px;
+		background: url(../assets/img/header_icon3.png) no-repeat;
+	}
+	.devicemanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon01.png) no-repeat;
+	}
+	
+	.logomanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon02.png) no-repeat;
+	}
+	
+	.performancemanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon03.png) no-repeat;
+	}
+	
+	.alarmmanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon04.png) no-repeat;
+	}
+	
+	.versionmanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon05.png) no-repeat;
+	}
+	
+	.TACmanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon06.png) no-repeat;
+	}
+	
+	.adminmanagement {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon07.png) no-repeat;
+	}
+	
+	.setting {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/home_leftbar_icon08.png) no-repeat;
+	}
+	
+	.user {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/user.png) no-repeat;
+	}
+	
+	.group {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/group.png) no-repeat;
+	}
+	
 	.userinfo {
 		margin-left: -20px;
 		width: 25px;
@@ -295,20 +388,13 @@
 		
 	}
 	
-	.menu-item {
-		color:white;
-		height:50px;
-		font-size:29px;
-		margin-bottom:10px;
+	.system {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		background: url(../assets/img/setting.png) no-repeat;
 	}
-	.menu-item:hover{
-		color:blue;
-	}
-	.menu-item:focus{
-		background-color:rgb(18,43,60);
-	}
-	.menu-text{
-		font-size:10px;
-	}
+	
 	
 </style>

@@ -26,7 +26,7 @@ let routes = [
                 component: Overview,
                 name:'',
                 title:'首页',
-                iconCls: 'TACmanagement'
+                iconCls: 'el-icon-full-screen'
             },
             
             {
@@ -34,30 +34,30 @@ let routes = [
                 component: DeviceList,
                 name:'',
                 title:'设备',
-                iconCls: 'devicemanagement'
+                iconCls: 'el-icon-help'
             },
             
             {
                 path: 'stat',
                 component: DeviceStat,
                 name:'',
-                title:'设备统计',
-                iconCls: 'performancemanagement'
+                title:'统计',
+                iconCls: 'el-icon-s-data'
             },
 
             {
                 path: 'cmd',
                 component: DeviceCmd,
                 name:'',
-                title:'查看命令',
-                iconCls: 'versionmanagement'
+                title:'命令',
+                iconCls: 'el-icon-video-play'
             },
             {
                 path: 'user',
                 component: Usermgt,
                 name:'',
-                title:'用户管理',
-                iconCls: 'user',
+                title:'用户',
+                iconCls: 'el-icon-user',
                 admin:1,
             },
             {
@@ -65,7 +65,7 @@ let routes = [
                 component: groupMgt,
                 name:'',
                 title:'组管理',
-                iconCls: 'group',
+                iconCls: 'el-icon-setting',
                 admin:1
             },
 
