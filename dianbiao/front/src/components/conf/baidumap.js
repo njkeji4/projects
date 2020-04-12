@@ -29,7 +29,7 @@ var styleJson = [{
     "featureType": "building",
     "elementType": "geometry.fill",
     "stylers": {
-        "color": "#113549ff"
+        "color": "#254785ff"
     }
 }, {
     "featureType": "building",

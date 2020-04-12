@@ -6,7 +6,7 @@ import DeviceCmd from './components/device/DeviceCmd.vue';
 import Usermgt from './components/user/UserManagement.vue';
 import groupMgt from './components/group/GroupManagement.vue';
 import DeviceStat from './components/device/DeviceStat.vue';
-import Overview from './components/device/Overview.vue';
+import Overview from './components/overview/Overview.vue';
 
 
 let routes = [  
@@ -25,7 +25,7 @@ let routes = [
                 path: 'overview',
                 component: Overview,
                 name:'',
-                title:'首页',
+                title:'全屏',
                 iconCls: 'el-icon-full-screen'
             },
             

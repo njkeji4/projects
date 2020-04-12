@@ -190,11 +190,18 @@
 
             <div class="box" style="height:35%;">
                 <div class="horn"> <div class="lt"/><div class="rt"/><div class="rb"/><div class="lb"/></div>
-                 <div class="box-header">
+                <div class="box-header">
                     <img src="../../assets/title.png" style="vertical-align: middle;"/> 
                     告警列表 
                     <span class="box-header-sub">/Alarm list</span>
-                </div>   
+                    <span class="box-header-sub" style="float:right;">更多> </span>
+                </div>  
+                <div class="box-body">
+                    <el-table :data="tableData" style="width: 100%;height:100%;">
+                        <el-table-column prop="date" label="日期" width="180"/>
+                        <el-table-column prop="name" label="姓名" width="180" />
+                    </el-table>
+                </div> 
             </div>
         </div>
       
@@ -211,6 +218,9 @@ import Filters from '../../common/js/filters';
 import echarts from 'echarts';
 
 import Mapoption from '../conf/baidumap';
+
+import Echartconf from './echartsconf';
+
 
 export default {
   data() {
@@ -286,195 +296,10 @@ export default {
 				});
       },
 
-      lines(){
-          return {
-               grid: {
-                    x: 35,
-                    y: 35,
-                    x2: 30,
-                    y2: 35
-                },
-              color: ['#1cffea', '#006699', '#4cabce', '#e5323e'],
-              legend: {
-                        data: ['电量'],
-                        show:false
-                },
-               xAxis: {
-                   axisLine:{
-                       lineStyle:{
-                           color:"#ffffff"
-                       }
-                   },
-                    boundaryGap: false,
-                    type: 'category',
-                    data: ['1日', '2日', '3日', '4日', '5日', '6日', '7日']
-                },
-                yAxis: {
-                    axisLine:{
-                       lineStyle:{
-                           color:"#ffffff"
-                       }
-                   },
-                    splitLine: {
-                        show:false,
-                    },
-                    type: 'value'
-                },
-                series: [{
-                    name:'电量',
-                    data: [120, 500, 650, 680, 670, 710, 830],
-                    type: 'line',
-                     areaStyle: {normal: {
-                        color: 
-                        new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-                                offset: 0,
-                                color: '#00c1de'
-                            }, {
-                                offset: 1,
-                                color: 'rgba(0,0,0,0)'
-                            }]),
-                    }}
-                 }]
-          }
-      },
-      bar(){
-          return {
-                color: ['#1cffea', '#006699', '#4cabce', '#e5323e'],
-                grid: {
-                    x: 35,
-                    y: 35,
-                    x2: 30,
-                    y2: 35
-                },
-                legend: {
-                        data: ['能耗'],
-                        show:false
-                },
-                xAxis: {
-                     splitLine: {
-                        show:false,
-                    },
-                    axisLabel: {
-                            show: true,
-                            textStyle: {
-                                color: '#c3eaff'
-                            }
-                    },
-                    axisLine:{
-                       lineStyle:{
-                           color:"#0B50AC"
-                       }
-                   },
-                   axisTick:{
-                        show:false
-                   },
-                    type: 'category',
-                    data: ['1月', '2月', '3月', '4月', '5月', '6月','6月','6月']
-                },
-                yAxis: {
-                    axisLine:{
-                       lineStyle:{
-                           color:"#0B50AC"
-                       }
-                    },
-                    axisTick:{
-                        show:false
-                    },
-                    splitLine:{
-                        show:true,
-                        lineStyle:{
-                             color:['#0F4E87'],
-                            type:'dotted'
-                        }
-                    },
-                    type: 'value',
-                    
-                     axisLabel: {
-                            show: true,
-                            textStyle: {
-                                color: '#c3eaff'
-                            }
-                    },
-                },
-                series: [
-                    {
-                        name:'电量',
-                        data: [950, 800, 500, 800, 500, 400,210,150],
-                        type: 'bar',
-                        itemStyle: {			// 颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
-                            color: new echarts.graphic.LinearGradient(
-                                0, 0, 0, 1,     //代表从正上方开始
-                                [
-                                    {offset: 0, color: '#0CC8FF'},
-                                    
-                                    {offset: 1, color: '#258FFF'}
-                                ]
-                            )
-                        },
-                        barWidth: 20,
-                    }
-                ]
-          };
-      },
-      pie(){
-        return {
-                        legend: {
-                            textStyle:{
-                                color:'#7df5f9',
-                                fontFamily:'MicrosoftYaHei',
-                                fontSize:10
-                            },
-                            orient: 'vertical',
-                            right:20,
-                            top:10,
-                            
-                            formatter: '{name}'
-                        },
-                        title:{
-                          text:'',
-                          top:'top',
-                          left:'right',                         
-                        },
-                        series: {
-                            color:['#0E59FF','#27ECDC','#CC00FD','#FF73B8','#A5EF67','#FCA24A'],
-                            type: 'pie',
-                            radius: ['60%', '80%'],
-                            avoidLabelOverlap: true,
-                            center:['30%','50%'],
-                            label: {
-                                color:'#fff',
-                                normal: {
-                                    show: false,
-                                    position: 'inside',
-                                    formatter: '{c}',
-                                },
-                                emphasis: {
-                                    show: false,
-                                    textStyle: {
-                                        fontSize: '30',
-                                        fontWeight: 'bold'
-                                    }
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    show: false
-                                }
-                            },
-                            data: [
-                                {name:"一组   862KW",value:862},
-                                {name:"二组   792KW",value:792},
-                                {name:"三组   626KW",value:626},
-                                {name:"四组   708KW",value:708},
-                                {name:"五组   543KW",value:543},
-                              
-                            ]
-                        }
-                    };
-      },
+    
       loadData(){
-        let cerPieOption = this.pie();
-        let devicePieOption = this.pie();      
+        let cerPieOption = Echartconf.pie();
+        let devicePieOption = Echartconf.pie();      
         
         let certPie = echarts.init(this.$refs.certPie);
         let devicePie = echarts.init(this.$refs.devicePie);
@@ -484,61 +309,21 @@ export default {
           {name:"离线",value:this.offlineCount}]
         cerPieOption.legend.data=["在线","离线"];
        
-        //devicePieOption.series.data=[
-        //  {name:"合闸",value:this.onCount},
-        //  {name:"拉闸",value:this.offCount}];
-        //devicePieOption.legend.data=["合闸","拉闸"];
-       
         certPie.setOption(cerPieOption,true);
         devicePie.setOption(devicePieOption);
 
         //////
-        let barOption = this.bar();
-        
-        /*barOption.xAxis.data=[];
-        barOption.series[0].data=[];
-        barOption.series[1].data=[];
-        for(var i = 0; i < this.months.length; i++){
-            var tmp = this.months[i];
-             barOption.xAxis.data.push(this.getYM(tmp.statDate));
-             barOption.series[0].data.push(tmp.energy);
-             barOption.series[1].data.push(tmp.ontime);
-        }*/
-
+        let barOption = Echartconf.bar();
         this.monthBar = echarts.init(this.$refs.monthbar);
         this.monthBar.setOption(barOption);
         this.monthBar.on('click',this.onclickBar);
 
-         let barOption2 = this.bar();
-         barOption2.xAxis.type="value";
-         barOption2.yAxis.type="category";
-         barOption2.series[0].barWidth=5;
-         barOption2.yAxis.data = barOption2.xAxis.data;
-        
-        /*barOption.xAxis.data=[];
-        barOption.series[0].data=[];
-        barOption.series[1].data=[];
-        for(var i = 0; i < this.months.length; i++){
-            var tmp = this.months[i];
-             barOption.xAxis.data.push(this.getYM(tmp.statDate));
-             barOption.series[0].data.push(tmp.energy);
-             barOption.series[1].data.push(tmp.ontime);
-        }*/
+        let barOption2 = Echartconf.bar2();
         let monthBar2 = echarts.init(this.$refs.monthbar2);
         monthBar2.setOption(barOption2);        
 
         ///////
-        let lineoption = this.lines();
-       /*
-        lineoption.xAxis.data=[];
-        lineoption.series[0].data=[];
-        lineoption.series[1].data=[];
-        for(var i = 0; i < this.days.length; i++){
-            var tmp = this.days[i];
-             lineoption.xAxis.data.push(this.getDay(tmp.statDate));
-             lineoption.series[0].data.push(tmp.energy);
-             lineoption.series[1].data.push(tmp.ontime);
-        }*/
+        let lineoption = Echartconf.lines();
         this.dayLine = echarts.init(this.$refs.dayline);
         this.dayLine.setOption(lineoption);
       },
@@ -564,7 +349,7 @@ export default {
                             new BMapGL.Size(48, 48)
                             );
 
-            var point = new BMapGL.Point(116.280190, 40.049191);
+            var point = new BMapGL.Point(107.111924,29.157861);
             var marker = new BMapGL.Marker(point, {icon:myIcon});
             map.addOverlay(marker);
             
@@ -581,7 +366,7 @@ export default {
                    pwin.style.display='none';
                 });
 
-            map.centerAndZoom(new BMapGL.Point(116.280190, 40.049191), 19);  // 初始化地图,设置中心点坐标和地图级别
+            map.centerAndZoom(new BMapGL.Point(107.111924,29.157861), 19);  // 初始化地图,设置中心点坐标和地图级别
             //map.centerAndZoom("nanjing",19);
             map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
             map.setHeading(64.5);
@@ -592,7 +377,7 @@ export default {
   mounted() {
       /* */
     this.todayDate=Filters.dateFormat(new Date());
-	this.gettodayData();
+	//this.gettodayData();
     this.loadData();
     
     const _this = this;

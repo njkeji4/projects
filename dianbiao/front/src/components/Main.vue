@@ -67,7 +67,7 @@
 
 				</el-header>
 
-				<el-main style="background-color: #ecf0f5; 
+				<el-main id="elmain" style="background-color: #ecf0f5; 
 								box-sizing: border-box;
 								margin:0px;padding:0px;overflow-x:hidden;">
 					
@@ -131,6 +131,13 @@
 			nav(path) {
 				console.log("path="+path);
 				this.$router.push('/' + path);
+				if(path === 'overview'){
+					var ele= document.getElementById("elmain");
+					var requestMethod = ele.requestFullScreen  ||ele.webkitRequestFullScreen //谷歌
+             ||ele.mozRequestFullScreen  //火狐
+             ||ele.msRequestFullScreen; //IE11;
+					requestMethod.call(ele); 
+				}
 			},
 			
 			//退出登录
