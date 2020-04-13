@@ -33,7 +33,6 @@
 							</div>
 
 						</template>
-
 					</div>
 				</el-main>
 				
@@ -42,7 +41,7 @@
 			
 			<el-container>
 
-				<el-header style="background-color: #367fa9;color: #fff;
+				<el-header style="background:rgba(2,9,17,1);color: #fff;
 								 line-height: 50px;height: 50px;">
 					
 					<div style="color: #fff;
@@ -52,7 +51,7 @@
 					</div>
 
 					<div style="float:right">
-						<el-dropdown trigger="click" @command="handleCommand">
+						<!--el-dropdown trigger="click" @command="handleCommand">
 							<span class="el-dropdown-link" style="color:white;">
 								<i  class="el-icon-user-solid" style="font-size:25px;font-weight:bold;"></i>
 								{{sysUserInfo.name}}
@@ -62,7 +61,10 @@
 								<el-dropdown-item  command="changePwd">修改密码</el-dropdown-item>
 								<el-dropdown-item  command="logout">退出登录</el-dropdown-item>
 							</el-dropdown-menu>
-						</el-dropdown>
+						</el-dropdown-->
+						
+						17:08:23 <span style="color:grey">|</span> 2020年04月13日
+
 					</div>
 
 				</el-header>

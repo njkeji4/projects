@@ -195,6 +195,19 @@
                     告警列表 
                     <span class="box-header-sub">/Alarm list</span>
                 </div>   
+                 <div class="box-body">
+                    <el-table :data="top10" style="color:#c2deff;"
+                        :row-style="{background:'#112244',height:'10px', 'margin-top':'10px'}"
+                        :cell-style="{'font-size':'10px',padding:'5px',border:'none'}"
+                        :header-row-class-name="alarm-header"
+                        :header-cell-style="{'font-size':'10px',background:'#2C579F',color:'#c2deff',height:'10px !important'}"
+                    >
+                        <el-table-column prop="deviceName" label="设备名称" width="100"/>
+                         <el-table-column prop="alarmReason" label="告警原因" width="100" />
+                         <el-table-column prop="alarmTime" label="告警时间" />
+                       
+                    </el-table>
+                </div> 
             </div>
         </div>
       

@@ -272,6 +272,70 @@ var pie = function(){return {
                   }
 };}
 
+var nestedBar = function(){return {
+    color: [
+            new echarts.graphic.RadialGradient(0.5, 0.5, 1.0, [{
+                    offset: 0,
+                    color: '#040813'
+                }, {
+                    offset: 1,
+                    color: 'blue'
+                }]), 
+                
+            new echarts.graphic.LinearGradient(1, 0, 0, 0, [
+                    {offset: 0, color: '#31D6CE'},
+                    {offset: 1, color: '#3B80E9'}
+            ]), 
+            
+            '#020911', '#020911'],
+
+    grid: {
+        x: 35,
+        y: 15,
+        x2: 30,
+        y2: 35
+    },        
+
+    series: [
+        {
+            center:['30%','50%'],
+            name: '访问来源',
+            type: 'pie',
+            selectedMode: 'single',
+            radius: [0, '60%'],
+
+            label: {
+                color:'#fff',
+                position: 'center',
+                verticalAlign:'top'
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                {value: 100, name: '节能比\n\n55%'},
+                {value: 0, name: ''},
+                {value: 0, name: ''}
+            ]
+        },
+        {
+            center:['30%','50%'],
+            name: '访问来源',
+            type: 'pie',
+            radius: ['70%', '85%'],
+            label: {
+               show:false
+            },
+            data: [
+                {value: 22, name: ''},
+                {value: 55, name: ''},
+                {value: 23, name: ''},
+            ]
+        }
+    ]
+};
+}
+
 export default {
-    lines,pie,bar,bar2
+    lines,pie,bar,bar2,nestedBar
 };

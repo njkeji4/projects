@@ -9,6 +9,13 @@
             <div>总能耗：{{totalPow}}KW/h</div>
         </div>
 
+        <!--div style="background:rgba(2,9,17,1);width:100%;height:50px;
+            position:absolute;top:0;left:0;">
+            <div style="float:left;color:white;line-height:50px;text-align:left;font-family:FZLTZHK--GBK1-0,FZLTZHK--GBK1;font-size:26px;padding-left:48px;">智慧空开管理模块</div>
+            <div style="float:right;font-size:15px;line-height:50px;color:white;">
+                17:08:23 <span style="color:grey">|</span> 2020年04月13日
+            </div>
+        </div-->
 
         <div style="background:rgba(2,9,17,1);padding-left:10px;padding-right:14px;height:100%;
                 width:24%;position:absolute;left:0px;top:0px;">
@@ -19,7 +26,21 @@
                         <img src="../../assets/title.png" style="vertical-align: middle;"/> 
                         节能率统计 
                         <span class="box-header-sub">/Energy saving efficiency</span>
-                  </div>                 
+                  </div>       
+                  <div style="position:absolute;left:160px;top:50px;font-size:12px;color:white;">
+                        <div>今日总节能：53667.4KW</div>
+                        <div >
+                            <div style="float:left;margin-left:5px;margin-top:7px;width:55px;height:10px;background-color:rgba(61,255,244);"/>
+                            <div style="float:left;margin-top:7px;width:50px;height:10px;background-color:#494A4C;"/>
+                        </div>
+                       
+                        <div style="margin-top:30px;">今日节约能耗：53667.4KW</div>
+                        <div>
+                            <div style="float:left;margin-left:5px;margin-top:7px;width:55px;height:10px;background-color:rgba(61,255,244);"/>
+                            <div style="float:left;margin-top:7px;width:50px;height:10px;background-color:#494A4C;"/>
+                        </div>
+                       
+                  </div>          
 
                 <div ref="certPie" class="chartcontainer" style=""/> 
 
@@ -196,12 +217,34 @@
                     <span class="box-header-sub">/Alarm list</span>
                     <span class="box-header-sub" style="float:right;">更多> </span>
                 </div>  
-                <div class="box-body">
-                    <el-table :data="tableData" style="width: 100%;height:100%;">
-                        <el-table-column prop="date" label="日期" width="180"/>
-                        <el-table-column prop="name" label="姓名" width="180" />
-                    </el-table>
-                </div> 
+                <div style="padding-left:25px;padding-right:10px;">
+                    <div class="tableheader">  
+                        <span class="col">编号</span>
+                        <span class="col" style="margin-left:50px;!important;">告警时间</span>
+                        <span class="col" style="margin-left:70px;!important;">告警原因</span>
+                    </div>
+                     <div class="drow">  
+                        <span  class="col">000000000001</span>
+                        <span  class="col" style="margin-left:10px;">2020-04-20 14:41:12</span>
+                        <span  class="col" style="margin-left:15px;">跳闸</span>
+                    </div>
+                     <div class="drow">  
+                        <span  class="col">000000000002</span>
+                        <span  class="col" style="margin-left:10px;">2020-04-20 14:41:12</span>
+                        <span  class="col" style="margin-left:15px;">电压过载</span>
+                    </div>
+                     <div class="drow">  
+                        <span  class="col">000000000003</span>
+                        <span  class="col" style="margin-left:10px;">2020-04-20 14:41:12</span>
+                        <span  class="col" style="margin-left:15px;">电流过载</span>
+                    </div>
+                     <div class="drow">  
+                        <span  class="col">000000000004</span>
+                        <span  class="col" style="margin-left:10px;">2020-04-20 14:41:12</span>
+                        <span  class="col" style="margin-left:15px;">跳闸</span>
+                    </div>
+                    
+                </div>             
             </div>
         </div>
       
@@ -236,11 +279,11 @@ export default {
             offCount:10,
 
             top10:[
-                    {'deviceName':'电表1','deviceNo':'000000000001','actionEnergy':69.2,'duration':108},
-                    {'deviceName':'电表2','deviceNo':'000000000001','actionEnergy':69.2,'duration':108},
-                    {'deviceName':'电表3','deviceNo':'000000000001','actionEnergy':69.2,'duration':108},
-                    {'deviceName':'电表4','deviceNo':'000000000001','actionEnergy':69.2,'duration':108},
-                    {'deviceName':'电表1','deviceNo':'000000000001','actionEnergy':69.2,'duration':108},
+                    {'deviceName':'电表1','deviceNo':'000000000001','alarmTime':'2020-10-20 13:56:56','alarmReason':'跳闸'},
+                    {'deviceName':'电表2','deviceNo':'000000000001','alarmTime':'2020-10-20 13:56:56','alarmReason':'过载'},
+                    {'deviceName':'电表3','deviceNo':'000000000001','alarmTime':'2020-10-20 13:56:56','alarmReason':'超负荷'},
+                    {'deviceName':'电表4','deviceNo':'000000000001','alarmTime':'2020-10-20 13:56:56','alarmReason':'跳闸'},
+                    {'deviceName':'电表1','deviceNo':'000000000001','alarmTime':'2020-10-20 13:56:56','alarmReason':'跳闸'},
                 ],
 
             months:[],
@@ -298,18 +341,12 @@ export default {
 
     
       loadData(){
-        let cerPieOption = Echartconf.pie();
-        let devicePieOption = Echartconf.pie();      
-        
+        let cerPieOption = Echartconf.nestedBar(); 
         let certPie = echarts.init(this.$refs.certPie);
-        let devicePie = echarts.init(this.$refs.devicePie);
-
-        cerPieOption.series.data=[
-          {name:"在线",value: this.onlineCount},
-          {name:"离线",value:this.offlineCount}]
-        cerPieOption.legend.data=["在线","离线"];
-       
         certPie.setOption(cerPieOption,true);
+
+        let devicePieOption = Echartconf.pie() ;     
+        let devicePie = echarts.init(this.$refs.devicePie);
         devicePie.setOption(devicePieOption);
 
         //////
@@ -381,7 +418,7 @@ export default {
     this.loadData();
     
     const _this = this;
-    //this.loadMap();
+    this.loadMap();
 
     window.onresize = function windowResize () {
         _this.monthBar.resize();
@@ -481,14 +518,6 @@ export default {
     font-size:15px;
     margin-bottom:5px;
 }
-.srow{
-    text-align:left;
-     padding-left:25px;
-    background:rgba(22,28,52,0.8);color:#fff;
-    height:30px; 
-    line-height:30px; 
-     font-size:12px; 
-}
 .drow{
     height:30px; 
     line-height:30px; 
@@ -502,6 +531,31 @@ export default {
 }
 .col2{
     margin-left:50px;
+}
+
+.tableheader{
+    color:#c2deff; 
+    text-align:left;
+     padding-left:25px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:5px;
+    height:20px;
+    background:linear-gradient(90deg,rgba(20,74,148,1) 0%,rgba(27,71,145,1) 100%);
+    border-radius:2px;
+    border:1px solid rgba(44,87,159,1);
+}
+
+.drow{
+    margin-top:10px;
+    height:24px; 
+    line-height:24px; 
+    text-align:left;
+    padding-left:10px;
+    background:#112244;
+    
+    color:#c2deff; 
+    font-size:12px;
 }
 
 </style>
