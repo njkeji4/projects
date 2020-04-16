@@ -1,0 +1,716 @@
+2020-04-16 19:34:24.340  INFO 7672 --- [main] com.shicha.yzmgt.DemoApplication         : No active profile set, falling back to default profiles: default
+2020-04-16 19:34:25.300  INFO 7672 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-16 19:34:25.553  INFO 7672 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 245ms. Found 7 repository interfaces.
+2020-04-16 19:34:25.949  INFO 7672 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aee7e1c2-b625-3c59-bb40-05ecc9100a9e
+2020-04-16 19:34:26.089  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.yzmgt.controller.IDaemon' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.188  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$781f4cf9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.279  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$10cd1533] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.285  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.287  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@7b4acdc2' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.289  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$35a1b7e5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.293  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:26.320  INFO 7672 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$94394ff6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 19:34:27.008  INFO 7672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8300 (http)
+2020-04-16 19:34:27.060  INFO 7672 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 19:34:27.060  INFO 7672 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 19:34:27.077  INFO 7672 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 19:34:27.323  INFO 7672 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 19:34:27.324  INFO 7672 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2967 ms
+2020-04-16 19:34:27.872  INFO 7672 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-16 19:34:28.171  INFO 7672 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-16 19:34:28.317  INFO 7672 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-16 19:34:28.482  INFO 7672 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2020-04-16 19:34:28.484  INFO 7672 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-16 19:34:28.911  INFO 7672 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-04-16 19:34:29.198  INFO 7672 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-04-16 19:34:31.227  INFO 7672 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 19:34:32.423  INFO 7672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 19:34:32.431  INFO 7672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 19:34:32.562  INFO 7672 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-04-16 19:34:33.046  INFO 7672 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 19:34:33.169  INFO 7672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-16 19:34:33.531  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/upload/**'], []
+2020-04-16 19:34:33.531  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/download/**'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/needlogin'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/logout'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/test/**'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/getdata'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/terminal/**'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favico.ico'], []
+2020-04-16 19:34:33.532  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-16 19:34:33.533  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-04-16 19:34:33.533  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-04-16 19:34:33.533  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-16 19:34:33.608  INFO 7672 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@13404f75, org.springframework.security.web.context.SecurityContextPersistenceFilter@7f70e244, org.springframework.security.web.header.HeaderWriterFilter@61d09475, org.springframework.security.web.authentication.logout.LogoutFilter@4fd3b20a, com.shicha.yzmgt.security.CustomUsernamePasswordAuthenticationFilter@6cc90398, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1e4d8770, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f64d943, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2248d140, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b6fd0, org.springframework.security.web.session.SessionManagementFilter@12d44a2a, org.springframework.security.web.access.ExceptionTranslationFilter@23a78c77, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f6f0fe2]
+2020-04-16 19:34:33.633  WARN 7672 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 19:34:33.637  WARN 7672 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 19:34:33.637  INFO 7672 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 19:34:33.662  WARN 7672 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 19:34:33.662  INFO 7672 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 19:34:33.986  WARN 7672 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 19:34:34.101  INFO 7672 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-04-16 19:34:34.957  INFO 7672 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-16 19:34:34.957  INFO 7672 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 19:34:34.958  INFO 7672 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-16 19:34:35.333  INFO 7672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8300 (http) with context path ''
+2020-04-16 19:34:35.802  INFO 7672 --- [main] com.shicha.yzmgt.DemoApplication         : Started DemoApplication in 14.247 seconds (JVM running for 16.377)
+2020-04-16 19:35:33.167  INFO 7672 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 2, completed tasks = 1]
+2020-04-16 19:43:10.487  INFO 7672 --- [http-nio-8300-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-16 19:43:10.487  INFO 7672 --- [http-nio-8300-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-16 19:43:10.500  INFO 7672 --- [http-nio-8300-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2020-04-16 20:05:33.167  INFO 7672 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 3 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(3)-CONNECTED(3)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 24], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 5], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 4, completed tasks = 326]
+2020-04-16 20:09:34.309  INFO 7672 --- [http-nio-8300-exec-8] .s.a.AnnotationAsyncExecutionInterceptor : More than one TaskExecutor bean found within the context, and none is named 'taskExecutor'. Mark one of them as primary or name it 'taskExecutor' (possibly as an alias) in order to use it for async processing: [clientInboundChannelExecutor, clientOutboundChannelExecutor, brokerChannelExecutor, messageBrokerTaskScheduler]
+2020-04-16 20:15:40.033  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 20:15:40.038  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-04-16 20:15:40.038  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[1 destination(s)], registry[1 sessions]]]]
+2020-04-16 20:15:40.038  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-04-16 20:15:40.043  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-04-16 20:15:40.044  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 20:15:40.045  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 20:15:40.045  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 20:15:40.049  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 20:15:40.054  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-04-16 20:15:40.060  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-04-16 20:15:40.304  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 20:15:40.307  INFO 7672 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-04-16 20:15:51.810  INFO 17372 --- [main] com.shicha.yzmgt.DemoApplication         : No active profile set, falling back to default profiles: default
+2020-04-16 20:15:52.354  INFO 17372 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-16 20:15:52.451  INFO 17372 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92ms. Found 7 repository interfaces.
+2020-04-16 20:15:52.702  INFO 17372 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aee7e1c2-b625-3c59-bb40-05ecc9100a9e
+2020-04-16 20:15:52.755  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.yzmgt.controller.IDaemon' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.819  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$eb2d31f1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.853  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$83dafa2b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.860  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.864  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@69e49a81' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.865  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$a8af9cdd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.870  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:52.889  INFO 17372 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$74734ee] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:15:53.255  INFO 17372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8300 (http)
+2020-04-16 20:15:53.275  INFO 17372 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 20:15:53.276  INFO 17372 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 20:15:53.282  INFO 17372 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 20:15:53.418  INFO 17372 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 20:15:53.419  INFO 17372 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1592 ms
+2020-04-16 20:15:53.713  INFO 17372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-16 20:15:53.923  INFO 17372 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-16 20:15:53.969  INFO 17372 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-16 20:15:54.031  INFO 17372 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2020-04-16 20:15:54.034  INFO 17372 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-16 20:15:54.167  INFO 17372 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-04-16 20:15:54.366  INFO 17372 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-04-16 20:15:57.749  INFO 17372 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 20:15:58.498  INFO 17372 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 20:15:58.508  INFO 17372 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 20:15:58.581  INFO 17372 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-04-16 20:15:58.723  INFO 17372 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 20:15:58.770  INFO 17372 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-16 20:15:58.962  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/upload/**'], []
+2020-04-16 20:15:58.962  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/download/**'], []
+2020-04-16 20:15:58.962  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2020-04-16 20:15:58.962  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/needlogin'], []
+2020-04-16 20:15:58.963  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/logout'], []
+2020-04-16 20:15:58.963  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/test/**'], []
+2020-04-16 20:15:58.963  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/getdata'], []
+2020-04-16 20:15:58.963  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/terminal/**'], []
+2020-04-16 20:15:58.963  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-04-16 20:15:58.964  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favico.ico'], []
+2020-04-16 20:15:58.964  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-16 20:15:58.964  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-04-16 20:15:58.964  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-04-16 20:15:58.964  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-16 20:15:59.017  INFO 17372 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43d6262c, org.springframework.security.web.context.SecurityContextPersistenceFilter@e7e455d, org.springframework.security.web.header.HeaderWriterFilter@ba0018e, org.springframework.security.web.authentication.logout.LogoutFilter@13cf5f8a, com.shicha.yzmgt.security.CustomUsernamePasswordAuthenticationFilter@5e2975ca, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@197d5a87, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f4d38f9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@151659dd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38cf4497, org.springframework.security.web.session.SessionManagementFilter@7037a680, org.springframework.security.web.access.ExceptionTranslationFilter@670a4738, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2a661215]
+2020-04-16 20:15:59.048  WARN 17372 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 20:15:59.050  WARN 17372 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 20:15:59.051  INFO 17372 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 20:15:59.055  WARN 17372 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 20:15:59.056  INFO 17372 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 20:15:59.257  WARN 17372 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 20:15:59.366  INFO 17372 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-04-16 20:16:00.040  INFO 17372 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-16 20:16:00.041  INFO 17372 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 20:16:00.042  INFO 17372 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-16 20:16:00.307  INFO 17372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8300 (http) with context path ''
+2020-04-16 20:16:00.765  INFO 17372 --- [main] com.shicha.yzmgt.DemoApplication         : Started DemoApplication in 10.479 seconds (JVM running for 16.428)
+2020-04-16 20:16:37.420  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 20:16:37.423  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-04-16 20:16:37.424  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 20:16:37.424  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-04-16 20:16:37.428  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-04-16 20:16:37.429  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 20:16:37.430  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 20:16:37.430  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 20:16:37.433  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 20:16:37.440  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-04-16 20:16:37.453  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-04-16 20:16:37.805  INFO 17372 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 20:19:04.166  INFO 808 --- [main] com.shicha.yzmgt.DemoApplication         : No active profile set, falling back to default profiles: default
+2020-04-16 20:19:04.696  INFO 808 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-16 20:19:04.791  INFO 808 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89ms. Found 7 repository interfaces.
+2020-04-16 20:19:05.045  INFO 808 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aee7e1c2-b625-3c59-bb40-05ecc9100a9e
+2020-04-16 20:19:05.104  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.yzmgt.controller.IDaemon' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.182  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f01fd7ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.221  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$88cda039] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.228  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.230  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@1e008f36' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.232  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$ada242eb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.237  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.253  INFO 808 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$c39dafc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 20:19:05.584  INFO 808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8300 (http)
+2020-04-16 20:19:05.606  INFO 808 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 20:19:05.607  INFO 808 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 20:19:05.614  INFO 808 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 20:19:05.769  INFO 808 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 20:19:05.769  INFO 808 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1588 ms
+2020-04-16 20:19:06.036  INFO 808 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-16 20:19:06.254  INFO 808 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-16 20:19:06.297  INFO 808 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-16 20:19:06.381  INFO 808 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2020-04-16 20:19:06.383  INFO 808 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-16 20:19:06.499  INFO 808 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-04-16 20:19:06.624  INFO 808 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-04-16 20:19:07.382  INFO 808 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 20:19:08.138  INFO 808 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 20:19:08.147  INFO 808 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 20:19:08.216  INFO 808 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-04-16 20:19:08.347  INFO 808 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 20:19:08.404  INFO 808 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-16 20:19:08.585  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/upload/**'], []
+2020-04-16 20:19:08.585  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/download/**'], []
+2020-04-16 20:19:08.585  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2020-04-16 20:19:08.585  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/needlogin'], []
+2020-04-16 20:19:08.585  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/logout'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/test/**'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/getdata'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/terminal/**'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favico.ico'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-04-16 20:19:08.586  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-16 20:19:08.641  INFO 808 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@10f8e2d2, org.springframework.security.web.context.SecurityContextPersistenceFilter@18a0721b, org.springframework.security.web.header.HeaderWriterFilter@5534e6f1, org.springframework.security.web.authentication.logout.LogoutFilter@2cdb5974, com.shicha.yzmgt.security.CustomUsernamePasswordAuthenticationFilter@66048ac4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@e7e455d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66e12c3b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b5b9521, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f525e13, org.springframework.security.web.session.SessionManagementFilter@aa8dce8, org.springframework.security.web.access.ExceptionTranslationFilter@f793f15, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@f237ae7]
+2020-04-16 20:19:08.675  WARN 808 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 20:19:08.678  WARN 808 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 20:19:08.678  INFO 808 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 20:19:08.684  WARN 808 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 20:19:08.684  INFO 808 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 20:19:08.892  WARN 808 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 20:19:08.990  INFO 808 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-04-16 20:19:09.622  INFO 808 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-16 20:19:09.623  INFO 808 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 20:19:09.624  INFO 808 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-16 20:19:09.873  INFO 808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8300 (http) with context path ''
+2020-04-16 20:19:10.283  INFO 808 --- [main] com.shicha.yzmgt.DemoApplication         : Started DemoApplication in 7.641 seconds (JVM running for 8.509)
+2020-04-16 20:19:57.417  INFO 808 --- [http-nio-8300-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-16 20:19:57.417  INFO 808 --- [http-nio-8300-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-16 20:19:57.430  INFO 808 --- [http-nio-8300-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2020-04-16 20:19:59.441  WARN 808 --- [http-nio-8300-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2020-04-16 20:20:08.402  INFO 808 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 2, completed tasks = 1]
+2020-04-16 20:20:15.009  WARN 808 --- [http-nio-8300-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2020-04-16 20:20:15.893  WARN 808 --- [http-nio-8300-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2020-04-16 20:20:28.682  WARN 808 --- [http-nio-8300-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2020-04-16 20:21:20.717  WARN 808 --- [http-nio-8300-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2020-04-16 20:21:30.564  WARN 808 --- [http-nio-8300-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' not supported]
+2020-04-16 20:50:08.402  INFO 808 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[2 current WS(2)-HttpStream(0)-HttpPoll(0), 16 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(16)-CONNECTED(16)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 8, active threads = 0, queued tasks = 0, completed tasks = 138], outboundChannel[pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 39], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 5, completed tasks = 435]
+2020-04-16 20:55:42.985  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 20:55:42.992  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-04-16 20:55:42.992  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[2 sessions]]]]
+2020-04-16 20:55:42.992  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-04-16 20:55:42.996  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-04-16 20:55:42.996  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 20:55:42.997  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 20:55:42.997  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 20:55:43.000  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 20:55:43.003  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-04-16 20:55:43.007  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-04-16 20:55:43.230  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 20:55:43.232  INFO 808 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-04-16 21:11:09.543  INFO 13240 --- [main] com.shicha.yzmgt.DemoApplication         : No active profile set, falling back to default profiles: default
+2020-04-16 21:11:10.088  INFO 13240 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-16 21:11:10.186  INFO 13240 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91ms. Found 7 repository interfaces.
+2020-04-16 21:11:10.437  INFO 13240 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aee7e1c2-b625-3c59-bb40-05ecc9100a9e
+2020-04-16 21:11:10.491  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.yzmgt.controller.IDaemon' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.591  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$219496d6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.632  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$ba425f10] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.639  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.643  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5bcb04cb' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.647  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$df1701c2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.653  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:10.669  INFO 13240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$3dae99d3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:11:11.051  INFO 13240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8300 (http)
+2020-04-16 21:11:11.072  INFO 13240 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 21:11:11.073  INFO 13240 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 21:11:11.080  INFO 13240 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 21:11:11.277  INFO 13240 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 21:11:11.277  INFO 13240 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1719 ms
+2020-04-16 21:11:11.539  INFO 13240 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-16 21:11:11.770  INFO 13240 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-16 21:11:11.815  INFO 13240 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-16 21:11:11.881  INFO 13240 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2020-04-16 21:11:11.885  INFO 13240 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-16 21:11:12.024  INFO 13240 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-04-16 21:11:12.148  INFO 13240 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-04-16 21:11:13.151  INFO 13240 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 21:11:13.937  INFO 13240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 21:11:13.945  INFO 13240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 21:11:14.016  INFO 13240 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-04-16 21:11:14.146  INFO 13240 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 21:11:14.199  INFO 13240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-16 21:11:14.433  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/upload/**'], []
+2020-04-16 21:11:14.433  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/download/**'], []
+2020-04-16 21:11:14.433  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2020-04-16 21:11:14.433  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/needlogin'], []
+2020-04-16 21:11:14.433  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/logout'], []
+2020-04-16 21:11:14.433  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/test/**'], []
+2020-04-16 21:11:14.434  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/getdata'], []
+2020-04-16 21:11:14.434  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/terminal/**'], []
+2020-04-16 21:11:14.434  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-04-16 21:11:14.434  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favico.ico'], []
+2020-04-16 21:11:14.435  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-16 21:11:14.435  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-04-16 21:11:14.435  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-04-16 21:11:14.435  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-16 21:11:14.493  INFO 13240 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b56947a, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c1f15df, org.springframework.security.web.header.HeaderWriterFilter@65259c53, org.springframework.security.web.authentication.logout.LogoutFilter@4f8900b0, com.shicha.yzmgt.security.CustomUsernamePasswordAuthenticationFilter@1926f962, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@46591e98, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5876bed9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7037a680, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62794582, org.springframework.security.web.session.SessionManagementFilter@39e7e040, org.springframework.security.web.access.ExceptionTranslationFilter@5bf523e3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3ff26c9]
+2020-04-16 21:11:14.521  WARN 13240 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 21:11:14.525  WARN 13240 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:11:14.525  INFO 13240 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:11:14.530  WARN 13240 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:11:14.530  INFO 13240 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:11:14.742  WARN 13240 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 21:11:14.856  INFO 13240 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-04-16 21:11:15.614  INFO 13240 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-16 21:11:15.615  INFO 13240 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 21:11:15.616  INFO 13240 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-16 21:11:15.878  INFO 13240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8300 (http) with context path ''
+2020-04-16 21:11:16.302  INFO 13240 --- [main] com.shicha.yzmgt.DemoApplication         : Started DemoApplication in 8.431 seconds (JVM running for 9.228)
+2020-04-16 21:12:14.199  INFO 13240 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 2, completed tasks = 1]
+2020-04-16 21:13:25.031  INFO 13240 --- [http-nio-8300-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-16 21:13:25.032  INFO 13240 --- [http-nio-8300-exec-9] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-16 21:13:25.044  INFO 13240 --- [http-nio-8300-exec-9] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2020-04-16 21:20:39.353  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 21:20:39.358  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-04-16 21:20:39.358  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[1 destination(s)], registry[0 sessions]]]]
+2020-04-16 21:20:39.358  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-04-16 21:20:39.362  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-04-16 21:20:39.362  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 21:20:39.364  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 21:20:39.364  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 21:20:39.367  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 21:20:39.370  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-04-16 21:20:39.377  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-04-16 21:20:39.588  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 21:20:39.590  INFO 13240 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-04-16 21:20:50.029  INFO 5400 --- [main] com.shicha.yzmgt.DemoApplication         : No active profile set, falling back to default profiles: default
+2020-04-16 21:20:50.663  INFO 5400 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-16 21:20:50.777  INFO 5400 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 108ms. Found 7 repository interfaces.
+2020-04-16 21:20:51.067  INFO 5400 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aee7e1c2-b625-3c59-bb40-05ecc9100a9e
+2020-04-16 21:20:51.145  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.yzmgt.controller.IDaemon' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.249  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$87678a35] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.307  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$2015526f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.329  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.333  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@f9f3928' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.335  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$44e9f521] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.340  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.360  INFO 5400 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$a3818d32] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:20:51.826  INFO 5400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8300 (http)
+2020-04-16 21:20:51.856  INFO 5400 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 21:20:51.857  INFO 5400 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 21:20:51.865  INFO 5400 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 21:20:52.023  INFO 5400 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 21:20:52.023  INFO 5400 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1977 ms
+2020-04-16 21:20:52.359  INFO 5400 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-16 21:20:52.596  INFO 5400 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-16 21:20:52.655  INFO 5400 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-16 21:20:52.746  INFO 5400 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2020-04-16 21:20:52.748  INFO 5400 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-16 21:20:52.891  INFO 5400 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-04-16 21:20:53.069  INFO 5400 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-04-16 21:20:54.041  INFO 5400 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 21:20:55.175  INFO 5400 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 21:20:55.185  INFO 5400 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 21:20:55.304  INFO 5400 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-04-16 21:20:55.466  INFO 5400 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 21:20:55.528  INFO 5400 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-16 21:20:55.762  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/upload/**'], []
+2020-04-16 21:20:55.762  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/download/**'], []
+2020-04-16 21:20:55.762  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/needlogin'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/logout'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/test/**'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/getdata'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/terminal/**'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-04-16 21:20:55.763  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favico.ico'], []
+2020-04-16 21:20:55.764  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-16 21:20:55.764  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-04-16 21:20:55.764  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-04-16 21:20:55.764  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-16 21:20:55.838  INFO 5400 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5fd5d6d1, org.springframework.security.web.context.SecurityContextPersistenceFilter@6fe77a97, org.springframework.security.web.header.HeaderWriterFilter@64c37088, org.springframework.security.web.authentication.logout.LogoutFilter@360d3f47, com.shicha.yzmgt.security.CustomUsernamePasswordAuthenticationFilter@5e643402, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5f7bd970, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d527346, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3f5e64c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@ff12b53, org.springframework.security.web.session.SessionManagementFilter@1d7d968c, org.springframework.security.web.access.ExceptionTranslationFilter@2e5c245d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@15a5cc6e]
+2020-04-16 21:20:55.876  WARN 5400 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 21:20:55.879  WARN 5400 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:20:55.880  INFO 5400 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:20:55.887  WARN 5400 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:20:55.887  INFO 5400 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:20:56.122  WARN 5400 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 21:20:56.241  INFO 5400 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-04-16 21:20:57.217  INFO 5400 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-16 21:20:57.218  INFO 5400 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 21:20:57.219  INFO 5400 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-16 21:20:57.277  INFO 5400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8300 (http) with context path ''
+2020-04-16 21:20:57.720  INFO 5400 --- [main] com.shicha.yzmgt.DemoApplication         : Started DemoApplication in 9.415 seconds (JVM running for 13.446)
+2020-04-16 21:21:05.158  INFO 5400 --- [http-nio-8300-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-16 21:21:05.158  INFO 5400 --- [http-nio-8300-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-16 21:21:05.172  INFO 5400 --- [http-nio-8300-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2020-04-16 21:21:08.399  WARN 5400 --- [http-nio-8300-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1054, SQLState: 42S22
+2020-04-16 21:21:08.399 ERROR 5400 --- [http-nio-8300-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unknown column 'switch_stat' in 'where clause'
+2020-04-16 21:21:08.424 ERROR 5400 --- [http-nio-8300-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet] with root cause
+
+java.sql.SQLSyntaxErrorException: Unknown column 'switch_stat' in 'where clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.13.jar:8.0.13]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.13.jar:8.0.13]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.13.jar:8.0.13]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:974) ~[mysql-connector-java-8.0.13.jar:8.0.13]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1024) ~[mysql-connector-java-8.0.13.jar:8.0.13]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:60) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2167) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:1930) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:1892) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:937) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:340) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2689) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2672) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2506) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2501) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.loader.custom.CustomLoader.list(CustomLoader.java:338) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.listCustomQuery(SessionImpl.java:2223) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.AbstractSharedSessionContract.list(AbstractSharedSessionContract.java:1053) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.query.internal.NativeQueryImpl.doList(NativeQueryImpl.java:170) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1505) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1553) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:214) ~[spring-data-jpa-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:91) ~[spring-data-jpa-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:136) ~[spring-data-jpa-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:125) ~[spring-data-jpa-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:605) ~[spring-data-commons-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.lambda$invoke$3(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59) ~[spring-data-commons-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.4.RELEASE.jar:2.1.4.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at com.sun.proxy.$Proxy106.getCountByStat(Unknown Source) ~[na:na]
+	at com.shicha.yzmgt.service.DeviceStatService.getOverview(DeviceStatService.java:136) ~[classes/:na]
+	at com.shicha.yzmgt.controller.DeviceStatController.overview(DeviceStatController.java:50) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.4.RELEASE.jar:5.1.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) ~[tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_144]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_144]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.14.jar:9.0.14]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_144]
+
+2020-04-16 21:21:55.525  INFO 5400 --- [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 2 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(2)-CONNECTED(2)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 8, active threads = 0, queued tasks = 0, completed tasks = 15], outboundChannel[pool size = 3, active threads = 0, queued tasks = 0, completed tasks = 3], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 4, completed tasks = 12]
+2020-04-16 21:22:13.478  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 21:22:13.483  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-04-16 21:22:13.483  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 21:22:13.483  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-04-16 21:22:13.488  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-04-16 21:22:13.489  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 21:22:13.491  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 21:22:13.491  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 21:22:13.501  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 21:22:13.510  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-04-16 21:22:13.528  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-04-16 21:22:13.715  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 21:22:13.717  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardWrapper   : Waiting for [1] instance(s) to be deallocated for Servlet [dispatcherServlet]
+2020-04-16 21:22:14.723  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardWrapper   : Waiting for [1] instance(s) to be deallocated for Servlet [dispatcherServlet]
+2020-04-16 21:22:15.727  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardWrapper   : Waiting for [1] instance(s) to be deallocated for Servlet [dispatcherServlet]
+2020-04-16 21:22:15.828  INFO 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-04-16 21:22:15.894  WARN 5400 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] is still processing a request that has yet to finish. This is very likely to create a memory leak. You can control the time allowed for requests to finish by using the unloadDelay attribute of the standard Context implementation. Stack trace of request processing thread:[
+ java.net.SocketInputStream.socketRead0(Native Method)
+ java.net.SocketInputStream.socketRead(Unknown Source)
+ java.net.SocketInputStream.read(Unknown Source)
+ java.net.SocketInputStream.read(Unknown Source)
+ java.io.BufferedInputStream.fill(Unknown Source)
+ java.io.BufferedInputStream.read1(Unknown Source)
+ java.io.BufferedInputStream.read(Unknown Source)
+ sun.net.www.http.HttpClient.parseHTTPHeader(Unknown Source)
+ sun.net.www.http.HttpClient.parseHTTP(Unknown Source)
+ sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+ sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+ java.net.HttpURLConnection.getResponseCode(Unknown Source)
+ feign.Client$Default.convertResponse(Client.java:143)
+ feign.Client$Default.execute(Client.java:68)
+ feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:108)
+ feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:78)
+ feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:103)
+ com.sun.proxy.$Proxy117.swtichon(Unknown Source)
+ com.shicha.yzmgt.service.AirCbService2.switchOn(AirCbService2.java:131)
+ com.shicha.yzmgt.controller.DeviceController.onDevice(DeviceController.java:98)
+ sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+ sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+ sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+ java.lang.reflect.Method.invoke(Unknown Source)
+ org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
+ org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+ org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+ org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+ org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+ org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+ org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+ org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+ org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+ org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+ org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+ javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+ org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127)
+ org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:74)
+ org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+ org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+ org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+ org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+ org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+ org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+ org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+ org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+ org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+ org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+ org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+ org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+ org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+ org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+ org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+ org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+ org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+ org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+ org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+ org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+ org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+ org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+ org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+ org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417)
+ org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+ java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+ java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+ org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+ java.lang.Thread.run(Unknown Source)]
+2020-04-16 21:22:49.620  INFO 10308 --- [main] com.shicha.yzmgt.DemoApplication         : No active profile set, falling back to default profiles: default
+2020-04-16 21:22:50.235  INFO 10308 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-04-16 21:22:50.351  INFO 10308 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 109ms. Found 7 repository interfaces.
+2020-04-16 21:22:50.630  INFO 10308 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aee7e1c2-b625-3c59-bb40-05ecc9100a9e
+2020-04-16 21:22:50.703  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.yzmgt.controller.IDaemon' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.822  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e111e5f1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.871  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$79bfae2b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.878  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.882  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@536d97f8' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.884  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$9e9450dd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.891  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:50.911  INFO 10308 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$fd2be8ee] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:22:51.309  INFO 10308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8300 (http)
+2020-04-16 21:22:51.333  INFO 10308 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 21:22:51.334  INFO 10308 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 21:22:51.341  INFO 10308 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 21:22:51.501  INFO 10308 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 21:22:51.501  INFO 10308 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1863 ms
+2020-04-16 21:22:51.820  INFO 10308 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-16 21:22:52.097  INFO 10308 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-16 21:22:52.152  INFO 10308 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-16 21:22:52.243  INFO 10308 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2020-04-16 21:22:52.246  INFO 10308 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-16 21:22:52.404  INFO 10308 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-04-16 21:22:52.594  INFO 10308 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2020-04-16 21:22:53.490  INFO 10308 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 21:22:54.436  INFO 10308 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 21:22:54.447  INFO 10308 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 21:22:54.544  INFO 10308 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-04-16 21:22:54.707  INFO 10308 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 21:22:54.763  INFO 10308 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/upload/**'], []
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/download/**'], []
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/'], []
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/needlogin'], []
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/user/logout'], []
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/test/**'], []
+2020-04-16 21:22:54.994  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/getdata'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/terminal/**'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/index.html'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/favico.ico'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/img/**'], []
+2020-04-16 21:22:54.995  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-16 21:22:55.046  INFO 10308 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@f348e10, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c3884f5, org.springframework.security.web.header.HeaderWriterFilter@f6e3b67, org.springframework.security.web.authentication.logout.LogoutFilter@1edf52e6, com.shicha.yzmgt.security.CustomUsernamePasswordAuthenticationFilter@3f22ce2a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6ddbbfbb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2dbf8cfc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c28009f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64cec4d0, org.springframework.security.web.session.SessionManagementFilter@579ee82, org.springframework.security.web.access.ExceptionTranslationFilter@469bd719, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1ac71b87]
+2020-04-16 21:22:55.077  WARN 10308 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 21:22:55.081  WARN 10308 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:22:55.081  INFO 10308 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:22:55.088  WARN 10308 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:22:55.088  INFO 10308 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:22:55.333  WARN 10308 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-04-16 21:22:55.456  INFO 10308 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-04-16 21:22:56.421  INFO 10308 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2020-04-16 21:22:56.421  INFO 10308 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 21:22:56.422  INFO 10308 --- [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2020-04-16 21:22:56.488  INFO 10308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8300 (http) with context path ''
+2020-04-16 21:22:56.939  INFO 10308 --- [main] com.shicha.yzmgt.DemoApplication         : Started DemoApplication in 9.028 seconds (JVM running for 10.084)
+2020-04-16 21:23:54.760  INFO 10308 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 2, completed tasks = 1]
+2020-04-16 21:24:19.242  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 21:24:19.245  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2020-04-16 21:24:19.245  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-04-16 21:24:19.246  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2020-04-16 21:24:19.249  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2020-04-16 21:24:19.249  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-04-16 21:24:19.251  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-04-16 21:24:19.252  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-04-16 21:24:19.254  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-04-16 21:24:19.259  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-04-16 21:24:19.267  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-04-16 21:24:19.468  INFO 10308 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]

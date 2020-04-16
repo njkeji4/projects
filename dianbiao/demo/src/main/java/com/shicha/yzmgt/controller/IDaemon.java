@@ -18,10 +18,10 @@ public interface IDaemon {
 	APIResult getData(String addr);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/command/on")
-	APIResult swtichon(String addr);
+	APIResult swtichon(AutoOnOff on);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/command/off")
-	APIResult switchoff(String addr);
+	APIResult switchoff(AutoOnOff off);
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/command/autoonoff")
 	APIResult swtichonoff(AutoOnOff setting);	

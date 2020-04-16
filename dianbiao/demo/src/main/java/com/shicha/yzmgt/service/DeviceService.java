@@ -34,6 +34,7 @@ import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
 import com.shicha.yzmgt.dao.IUserDao;
+import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.AutoOnOff;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.domain.SearchDevice;
@@ -187,7 +188,7 @@ public class DeviceService {
 		return ((h << 8) | m) << 8 ;
 		
 	}
-	public void addDeviceSetting(DeviceSettingDomain settingDomain) {
+	public APIResult addDeviceSetting(DeviceSettingDomain settingDomain) {
 		String[]ids = settingDomain.getIds();
 		DeviceSetting[]settings = settingDomain.getSettings();
 		
@@ -217,9 +218,11 @@ public class DeviceService {
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
 		
+		APIResult result = null;
 		for(String id : ids) {
-			airService.setAutoOffOn(new AutoOnOff(id,  value), userName, groupName);
+			result = airService.setAutoOffOn(new AutoOnOff(id,  value), userName, groupName);
 		}		
+		return result;
 	}
 	
 	public void removeDeviceSetting(DeviceSetting setting) {

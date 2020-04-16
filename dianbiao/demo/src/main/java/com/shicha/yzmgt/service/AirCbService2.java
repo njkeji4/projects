@@ -87,8 +87,8 @@ public class AirCbService2 {
 		webSocket.convertAndSend(target, message);
 	}	
 	
-	@Async
-	public APIResult switchOff(String addr, String userName, String groupName) {
+	//@Async
+	public APIResult switchOff(String addr,int branch, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(addr);
 		int cmd = 1;
 		
@@ -98,7 +98,7 @@ public class AirCbService2 {
 		
 		APIResult ret = new APIResult(1);
 		try{
-			ret = client.switchoff(addr);
+			ret = client.switchoff(new AutoOnOff(addr,branch));
 			
 		}catch(Exception ex) {
 			
@@ -106,7 +106,7 @@ public class AirCbService2 {
 		}
 		
 		if(ret.getStatus() == 0) {
-			device.setSwitchStat(Device.device_switch_open);
+			device.setSwitchStat(branch, Device.device_switch_open);
 			deviceDao.save(device);
 		}
 		
@@ -117,8 +117,8 @@ public class AirCbService2 {
 		return ret;
 	}
 	
-	@Async
-	public APIResult switchOn(String addr, String userName, String groupName) {
+	//@Async
+	public APIResult switchOn(String addr, int branch, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(addr);
 		int cmd = 2;
 		
@@ -128,7 +128,7 @@ public class AirCbService2 {
 		
 		APIResult ret = new APIResult(1);
 		try{
-			ret =  client.swtichon(addr);
+			ret =  client.swtichon(new AutoOnOff(addr, branch));
 			
 		}catch(Exception ex) {
 			
@@ -136,7 +136,7 @@ public class AirCbService2 {
 		}
 		
 		if(ret.getStatus() == 0) {
-			device.setSwitchStat(Device.device_switch_close);
+			device.setSwitchStat(branch, Device.device_switch_close);
 			deviceDao.save(device);
 		}
 		
@@ -146,7 +146,7 @@ public class AirCbService2 {
 		
 	}	
 	
-	@Async
+	//@Async
 	public APIResult setAutoOffOn(AutoOnOff auto, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(auto.getAddr());
 		int cmd = 8;
@@ -177,110 +177,26 @@ public class AirCbService2 {
 			return;
 		}
 		
-		int pre = d.getSwitchStat();				
+		int pre = d.getaState();				
 		d.syncDevice(meter);			
 		d.setLastDataTime(System.currentTimeMillis());
 		
-		//合闸-》拉闸,统计这次拉闸的时间
-		if(pre == 0 && d.getSwitchStat() != 0) {
-			d.setTodayOnTime(d.getTodayOnTime() + (System.currentTimeMillis() - d.getOnTime()) / 60000);
+		//合闸-》拉闸,统计这次合闸的时间
+		if(pre == 0 && d.getaState() != 0) {
+			d.setTodayOnTime(d.getTodayOnTime() + (System.currentTimeMillis() - d.getOnTime()) / 3600000);
 		}
 		//拉闸--》合闸，更新合闸时间
-		if(pre != 0 && d.getSwitchStat() == 0) {
+		if(pre != 0 && d.getaState() == 0) {
 			d.setOnTime(System.currentTimeMillis());
 		}
 		
-		d.setTodayEnergy(d.getActionEnergy() - d.getLastEnergy());
+		d.setTodayEnergy(d.getAllEnergy() - d.getLastEnergy());
 		
-		deviceDao.save(d);
+		d.setStatus(Device.device_status_online);
+		d.setLastHeartBeatTime(System.currentTimeMillis());
 		
-		
+		deviceDao.save(d);		
 	}
-	
-	/*
-	public void getCmdResponse(CmdRes res) {
-		
-		log.info("report command response from device:" + res.getAddr() + ":" + res.getResponse());
-		
-		Device d = deviceDao.findByDeviceNo(res.getAddr());
-		if(d == null) {
-			log.info("device:" + res.getAddr() + " is not registered in system");
-			return;
-		}
-		
-		//device report meter data
-		if(res.getCmdCode() == 0 && res.getStatus() == 0) {//meter data report
-			int pre = d.getSwitchStat();
-			
-			ObjectMapper objectMapper = new ObjectMapper();		
-			MeterStatus meter = objectMapper.convertValue(res.getData(), MeterStatus.class);			
-			d.syncDevice(meter);			
-			d.setLastDataTime(System.currentTimeMillis());
-			
-			//合闸-》拉闸
-			if(pre == 0 && d.getSwitchStat() != 0) {
-				d.setTodayOnTime(d.getTodayOnTime() + (System.currentTimeMillis() - d.getOnTime()) / 60000);
-			}
-			//拉闸--》合闸
-			if(pre != 0 && d.getSwitchStat() == 0) {
-				d.setOnTime(System.currentTimeMillis());
-			}
-			
-			d.setTodayEnergy(d.getActionEnergy() - d.getLastEnergy());
-			
-			deviceDao.save(d);
-			
-			return;
-		}
-		
-		
-		if(d.getCmdId() == null) {
-			log.info("no command is executing on this device:" + res.getResponse());
-			return;
-		}
-		
-		//update command status
-		Optional<UserCmd> opt = userCmdDao.findById(d.getCmdId());
-		UserCmd userCmd = null;
-		if(opt.isPresent() && opt.get().getStatus() == UserCmd.cmd_status_processing) {
-			userCmd = opt.get();
-			userCmd.setStatus(res.getStatus());
-			userCmd.setRetMessage(res.getResponse());
-			userCmd.setRetTime(System.currentTimeMillis());
-			userCmd.setRetValue(res.getResponse());
-			
-			userCmdDao.save(userCmd);
-		}
-		
-		//update device
-		d.setCmdId(null);
-		d.setCmdTime(null);
-		
-		//update device if response is ok
-		if(res.getStatus() == 0 && userCmd != null) {
-			if(userCmd.getCmdCode() == 1 ) {	//拉闸
-				
-				d.setSwitchStat(Device.device_switch_open);
-				
-			}else if(userCmd.getCmdCode() == 2) {  //合闸
-				
-				d.setSwitchStat(Device.device_switch_close);
-				
-			}
-		}
-		
-		deviceDao.save(d);
-		
-		//socket
-		if(userCmd != null && userCmd.getCmdCode() != 0) {//websocket send response
-			
-			String message = res.getAddr();		
-			String target = "/topic/greetings/" + userCmd.getUserName();
-			message +=  res.getStatus() == 0 ? "操作成功" : "操作失败";			
-			webSocket.convertAndSend(target, message);
-		}
-		
-	}*/
 	
 	public void getHeartBeat(String addr) {
 		

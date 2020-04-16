@@ -22,6 +22,7 @@ import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.domain.APIResult;
+import com.shicha.yzmgt.domain.AutoOnOff;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.domain.SearchDevice;
 import com.shicha.yzmgt.service.AirCbService2;
@@ -72,31 +73,31 @@ public class DeviceController {
 	
 	@RequestMapping(value="/off", method=RequestMethod.POST)
 	public APIResult offDevice(
-			@RequestBody String[]ids,
+			@RequestBody AutoOnOff off,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
 		User user= deviceService.getCurrentUser();
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
-		for(String addr : ids) {
-			airService.switchOff(addr,userName,groupName);
-		}
+		//for(String addr : ids) {
+		return	airService.switchOff(off.getAddr(), off.getBranch(),userName,groupName);
+		//}
 		
-		return new APIResult(0,"命令已经发送");
+		//return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
 	public APIResult onDevice(
-			@RequestBody String[] ids,
+			@RequestBody AutoOnOff on,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
 		User user= deviceService.getCurrentUser();
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
-		for(String addr : ids)
-			airService.switchOn(addr,userName,groupName);
+		//for(String addr : ids)
+		return airService.switchOn(on.getAddr(),on.getBranch(),userName,groupName);
 		
-		return new APIResult(0,"命令已经发送");
+		//return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/del", method=RequestMethod.POST)
@@ -114,9 +115,9 @@ public class DeviceController {
 			@RequestBody DeviceSettingDomain settingDomain,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{		
 		
-		deviceService.addDeviceSetting(settingDomain);
+		return deviceService.addDeviceSetting(settingDomain);
 		
-		return new APIResult(0,"命令已经发送");
+		//return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/setting/del", method=RequestMethod.POST)

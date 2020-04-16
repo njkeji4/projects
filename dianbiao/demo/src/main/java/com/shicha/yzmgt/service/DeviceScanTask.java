@@ -46,6 +46,10 @@ public class DeviceScanTask {
 			for(Device d : list) {			
 				if(System.currentTimeMillis()- d.getLastHeartBeatTime() > heartBeat * 60 * 1000) {
 					d.setStatus(Device.device_status_offline);
+					d.setaState(Device.device_switch_open);
+					d.setbState(Device.device_switch_open);
+					d.setcState(Device.device_switch_open);
+					d.setdState(Device.device_switch_open);
 					deviceDao.save(d);
 				}	
 			}
@@ -70,13 +74,13 @@ public class DeviceScanTask {
 			}
 			for(Device d : list) {				
 				
-				long todayOnTime = d.getTodayOnTime() + (d.getSwitchStat() == 0? (System.currentTimeMillis() - d.getOnTime())/60000 : 0);
+				long todayOnTime = d.getTodayOnTime() + (d.getaState() == 0? (System.currentTimeMillis() - d.getOnTime())/60000 : 0);
 				todayOnTime =  todayOnTime / 60;
 				DeviceStat stat = new DeviceStat(d.getDeviceNo(), yesterday, 
 						d.getTodayEnergy(),todayOnTime, d.getDeviceName(), d.getGroupName());					
 				
 				d.setTotalOnTime(d.getTotalOnTime() + todayOnTime);
-				d.setLastEnergy(d.getActionEnergy());
+				d.setLastEnergy(d.getAllEnergy());
 				d.setTodayOnTime(0);
 				d.setOnTime(System.currentTimeMillis());				
 				
