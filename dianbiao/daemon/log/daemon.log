@@ -1,44 +1,117 @@
-2020-02-28 18:32:27.993  INFO 13344 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
-2020-02-28 18:32:28.921  INFO 13344 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1ff2f2a6-5745-3008-b575-8b5c3642867c
-2020-02-28 18:32:28.973  INFO 13344 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-02-28 18:32:29.089  INFO 13344 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$aaa0dbe8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-02-28 18:32:29.739  INFO 13344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
-2020-02-28 18:32:29.815  INFO 13344 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-02-28 18:32:29.815  INFO 13344 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2020-02-28 18:32:29.870  INFO 13344 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
-2020-02-28 18:32:30.052  INFO 13344 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-02-28 18:32:30.052  INFO 13344 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2019 ms
-2020-02-28 18:32:30.427  WARN 13344 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2020-02-28 18:32:30.430  WARN 13344 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-02-28 18:32:30.430  INFO 13344 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-02-28 18:32:30.443  WARN 13344 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-02-28 18:32:30.443  INFO 13344 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-02-28 18:32:30.740  INFO 13344 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-02-28 18:32:30.898  INFO 13344 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-02-28 18:32:31.522  INFO 13344 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
-2020-02-28 18:32:31.968  INFO 13344 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 6.838 seconds (JVM running for 8.622)
-2020-02-28 18:32:31.970  INFO 13344 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
-2020-02-28 18:32:32.730  INFO 13344 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
-2020-02-28 18:32:41.498  INFO 13344 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2020-02-28 18:32:41.501  INFO 13344 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-02-28 18:32:41.501  INFO 13344 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-02-28 18:32:41.754  INFO 13344 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2020-02-28 18:33:03.362  INFO 14524 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1ff2f2a6-5745-3008-b575-8b5c3642867c
-2020-02-28 18:33:03.381  INFO 14524 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-02-28 18:33:03.442  INFO 14524 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b90f8ad7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-02-28 18:33:03.704  INFO 14524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
-2020-02-28 18:33:03.723  INFO 14524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-02-28 18:33:03.723  INFO 14524 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2020-02-28 18:33:03.729  INFO 14524 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
-2020-02-28 18:33:03.845  INFO 14524 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-02-28 18:33:03.846  INFO 14524 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 873 ms
-2020-02-28 18:33:04.056  WARN 14524 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2020-02-28 18:33:04.059  WARN 14524 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-02-28 18:33:04.064  WARN 14524 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-02-28 18:33:04.215  INFO 14524 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-02-28 18:33:04.334  INFO 14524 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-02-28 18:33:04.855  INFO 14524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
-2020-02-28 18:33:24.001  INFO 14524 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2020-02-28 18:33:24.003  INFO 14524 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-02-28 18:33:24.004  INFO 14524 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-02-28 18:33:24.218  INFO 14524 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 21:10:46.868  INFO 7184 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-04-16 21:10:47.671  INFO 7184 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=40c82a9f-4a5a-3f85-98c9-3c4b9ac1a823
+2020-04-16 21:10:47.727  INFO 7184 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:10:47.866  INFO 7184 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$3482272e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:10:48.575  INFO 7184 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-04-16 21:10:48.611  INFO 7184 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 21:10:48.612  INFO 7184 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 21:10:48.627  INFO 7184 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-04-16 21:10:49.135  INFO 7184 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 21:10:49.136  INFO 7184 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2138 ms
+2020-04-16 21:10:49.433  WARN 7184 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 21:10:49.439  WARN 7184 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:10:49.442  INFO 7184 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:10:49.456  WARN 7184 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:10:49.456  INFO 7184 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:10:49.799  INFO 7184 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-16 21:10:50.048  INFO 7184 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-04-16 21:10:50.659  INFO 7184 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-04-16 21:10:51.056  INFO 7184 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 6.655 seconds (JVM running for 7.576)
+2020-04-16 21:10:51.059  INFO 7184 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-04-16 21:10:51.658  INFO 7184 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-04-16 21:11:14.478  INFO 7184 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
+2020-04-16 21:12:01.310 ERROR 7184 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : ---exceptionCaught  ---null
+2020-04-16 21:12:01.312  WARN 7184 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : ---disconnect  ---null
+2020-04-16 21:12:09.664  INFO 7184 --- [nioEventLoopGroup-3-2] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
+2020-04-16 21:12:11.275 ERROR 7184 --- [nioEventLoopGroup-3-2] c.s.d.demon.netty.DeviceMessageDecoder   : ---exceptionCaught  ---null
+2020-04-16 21:12:11.276  WARN 7184 --- [nioEventLoopGroup-3-2] c.s.d.demon.netty.DeviceMessageDecoder   : ---disconnect  ---null
+2020-04-16 21:12:31.736  INFO 7184 --- [nioEventLoopGroup-3-3] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
+2020-04-16 21:12:32.813  INFO 7184 --- [nioEventLoopGroup-3-3] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
+2020-04-16 21:13:15.051  INFO 7184 --- [nioEventLoopGroup-3-3] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 heartbeat
+2020-04-16 21:14:01.635  INFO 7184 --- [http-nio-8303-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-16 21:14:01.636  INFO 7184 --- [http-nio-8303-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-16 21:14:01.654  INFO 7184 --- [http-nio-8303-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2020-04-16 21:14:01.828  INFO 7184 --- [http-nio-8303-exec-1] com.shicha.dianbiao.demon.netty.Device   : cs=-79
+2020-04-16 21:14:01.830  INFO 7184 --- [http-nio-8303-exec-1] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c10353333335f3333334f33333333343454b116
+2020-04-16 21:14:01.832  INFO 7184 --- [http-nio-8303-exec-1] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:14:31.836  WARN 7184 --- [http-nio-8303-exec-1] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:17:04.679  INFO 7184 --- [http-nio-8303-exec-2] com.shicha.dianbiao.demon.netty.Device   : try to send comamnd to device:0001 but , it  is offline or busy, just return -1
+2020-04-16 21:17:15.496  INFO 7184 --- [http-nio-8303-exec-5] com.shicha.dianbiao.demon.netty.Device   : try to send comamnd to device:0001 but , it  is offline or busy, just return -1
+2020-04-16 21:17:26.491  INFO 7184 --- [http-nio-8303-exec-4] com.shicha.dianbiao.demon.netty.Device   : try to send comamnd to device:0001 but , it  is offline or busy, just return -1
+2020-04-16 21:17:40.560  INFO 7184 --- [http-nio-8303-exec-6] com.shicha.dianbiao.demon.netty.Device   : cs=-79
+2020-04-16 21:17:40.560  INFO 7184 --- [http-nio-8303-exec-6] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c10353333335f3333334f33333333343454b116
+2020-04-16 21:17:40.563  INFO 7184 --- [http-nio-8303-exec-6] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:18:10.564  WARN 7184 --- [http-nio-8303-exec-6] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:22:01.925  INFO 7184 --- [http-nio-8303-exec-9] com.shicha.dianbiao.demon.netty.Device   : cs=-79
+2020-04-16 21:22:01.926  INFO 7184 --- [http-nio-8303-exec-9] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c10353333335f3333334f33333333343454b116
+2020-04-16 21:22:01.930  INFO 7184 --- [http-nio-8303-exec-9] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:22:31.935  WARN 7184 --- [http-nio-8303-exec-9] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:22:40.814  INFO 7184 --- [Thread-6] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-04-16 21:22:40.816  INFO 7184 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-04-16 21:24:26.662  INFO 4404 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-04-16 21:24:27.156  INFO 4404 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=1ff2f2a6-5745-3008-b575-8b5c3642867c
+2020-04-16 21:24:27.183  INFO 4404 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:24:27.264  INFO 4404 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$1720311e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-16 21:24:27.566  INFO 4404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-04-16 21:24:27.587  INFO 4404 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-16 21:24:27.588  INFO 4404 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-04-16 21:24:27.595  INFO 4404 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-04-16 21:24:27.731  INFO 4404 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-16 21:24:27.732  INFO 4404 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1055 ms
+2020-04-16 21:24:28.015  WARN 4404 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-04-16 21:24:28.018  WARN 4404 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:24:28.018  INFO 4404 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:24:28.025  WARN 4404 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-04-16 21:24:28.025  INFO 4404 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-04-16 21:24:28.196  INFO 4404 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-16 21:24:28.369  INFO 4404 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-04-16 21:24:28.920  INFO 4404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-04-16 21:24:29.333  INFO 4404 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.358 seconds (JVM running for 5.678)
+2020-04-16 21:24:29.335  INFO 4404 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-04-16 21:24:29.938  INFO 4404 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-04-16 21:24:32.727  INFO 4404 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
+2020-04-16 21:24:33.973  INFO 4404 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018heartbeat
+2020-04-16 21:24:39.109  INFO 4404 --- [http-nio-8303-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-16 21:24:39.109  INFO 4404 --- [http-nio-8303-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-16 21:24:39.118  INFO 4404 --- [http-nio-8303-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-04-16 21:24:39.184  WARN 4404 --- [http-nio-8303-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'text/plain;charset=UTF-8' not supported]
+2020-04-16 21:24:45.694  WARN 4404 --- [http-nio-8303-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('a' (code 97)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('a' (code 97)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 1, column: 3]]
+2020-04-16 21:25:11.066  WARN 4404 --- [http-nio-8303-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (''' (code 39)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 1, column: 3]]
+2020-04-16 21:25:20.097  WARN 4404 --- [http-nio-8303-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (''' (code 39)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 1, column: 3]]
+2020-04-16 21:25:45.081  WARN 4404 --- [http-nio-8303-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (''' (code 39)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character (''' (code 39)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 1, column: 3]]
+2020-04-16 21:26:30.953  INFO 4404 --- [http-nio-8303-exec-4] com.shicha.dianbiao.demon.netty.Device   : cs=-79
+2020-04-16 21:26:30.954  INFO 4404 --- [http-nio-8303-exec-4] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c10353333335f3333334f33333333343454b116
+2020-04-16 21:26:30.956  INFO 4404 --- [http-nio-8303-exec-4] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:27:00.956  WARN 4404 --- [http-nio-8303-exec-4] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:30:52.713  INFO 4404 --- [http-nio-8303-exec-7] com.shicha.dianbiao.demon.netty.Device   : cs=-79
+2020-04-16 21:30:52.714  INFO 4404 --- [http-nio-8303-exec-7] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c1035333333333333334f5f333333343454b116
+2020-04-16 21:30:52.716  INFO 4404 --- [http-nio-8303-exec-7] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:31:22.716  WARN 4404 --- [http-nio-8303-exec-7] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:31:44.697  INFO 4404 --- [http-nio-8303-exec-8] com.shicha.dianbiao.demon.netty.Device   : cs=-107
+2020-04-16 21:31:44.698  INFO 4404 --- [http-nio-8303-exec-8] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c1035333333333333335f333333333434549516
+2020-04-16 21:31:44.698  INFO 4404 --- [http-nio-8303-exec-8] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:32:14.700  WARN 4404 --- [http-nio-8303-exec-8] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:33:10.858  INFO 4404 --- [http-nio-8303-exec-9] com.shicha.dianbiao.demon.netty.Device   : cs=-71
+2020-04-16 21:33:10.859  INFO 4404 --- [http-nio-8303-exec-9] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c1035333333333333335d33465942453f16b916
+2020-04-16 21:33:10.860  INFO 4404 --- [http-nio-8303-exec-9] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:33:40.862  WARN 4404 --- [http-nio-8303-exec-9] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:33:45.263  INFO 4404 --- [http-nio-8303-exec-10] com.shicha.dianbiao.demon.netty.Device   : cs=-55
+2020-04-16 21:33:45.264  INFO 4404 --- [http-nio-8303-exec-10] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c1035333333333333336d33465942453f16c916
+2020-04-16 21:33:45.265  INFO 4404 --- [http-nio-8303-exec-10] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:33:54.392  INFO 4404 --- [http-nio-8303-exec-2] com.shicha.dianbiao.demon.netty.Device   : try to send another command to device:000000000018but, it is busy with another command
+2020-04-16 21:34:06.834  INFO 4404 --- [http-nio-8303-exec-1] com.shicha.dianbiao.demon.netty.Device   : try to send another command to device:000000000018but, it is busy with another command
+2020-04-16 21:34:15.266  WARN 4404 --- [http-nio-8303-exec-10] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:34:20.655  INFO 4404 --- [http-nio-8303-exec-3] com.shicha.dianbiao.demon.netty.Device   : cs=-23
+2020-04-16 21:34:20.655  INFO 4404 --- [http-nio-8303-exec-3] com.shicha.dianbiao.demon.netty.Device   : send request:000000000018  fefefefe68180000000000681c1035333333333333338d33465942453f16e916
+2020-04-16 21:34:20.656  INFO 4404 --- [http-nio-8303-exec-3] c.s.d.d.c.CommandRequestController       : waitting for command result
+2020-04-16 21:34:32.689  INFO 4404 --- [http-nio-8303-exec-5] com.shicha.dianbiao.demon.netty.Device   : try to send another command to device:000000000018but, it is busy with another command
+2020-04-16 21:34:50.656  WARN 4404 --- [http-nio-8303-exec-3] c.s.d.d.c.CommandRequestController       : command timeout
+2020-04-16 21:35:37.020  INFO 4404 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-04-16 21:35:37.023  INFO 4404 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-04-16 21:35:37.024  INFO 4404 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-04-16 21:35:37.230  INFO 4404 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-04-16 21:35:37.232  INFO 4404 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'

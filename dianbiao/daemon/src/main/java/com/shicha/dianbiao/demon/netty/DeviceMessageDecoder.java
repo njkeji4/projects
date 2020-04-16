@@ -20,8 +20,8 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 
 	private static final Logger log = LoggerFactory.getLogger(DeviceMessageDecoder.class);
 	
-	private static byte[] reg = {0x55,(byte)0xaa,0x55,(byte)0xaa};
-	private static byte[] reg2 = {0x66,(byte)0xaa,0x66,(byte)0xaa};
+	private static byte[] reg = {0x66,(byte)0xaa,0x66,(byte)0xaa};
+	private static byte[] reg2 = {0x66,(byte)0xbb,0x66,(byte)0xbb};
 	
 	
 	//public DeviceMessageDecoder(){}
@@ -82,7 +82,7 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			
 			String addr = getAddr(response, 6);  
 			
-			if(addr.equals("440221933405"))type=1;  //only for xinjiang testing
+			//if(addr.equals("440221933405"))type=1;  //only for xinjiang testing
 			
 			if(response[5] == 1) { //login
 				Device.add(ctx, 0, addr, type);
@@ -159,8 +159,11 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			if(res.getCmdCode() == Command.READ_METER || res.getCmdCode() == Command.READ_METER3) {
 				
 				Device.setDeviceStatus(res.getAddr(), 1);
-				
-				d.setType(res.getCmdCode() == Command.READ_METER ? 0 : 1);				
+				if(d != null) {
+					d.setType(res.getCmdCode() == Command.READ_METER ? 0 : 1);			
+				}else{
+					log.warn("get period messsage,but device is null:"+ res.getAddr());
+				}
 				notifyhost.postPeriod((MeterData)res.getData());
 				return;
 			}

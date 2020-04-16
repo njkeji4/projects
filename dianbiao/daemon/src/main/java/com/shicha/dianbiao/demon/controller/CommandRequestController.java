@@ -65,99 +65,32 @@ public class CommandRequestController {
 			}
 		
 			return waitResult(cmd.getAddr());
-	}
-	
-//	@RequestMapping(value="/get/time", method=RequestMethod.POST)
-//	public APIResult getTime(
-//			@RequestBody String addr,
-//			HttpServletRequest req, HttpServletResponse response) throws IOException{
-//			
-//			int ret = Device.readTime(addr);			
-//			if(ret != 0) {
-//				return new APIResult(ret,MESSAGES[ret]);
-//			}
-//		
-//			return waitResult(addr);
-//	}
-//	
-//	@RequestMapping(value="/get/date", method=RequestMethod.POST)
-//	public APIResult getDate(
-//			@RequestBody String addr,
-//			HttpServletRequest req, HttpServletResponse response) throws IOException{
-//			
-//			int ret = Device.readDate(addr);		
-//			if(ret != 0) {
-//				return new APIResult(ret,MESSAGES[ret]);
-//			}
-//		
-//			return waitResult(addr);
-//	}
-//	
-//	@RequestMapping(value="/get/period", method=RequestMethod.POST)
-//	public APIResult readPeriod(
-//			@RequestBody String addr,
-//			HttpServletRequest req, HttpServletResponse response) throws IOException{
-//			
-//			int ret = Device.readPeriod(addr);			
-//			if(ret != 0) {
-//				return new APIResult(ret,MESSAGES[ret]);
-//			}
-//		
-//			return waitResult(addr);
-//	}
-//	
-//	@RequestMapping(value="/get/autoonoff", method=RequestMethod.POST)
-//	public APIResult getAutoOnOff(
-//			@RequestBody String addr,
-//			HttpServletRequest req, HttpServletResponse response) throws IOException{
-//			
-//			int ret = Device.readAutoOnOff(addr);
-//			if(ret != 0) {
-//				return new APIResult(ret,MESSAGES[ret]);
-//			}
-//			
-//			return waitResult(addr);
-//			
-//	}
-	
-//	@RequestMapping(value="/set/period", method=RequestMethod.POST)
-//	public APIResult setPeriod(
-//			@RequestBody String addr,
-//			HttpServletRequest req, HttpServletResponse response) throws IOException{
-//			
-//			int ret = Device.switchOnCmd(addr);			
-//			if(ret != 0) {
-//				return new APIResult(ret,MESSAGES[ret]);
-//			}
-//		
-//			return waitResult(addr);
-//	}
-	
+	}	
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
 	public APIResult devcieon(
-			@RequestBody String addr,
+			@RequestBody AutoOnOff cmd,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			int ret = Device.switchOnCmd(addr);			
+			int ret = Device.switchOnCmd(cmd.getAddr(), cmd.getBranch());			
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
-			return waitResult(addr);
+			return waitResult(cmd.getAddr());
 	}
 	
 	@RequestMapping(value="/off", method=RequestMethod.POST)
 	public APIResult deviceOff(
-			@RequestBody String addr,
+			@RequestBody AutoOnOff cmd,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			int ret = Device.switchOffCmd(addr);
+			int ret = Device.switchOffCmd(cmd.getAddr(),cmd.getBranch());
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
-			return waitResult(addr);
+			return waitResult(cmd.getAddr());
 	}
 	
 	@RequestMapping(value="/autoonoff", method=RequestMethod.POST)
@@ -165,7 +98,7 @@ public class CommandRequestController {
 			@RequestBody AutoOnOff setting,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			int ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes());
+			int ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes(),setting.getBranch());
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}

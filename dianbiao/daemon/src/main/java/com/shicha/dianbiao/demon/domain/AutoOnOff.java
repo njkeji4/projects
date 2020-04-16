@@ -5,6 +5,7 @@ import com.shicha.dianbiao.demon.netty.Utils;
 public class AutoOnOff {
 
 	String addr;
+	int branch;
 	int[] times;
 	
 	public AutoOnOff() {}
@@ -33,6 +34,12 @@ public class AutoOnOff {
 	public void setTimes(int[] times) {
 		this.times = times;
 	}
-	
-	
+
+	public int getBranch() {
+		return branch;
+	}
+
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
 }
