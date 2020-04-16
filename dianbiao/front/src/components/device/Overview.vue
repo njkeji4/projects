@@ -611,10 +611,9 @@ export default {
     const _this = this;
     //this.loadMap();
 
-    window.onresize = function windowResize () {
-        _this.monthBar.resize();
-    }
-   
+   // window.onresize = function windowResize () {
+   //     _this.monthBar.resize();
+   // }   
   }
 
 

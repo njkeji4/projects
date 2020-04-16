@@ -5,8 +5,8 @@
 			<el-col  :span=10 class="search-action-wrap" style="margin-bottom:10px;">
 				<div style="float:left">		
 					<el-button size="small" @click="addDevice">增加设备</el-button>
-					<el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
-					<el-button size="small" @click="onDevice" :disabled="this.sels.length === 0" :loading="actionLoading">合闸</el-button>
+					<!--el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
+					<el-button size="small" @click="onDevice" :disabled="this.sels.length === 0" :loading="actionLoading">合闸</el-button-->
 					<el-button size="small" @click="batchRemove" :disabled="this.sels.length === 0">删除设备</el-button>
 					<el-button size="small" @click="settingDevice" :disabled="this.sels.length == 0">设置自动拉合闸时间</el-button>			
 						
@@ -63,23 +63,62 @@
 					</template>
 				</el-table-column>
 
-				<el-table-column  sortable="custom" prop="switchStat" label="开关状态" width="140">
-					<template slot-scope="scope">						
-						<el-tag :type="scope.row.switchStat == 0 ? 'success' : 'danger'" close-transition>{{scope.row.switchStat == 0?'合闸':'拉闸'}}</el-tag>					
+				<el-table-column  sortable="custom" prop="aState" label="1路开关" width="100">
+					<template slot-scope="scope">
+						<el-switch v-model="scope.row.aState"
+								 active-value="0"
+								 inactive-value="1"
+								 @change="onoffDevice($event,scope.row,1)"
+								active-color="#13ce66" inactive-color="#ff4949" />
 					</template>
 				</el-table-column>
-
-				<!--el-table-column  sortable="custom" prop="groupactionEnergy" label="组合有功电能量" width="150">
-				</el-table-column-->
+					<el-table-column  sortable="custom" prop="bState" label="2路开关" width="100">
+					<template slot-scope="scope">						
+						<el-switch v-model="scope.row.bState"
+								 active-value="0"
+								 inactive-value="1"
+								  @change="onoffDevice($event,scope.row,2)"
+								active-color="#13ce66" inactive-color="#ff4949" />	
+					</template>
+				</el-table-column>
+					<el-table-column  sortable="custom" prop="cState" label="3路开关" width="100">
+					<template slot-scope="scope">						
+						<el-switch v-model="scope.row.cState"
+								 active-value="0"
+								 inactive-value="1"
+								  @change="onoffDevice($event,scope.row,3)"
+								active-color="#13ce66" inactive-color="#ff4949" />				
+					</template>
+				</el-table-column>
+					<el-table-column  sortable="custom" prop="dState" label="4路开关" width="100">
+					<template slot-scope="scope">						
+						<el-switch v-model="scope.row.dState"
+								 active-value="0"
+								 inactive-value="1"
+								@change="onoffDevice($event,scope.row,4)"
+								active-color="#13ce66" inactive-color="#ff4949" />				
+					</template>
+				</el-table-column>
 				
-				<el-table-column  sortable="custom" prop="actionEnergy" label="电量(KW)" width="150"></el-table-column>
-				<!--el-table-column  sortable="custom" prop="reactionEnergy" label="反向有功电能量" width="150"></el-table-column-->
-				<el-table-column  sortable="custom" prop="vol" label="电压" width="120"></el-table-column>
-				<el-table-column  sortable="custom" prop="cur" label="电流" ></el-table-column>
-				<!--el-table-column  sortable="custom" prop="actionPower" label="有功功率" width="140"></el-table-column-->
-				<!--el-table-column  sortable="custom" prop="freq" label="电网频率" width="140"></el-table-column>
-				<el-table-column  sortable="custom" prop="factor" label="功率因数" width="140"></el-table-column-->
-
+				
+				<el-table-column  sortable="custom" prop="allEnergy" label="总电量(KW)" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="aEnergy" label="1路电量(KW)" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="bEnergy" label="2路电量(KW)" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="cEnergy" label="3路电量(KW)" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="dEnergy" label="4路电量(KW)" width="150"></el-table-column>
+			
+				<el-table-column  sortable="custom" prop="avol" label="1路电压" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="bvol" label="2路电压" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="cvol" label="3路电压" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="ddol" label="4路电压" width="150"></el-table-column>
+			
+				
+				<el-table-column  sortable="custom" prop="acur" label="1路电流" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="bcur" label="2路电流" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="ccur" label="3路电流" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="dcur" label="4路电流" width="150"></el-table-column>
+			
+				
 			
 			</el-table>
 		</section>
@@ -198,6 +237,46 @@
 						this.getDeviceList();
 					}
 				});
+			},
+
+			onoffDevice(val,row,branch){
+				var device = row.deviceNo;
+				row.aState = val == 0? 1 : 0;
+
+				if(val == 1){
+					AdminAPI.switchOffDevice({addr:device,branch:branch}).then(({
+						data: data
+					}) => {
+						this.actionLoading=false;
+						
+						if(data !== null) {
+							this.$message(data.message);
+							row.aState = val;
+						} else {
+							this.$message({
+								messsage: `拉闸失败:${data.message}`,
+								type: 'error'
+							})
+						}
+						
+					});
+				}else{
+					AdminAPI.switchOnDevice({addr:device,branch:branch}).then(({
+						data: data
+					}) => {
+						this.actionLoading=false;						
+						if(data !== null) {
+							this.$message(data.message);
+							row.aState = val;
+						} else {
+							this.$message({
+								messsage: `合闸失败:${data.message}`,
+								type: 'error'
+							})
+						}
+					});
+				}
+
 			},
 
 			offDevice() {

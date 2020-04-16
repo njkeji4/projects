@@ -25,7 +25,7 @@ let routes = [
                 path: 'overview',
                 component: Overview,
                 name:'',
-                title:'全屏',
+                title:'首页',
                 iconCls: 'el-icon-full-screen'
             },
             

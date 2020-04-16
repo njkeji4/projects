@@ -63,7 +63,7 @@
 							</el-dropdown-menu>
 						</el-dropdown-->
 						
-						17:08:23 <span style="color:grey">|</span> 2020年04月13日
+						{{currenttime}} <span style="color:grey">|</span> {{currentdate}}
 
 					</div>
 
@@ -109,6 +109,8 @@
 			return {	
 				isCollapse: true,
 				sysUserName: '',
+				currenttime:'11',
+				currentdate:'22',
 			}
 		},
 		computed: {
@@ -130,16 +132,16 @@
 			 collapse(){
 				this.isCollapse = !this.isCollapse;
 			},
-			nav(path) {
-				console.log("path="+path);
+			nav(path) {				
 				this.$router.push('/' + path);
+				/*
 				if(path === 'overview'){
 					var ele= document.getElementById("elmain");
 					var requestMethod = ele.requestFullScreen  ||ele.webkitRequestFullScreen //谷歌
-             ||ele.mozRequestFullScreen  //火狐
-             ||ele.msRequestFullScreen; //IE11;
-					requestMethod.call(ele); 
-				}
+					||ele.mozRequestFullScreen  //火狐
+					||ele.msRequestFullScreen; //IE11;
+							requestMethod.call(ele); 
+				}*/
 			},
 			
 			//退出登录
@@ -212,8 +214,17 @@
 		mounted() {
 			if(!this.loadUserFromSession()) {
 				this.$router.replace('/login');
-			}			
-		}
+			}
+			 const _this = this;
+			setInterval(function(){
+				var myDate=new Date();
+				
+				_this.currentdate = myDate.getFullYear() + '年'+ (myDate.getMonth() + 1) + '月' + myDate.getDate();
+				_this.currenttime = myDate.getHours()+':'+myDate.getMinutes()+":"+myDate.getSeconds();
+
+				console.log(_this._time);
+			},1000);			
+			}
 	}
 </script>
 
