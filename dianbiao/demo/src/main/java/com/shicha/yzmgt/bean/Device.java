@@ -130,10 +130,10 @@ public class Device {
 		ccur=   meter.ccur;
 		dcur=   meter.dcur;		
 		
-		aState = meter.switchStat | 0x02;
-		bState = meter.switchStat | 0x08;
-		cState = meter.switchStat | 0x20;
-		dState = meter.switchStat | 0x80;
+		aState = (meter.switchStat & 0x02) >> 1;
+		bState = (meter.switchStat & 0x08) >> 3;
+		cState = (meter.switchStat & 0x20 ) >> 5;
+		dState = (meter.switchStat & 0x80) >> 7;
 		  
 	}
 

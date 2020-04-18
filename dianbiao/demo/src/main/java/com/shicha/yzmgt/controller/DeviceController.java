@@ -80,10 +80,10 @@ public class DeviceController {
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
 		//for(String addr : ids) {
-		return	airService.switchOff(off.getAddr(), off.getBranch(),userName,groupName);
+		airService.switchOff(off.getAddr(), off.getBranch(),userName,groupName);
 		//}
 		
-		//return new APIResult(0,"命令已经发送");
+		return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
@@ -95,9 +95,9 @@ public class DeviceController {
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
 		//for(String addr : ids)
-		return airService.switchOn(on.getAddr(),on.getBranch(),userName,groupName);
+		airService.switchOn(on.getAddr(),on.getBranch(),userName,groupName);
 		
-		//return new APIResult(0,"命令已经发送");
+		return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/del", method=RequestMethod.POST)
@@ -145,7 +145,9 @@ public class DeviceController {
 		
 			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 			
-			boolean result = deviceService.importDeviceFromFile(file, userName);
+			//boolean result = deviceService.importDeviceFromFile(file, userName);
+			
+			boolean result = deviceService.imporBaseDataFromFile(file, userName);
 			
 			if(result)
 				return new APIResult(0);

@@ -2,6 +2,7 @@ package com.shicha.yzmgt.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -31,6 +32,8 @@ import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceGroup;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
+import com.shicha.yzmgt.bean.basestation.BaseFile;
+import com.shicha.yzmgt.bean.basestation.BaseStation;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
 import com.shicha.yzmgt.dao.IUserDao;
@@ -218,11 +221,11 @@ public class DeviceService {
 		String userName = user == null?null:user.getName();
 		String groupName = user == null?null:user.getGroupName();
 		
-		APIResult result = null;
+		
 		for(String id : ids) {
-			result = airService.setAutoOffOn(new AutoOnOff(id,  value), userName, groupName);
+			airService.setAutoOffOn(new AutoOnOff(id,  value), userName, groupName);
 		}		
-		return result;
+		return new APIResult(0);
 	}
 	
 	public void removeDeviceSetting(DeviceSetting setting) {
@@ -284,6 +287,81 @@ public class DeviceService {
 			wb.close();
 			
 			deviceDao.saveAll(bl);
+			
+			return true;
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}		
+	}
+	
+	public boolean imporBaseDataFromFile(MultipartFile file, String userName) {
+		
+		String fname = file.getOriginalFilename();
+		if(fname.length() <= 3) {
+			return false;
+		}
+		
+		User user = this.getCurrentUser();
+		if(user == null) {
+			log.info("user is null");
+			return false;
+		}
+		
+		Workbook wb = null;		
+		String last3str = fname.substring(fname.length() - 3);
+		try {
+			
+			boolean is2003 = true;
+			if(last3str.equals("xls")) {	//<=excel2003
+				wb = new HSSFWorkbook(file.getInputStream());
+			}else {	//excel 2007
+				wb = new XSSFWorkbook(file.getInputStream());
+				is2003 = false;
+			}
+			
+			List<BaseStation>stations= new ArrayList<BaseStation>();
+			for(int sc = 0; sc < 4; sc++) {
+				
+				Sheet sheet = wb.getSheetAt(sc);				
+				int lastRowNum = sheet.getLastRowNum();
+				
+				for(int i = 1; i <= lastRowNum; i++) {
+					
+					try {
+						Row row = sheet.getRow(i);	
+						Date date = row.getCell(0).getDateCellValue();
+						String name = row.getCell(1).getStringCellValue();
+						
+						BaseStation station = null;
+						if(sc == 0) {
+							station = new BaseStation(name, date.getTime());
+							stations.add(station);
+						}else {
+							station = stations.get(i - 1);
+						}
+						
+						double[] value = new double[24];
+						for(int j = 0; j < 24; j++) {
+							value[j] = row.getCell(2+j).getNumericCellValue();
+						}
+						station.addData(value, sc);
+						
+						if(sc == 3) {
+							station.analyze();
+						}
+					}catch(Exception ex) {
+						//ex.printStackTrace();
+						break;
+					}
+				}
+				
+			}
+			
+			wb.close();			
+			
+			new BaseFile().parse(stations);
 			
 			return true;
 			

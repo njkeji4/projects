@@ -87,8 +87,8 @@ public class AirCbService2 {
 		webSocket.convertAndSend(target, message);
 	}	
 	
-	//@Async
-	public APIResult switchOff(String addr,int branch, String userName, String groupName) {
+	@Async
+	public void switchOff(String addr,int branch, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(addr);
 		int cmd = 1;
 		
@@ -112,13 +112,11 @@ public class AirCbService2 {
 		
 		log.info("check return:"+ret);
 		
-		checkReturn(cmdId, ret, addr, userName);
-		
-		return ret;
+		checkReturn(cmdId, ret, addr, userName);		
 	}
 	
-	//@Async
-	public APIResult switchOn(String addr, int branch, String userName, String groupName) {
+	@Async
+	public void switchOn(String addr, int branch, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(addr);
 		int cmd = 2;
 		
@@ -140,14 +138,11 @@ public class AirCbService2 {
 			deviceDao.save(device);
 		}
 		
-		checkReturn(cmdId, ret, addr, userName);
-		
-		return ret;
-		
+		checkReturn(cmdId, ret, addr, userName);		
 	}	
 	
-	//@Async
-	public APIResult setAutoOffOn(AutoOnOff auto, String userName, String groupName) {
+	@Async
+	public void setAutoOffOn(AutoOnOff auto, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(auto.getAddr());
 		int cmd = 8;
 		
@@ -163,9 +158,7 @@ public class AirCbService2 {
 			ret.setMessage(ex.getMessage());
 		}
 		
-		checkReturn(cmdId, ret, auto.getAddr(), userName);
-		
-		return ret;
+		checkReturn(cmdId, ret, auto.getAddr(), userName);		
 	}	
 	
 	
@@ -176,6 +169,8 @@ public class AirCbService2 {
 			log.info("device:" + meter.getDeviceNo() + " is not registered in system");
 			return;
 		}
+		
+		log.info("meter="+meter.getSwitchStat());
 		
 		int pre = d.getaState();				
 		d.syncDevice(meter);			
@@ -195,6 +190,7 @@ public class AirCbService2 {
 		d.setStatus(Device.device_status_online);
 		d.setLastHeartBeatTime(System.currentTimeMillis());
 		
+		log.info("device="+d.getaState());
 		deviceDao.save(d);		
 	}
 	
