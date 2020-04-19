@@ -3,6 +3,15 @@ package com.shicha.yzmgt.bean.basestation;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity(name="base_station")
 public class BaseStation {
 	
 	public static int data_type_traffic = 0;
@@ -10,22 +19,26 @@ public class BaseStation {
 	public static int data_type_prbup = 2;
 	public static int data_type_activeuser = 3;
 	
+	
+	@Id
+	@Column(name="id", nullable=false, length=36)
+	@GenericGenerator(name="system-uuid", strategy="uuid2")
+	@GeneratedValue(generator="system-uuid")
+	String id;
+	
+	
 	String name;
 	long dataDate;
 	
 	double[] traffic;
 	double[] prbdown;
 	double[] prbup;
-	double[] activeUser;	
+	double[] activeUser;		
 	
-	
-	int[] fullfill;
-	
+	@Transient  
 	List<TimeLine>results = new ArrayList<TimeLine>();
 	
-	public BaseStation() {
-		
-	}
+	public BaseStation() {}
 	
 	public BaseStation(String name, long date) {
 		this.name = name;
@@ -34,7 +47,7 @@ public class BaseStation {
 	
 	
 	public void analyze() {
-		fullfill = new int[24];
+		int[] fullfill = new int[24];
 		for(int i = 0; i < traffic.length; i++) {
 			if(traffic[i] < 10000 && prbdown[i] < 3 && prbup[i] < 3 && activeUser[i] < 0.5) {
 				fullfill[i] = 1;

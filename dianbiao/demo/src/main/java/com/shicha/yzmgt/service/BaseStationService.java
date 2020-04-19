@@ -34,6 +34,7 @@ import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.bean.basestation.BaseFile;
 import com.shicha.yzmgt.bean.basestation.BaseStation;
+import com.shicha.yzmgt.dao.IBaseStationDao;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
 import com.shicha.yzmgt.dao.IUserDao;
@@ -41,11 +42,16 @@ import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.AutoOnOff;
 import com.shicha.yzmgt.domain.DeviceSettingDomain;
 import com.shicha.yzmgt.domain.SearchDevice;
+import com.shicha.yzmgt.domain.SearchStation;
 
 @Service
-public class DeviceService {
+public class BaseStationService {
 
-	private static final Logger log = LoggerFactory.getLogger(DeviceService.class);
+	private static final Logger log = LoggerFactory.getLogger(BaseStationService.class);
+	
+	@Autowired
+	IBaseStationDao baseStationDao;
+	
 	
 	@Autowired
 	IDeviceDao deviceDao;
@@ -62,73 +68,34 @@ public class DeviceService {
 	@Autowired
 	IDevcieSettingDao deviceSettingDao;
 	
-	public List<Device> getAll(){
+	public List<BaseStation> getAll(){
 		
-		String userName = null;
+		
 		try{
-			userName = SecurityContextHolder.getContext().getAuthentication().getName();			
-			if(userName == null)
-				return null;
 			
-			User user = userDao.findByName(userName);
-			if(user.getRole().equals(User.ROLE_ADMIN)) {
-				return deviceDao.findAll();
-			}
 			
-			return deviceDao.findByGroupName(user.getGroupName());//.findAll();
+			return baseStationDao.findAll();
 			
 		}catch(Exception ex) {
 			return null;
 		}
 	}
 	
-	public Page<Device> searchDevice(final SearchDevice device) {
+	public Page<BaseStation> searchDevice(final SearchStation device) {			
 		
-		String userName = null;
-		try{
-			userName = SecurityContextHolder.getContext().getAuthentication().getName();			
-			if(userName == null)
-				return null;
-		}catch(Exception ex) {
-			return null;
-		}
-			
-		User user = userDao.findByName(userName);
 		Direction orderBy  = (device.getOrder() == null || device.getOrder().equals("asc")) ? Direction.ASC : Direction.DESC;		
 		String sort = device.getSort();		
 		Pageable pageable = PageRequest.of(device.getPage(), device.getSize(), Sort.by(orderBy, sort));	
 		
-		return deviceDao.findAll(new Specification<Device>() {
+		return baseStationDao.findAll(new Specification<BaseStation>() {
 
 			@Override
-			public Predicate toPredicate(Root<Device> root, CriteriaQuery<?> criteria, CriteriaBuilder builder) {
+			public Predicate toPredicate(Root<BaseStation> root, CriteriaQuery<?> criteria, CriteriaBuilder builder) {
 				List<Predicate> predicatesList = new ArrayList<>();
 				
-				if(user != null && !user.getRole().equals(User.ROLE_ADMIN)) {						
+				if(device.getName() != null) {
 					predicatesList.add(builder.and(
-							builder.equal(root.get("groupName"), user.getGroupName())
-							));
-				}
-				
-				if(device.getDeviceName() != null) {
-					predicatesList.add(builder.and(
-							builder.like(root.get("deviceName"), "%" + device.getDeviceName() + "%")
-							));
-				}
-				if(device.getDeviceNo() != null) {
-					predicatesList.add(builder.and(
-							builder.like(root.get("deviceNo"), "%" + device.getDeviceNo() + "%")
-							));
-				}
-				
-				if(device.getStatus() != null) {
-					predicatesList.add(builder.and(
-							builder.equal(root.get("status"), device.getStatus())
-							));
-				}				
-				if(device.getSwitchStat() != null) {
-					predicatesList.add(builder.and(
-							builder.equal(root.get("switchStat"), device.getSwitchStat())
+							builder.like(root.get("name"), "%" + device.getName() + "%")
 							));
 				}				
 				
@@ -233,68 +200,7 @@ public class DeviceService {
 		deviceSettingDao.deleteById(setting.getId());
 	}
 	
-	public boolean importDeviceFromFile(MultipartFile file, String userName) {
-		
-		String fname = file.getOriginalFilename();
-		if(fname.length() <= 3) {
-			return false;
-		}
-		
-		User user = this.getCurrentUser();
-		if(user == null) {
-			log.info("user is null");
-			return false;
-		}
-		
-		Workbook wb = null;		
-		String last3str = fname.substring(fname.length() - 3);
-		try {
-			
-			boolean is2003 = true;
-			if(last3str.equals("xls")) {	//<=excel2003
-				wb = new HSSFWorkbook(file.getInputStream());
-			}else {	//excel 2007
-				wb = new XSSFWorkbook(file.getInputStream());
-				is2003 = false;
-			}
-			Sheet sheet = wb.getSheetAt(0);
-			int lastRowNum = sheet.getLastRowNum();
-//			if(is2003) {
-//				lastRowNum++;
-//			}
-			
-			log.info("lastrownumber:"+lastRowNum);
-			
-			List<Device> bl = new ArrayList<Device>();
-			
-			for(int i = 1; i <= lastRowNum; i++) {
-				Row row = sheet.getRow(i);
-				
-				String name = row.getCell(0).getStringCellValue();
-				if(name == null || name.length() == 0) {
-					break;
-				}
-				String cardNo = row.getCell(1).getStringCellValue();
-					
-				Device d = new Device();
-				d.setDeviceName(name);
-				d.setDeviceNo(cardNo);
-				d.setGroupName(user.getGroupName());
-				
-				bl.add(d);
-			}
-			
-			wb.close();
-			
-			deviceDao.saveAll(bl);
-			
-			return true;
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}		
-	}
+	
 	
 	public boolean imporBaseDataFromFile(MultipartFile file, String userName) {
 		
@@ -363,7 +269,9 @@ public class DeviceService {
 			
 			wb.close();				
 			
-			new BaseFile().parse(stations);			
+			//new BaseFile().parse(stations);		
+			
+			baseStationDao.saveAll(stations);
 			
 			return true;
 			

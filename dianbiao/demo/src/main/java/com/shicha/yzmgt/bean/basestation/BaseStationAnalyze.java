@@ -38,7 +38,7 @@ public class BaseStationAnalyze {
 				}
 			}
 			
-			if(days >= conf.getDaysCount()) {
+			if(days >= conf.getDaysCount() && !issub(result, tl)) {
 				result.add(tl);
 			}
 		}
@@ -46,6 +46,19 @@ public class BaseStationAnalyze {
 		return result;
 	}
 	
+	//满足条件的时间段是否是另外一个时间段的子集
+	public static boolean issub(List<TimeLine>all, TimeLine toadd) {
+		
+		for(TimeLine tl : all) {
+			if(toadd.getStart() >= tl.getStart() && toadd.getEnd() <= tl.getEnd()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	//合并时间段的过程中检查是否已经存在重复的
 	public static boolean contain(List<TimeLine> all, TimeLine toadd) {
 		
 		
