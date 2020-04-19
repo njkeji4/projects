@@ -7,7 +7,7 @@ import Usermgt from './components/user/UserManagement.vue';
 import groupMgt from './components/group/GroupManagement.vue';
 import DeviceStat from './components/device/DeviceStat.vue';
 import Overview from './components/overview/Overview.vue';
-
+import BaseTabs from './components/basestation/basetabs.vue';
 
 let routes = [  
     {
@@ -37,6 +37,14 @@ let routes = [
                 iconCls: 'el-icon-help'
             },
             
+            {
+                path: 'base',
+                component: BaseTabs,
+                name:'',
+                title:'基站',
+                iconCls: 'el-icon-data-analysis'
+            },
+
             {
                 path: 'stat',
                 component: DeviceStat,

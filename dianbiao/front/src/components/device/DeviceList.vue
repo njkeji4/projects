@@ -66,8 +66,8 @@
 				<el-table-column  sortable="custom" prop="aState" label="1路开关" width="100">
 					<template slot-scope="scope">
 						<el-switch v-model="scope.row.aState"
-								 active-value="0"
-								 inactive-value="1"
+								 :active-value=0
+								 :inactive-value=1
 								 @change="onoffDevice($event,scope.row,1)"
 								active-color="#13ce66" inactive-color="#ff4949" />
 					</template>
@@ -75,8 +75,8 @@
 					<el-table-column  sortable="custom" prop="bState" label="2路开关" width="100">
 					<template slot-scope="scope">						
 						<el-switch v-model="scope.row.bState"
-								 active-value="0"
-								 inactive-value="1"
+								 :active-value=0
+								 :inactive-value=1
 								  @change="onoffDevice($event,scope.row,2)"
 								active-color="#13ce66" inactive-color="#ff4949" />	
 					</template>
@@ -84,8 +84,8 @@
 					<el-table-column  sortable="custom" prop="cState" label="3路开关" width="100">
 					<template slot-scope="scope">						
 						<el-switch v-model="scope.row.cState"
-								 active-value="0"
-								 inactive-value="1"
+								 :active-value=0
+								 :inactive-value=1
 								  @change="onoffDevice($event,scope.row,3)"
 								active-color="#13ce66" inactive-color="#ff4949" />				
 					</template>
@@ -93,8 +93,8 @@
 					<el-table-column  sortable="custom" prop="dState" label="4路开关" width="100">
 					<template slot-scope="scope">						
 						<el-switch v-model="scope.row.dState"
-								 active-value="0"
-								 inactive-value="1"
+								:active-value=0
+								 :inactive-value=1
 								@change="onoffDevice($event,scope.row,4)"
 								active-color="#13ce66" inactive-color="#ff4949" />				
 					</template>
@@ -107,10 +107,10 @@
 				<el-table-column  sortable="custom" prop="cEnergy" label="3路电量(KW)" width="150"></el-table-column>
 				<el-table-column  sortable="custom" prop="dEnergy" label="4路电量(KW)" width="150"></el-table-column>
 			
-				<el-table-column  sortable="custom" prop="avol" label="1路电压" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="bvol" label="2路电压" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="avol" label="电压" width="150"></el-table-column>
+				<!--el-table-column  sortable="custom" prop="bvol" label="2路电压" width="150"></el-table-column>
 				<el-table-column  sortable="custom" prop="cvol" label="3路电压" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="ddol" label="4路电压" width="150"></el-table-column>
+				<el-table-column  sortable="custom" prop="dvol" label="4路电压" width="150"></el-table-column-->
 			
 				
 				<el-table-column  sortable="custom" prop="acur" label="1路电流" width="150"></el-table-column>
@@ -151,7 +151,8 @@
 
 	export default {
 		data() {
-			return {				
+			return {
+				testvalue:1,			
 				searchForm: { 
 					deviceName:'',					
 					deviceNo:'',				
@@ -240,8 +241,12 @@
 			},
 
 			onoffDevice(val,row,branch){
-				var device = row.deviceNo;
-				row.aState = val == 0? 1 : 0;
+				
+				var device = row.deviceNo;	
+				var states = ["aState", "bState", "cState", "dState"];			
+				var state = states[branch];
+				
+				 row[states[branch-1]] = val == 0? 1 : 0;	//keep the value unchange
 
 				if(val == 1){
 					AdminAPI.switchOffDevice({addr:device,branch:branch}).then(({
@@ -249,25 +254,22 @@
 					}) => {
 						this.actionLoading=false;
 						
-						if(data !== null) {
+						if(data !== null && data.status === 0) {
 							this.$message(data.message);
-							row.aState = val;
 						} else {
 							this.$message({
 								messsage: `拉闸失败:${data.message}`,
 								type: 'error'
 							})
 						}
-						
 					});
 				}else{
 					AdminAPI.switchOnDevice({addr:device,branch:branch}).then(({
 						data: data
 					}) => {
 						this.actionLoading=false;						
-						if(data !== null) {
+						if(data !== null && data.status === 0) {
 							this.$message(data.message);
-							row.aState = val;
 						} else {
 							this.$message({
 								messsage: `合闸失败:${data.message}`,

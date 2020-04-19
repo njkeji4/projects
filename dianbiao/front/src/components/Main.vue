@@ -220,9 +220,7 @@
 				var myDate=new Date();
 				
 				_this.currentdate = myDate.getFullYear() + '年'+ (myDate.getMonth() + 1) + '月' + myDate.getDate();
-				_this.currenttime = myDate.getHours()+':'+myDate.getMinutes()+":"+myDate.getSeconds();
-
-				console.log(_this._time);
+				_this.currenttime = myDate.getHours()+':'+myDate.getMinutes()+":"+myDate.getSeconds();				
 			},1000);			
 			}
 	}

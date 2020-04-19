@@ -31,6 +31,8 @@ export const addDeviceSetting = (param) => { return axios.post(`${prefix}/device
 
 export const searchDevice = (param) => { return axios.post(`${prefix}/device/searchDevice`,param); };
 
+export const searchBaseStation = (param) => { return axios.post(`${prefix}/basestation/searchDevice`,param); };
+
 export const deleteDevices = (param) => { return axios.post(`${prefix}/device/del`,param); };
 
 export const updateDevice = (param) => { return axios.post(`${prefix}/device/update`,param); };
@@ -61,6 +63,8 @@ export const removeVersion = (param) => { return axios.post(`${prefix}/version/d
 
 export const uploadUrl = `${prefix}/device/upload`;
 export const websocketurl = `${prefix}/websocket`;
+
+export const uploadBaseStationUrl = `${prefix}/basestation/upload`;
 
 //setting
 export const getSetting = () => { return axios.get(`${prefix}/setting/get?_t=${Date.now()}`); };
