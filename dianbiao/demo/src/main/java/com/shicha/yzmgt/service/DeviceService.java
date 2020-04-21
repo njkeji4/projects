@@ -350,9 +350,9 @@ public class DeviceService {
 						}
 						station.addData(value, sc);
 						
-						if(sc == 3) {							
-							station.analyze(); //分析每个基站自己有多少时间段满足条件
-						}
+//						if(sc == 3) {							
+//							station.analyze(); //分析每个基站自己有多少时间段满足条件
+//						}
 					}catch(Exception ex) {
 						//ex.printStackTrace();
 						break;
@@ -363,7 +363,7 @@ public class DeviceService {
 			
 			wb.close();				
 			
-			new BaseFile().parse(stations);			
+			//new BaseFile().parse(stations);			
 			
 			return true;
 			

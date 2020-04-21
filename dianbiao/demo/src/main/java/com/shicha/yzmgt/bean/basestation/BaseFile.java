@@ -9,7 +9,7 @@ public class BaseFile {
 	
 	HashMap<String, List<BaseStation>>map = new HashMap<String, List<BaseStation>>();
 	
-	public void parse(List<BaseStation>stations) {
+	public List<BaseAnalyzeResult> parse(List<BaseStation>stations, BaseConf conf) {
 		
 		for(BaseStation station : stations) {
 			
@@ -19,10 +19,12 @@ public class BaseFile {
 			map.get(station.getName()).add(station);			
 		}
 		
-		analyze(new BaseConf());
+		return analyze(conf);
 	}
 	
-	public void analyze(BaseConf conf) {
+	public List<BaseAnalyzeResult> analyze(BaseConf conf) {
+		
+		List<BaseAnalyzeResult>result = new ArrayList<BaseAnalyzeResult>();
 		
 		Iterator<String> it = map.keySet().iterator();
 		while(it.hasNext()) {
@@ -30,18 +32,23 @@ public class BaseFile {
 			List<BaseStation> stations = map.get(name);
 			
 			List<TimeLine> timeLines = BaseStationAnalyze.analyze(stations, conf);
+			if(timeLines != null && timeLines.size() > 0) {
+				for(TimeLine tl : timeLines)
+					result.add(new BaseAnalyzeResult(name, tl.getStart(), tl.getEnd()));
+			}
 			
 			///////////////////////////////////////////print result
-			System.out.println("name=" + name + ":");
-			String result = "";
-			if(timeLines != null)
-				for(TimeLine tl : timeLines) {
-					result += tl.getStart() + "-" + tl.getEnd() + "  ";
-				}
-			System.out.println(result);
-			System.out.println("---------------------------------------");
+//			System.out.println("name=" + name + ":");
+//			String output = "";
+//			if(timeLines != null)
+//				for(TimeLine tl : timeLines) {
+//					output += tl.getStart() + "-" + tl.getEnd() + "  ";
+//				}
+//			System.out.println(output);
+//			System.out.println("---------------------------------------");
 			////////////////////////////////////////////
 		}
+		return result;
 	}
 	
 }

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
+import com.shicha.yzmgt.bean.basestation.BaseAnalyzeResult;
 import com.shicha.yzmgt.bean.basestation.BaseStation;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.AutoOnOff;
@@ -61,6 +62,25 @@ public class BaseStationController {
 	}
 	
 	
+	@RequestMapping(value="/analyze", method=RequestMethod.POST)
+	public APIResult analyzeBaseStation(
+			@RequestBody SearchStation search,
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		return baseService.analyzeBaseStation(search);
+		
+	}
+	
+	@RequestMapping(value="/analysisresult", method=RequestMethod.GET)
+	public APIResult analyzeresult(			
+			HttpServletRequest req, HttpServletResponse response) throws IOException{
+		
+		List<BaseAnalyzeResult> results = baseService.getAllAnalyzeResult();
+		
+		return new APIResult(0, "", results);
+		
+	}
+	
 	@RequestMapping(value="/del", method=RequestMethod.POST)
 	public APIResult delDevice(
 			@RequestBody String[]ids,
@@ -94,9 +114,9 @@ public class BaseStationController {
 			@RequestParam("uploadFile") MultipartFile file,	
 			HttpServletRequest req, HttpServletResponse response) throws IOException{		
 		
-			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+			//String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 			
-			boolean result = baseService.imporBaseDataFromFile(file, userName);
+			boolean result = baseService.imporBaseDataFromFile(file);//, userName);
 			
 			if(result)
 				return new APIResult(0);

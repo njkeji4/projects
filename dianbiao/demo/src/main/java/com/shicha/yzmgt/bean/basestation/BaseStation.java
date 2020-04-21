@@ -7,27 +7,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity(name="base_station")
+@IdClass(BaseStationID.class)  
 public class BaseStation {
 	
 	public static int data_type_traffic = 0;
 	public static int data_type_prbdown = 1;
 	public static int data_type_prbup = 2;
-	public static int data_type_activeuser = 3;
-	
+	public static int data_type_activeuser = 3;	
 	
 	@Id
-	@Column(name="id", nullable=false, length=36)
-	@GenericGenerator(name="system-uuid", strategy="uuid2")
-	@GeneratedValue(generator="system-uuid")
-	String id;
-	
-	
 	String name;
+	@Id
 	long dataDate;
 	
 	double[] traffic;
@@ -46,10 +42,11 @@ public class BaseStation {
 	}
 	
 	
-	public void analyze() {
+	public void analyze(BaseConf conf) {
 		int[] fullfill = new int[24];
 		for(int i = 0; i < traffic.length; i++) {
-			if(traffic[i] < 10000 && prbdown[i] < 3 && prbup[i] < 3 && activeUser[i] < 0.5) {
+			if(traffic[i] < conf.getTraffic() * 1000 && prbdown[i] < conf.getPrbdown() 
+					&& prbup[i] < conf.getPrbup() && activeUser[i] < conf.getActiveUser()) {
 				fullfill[i] = 1;
 			}
 		}
@@ -66,7 +63,8 @@ public class BaseStation {
 				end = i - 1;
 				flag = 0;
 				
-				results.add(new TimeLine(start,end));
+				if(end-start + 1 >= conf.duration)
+					results.add(new TimeLine(start,end));
 			}
 		}
 	}

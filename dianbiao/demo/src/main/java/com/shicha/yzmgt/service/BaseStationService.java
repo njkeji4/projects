@@ -32,8 +32,12 @@ import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.DeviceGroup;
 import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
+import com.shicha.yzmgt.bean.basestation.BaseAnalyzeResult;
+import com.shicha.yzmgt.bean.basestation.BaseConf;
 import com.shicha.yzmgt.bean.basestation.BaseFile;
 import com.shicha.yzmgt.bean.basestation.BaseStation;
+import com.shicha.yzmgt.dao.IBaseAnalyzeResultDao;
+import com.shicha.yzmgt.dao.IBaseConfDao;
 import com.shicha.yzmgt.dao.IBaseStationDao;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
@@ -52,6 +56,11 @@ public class BaseStationService {
 	@Autowired
 	IBaseStationDao baseStationDao;
 	
+	@Autowired
+	IBaseConfDao baseConfDao;
+	
+	@Autowired
+	IBaseAnalyzeResultDao analyzeResultDao;
 	
 	@Autowired
 	IDeviceDao deviceDao;
@@ -68,14 +77,9 @@ public class BaseStationService {
 	@Autowired
 	IDevcieSettingDao deviceSettingDao;
 	
-	public List<BaseStation> getAll(){
-		
-		
+	public List<BaseStation> getAll(){		
 		try{
-			
-			
-			return baseStationDao.findAll();
-			
+			return baseStationDao.findAll();			
 		}catch(Exception ex) {
 			return null;
 		}
@@ -202,18 +206,12 @@ public class BaseStationService {
 	
 	
 	
-	public boolean imporBaseDataFromFile(MultipartFile file, String userName) {
+	public boolean imporBaseDataFromFile(MultipartFile file) {
 		
 		String fname = file.getOriginalFilename();
 		if(fname.length() <= 3) {
 			return false;
-		}
-		
-		User user = this.getCurrentUser();
-		if(user == null) {
-			log.info("user is null");
-			return false;
-		}
+		}	
 		
 		Workbook wb = null;		
 		String last3str = fname.substring(fname.length() - 3);
@@ -256,9 +254,9 @@ public class BaseStationService {
 						}
 						station.addData(value, sc);
 						
-						if(sc == 3) {							
-							station.analyze(); //分析每个基站自己有多少时间段满足条件
-						}
+//						if(sc == 3) {							
+//							station.analyze(); //分析每个基站自己有多少时间段满足条件
+//						}
 					}catch(Exception ex) {
 						//ex.printStackTrace();
 						break;
@@ -279,5 +277,79 @@ public class BaseStationService {
 			ex.printStackTrace();
 			return false;
 		}		
+	}
+	
+	public APIResult analyzeBaseStation(SearchStation base) {		
+		
+		List<BaseStation>stations= baseStationDao.findAll();
+		if(stations == null || stations.size() == 0) {
+			return new APIResult(0);
+		}
+		
+		List<BaseConf> list = baseConfDao.findAll();		
+		BaseConf conf = new BaseConf();
+		if(list != null && list.size() > 0 )
+			conf = list.get(0);
+		
+		for(BaseStation bs : stations) {
+			bs.analyze(conf);
+		}
+			
+		List<BaseAnalyzeResult> results= new BaseFile().parse(stations,conf);
+		
+		results = removeRepeatedResult(results);
+		
+		if(results != null && results.size() > 0) {
+			
+			analyzeResultDao.deleteAll();
+			
+			analyzeResultDao.saveAll(results);
+		}		
+		
+		return new APIResult(0);
+	}
+	
+	public List<BaseAnalyzeResult> getAllAnalyzeResult(){
+		return analyzeResultDao.findAll(Sort.by(Direction.ASC, "name"));
+	}
+	
+	public List<BaseAnalyzeResult> removeRepeatedResult(List<BaseAnalyzeResult> results) {
+		if(results == null || results.size() == 0) {
+			return null;
+		}
+		List<BaseAnalyzeResult> newresult = new ArrayList<BaseAnalyzeResult>();
+		
+		for(BaseAnalyzeResult tmp : results) {
+			boolean added = true;
+			
+			for(BaseAnalyzeResult t : newresult) {
+				
+				//parent
+				if(t.getName().equals(tmp.getName()) && (tmp.getStart() <= t.getStart() && tmp.getEnd() >= t.getEnd())){
+					t.setStart(tmp.getStart());
+					t.setEnd(tmp.getEnd());
+					
+					added = false;
+					
+					break;
+				}
+				
+				//child
+				if(t.getName().equals(tmp.getName()) && (tmp.getStart() >= t.getStart() && tmp.getEnd() <= t.getEnd())){
+					t.setStart(tmp.getStart());
+					t.setEnd(tmp.getEnd());
+					
+					added = false;
+					
+					break;
+				}
+				
+			}
+			if(added) {
+				newresult.add(tmp);
+			}
+		}
+		
+		return newresult;		
 	}
 }
