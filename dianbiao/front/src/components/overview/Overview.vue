@@ -2,7 +2,7 @@
     <div style="overflow:hidden; height:100%; position:relative;background:rgba(2,9,17,1);" >
 
 
-        <div id="allmap" style="height:calc(100% + 35px);"></div>
+        <div id="allmap" style="height:calc(100% + 35px);width:52%;left:24%;"></div>
         <div id="mappopwin">
             <div>今日能耗：{{todayPow}}KW/h</div>
             </p>
@@ -28,13 +28,13 @@
                         <span class="box-header-sub">/Energy saving efficiency</span>
                   </div>       
                   <div style="position:absolute;left:160px;top:50px;font-size:12px;color:white;">
-                        <div>今日总节能：53667.4KW</div>
+                        <div>今日总能耗：53667.4KW</div>
                         <div >
                             <div style="float:left;margin-left:5px;margin-top:7px;width:55px;height:10px;background-color:rgba(61,255,244);"/>
                             <div style="float:left;margin-top:7px;width:50px;height:10px;background-color:#494A4C;"/>
                         </div>
                        
-                        <div style="margin-top:30px;">今日节约能耗：53667.4KW</div>
+                        <div style="margin-top:30px;">今日节约能耗：26833.7KW</div>
                         <div>
                             <div style="float:left;margin-left:5px;margin-top:7px;width:55px;height:10px;background-color:rgba(61,255,244);"/>
                             <div style="float:left;margin-top:7px;width:50px;height:10px;background-color:#494A4C;"/>
@@ -113,7 +113,7 @@
                         </div>
 
                          <div style="margin-top:2vh;font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
+                            本日节省能耗
                             <span class="" style="font-size:80%;"> （单位：kwh）</span>
                         </div>
 
@@ -124,8 +124,8 @@
                         </div>
 
                          <div style="margin-top:2vh;font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
-                            <span class="" style="font-size:80%;"> （单位：kwh）</span>
+                            本日电费
+                            <span class="" style="font-size:80%;"> （单位：元）</span>
                         </div>
 
                         <div style="font-size:120%;font-family:Verdana;color:rgba(24,117,201,1);">
@@ -135,8 +135,8 @@
                         </div>
 
                          <div style="margin-top:2vh;font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
-                            <span class="" style="font-size:80%;"> （单位：kwh）</span>
+                            本日节省电费
+                            <span class="" style="font-size:80%;"> （单位：元）</span>
                         </div>
 
                         <div style="font-size:120%;font-family:Verdana;color:rgba(24,117,201,1);">
@@ -150,7 +150,7 @@
 
                     <div class="col2" style="position:absolute;right:0;text-align:left;font-size:2vh;">
                         <div style="font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
+                            本年总能耗
                             <span class="" style="font-size:80%;"> （单位：kwh）</span>
                         </div>
 
@@ -161,7 +161,7 @@
                         </div>
 
                          <div style="margin-top:2vh;font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
+                            本年节省能耗
                             <span class="" style="font-size:80%;"> （单位：kwh）</span>
                         </div>
 
@@ -172,8 +172,8 @@
                         </div>
 
                          <div style="margin-top:2vh;font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
-                            <span class="" style="font-size:80%;"> （单位：kwh）</span>
+                            本年电费
+                            <span class="" style="font-size:80%;"> （单位：元）</span>
                         </div>
 
                         <div style="font-size:120%;font-family:Verdana;color:rgba(24,117,201,1);">
@@ -183,8 +183,8 @@
                         </div>
 
                          <div style="margin-top:2vh;font-size:90%;font-family:MicrosoftYaHei;color:rgba(255,255,255,1);">
-                            本日总能耗
-                            <span class="" style="font-size:80%;"> （单位：kwh）</span>
+                            本年节省电费
+                            <span class="" style="font-size:80%;"> （单位：元）</span>
                         </div>
 
                         <div style="font-size:120%;font-family:Verdana;color:rgba(24,117,201,1);">

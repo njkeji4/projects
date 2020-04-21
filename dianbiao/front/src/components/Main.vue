@@ -218,9 +218,12 @@
 			 const _this = this;
 			setInterval(function(){
 				var myDate=new Date();
-				
+				var m = myDate.getMinutes();
+				var s = myDate.getSeconds();
+				m = m < 10 ? '0' + m : m;
+				s = s < 10 ? '0' + s : s;
 				_this.currentdate = myDate.getFullYear() + '年'+ (myDate.getMonth() + 1) + '月' + myDate.getDate();
-				_this.currenttime = myDate.getHours()+':'+myDate.getMinutes()+":"+myDate.getSeconds();				
+				_this.currenttime = myDate.getHours()+':'+ m  + ":" + s;				
 			},1000);			
 			}
 	}

@@ -33,6 +33,10 @@ export const searchDevice = (param) => { return axios.post(`${prefix}/device/sea
 
 export const searchBaseStation = (param) => { return axios.post(`${prefix}/basestation/searchDevice`,param); };
 
+export const analyzeBaseStation = (param) => { return axios.post(`${prefix}/basestation/analyze`,param); };
+
+export const getBaseAnalyzeResult = () => { return axios.get(`${prefix}/basestation/analysisresult?_t=${Date.now()}`); };
+
 export const deleteDevices = (param) => { return axios.post(`${prefix}/device/del`,param); };
 
 export const updateDevice = (param) => { return axios.post(`${prefix}/device/update`,param); };
@@ -92,10 +96,8 @@ export const getAlarmList = () => { return axios.get(`${prefix}/alarm/list?_t=${
 
 export const searchAlarmData = (param) => { return axios.post(`${prefix}/alarm/search`,param); };
 
-//adv
-export const uploadAdvUrl = `${prefix}/advertisement/upload`;
+//conf
 
-export const searchAdvList = (param) => { return axios.post(`${prefix}/advertisement/search`,param); };
-export const removeAdv = (param) => { return axios.post(`${prefix}/advertisement/delete`,param); };
+export const getBaseConf = () => { return axios.get(`${prefix}/baseconf/get?_t=${Date.now()}`); };
 
-export const searchAdvResult = (param) => { return axios.post(`${prefix}/advertisement/result`,param); };
+export const setBaseConf = (param) => { return axios.post(`${prefix}/baseconf/set`,param); };

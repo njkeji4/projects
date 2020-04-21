@@ -3,12 +3,14 @@
 		<el-row :gutter=20 class="toolbar searchparam">
 			<el-col :span=4>
 				<el-upload class='ensure' 
+						v-loading="uploading"
 						ref="uploadForm"
 						name="uploadFile"
 						:action="uploadUrl"
 						:auto-upload="true"				
 						:on-success="uploadSuc"
 						:on-error="uploadFail"
+						:before-upload="beoforeUpload"
 						:show-file-list='false'
 						>	
 						<el-button size="small" type="primary">导入基站数据</el-button>
@@ -81,11 +83,12 @@
                 convertedData:[],
                 page: 1,				
 				pageSize: 28,
-                total:'',
+                total:0,
                 sort:'name',
 				order:'asc',
                 uploadUrl:AdminAPI.uploadBaseStationUrl,
                 listLoading:false,
+				uploading:false,
                 searchForm:{name:''}
 			}
 		},
@@ -109,6 +112,19 @@
 			},	
             analyzeStations(){
                 
+                AdminAPI.analyzeBaseStation({}).then(({
+					data: jsonData
+				}) => {
+					if(jsonData.status === 0) {
+						  this.$emit("analyzeDone");
+					} else {
+						this.$message({
+							messsage: `分析失败:${data.msg}`,
+							type: 'error'
+						})
+					}
+				});
+              
             },
             splitData(){
                 for(var i in this.stations){
@@ -118,7 +134,6 @@
                     this.convertedData.push({name:data.name, dataDate:data.dataDate, dataType:'上行prb',value:data.prbup})
                     this.convertedData.push({name:data.name, dataDate:data.dataDate, dataType:'激活用户数',value:data.activeUser})
                 }
-               
             },
             getStations(){
                 var searchParams = _.omitBy(this.searchForm, (item) => item == "" || _.isNil(item));
@@ -131,10 +146,10 @@
 				AdminAPI.searchBaseStation(searchParams).then(({
 					data: jsonData
 				}) => {
+					this.listLoading = false;
 					if(jsonData.status === 0) {
 						this.stations = jsonData.data.content;
 						this.total = jsonData.data.totalElements * 4;
-						this.listLoading = false;
                         this.splitData();
 					} else {
 						this.$message({
@@ -145,18 +160,23 @@
 				});
             },
 			uploadSuc(res, file, fileList){
+				this.uploading = false;
 				if(res.status === 0){
 					this.$message({
 						message: '上传成功!',
 						type: 'success'
 					});
-					//this.getDeviceList();
+					this.getStations();
 					
 				}else{
 					this.$message.error('上传文件失败!'+res.msg);
 				}
 			},
+			beoforeUpload(){
+				this.uploading = true;
+			},
 			uploadFail(err){
+				this.uploading = false;
 				this.$message({
 						message: '上传失败!'+err,
 						type: 'error'
