@@ -8,22 +8,26 @@
                 
                 <el-col  :span=24 class="search-action-wrap" style="margin-bottom:10px;">
                     
-							拉闸时间：<el-time-picker  v-model="offTime" placeholder="拉闸时间">
+							<el-time-picker  v-model="offTime" placeholder="拉闸时间">
                             </el-time-picker >
 
-                            合闸时间：<el-time-picker  v-model="onTime" placeholder="合闸时间">
-                            </el-time-picker >                    
+                            <el-time-picker  v-model="onTime" placeholder="合闸时间" style="margin-left:10px;">
+                            </el-time-picker >    
+
+                            <el-select v-model="branch" placeholder="选择一路" 
+                                    style="margin-left:10px;width:100px;">
+                                <el-option  :key="1" :label="1" :value="1"/>
+                                <el-option  :key="2" :label="2" :value="2"/>
+                                <el-option  :key="3" :label="3" :value="3"/>
+                                <el-option  :key="4" :label="4" :value="4"/>                                
+                            </el-select>                
                     
                     <el-button style="margin-left:10px;" size="small" type="primary" @click="addOffOnTime" :loading="batchConfigLoading">增加</el-button>
                     <el-button style="margin-left:10px;" size="small" type="primary" @click="delOffOnTime" 
                         :disabled="this.sels.length == 0">删除</el-button>
                 </el-col>
 
-                 
-
-            </el-row>	
-
-           
+            </el-row>	           
 
 		</el-form>
 	
@@ -33,21 +37,25 @@
 
 				<el-table-column header-align="center"  type="selection">				
 				</el-table-column>
-
-                	<el-table-column header-align="center"  type="index">				
-				</el-table-column>
 				
-				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="240"></el-table-column>
+				<el-table-column   prop="deviceNo" label="设备" width="120">
+                </el-table-column>
 			
-				<el-table-column  sortable="custom" prop="offTime" label="拉闸时间" width="240">
+				<el-table-column   prop="offTime" label="拉闸时间" width="220">
                     <template slot-scope="scope">
 						{{scope.row.offTime | dateFormat}}
 					</template>
                 </el-table-column>
 
-                <el-table-column  sortable="custom" prop="onTime" label="合闸时间" width="240">
+                <el-table-column   prop="onTime" label="合闸时间" width="220">
                     <template slot-scope="scope">
 						{{scope.row.onTime | dateFormat}}
+					</template>
+                </el-table-column>
+
+                 <el-table-column   prop="branch" label="直流路" >
+                    <template slot-scope="scope">
+						{{scope.row.branch }}
 					</template>
                 </el-table-column>
 
@@ -84,6 +92,7 @@ export default {
            devices:[],           
            offTime:'',
            onTime:'',
+           branch:1,
            sels: [], //列表选中列
            listLoading:false,
            batchEditForm:{
@@ -121,13 +130,13 @@ export default {
     },
     methods: {
         handleSelectionChange: function(sels) {
-				this.sels = sels;			
+			this.sels = sels;			
 		},
-        delOffOnTime(){
-        
-            this.devices = this.devices.filter(t => !this.sels.some(s => s.id === t.id))
 
+        delOffOnTime(){        
+            this.devices = this.devices.filter(t => !this.sels.some(s => s.id === t.id))
         },
+
         addOffOnTime(){
             if(this.devices.length >= 4){
                 console.log(this.devices.length);
@@ -139,10 +148,16 @@ export default {
                 this.$message.error('拉合闸时间不能为空!');  
                 return;
             }
+            if(this.branch < 1 || this.branch > 4){
+                this.$message.error('从4路中选择一路');  
+                return;
+            }
+            
             var id=this.devices.length+1;
             this.devices.push( {
                     offTime:Date.parse(this.offTime), 
                     onTime:Date.parse(this.onTime),  
+                    branch:this.branch,
                     deviceNo:this.deviceInfo[0].deviceNo,
                     deviceName:this.deviceInfo[0].deviceName,
                     id:id

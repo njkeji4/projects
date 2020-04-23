@@ -11,7 +11,7 @@
     </el-tab-pane>
 
     <el-tab-pane label="结果分析" name="baseanalysis" lazy>
-        <BaseAnalysis v-if='loadresult' :active="activeName === 'baseanalysis' "></BaseAnalysis>
+        <BaseAnalysis :active="activeName === 'baseanalysis' "></BaseAnalysis>
     </el-tab-pane>
 
   </el-tabs>
@@ -33,8 +33,7 @@
 	    },
 		data() {
 			return {	
-				activeName:'basedata',
-				loadresult:false
+				activeName:'basedata',				
 			}
 		},
 		computed: {
@@ -45,8 +44,7 @@
 		},
 		methods: {			
             analyzeDone(){               
-                this.activeName='baseanalysis';
-				this.loadresult=true
+                this.activeName='baseanalysis';				
             }
 		},
 		created() {

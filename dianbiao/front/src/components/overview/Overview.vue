@@ -9,14 +9,6 @@
             <div>总能耗：{{totalPow}}KW/h</div>
         </div>
 
-        <!--div style="background:rgba(2,9,17,1);width:100%;height:50px;
-            position:absolute;top:0;left:0;">
-            <div style="float:left;color:white;line-height:50px;text-align:left;font-family:FZLTZHK--GBK1-0,FZLTZHK--GBK1;font-size:26px;padding-left:48px;">智慧空开管理模块</div>
-            <div style="float:right;font-size:15px;line-height:50px;color:white;">
-                17:08:23 <span style="color:grey">|</span> 2020年04月13日
-            </div>
-        </div-->
-
         <div style="background:rgba(2,9,17,1);padding-left:10px;padding-right:14px;height:100%;
                 width:24%;position:absolute;left:0px;top:0px;">
            
@@ -493,7 +485,7 @@ export default {
 }
 
 .chartcontainer{        
-    height:100%;
+    height:95%;
     width:100%;    
     position:relative;
     top:-20px;

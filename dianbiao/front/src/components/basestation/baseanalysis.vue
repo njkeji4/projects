@@ -50,6 +50,7 @@
 		},
 		watch: {
 			 active(val, oldVal) {
+				console.log(val);
 				val && this.getAnalysiResult();
 			}
 		},		
@@ -77,7 +78,7 @@
 			
 		},
 		mounted() {			
-			//this.getAnalysiResult();
+			this.getAnalysiResult();
 		}
 	}
 </script>
