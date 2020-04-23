@@ -81,33 +81,8 @@ public class BaseStationController {
 		
 	}
 	
-	@RequestMapping(value="/del", method=RequestMethod.POST)
-	public APIResult delDevice(
-			@RequestBody String[]ids,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-		
-		baseService.delDevice(ids);
-		
-		return new APIResult(0);
-	}
 	
-	@RequestMapping(value="/setting/edit", method=RequestMethod.POST)
-	public APIResult addSetting(
-			@RequestBody DeviceSettingDomain settingDomain,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{		
-		
-		return baseService.addDeviceSetting(settingDomain);
-		
-		//return new APIResult(0,"命令已经发送");
-	}	
 	
-	@RequestMapping(value="/setting/get", method=RequestMethod.POST)
-	public List<DeviceSetting> getSetting(
-			@RequestBody DeviceSetting setting,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-		
-		return baseService.getByDeviceNo(setting.getDeviceNo());
-	}
 	
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
 	public APIResult uploadBlacklist(

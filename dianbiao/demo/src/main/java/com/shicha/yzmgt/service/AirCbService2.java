@@ -141,7 +141,7 @@ public class AirCbService2 {
 		checkReturn(cmdId, ret, addr, userName);		
 	}	
 	
-	@Async
+	//@Async
 	public void setAutoOffOn(AutoOnOff auto, String userName, String groupName) {
 		Device device = deviceDao.findByDeviceNo(auto.getAddr());
 		int cmd = 8;

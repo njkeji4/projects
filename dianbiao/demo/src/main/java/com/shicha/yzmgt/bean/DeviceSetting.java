@@ -26,6 +26,7 @@ public class DeviceSetting {
 	
 	long offTime;
 	long onTime;	
+	int branch;
 	
 	public String getId() {
 		return id;
@@ -56,5 +57,11 @@ public class DeviceSetting {
 	}
 	public void setOnTime(long onTime) {
 		this.onTime = onTime;
+	}
+	public int getBranch() {
+		return branch;
+	}
+	public void setBranch(int branch) {
+		this.branch = branch;
 	}	
 }

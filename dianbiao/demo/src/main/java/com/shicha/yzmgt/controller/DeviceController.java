@@ -115,9 +115,9 @@ public class DeviceController {
 			@RequestBody DeviceSettingDomain settingDomain,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{		
 		
-		return deviceService.addDeviceSetting(settingDomain);
+		deviceService.addDeviceSetting(settingDomain);
 		
-		//return new APIResult(0,"命令已经发送");
+		return new APIResult(0,"命令已经发送");
 	}
 	
 	@RequestMapping(value="/setting/del", method=RequestMethod.POST)

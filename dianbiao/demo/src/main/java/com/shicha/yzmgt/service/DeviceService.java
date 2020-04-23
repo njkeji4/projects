@@ -191,19 +191,30 @@ public class DeviceService {
 		return ((h << 8) | m) << 8 ;
 		
 	}
-	public APIResult addDeviceSetting(DeviceSettingDomain settingDomain) {
+	public void addDeviceSetting(DeviceSettingDomain settingDomain) {
+		
+		User user= getCurrentUser();
+		String userName = user == null?null:user.getName();
+		String groupName = user == null?null:user.getGroupName();		
+		
 		String[]ids = settingDomain.getIds();
 		DeviceSetting[]settings = settingDomain.getSettings();
 		
 		for(String id : ids)
 			deviceSettingDao.deleteByDeviceNo(id);	
 		
-		int[] value = new int[settings.length * 2];
-		int idx = 0;
+		int[][] value = new int[5][8];
+		int[] idx = new int[5];
+		for(int i = 1; i <= 4; i++) {
+			for(int j = 0; j < 8; j++)
+				value[i][j] = -1;
+		}
+		
+		
 		for(DeviceSetting setting : settings) {		
 			
-			value[idx++] = getbcdTime(setting.getOffTime());
-			value[idx++] = getbcdTime(setting.getOnTime());
+			value[setting.getBranch()][idx[setting.getBranch()]++] = getbcdTime(setting.getOffTime());
+			value[setting.getBranch()][idx[setting.getBranch()]++] = getbcdTime(setting.getOnTime());
 			
 			for(String id : ids) {
 				Device d = deviceDao.findByDeviceNo(id);
@@ -213,19 +224,27 @@ public class DeviceService {
 				ds.setDeviceNo(d.getDeviceNo());
 				ds.setOffTime(setting.getOffTime());
 				ds.setOnTime(setting.getOnTime());
+				ds.setBranch(setting.getBranch());
 				deviceSettingDao.save(ds);
 			}
 		}
 		
-		User user= getCurrentUser();
-		String userName = user == null?null:user.getName();
-		String groupName = user == null?null:user.getGroupName();
-		
-		
-		for(String id : ids) {
-			airService.setAutoOffOn(new AutoOnOff(id,  value), userName, groupName);
+		for(int i = 1; i <= 4; i++) {
+			if(value[i][0] == -1 )continue;	//on valid data for this branch
+			
+			List<Integer>list =new ArrayList<Integer>();
+			int count=0;
+			while(value[i][count] != -1) {
+				list.add(value[i][count]);
+				count++;
+			}
+			Integer[] values = new Integer[list.size()];
+			list.toArray(values);
+			
+			for(String id : ids) {
+				airService.setAutoOffOn(new AutoOnOff(id, i, values), userName, groupName);
+			}
 		}		
-		return new APIResult(0);
 	}
 	
 	public void removeDeviceSetting(DeviceSetting setting) {
