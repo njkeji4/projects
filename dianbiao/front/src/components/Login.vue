@@ -1,35 +1,33 @@
 <template>
-<div style="">
+<div style="background-repeat:no-repeat;
+            background-size:100% 100%;
+            background-image:url(./bg.jpg);height:100vh !important;">
 
-      <!--img height="55px" src="../assets/img/timg.jpg" style="position:fixed;right:540px; top:50px;"/-->
-      <div style="font:'微软雅黑'; font-size:40px;position:fixed;right:215px; top:50px; 
-              color:#40a1db;vertical-align:top;line-height:55px;vertical-align:middle;">
-        智能电表管理系统
-     </div>
     
-    <div style="float:left;margin-top:0px;width:60%;">    
-        <img style="width:100%;" src="../assets/img/login-poto.gif" />
+    <div class="login-title">
+       <div class="title0" >
+        智慧机楼管理系统
+       </div>   
+    
+      <el-form :model="loginForm" :rules="loginFormRule" ref="loginForm" label-position="left" 
+          label-width="0px" 
+          class="login-container">
+      
+
+        <h3 class="title"> 输入用户名，密码进行系统管理	</h3>
+        <el-form-item prop="name">
+          <el-input type="text" v-model="loginForm.name" auto-complete="off" placeholder="账号" @keyup.native.enter="submit"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码" @keyup.native.enter="submit"></el-input>
+        </el-form-item>
+        <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+        <el-form-item style="width:100%;">
+          <el-button type="primary" style="width:100%;" @click.native.prevent="submit" :loading="logining">登录</el-button>
+          <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
+        </el-form-item>   
+      </el-form>
     </div>
-
-    <el-form :model="loginForm" :rules="loginFormRule" ref="loginForm" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-      <h3 class="title"> 输入用户名，密码进行系统管理	</h3>
-      <el-form-item prop="name">
-        <el-input type="text" v-model="loginForm.name" auto-complete="off" placeholder="账号" @keyup.native.enter="submit"></el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="密码" @keyup.native.enter="submit"></el-input>
-      </el-form-item>
-      <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
-      <el-form-item style="width:100%;">
-        <el-button type="primary" style="width:100%;" @click.native.prevent="submit" :loading="logining">登录</el-button>
-        <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
-      </el-form-item>   
-    </el-form>
-
-   
-    <!--div style="color:#40a1db;width:100%; position:fixed;bottom:20px;" >
-      中移动物联网有限公司 Copyright © 2019							
-    </div-->
 
 </div>
 </template>
@@ -48,7 +46,7 @@
   export default {
     data() {
       return {
-        title:"欢迎登陆使用",//人证管理系统
+       
         logining: false,
         savedInfo: {},
         loginForm: defaultFormData,
@@ -75,14 +73,6 @@
 		
       submit() {
 
-        if(0){//for test
-            this.$router.push({
-                    path: '/statis'
-                  });
-
-                  return;
-        }
-
         var loginParams = {
                 name:this.loginForm.name,
                 password:md5(this.loginForm.password)
@@ -94,21 +84,13 @@
               
               this.logining = true;
               
-              AdminAPI.login(loginParams)
-                  .then(({data}) =>
+              AdminAPI.login(loginParams).then(  ({data}) =>
                   {           
                       if(data.status === 0){      
                         this.loginForm.role = data.data.role;                  
                         this.update(this.loginForm);
-                        var firstpage='/statis';
-
-                        if(data.data.role==='ROLE_AD')
-                        {
-                            firstpage='/adv/adv';
-                        }
-                        this.$router.push({
-                          path: firstpage
-                        });
+                        var firstpage='/overview';                        
+                        this.$router.push({path: firstpage });                       
                       }else{            
                         this.$message({
                               message: data.msg,
@@ -128,32 +110,7 @@
             }//end if(valid)
           },
         );
-		  },//end submit method       
-
-      test(){
-         AdminAPI.getCheckDataById("089fe534-115e-4969-b8ed-97319a193dcb")
-                  .then(({data}) =>
-                  {           
-                      if(data.status === 0){      
-                        this.imageData += data.data.spotImg;
-                        console.log(this.imageData);
-                      }else{            
-                        this.$message({
-                              message: "get checkdata failed",
-                              type: 'error'
-                            });
-                      }
-                      
-                  })
-                  .catch(ex =>
-                  {
-                   this.$message({
-                              message: "get check data failed"+ex,
-                              type: 'error'
-                            });
-                    
-                  });
-      }
+		  },//end submit method          
 
     },
 
@@ -167,31 +124,39 @@
 </script>
 
 <style lang="scss" scoped>
-  .login-container {
-   position:absolute;
-   right:150px;
-   top:150px;
-     
-    /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    background-clip: padding-box;
-   
-    width: 350px;
-    padding: 35px 35px 15px 35px;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    box-shadow: 0 0 25px #cac6c6;
-    .title {
-      margin: 0px auto 40px auto;
-      text-align: center;      
-      font-family:Tahoma,Arial,"Hiragino Sans GB","宋体","微软雅黑";
-      color:#333333;
-      
-    }
-    .remember {
-      margin: 0px 0px 35px 0px;
-    }
+  .login-title{
+      position:absolute;
+      right:150px;
+      top:80px;
+      width: 350px;
+      .title0{
+        font-family:Tahoma,Arial,"Hiragino Sans GB","宋体","微软雅黑";
+        color:white;
+        font-size:40px; 
+        margin-bottom:10px;
+      }
+  }
+
+  .login-container {        
+        /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
+       
+        border-radius: 5px;     
+        border: 1px solid #eaeaea;
+        box-shadow: 0 0 25px #cac6c6;  
+
+        padding: 35px 35px 15px 35px;
+        background-color: rgba(0,39,74,0.6);
+       
+       
+        .title {
+          margin: 0px auto 40px auto;
+          text-align: center;      
+          font-family:Tahoma,Arial,"Hiragino Sans GB","宋体","微软雅黑";
+          color:white;
+        }
+        .remember {
+          margin: 0px 0px 35px 0px;
+          color:white;
+        }
   }
 </style>

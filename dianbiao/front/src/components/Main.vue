@@ -1,43 +1,54 @@
 <template>	
-		<el-container style="height:100%;min-height:100vh;">
+		<el-container >
 
-			<el-aside width="50px">
-			<el-container style="height:100%;"> <!-- this style is very important-->
+			<el-aside width="50px" >				
+			<el-container style="height:100vh;overflow:hidden;"> <!-- this style is very important-->
 					
 				<el-header  style="background-color: #3c8dbc;
 							       color: #fff;padding:0;
 							       font-size:30px; line-height: 50px; height: 50px;">
-					
 					<i class="el-icon-eleme"/>
-
 				</el-header>
 
-				<el-main class="side-menu">
-					<div style="background-color: transparent;  height:100%;">
-
+				<el-menu default-active="100" collapse="true" style="height:100vh;"> 
+					<el-scrollbar style="height:100%">
+					
+						<el-menu-item tabindex="100" @click="nav('overview')">
+							<i class="menu-icon-1 el-icon-full-screen"> 
+								<div slot="title" class="menu-text">首页</div>
+							</i>
+						</el-menu-item>
+						
 						<template v-for="(item,index) in sideMenuRouter" 
 							v-if="sysUserInfo.role === 'ROLE_ADMIN' 
 									|| (sysUserInfo.role === 'ROLE_USER' && !item.admin)">									
 							
-							<div :index="index+''" v-if="item.children">
-								<i :class="item.iconCls"/>
-								<div slot="title">{{item.title}}</div>
-								<div v-for="(child, i) in item.children" :index="i+''" v-if="!child.hidden" @click="nav(item.path + '/' + child.path)">
-									<i :class="child.iconCls"></i><span>{{child.title}}</span>
-								</div>
-							</div>
+							<el-submenu :index="index+''" v-if="item.children" 
+										popper-class="sub-menu-popup"
+										tabindex="-1">
+								<template slot="title">
+									<i :class="item.iconCls" class="menu-icon-1">
+										<div class="menu-text">{{item.title}}</div>
+									</i>
+								</template>
+								<el-menu-item v-for="(child, i) in item.children" :index="i+''" v-if="!child.hidden" @click="nav(item.path + '/' + child.path)">
+									<span>{{child.title}}</span>
+								</el-menu-item>
+							</el-submenu>
 
-							<div v-else  tabindex="0" :index="index+''" @click="nav(item.path)" class="menu-item">
-								<i :class="item.iconCls" class="menu-icon"></i>
-								<div class="menu-text">{{item.title }}</div>
-							</div>
+							<el-menu-item v-else :tabindex="index+''" @click.native="nav(item.path)" >
+								<i :class="item.iconCls" class="menu-icon-1">
+									<div class="menu-text">{{item.title}}</div>
+								</i>
+							</el-menu-item>
 
 						</template>
-					</div>
-				</el-main>
+
+					</el-scrollbar>
+				</el-menu>
 				
-			</el-container>
-			</el-aside>
+			</el-container>				
+			</el-aside>	<!-- 左侧面 -->
 			
 			<el-container>
 
@@ -47,7 +58,7 @@
 					<div style="color: #fff;
 							font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 							font-weight: 400; line-height: 50px; height: 50px;float:left;">					 
-						智能空开管理系统
+						智慧机楼管理系统
 					</div>
 
 					<div style="float:right">
@@ -79,10 +90,7 @@
 
 				</el-main>
 
-				<!--el-footer style="line-height: 40px; height: 40px; 
-							border-top:1px solid #d2d6de; text-align: left;">
-						Copyright © 2014-2019 中移动物联网有限公司  All rights reserved. 
-				</el-footer-->
+			
 
 			</el-container>
 
@@ -116,7 +124,7 @@
 		computed: {
 
 			sideMenuRouter() {
-				var children = this.$router.options.routes[1].children;				
+				var children = this.$router.options.routes[2].children;				
 				return children;
 			},
 			...mapGetters('login', {
@@ -132,16 +140,8 @@
 			 collapse(){
 				this.isCollapse = !this.isCollapse;
 			},
-			nav(path) {				
+			nav(path) {	
 				this.$router.push('/' + path);
-				/*
-				if(path === 'overview'){
-					var ele= document.getElementById("elmain");
-					var requestMethod = ele.requestFullScreen  ||ele.webkitRequestFullScreen //谷歌
-					||ele.mozRequestFullScreen  //火狐
-					||ele.msRequestFullScreen; //IE11;
-							requestMethod.call(ele); 
-				}*/
 			},
 			
 			//退出登录
@@ -238,63 +238,6 @@
 		overflow:hidden;
 	}
 
-	/******** start to define side menu CSS */
-	.side-menu{
-		background-color: rgb(47,71,133);
-		padding-left:0px;
-		padding-right:0px;
-		
-	}
-	
-	/* menu item   */
-	.el-menu-item , .el-menu-item.is-active{  /* to fix the issue of elementui*/
-		color: #8aa4af;
-		text-align:left;
-		padding-left:15px !important;
-	}
-	.el-menu-item:hover{
-		color:white;
-		background-color: rgb(30, 40, 44);
-	}
-	.el-menu-item:focus{
-		background-color: rgb(30, 40, 44);
-		color:white;	
-	}
-
-	/* sub menu   */
-	.el-submenu{
-		text-align:left;
-		
-		.el-menu--inline{
-			margin-left:20px;
-		}
-	}
-	.el-submenu__title{
-		color:#8aa4af;
-		padding-left:15px !important;
-	}
-	.el-submenu__title:hover{
-		color:white;
-		background-color: rgb(30, 40, 44);
-	}
-	.el-submenu__title:focus{
-		color:white;
-		background-color: rgb(30, 40, 44);
-	}
-	.el-menu{
-		background-color:transparent;
-	}
-
-	.el-menu--collapse{
-		width:50px !important;
-	}
-	.el-menu--popup{
-		background-color: #222d32 !important;
-		margin-left:0px !important;
-	}
-	
-	/******* end */
-
 	.el-dropdown-link {
 		cursor: pointer;		
 	}
@@ -316,20 +259,62 @@
 		
 	}
 	
-	.menu-item {
-		color:white;
-		height:50px;
-		font-size:29px;
-		margin-bottom:10px;
+
+	/* ul */
+	.el-menu--collapse{
+		width:50px !important;
+		height:100%;
+		background-color:rgb(47,71,133);
 	}
-	.menu-item:hover{
-		color:blue;
+	/* li */
+	.el-menu-item, .el-menu-item.is-active, .el-submenu{
+		padding-left:0px !important;
+		text-align:center;
+		width:50px !important;
 	}
-	.menu-item:focus{
-		background-color:rgb(18,43,60);
+	.el-menu-item:hover{		
+		background-color: transparent;
 	}
+	.el-menu-item:focus,.el-submenu:focus{
+		background-color: rgb(30, 40, 44);
+		color:white;	
+	}
+	
+	.el-submenu__title{
+		padding-left:0px !important;
+	}
+	.el-submenu__title:hover{
+		background-color: transparent;
+	}
+	.sub-menu-popup{
+		background-color:rgb(28,34,75);
+		ul{
+			background-color:rgb(28,34,75);
+			.el-menu-item{
+				width:100% !important;
+				color:white;
+			}
+			.el-menu-item:hover{
+				color:blue;
+				background-color:rgb(34,50,104);
+			}
+		}
+	}
+
+	/* icon */
+	.menu-icon-1{
+		font-size:30px;
+		width:50px !important;
+		text-align:center;
+		color:white !important;
+	}
+	.menu-icon-1:hover{
+		color:blue !important;
+	}	
 	.menu-text{
-		font-size:10px;
+		font-size:15px;
+		color: #8aa4af;
 	}
+	
 	
 </style>

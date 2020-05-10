@@ -1,15 +1,32 @@
 <template>
-    <div style="overflow:hidden; height:100%; position:relative;background:rgba(2,9,17,1);" >
+    <div>
 
+        	<!--div style="background:rgba(2,9,17,0.8);color: #fff;
+                        width:100%;
+						line-height: 50px;height: 50px;position:absolute;left:0px;top:0px;" >
+					
+					<div style="color: #fff; 
+							font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+							font-weight: 400; line-height: 50px; height: 50px;float:left;">					 
+						智慧机楼管理系统
+					</div>
 
-        <div id="allmap" style="height:calc(100% + 35px);width:52%;left:24%;"></div>
-        <div id="mappopwin">
+					<div style="float:right;">						
+						{{currenttime}} <span style="color:grey">|</span> {{currentdate}}
+					</div>
+
+			</div-->
+
+        <div id="allmap" style="/*height:calc(100% + 35px);width:52%;left:24%;*/height:100vh;width:100%;">
+            <iframe src="./city/building.html" style="width:100%;height:100vh;border:none;overflow:hidden;"></iframe>
+        </div>
+        <!--div id="mappopwin">
             <div>今日能耗：{{todayPow}}KW/h</div>
             </p>
             <div>总能耗：{{totalPow}}KW/h</div>
-        </div>
+        </div-->
 
-        <div style="background:rgba(2,9,17,1);padding-left:10px;padding-right:14px;height:100%;
+        <div style="background:rgba(2,9,17,0.8);padding-left:10px;padding-right:14px;height:100%;
                 width:24%;position:absolute;left:0px;top:0px;">
            
             <div class="box">
@@ -79,7 +96,7 @@
         </div>
 
         <!--    right -------------------->
-        <div style="background:rgba(2,9,17,1);padding-left:9px;float:right;height:100%;
+        <div style="background:rgba(2,9,17,0.8);padding-left:9px;float:right;height:100%;
             width:26%;position:absolute;right:0px;top:0px;">
 
             <div class="box" style="height:36%;">
@@ -238,8 +255,14 @@
                     
                 </div>             
             </div>
-        </div>
+        </div><!-- end of right panel-->
       
+        <!-- bottom -->
+        <div class="bottom-panel">
+            <el-button round class="panel-button" @click="nav('/device')">智能空开</el-button>
+            <el-button round class="panel-button" @click="nav('/base')">基站分析</el-button>
+            
+        </div>
              
     </div>
 
@@ -259,7 +282,9 @@ import Echartconf from './echartsconf';
 
 export default {
   data() {
-		return {
+		return {     
+            currenttime:'',
+			currentdate:'',     
             todayPow:789,
             totalPow:1234,
             todayDate:'',
@@ -288,7 +313,15 @@ export default {
 			dateFormat: Filters.dateFormat,
 			scoreFormat:(v,f) => {return parseFloat(v).toFixed(2);}
 	},
-  methods:{    
+  methods:{   
+    controlPannel(){
+         this.$router.push({
+                    path: '/device'
+                  });
+    } ,
+    nav(path) {	
+		this.$router.push(path);
+	},
     gettodayData(){
         AdminAPI.getOverview().then(({data}) => {
           if(data.status === 0){
@@ -410,11 +443,21 @@ export default {
     this.loadData();
     
     const _this = this;
-    this.loadMap();
+    //this.loadMap();
 
     window.onresize = function windowResize () {
         _this.monthBar.resize();
     }
+
+    setInterval(function(){
+        var myDate=new Date();
+        var m = myDate.getMinutes();
+        var s = myDate.getSeconds();
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        _this.currentdate = myDate.getFullYear() + '年'+ (myDate.getMonth() + 1) + '月' + myDate.getDate() + '日';
+        _this.currenttime = myDate.getHours()+':'+ m  + ":" + s;				
+    },1000);			
    
   }
 
@@ -548,6 +591,21 @@ export default {
     
     color:#c2deff; 
     font-size:12px;
+}
+.bottom-panel{
+    
+    position:absolute;
+    left:0;
+    bottom:10px;
+    height:50px;
+    width:100%;
+}
+.panel-button{
+    border:none;
+    background-color:rgba(2,9,17,0.8);
+    color:white;
+    height:50px;
+    font-size:20px;
 }
 
 </style>
