@@ -54,7 +54,11 @@ public class User {
 	@Column(nullable=false, columnDefinition="INT default 0")
 	int errorTimes = 0;
 	
+	long createTime;
+	long lastPasswordTime;
+	
 	String groupName;
+	String groupId;
 	
 	public String getRole() {
 		return role;
@@ -63,8 +67,6 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-
 	
 	public String getId() {
 		return id;
@@ -123,7 +125,29 @@ public class User {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	
-	
-	
+
+	public long getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(long createTime) {
+		this.createTime = createTime;
+	}
+
+	public long getLastPasswordTime() {
+		return lastPasswordTime;
+	}
+
+	public void setLastPasswordTime(long lastPasswordTime) {
+		this.lastPasswordTime = lastPasswordTime;
+	}
+
+	public String getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+		
 }

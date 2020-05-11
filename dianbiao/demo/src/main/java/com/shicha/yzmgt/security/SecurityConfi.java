@@ -43,7 +43,8 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter implements WebMv
 					//"/user/add",
 					"/test/**","/getdata",
 					 "/terminal/**",
-					"/index.html", "/favico.ico", "/css/**", "/fonts/**", "/img/**", "/js/**"
+					"/index.html", "/favico.ico", "/css/**", "/fonts/**", "/img/**", "/js/**",
+					"/favicon.jpeg","/bg.jpg"
 					);			
 	}
 	
@@ -53,6 +54,8 @@ public class SecurityConfi extends WebSecurityConfigurerAdapter implements WebMv
 			.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
+			.and()
+				.headers().frameOptions().disable()
 			.and()
 			.logout()
 				.logoutUrl("/user/logout")

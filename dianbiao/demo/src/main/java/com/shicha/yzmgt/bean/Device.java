@@ -66,6 +66,10 @@ public class Device {
 	long dtodayOnTime = 0;	
 	long dtotalOnTime = 0;
 	
+	
+	String roomId;
+	String roomName;
+	
 	//////data field
 	@Column(nullable=false, columnDefinition="Double default 0")
 	double allEnergy;  //组合有功总电量		
@@ -649,6 +653,26 @@ public class Device {
 		if(branch == 0 || branch == 4) {
 			this.dState = stat;
 		}
+	}
+
+
+	public String getRoomId() {
+		return roomId;
+	}
+
+
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
+	}
+
+
+	public String getRoomName() {
+		return roomName;
+	}
+
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,8 +35,10 @@ import com.shicha.yzmgt.bean.DeviceSetting;
 import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.bean.basestation.BaseFile;
 import com.shicha.yzmgt.bean.basestation.BaseStation;
+import com.shicha.yzmgt.bean.jifang.Room;
 import com.shicha.yzmgt.dao.IDevcieSettingDao;
 import com.shicha.yzmgt.dao.IDeviceDao;
+import com.shicha.yzmgt.dao.IRoomDao;
 import com.shicha.yzmgt.dao.IUserDao;
 import com.shicha.yzmgt.domain.APIResult;
 import com.shicha.yzmgt.domain.AutoOnOff;
@@ -49,6 +52,9 @@ public class DeviceService {
 	
 	@Autowired
 	IDeviceDao deviceDao;
+	
+	@Autowired
+	IRoomDao roomDao;
 	
 	@Autowired
 	IUserDao	userDao;
@@ -110,6 +116,12 @@ public class DeviceService {
 							));
 				}
 				
+				if(device.getRoomName() != null) {
+					predicatesList.add(builder.and(
+							builder.like(root.get("roomName"), "%" + device.getRoomName() + "%")
+							));
+				}
+				
 				if(device.getDeviceName() != null) {
 					predicatesList.add(builder.and(
 							builder.like(root.get("deviceName"), "%" + device.getDeviceName() + "%")
@@ -162,6 +174,11 @@ public class DeviceService {
 			d.setGroupName(user.getGroupName());
 		}
 		d.setLastHeartBeatTime(0l);
+		Optional<Room> op = roomDao.findById(d.getRoomId());
+		if(op.isPresent()) {
+			d.setRoomId(op.get().getId());
+			d.setRoomName(op.get().getName());
+		}
 		if(deviceDao.findByDeviceName(d.getDeviceName()) == null) {
 			deviceDao.save(d);
 		}

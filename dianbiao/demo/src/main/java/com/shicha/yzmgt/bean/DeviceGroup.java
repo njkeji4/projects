@@ -17,6 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*user group**/
 
 @Entity(name="device_group")
 public class DeviceGroup {
@@ -30,6 +31,8 @@ public class DeviceGroup {
 	String groupName;
 	
 	Long createTime;
+	
+	String parentId;
 	
 	
 	public DeviceGroup() {}
@@ -61,5 +64,13 @@ public class DeviceGroup {
 	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}	
 }
 

@@ -15,6 +15,7 @@ public class SearchDevice {
 	String order = "asc";//"dsc"
 	
 	String groupName;
+	String roomName;
 
 	public String getDeviceName() {
 		return deviceName;
@@ -22,6 +23,14 @@ public class SearchDevice {
 
 	public void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
+	}
+
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 	public String getDeviceNo() {
