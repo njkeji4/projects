@@ -14,6 +14,9 @@
 			</el-col>
 			<el-col :span=10 class="paramleft">
 				<el-form :inline="true" size="small" :model="searchForm" class="search-form" label-width="6em" ref="searchForm">
+					<el-form-item label="" prop="roomName">
+						<el-input size="small" v-model="searchForm.roomName" placeholder="机房名称"></el-input>
+					</el-form-item>
 					<el-form-item label="" prop="deviceName">
 						<el-input size="small" v-model="searchForm.deviceName" placeholder="设备名称"></el-input>
 					</el-form-item>
@@ -53,6 +56,9 @@
 				<el-table-column header-align="center"  type="selection">				
 				</el-table-column>
 				
+				<el-table-column  sortable="custom" prop="roomName" label="机房" width="200"></el-table-column>
+				
+
 				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>
 				
 				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>				
@@ -155,7 +161,8 @@
 				testvalue:1,			
 				searchForm: { 
 					deviceName:'',					
-					deviceNo:'',				
+					deviceNo:'',	
+					roomName:''			
 				},
 				uploadUrl:AdminAPI.uploadUrl,
 				actionLoading:false,

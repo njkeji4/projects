@@ -36,12 +36,7 @@ let routes = [
                 title:'机房',
                 iconCls: 'el-icon-s-shop'
             },     
-            {
-                path: 'room',
-                component: RoomList,               
-                title:'主机',
-                iconCls: 'el-icon-monitor'
-            },     
+           
             {
                 path: 'device',
                 component: DeviceList,               
@@ -53,55 +48,7 @@ let routes = [
                 component: BaseTabs,               
                 title:'基站',
                 iconCls: 'el-icon-data-analysis'
-            },
-
-            {
-                path: 'base',
-                component: BaseTabs,               
-                title:'动环',
-                iconCls: 'el-icon-suitcase',
-                children:[
-                    {
-                        path: 'device',
-                        component: DeviceList,               
-                        title:'温湿度',
-                        iconCls: 'el-icon-suitcase'
-                    },
-                    {
-                        path: 'device',
-                        component: DeviceList,              
-                        title:'空调',
-                        iconCls: 'el-icon-table-lamp'
-                    },
-                    {
-                        path: 'device',
-                        component: DeviceList,               
-                        title:'烟感',
-                        iconCls: 'el-icon-office-building'
-                    },
-                    {
-                        path: 'device',
-                        component: DeviceList,               
-                        title:'漏水',
-                        iconCls: 'el-icon-box'
-                    },
-                    {
-                        path: 'device',
-                        component: DeviceList,               
-                        title:'PDU',
-                        iconCls: 'el-icon-thumb'
-                    },
-        
-                    {
-                        path: 'device',
-                        component: DeviceList,               
-                        title:'UPS',
-                        iconCls: 'el-icon-thumb'
-                    },
-                ]
-            },
-           
-           
+            },           
 
             {
                 path: 'stat',

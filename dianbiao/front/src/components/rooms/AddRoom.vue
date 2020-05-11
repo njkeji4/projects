@@ -4,21 +4,10 @@
          class="edit-device-form">
          
 		<el-form :model="batchEditForm" label-width="7em" :rules="batchEditFormRules" ref="batchEditForm">			
-			 <el-form-item label="选择机房" prop="roomName">
-                <el-select v-model="batchEditForm.roomId" placeholder="请选择机房">
-                    <el-option
-                        v-for="item in rooms"
-                        :key="item.id"
-                        :label="item.name"
-                        :value="item.id">
-                    </el-option>
-                </el-select>
-            </el-form-item>
-
-            <el-form-item label="设备名字" prop="deviceName">
+			<el-form-item label="机房名称" prop="deviceName">
 				<el-input type="text" v-model="batchEditForm.deviceName" size="small" ></el-input>
 			</el-form-item>
-            <el-form-item label="设备编号" prop="deviceNo">
+            <el-form-item label="机房地址" prop="deviceNo">
 				<el-input type="text" v-model="batchEditForm.deviceNo" size="small" ></el-input>
 			</el-form-item>
 		</el-form>
@@ -31,26 +20,24 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { AdminAPI,RoomAPI } from '../../api';
+import { AdminAPI, RoomAPI } from '../../api';
 
 export default {
     data: function() {
-        return {      
-           rooms:[],    
+        return {          
            modalVisible: true,			
            batchConfigLoading: false,           
-           title: '增加设备',
+           title: '增加机房',
            batchEditForm:{
                deviceName:'',
-               deviceNo:'',
-               roomId:''
+               deviceNo:''
            },
            batchEditFormRules: {
                 deviceName: [
-                    { required: true, message: '输入设备名字', trigger: 'change' }
+                    { required: true, message: '输入机房名字', trigger: 'change' }
                 ],
                 deviceNo: [
-                    { required: true, message: '输入设备编号', trigger: 'change' }
+                    { required: true, message: '输入机房地址', trigger: 'change' }
                 ]
            },
         };
@@ -59,43 +46,17 @@ export default {
 	},
     created() {
     },
-    mounted(){
-        this.getAllRooms();
-    },
-    methods: {
-        getAllRooms() {
-				var searchParams = {};
-				searchParams.page = 0;
-				searchParams.size = 10000;
-				searchParams.sort="name";
-				searchParams.order="asc";				
-				RoomAPI.search(searchParams).then(({
-					data: jsonData
-				}) => {
-					if(jsonData.status === 0) {						
-						this.rooms = jsonData.data.content;						
-					} else {
-						this.$message({
-							messsage: `获取机房列表失败:${data.msg}`,
-							type: 'error'
-						})
-					}
-				});
-		},
 
+    methods: {
 		batchEdidtSubmit() {            
 			this.$refs.batchEditForm.validate(valid => {
 				if(valid) {		                   	
-					AdminAPI.addDevice(
-                        {
-                            deviceName:this.batchEditForm.deviceName,
-                            deviceNo:this.batchEditForm.deviceNo,
-                            roomId:this.batchEditForm.roomId
-                        }
+					RoomAPI.add(
+                        {name:this.batchEditForm.deviceName,address:this.batchEditForm.deviceNo}
                     ).then(({data}) => {
 						if(data.status === 0) {
 							this.$message({
-								message: '添加设备成功!'
+								message: '添加机房成功!'
 							});
 							this.$emit('data', {});
 							this.modalVisible = false;
@@ -103,7 +64,7 @@ export default {
 							this.$message.error(data.message);
 						}
 					}).catch(() => {
-						this.$message.error('添加设备失败!');
+						this.$message.error('添加机房失败!');
 					});
 				}
 			});

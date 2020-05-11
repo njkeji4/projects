@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import * as AdminAPI from './admin';
 
+import * as RoomAPI from './room';
+
 // 设置拦截器
 axios.interceptors.response.use(undefined, function (e) {
     // 如果session失效,重新登录
@@ -14,8 +16,8 @@ axios.interceptors.response.use(undefined, function (e) {
     }
 });
 
-export {
-    
-    AdminAPI
+export {    
+    AdminAPI,
+    RoomAPI
     
 };

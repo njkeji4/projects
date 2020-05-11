@@ -1,17 +1,29 @@
 <template>
 	<div class="main-content" style="padding:3px;">
-		<el-row :gutter=20 class="toolbar searchparam">
+		
 			
-			<el-col  :span=10 class="search-action-wrap" style="margin-bottom:10px;">
-			
-			</el-col>
-			<el-col :span=10 class="paramleft">
-				
-			</el-col>
+	
+		<div style="">		
+			<div style="float:left;">		
+				<el-button size="small" @click="addRoom">增加机房</el-button>
+				<el-button size="small" @click="batchRemove" :disabled="this.sels.length === 0">删除机房
+				</el-button>
+			</div>
 
-			
-			
-		</el-row>
+			<div style="float:left;margin-left:50px;">
+				<el-form size="small" :inline="true" :model="searchForm" 
+					class="search-form" label-width="6em" ref="searchForm">
+					
+					<el-form-item label="" prop="name">
+						<el-input size="small" v-model="searchForm.name" placeholder="机房名称" 
+							style="width:230px;margin-right:10px;"></el-input>
+
+						<el-button size="small" @click="searchDevice">查询</el-button>
+					</el-form-item>
+					
+				</el-form>
+			</div>
+		</div>
 
 		<section class="grid-content">
 			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table" 
@@ -22,15 +34,27 @@
 				<el-table-column header-align="center"  type="selection">				
 				</el-table-column>
 				
-				<el-table-column  sortable="custom" prop="deviceName" label="机房名称" width="200"></el-table-column>
+				<el-table-column  sortable="custom" prop="name" label="机房名称" width="200"></el-table-column>
 				
-				<el-table-column  prop="deviceNo" label="机房地址" width="150" sortable="custom"></el-table-column>				
+							
 						
-				<el-table-column  prop="hostip" label="主机IP" width="120" >
+				<el-table-column  prop="hostip" label="空开总数" width="120" >
 				</el-table-column>		
 
-				<el-table-column  prop="hostStatus" label="主机状态" width="120" sortable="custom">
-				</el-table-column>				
+				<el-table-column  prop="hostStatus" label="在线空开" width="120" >
+				</el-table-column>		
+
+				<el-table-column  prop="hostStatus" label="离线空开" width="120" >
+				</el-table-column>		
+
+				<el-table-column  prop="hostStatus" label="拉闸空开" width="120">
+				</el-table-column>
+
+				<el-table-column  prop="hostStatus" label="合闸空开" width="120">
+				</el-table-column>	
+
+				<el-table-column  prop="address" label="机房地址" >
+				</el-table-column>		
 			
 			</el-table>
 		</section>
@@ -50,16 +74,17 @@
 	import Vue from 'vue'
 	import { mapGetters, mapActions } from 'vuex';
 	import util from '../../common/js/util';
-	import { AdminAPI } from '../../api';
+	import { AdminAPI, RoomAPI } from '../../api';
 	import { openModal } from '../../common/js/modal';
+	
+	import AddRoomDlg from './AddRoom';	
+	const openAddRoomDlg = openModal(AddRoomDlg);
 
 	export default {
 		data() {
-			return {
-				testvalue:1,			
+			return {					
 				searchForm: { 
-					deviceName:'',					
-					deviceNo:'',				
+					name:''		
 				},
 				uploadUrl:AdminAPI.uploadUrl,
 				actionLoading:false,
@@ -74,7 +99,7 @@
 					order: 'descending'
 				},
 				orderBy: [{
-					name: 'deviceNo',
+					name: 'name',
 					order: 'DESC'
 				}],
 				listLoading: false,
@@ -88,7 +113,7 @@
 				// table event data
 				deviceParamsConfigVisible: false,
 				selectedDevice: null,
-				sort:'deviceNo',
+				sort:'name',
 				order:'desc'
 			}
 		},
@@ -106,6 +131,15 @@
 			}
 		},		
 		methods: {		
+
+			addRoom() {
+				openAddRoomDlg().then((data) => {
+					
+					if(data !== undefined){
+						this.getDeviceList();
+					}
+				});
+			},
 
 			handleSortChange(col){		
 				if(col.prop == null)
@@ -126,131 +160,6 @@
 				this.getDeviceList();
 			},
 			
-		
-
-			importDevice(){
-				openImportDeviceDlg().then((data) => {
-					
-					if(data !== undefined){
-						this.getDeviceList();
-					}
-				});
-			},
-
-			onoffDevice(val,row,branch){
-				
-				var device = row.deviceNo;	
-				var states = ["aState", "bState", "cState", "dState"];			
-				var state = states[branch];
-				
-				 row[states[branch-1]] = val == 0? 1 : 0;	//keep the value unchange
-
-				if(val == 1){
-					AdminAPI.switchOffDevice({addr:device,branch:branch}).then(({
-						data: data
-					}) => {
-						this.actionLoading=false;
-						
-						if(data !== null && data.status === 0) {
-							this.$message(data.message);
-						} else {
-							this.$message({
-								messsage: `拉闸失败:${data.message}`,
-								type: 'error'
-							})
-						}
-					});
-				}else{
-					AdminAPI.switchOnDevice({addr:device,branch:branch}).then(({
-						data: data
-					}) => {
-						this.actionLoading=false;						
-						if(data !== null && data.status === 0) {
-							this.$message(data.message);
-						} else {
-							this.$message({
-								messsage: `合闸失败:${data.message}`,
-								type: 'error'
-							})
-						}
-					});
-				}
-
-			},
-
-			offDevice() {
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
-				}else
-					return;
-				
-				var ids = this.sels.map(item => item.deviceNo)			
-				this.actionLoading=true;
-				AdminAPI.switchOffDevice(ids).then(({
-					data: data
-				}) => {
-					this.actionLoading=false;
-					console.log(data);
-					if(data !== null) {
-						this.$message(data.message);
-						
-					} else {
-						this.$message({
-							messsage: `拉闸失败:${data.message}`,
-							type: 'error'
-						})
-					}
-				});
-				
-				
-			},
-
-			onDevice() {
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
-				}else
-					return;
-
-				this.actionLoading=true;
-				var ids = this.sels.map(item => item.deviceNo)	
-				AdminAPI.switchOnDevice(ids).then(({
-					data: data
-				}) => {
-					this.actionLoading=false;
-					
-					if(data !== null) {
-						this.$message(data.message);
-						
-					} else {
-						this.$message({
-							messsage: `合闸失败:${data.message}`,
-							type: 'error'
-						})
-					}
-				});
-				
-
-			},
-
-			settingDevice(){
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
-				}
-				openDeviceEditDlg({
-					data: {
-						deviceInfo: this.sels
-					}
-				}).then((data) => {
-					
-					if(data !== undefined){
-						this.getDeviceList();
-					}
-				});
-			},
-			
 			handleSizeChange(size) {
 				this.pageSize = size;				
 				this.handleCurrentChange(1);
@@ -268,7 +177,7 @@
 				searchParams.order=this.order;//"asc";
 				
 				this.listLoading = true;
-				AdminAPI.searchDevice(searchParams).then(({
+				RoomAPI.search(searchParams).then(({
 					data: jsonData
 				}) => {
 					if(jsonData.status === 0) {
@@ -278,7 +187,7 @@
 						this.listLoading = false;
 					} else {
 						this.$message({
-							messsage: `获取设备列表失败:${data.msg}`,
+							messsage: `获取机房列表失败:${data.msg}`,
 							type: 'error'
 						})
 					}
@@ -306,32 +215,13 @@
 				}				
 				return list;
 			},			
-			uploadSuc(res, file, fileList){
-				if(res.status === 0){
-					this.$message({
-						message: '上传成功!',
-						type: 'success'
-					});
-					this.getDeviceList();
-					
-				}else{
-					this.$message.error('上传文件失败!'+res.msg);
-				}
-			},
-			uploadFail(err){
-				this.$message({
-						message: '上传失败!'+err,
-						type: 'error'
-					});
-			},
-			batchRemove(){
-					
-				if(this.sels && this.sels.length > 0) {					
-				}else
+			
+			batchRemove(){					
+				if(this.sels && this.sels.length <= 0) {	
 					return;
-
-				var ids = this.sels.map(item => item.deviceNo)	
-				AdminAPI.deleteDevices(ids).then(({
+				}
+				var ids = this.sels.map(item => item.id)	
+				RoomAPI.del(ids).then(({
 					data: data
 				}) => {	
 					if(data !== null) {

@@ -10,8 +10,8 @@
 					<i class="el-icon-eleme"/>
 				</el-header>
 
-				<el-menu default-active="100" collapse="true" style="height:100vh;"> 
-					<el-scrollbar style="height:100%">
+				<el-menu default-active="100" :collapse="true" style="height:100vh;"> 
+					<!--el-scrollbar style="height:100%"-->
 					
 						<el-menu-item tabindex="100" @click="nav('overview')">
 							<i class="menu-icon-1 el-icon-full-screen"> 
@@ -44,7 +44,7 @@
 
 						</template>
 
-					</el-scrollbar>
+					<!--/el-scrollbar-->
 				</el-menu>
 				
 			</el-container>				
@@ -58,7 +58,7 @@
 					<div style="color: #fff;
 							font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 							font-weight: 400; line-height: 50px; height: 50px;float:left;">					 
-						智慧机楼管理系统
+						智慧机房管理系统
 					</div>
 
 					<div style="float:right">
