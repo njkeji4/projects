@@ -1,8 +1,7 @@
 <template>
 	<div class="main-content" style="padding:3px;">
-		<el-row :gutter=20 class="toolbar searchparam">
-			
-			<el-col  :span=10 class="search-action-wrap" style="margin-bottom:10px;">
+		<el-row :gutter=20 class="toolbar searchparam">			
+			<el-col  :span=7 class="search-action-wrap" style="margin-bottom:10px;">
 				<div style="float:left">		
 					<el-button size="small" @click="addDevice">增加设备</el-button>
 					<!--el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>

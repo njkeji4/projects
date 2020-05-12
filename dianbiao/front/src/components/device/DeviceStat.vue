@@ -6,7 +6,7 @@
 
 		<section class="grid-content">
 			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table"			  
-			 @sort-change="handleSortChange"
+			 @sort-change="handleSortChange"  max-height="1000"
 			  class="cmcc-cell-nowrap">
 				
 				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>				

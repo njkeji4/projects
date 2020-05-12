@@ -6,7 +6,7 @@
     
     <div class="login-title">
        <div class="title0" >
-        智慧机楼管理系统
+        智慧机房管理系统
        </div>   
     
       <el-form :model="loginForm" :rules="loginFormRule" ref="loginForm" label-position="left" 

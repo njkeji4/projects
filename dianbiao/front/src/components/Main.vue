@@ -1,8 +1,8 @@
 <template>	
-		<el-container >
+		<el-container style="min-height:100vh;">
 
 			<el-aside width="50px" >				
-			<el-container style="height:100vh;overflow:hidden;"> <!-- this style is very important-->
+			<el-container style="height:100%;overflow:hidden;"> <!-- this style is very important-->
 					
 				<el-header  style="background-color: #3c8dbc;
 							       color: #fff;padding:0;
@@ -10,7 +10,7 @@
 					<i class="el-icon-eleme"/>
 				</el-header>
 
-				<el-menu default-active="100" :collapse="true" style="height:100vh;"> 
+				<el-menu default-active="100" :collapse="true" style="height:100%;"> 
 					<!--el-scrollbar style="height:100%"-->
 					
 						<el-menu-item tabindex="100" @click="nav('overview')">
@@ -50,7 +50,7 @@
 			</el-container>				
 			</el-aside>	<!-- 左侧面 -->
 			
-			<el-container>
+			<el-container style="height:100%;">
 
 				<el-header style="background:rgba(2,9,17,1);color: #fff;
 								 line-height: 50px;height: 50px;">
@@ -81,8 +81,7 @@
 				</el-header>
 
 				<el-main id="elmain" style="background-color: #ecf0f5; 
-								box-sizing: border-box;
-								margin:0px;padding:0px;overflow-x:hidden;">
+								margin:10px;padding:0px;">
 					
 					<transition name="fade" mode="out-in">
 						<router-view/>
@@ -230,9 +229,7 @@
 </script>
 
 <style lang="scss">
-	.el-aside{
-		overflow:hidden;
-	}
+	
 	.el-main{
 		height:100%;
 		overflow:hidden;

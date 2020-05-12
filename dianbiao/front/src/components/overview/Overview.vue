@@ -114,7 +114,7 @@ export default {
                   _this.nav("/path");
             });
 
-            marker.addEventListener("mouseover", function(evt) {   
+           /* marker.addEventListener("mouseover", function(evt) {   
                    var pwin = document.getElementById("mappopwin");
                    pwin.style.display='block';
                    pwin.style.top=evt.clientY +"px";
@@ -123,7 +123,7 @@ export default {
              marker.addEventListener("mouseout", function(evt) {   
                    var pwin = document.getElementById("mappopwin");
                    pwin.style.display='none';
-                });
+                });*/
 
             map.centerAndZoom(new BMapGL.Point(107.111924,29.157861), 19);  // 初始化地图,设置中心点坐标和地图级别
             //map.centerAndZoom("nanjing",19);

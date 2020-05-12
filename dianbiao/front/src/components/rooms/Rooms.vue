@@ -38,19 +38,13 @@
 				
 							
 						
-				<el-table-column  prop="hostip" label="空开总数" width="120" >
+				<el-table-column  prop="deviceCount" label="空开总数" width="120" >
 				</el-table-column>		
 
-				<el-table-column  prop="hostStatus" label="在线空开" width="120" >
+				<el-table-column  prop="onDeviceCount" label="在线空开数" width="120" >
 				</el-table-column>		
 
-				<el-table-column  prop="hostStatus" label="离线空开" width="120" >
-				</el-table-column>		
-
-				<el-table-column  prop="hostStatus" label="拉闸空开" width="120">
-				</el-table-column>
-
-				<el-table-column  prop="hostStatus" label="合闸空开" width="120">
+				<el-table-column  prop="offDeviceCount" label="离线空开数" width="120" >
 				</el-table-column>	
 
 				<el-table-column  prop="address" label="机房地址" >
@@ -167,7 +161,7 @@
 			handleCurrentChange(val) {
 				this.page = val;				
 				this.getDeviceList();
-			},
+			},			
 			getDeviceList() {
 
 				var searchParams = _.omitBy(this.searchForm, (item) => item == "" || _.isNil(item));

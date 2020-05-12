@@ -35,7 +35,7 @@
 
 		<section class="grid-content">
 			<el-table :data="convertedData" resizable border 
-                highlight-current-row stripe 
+                highlight-current-row stripe  
                 v-loading="listLoading" ref="table" 
 			    class="cmcc-cell-nowrap">
 
