@@ -14,12 +14,14 @@ import com.shicha.yzmgt.bean.DeviceSetting;
 
 public interface IDevcieSettingDao extends JpaRepository<DeviceSetting, String>,JpaSpecificationExecutor<DeviceSetting>{
 	
-	List<DeviceSetting> findByDeviceNo(String deviceNo);
+	//List<DeviceSetting> findByDeviceNo(String deviceNo);
 	
+	List<DeviceSetting> findByDeviceNoAndBranch(String deviceNo, int branch);	
 	
+
 	@Transactional
 	@Modifying
-	@Query(value="delete from device_setting where device_no=:deviceNo",nativeQuery=true)
-	void deleteByDeviceNo(@Param("deviceNo")String deviceNo);
+	@Query(value="delete from device_setting where device_no=:deviceNo and branch=:branch",nativeQuery=true)
+	void deleteByDeviceNoAndBranch(@Param("deviceNo")String deviceNo, @Param("branch")int branch);
 	
 }

@@ -30,8 +30,7 @@ public class Room {
 	String address;
 	String name;
 	
-	double latitude;
-	double longitude;
+	String latlong;
 	
 	String groupId;
 	String groupName;
@@ -48,9 +47,16 @@ public class Room {
 	@Transient
 	String order = "asc";//"dsc"
 	
+	@Transient
+	Integer deviceCount = 0;
+	@Transient
+	Integer offDeviceCount = 0;
+	@Transient
+	Integer onDeviceCount = 0;
+	
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "groupId")
+	@JoinColumn(name = "roomId")
 	List<Device> devices;
 	
 	
@@ -72,18 +78,7 @@ public class Room {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-	public double getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
+	
 	public String getGroupId() {
 		return groupId;
 	}
@@ -131,6 +126,32 @@ public class Room {
 	}
 	public void setDevices(List<Device> devices) {
 		this.devices = devices;
-	}	
+	}
+	public Integer getDeviceCount() {
+		return deviceCount;
+	}
+	public void setDeviceCount(Integer deviceCount) {
+		this.deviceCount = deviceCount;
+	}
+	public Integer getOffDeviceCount() {
+		return offDeviceCount;
+	}
+	public void setOffDeviceCount(Integer offDeviceCount) {
+		this.offDeviceCount = offDeviceCount;
+	}
+	public Integer getOnDeviceCount() {
+		return onDeviceCount;
+	}
+	public void setOnDeviceCount(Integer onDeviceCount) {
+		this.onDeviceCount = onDeviceCount;
+	}
+	public String getLatlong() {
+		return latlong;
+	}
+	public void setLatlong(String latlong) {
+		this.latlong = latlong;
+	}
+	
+	
 	
 }

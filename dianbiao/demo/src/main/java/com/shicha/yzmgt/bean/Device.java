@@ -1,11 +1,17 @@
 package com.shicha.yzmgt.bean;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,7 +32,9 @@ public class Device {
 	
 	@Id
 	String deviceNo;
+	
 	String deviceName;
+	
 	@Column(nullable=false, columnDefinition="INT default 1")
 	Integer status = 1;		//1 offline, 0 online	
 	
@@ -42,30 +50,23 @@ public class Device {
 	String cmdId;		//一个设备一次只能执行一条命令，必须等待返回或者超时
 	Long cmdTime;		//发送命令时间	
 	
-	double lastEnergy = 0;
-	double todayEnergy = 0;
-	long onTime = 0;
-	long todayOnTime = 0;	
-	long totalOnTime = 0;
+	double lastEnergy = 0;	
+	double alastEnergy = 0;
+	double blastEnergy = 0;	
+	double clastEnergy = 0;	
+	double dlastEnergy = 0;	
 	
-	double blastEnergy = 0;
-	double btodayEnergy = 0;
+	long aonTime = 0;
+	long atodayOnTime = 0;
+	
 	long bonTime = 0;
 	long btodayOnTime = 0;	
-	long btotalOnTime = 0;
 	
-	double clastEnergy = 0;
-	double ctodayEnergy = 0;
 	long conTime = 0;
-	long ctodayOnTime = 0;	
-	long ctotalOnTime = 0;
+	long ctodayOnTime = 0;
 	
-	double dlastEnergy = 0;
-	double dtodayEnergy = 0;
 	long donTime = 0;
 	long dtodayOnTime = 0;	
-	long dtotalOnTime = 0;
-	
 	
 	String roomId;
 	String roomName;
@@ -113,7 +114,14 @@ public class Device {
     int cState = 1;//":1,     #开关状态： 0-合闸， 其他--拉闸状态  
 	@Column(nullable=false, columnDefinition="INT default 1")
     int dState = 1;//":1,     #开关状态： 0-合闸， 其他--拉闸状态  
-    
+    	
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "deviceNo")
+	List<DeviceSetting> settings;
+	
+	@Transient
+	public int[] branchSetting = new int[5];
 	
 	public void syncDevice(MeterStatus meter) {
 		allEnergy = meter.allEnergy;  //组合有功总电量		
@@ -282,44 +290,10 @@ public class Device {
 	}
 
 
-	public double getTodayEnergy() {
-		return todayEnergy;
-	}
+	
 
 
-	public void setTodayEnergy(double todayEnergy) {
-		this.todayEnergy = todayEnergy;
-	}
-
-
-	public long getOnTime() {
-		return onTime;
-	}
-
-
-	public void setOnTime(long onTime) {
-		this.onTime = onTime;
-	}
-
-
-	public long getTodayOnTime() {
-		return todayOnTime;
-	}
-
-
-	public void setTodayOnTime(long todayOnTime) {
-		this.todayOnTime = todayOnTime;
-	}
-
-
-	public long getTotalOnTime() {
-		return totalOnTime;
-	}
-
-
-	public void setTotalOnTime(long totalOnTime) {
-		this.totalOnTime = totalOnTime;
-	}
+	
 
 
 	public double getAllEnergy() {
@@ -380,17 +354,6 @@ public class Device {
 		this.blastEnergy = blastEnergy;
 	}
 
-
-	public double getBtodayEnergy() {
-		return btodayEnergy;
-	}
-
-
-	public void setBtodayEnergy(double btodayEnergy) {
-		this.btodayEnergy = btodayEnergy;
-	}
-
-
 	public long getBonTime() {
 		return bonTime;
 	}
@@ -409,17 +372,7 @@ public class Device {
 	public void setBtodayOnTime(long btodayOnTime) {
 		this.btodayOnTime = btodayOnTime;
 	}
-
-
-	public long getBtotalOnTime() {
-		return btotalOnTime;
-	}
-
-
-	public void setBtotalOnTime(long btotalOnTime) {
-		this.btotalOnTime = btotalOnTime;
-	}
-
+	
 
 	public double getClastEnergy() {
 		return clastEnergy;
@@ -428,18 +381,7 @@ public class Device {
 
 	public void setClastEnergy(double clastEnergy) {
 		this.clastEnergy = clastEnergy;
-	}
-
-
-	public double getCtodayEnergy() {
-		return ctodayEnergy;
-	}
-
-
-	public void setCtodayEnergy(double ctodayEnergy) {
-		this.ctodayEnergy = ctodayEnergy;
-	}
-
+	}	
 
 	public long getConTime() {
 		return conTime;
@@ -459,18 +401,7 @@ public class Device {
 	public void setCtodayOnTime(long ctodayOnTime) {
 		this.ctodayOnTime = ctodayOnTime;
 	}
-
-
-	public long getCtotalOnTime() {
-		return ctotalOnTime;
-	}
-
-
-	public void setCtotalOnTime(long ctotalOnTime) {
-		this.ctotalOnTime = ctotalOnTime;
-	}
-
-
+	
 	public double getDlastEnergy() {
 		return dlastEnergy;
 	}
@@ -479,17 +410,6 @@ public class Device {
 	public void setDlastEnergy(double dlastEnergy) {
 		this.dlastEnergy = dlastEnergy;
 	}
-
-
-	public double getDtodayEnergy() {
-		return dtodayEnergy;
-	}
-
-
-	public void setDtodayEnergy(double dtodayEnergy) {
-		this.dtodayEnergy = dtodayEnergy;
-	}
-
 
 	public long getDonTime() {
 		return donTime;
@@ -509,17 +429,6 @@ public class Device {
 	public void setDtodayOnTime(long dtodayOnTime) {
 		this.dtodayOnTime = dtodayOnTime;
 	}
-
-
-	public long getDtotalOnTime() {
-		return dtotalOnTime;
-	}
-
-
-	public void setDtotalOnTime(long dtotalOnTime) {
-		this.dtotalOnTime = dtotalOnTime;
-	}
-
 
 	public double getAvol() {
 		return avol;
@@ -674,5 +583,46 @@ public class Device {
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
+
+
+	public double getAlastEnergy() {
+		return alastEnergy;
+	}
+
+
+	public void setAlastEnergy(double alastEnergy) {
+		this.alastEnergy = alastEnergy;
+	}	
+
+
+	public long getAonTime() {
+		return aonTime;
+	}
+
+
+	public void setAonTime(long aonTime) {
+		this.aonTime = aonTime;
+	}
+
+
+	public long getAtodayOnTime() {
+		return atodayOnTime;
+	}
+
+
+	public void setAtodayOnTime(long atodayOnTime) {
+		this.atodayOnTime = atodayOnTime;
+	}
+
+
+	public List<DeviceSetting> getSettings() {
+		return settings;
+	}
+
+
+	public void setSettings(List<DeviceSetting> settings) {
+		this.settings = settings;
+	}
+	
 	
 }

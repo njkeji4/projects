@@ -88,6 +88,20 @@ public class DeviceService {
 		}
 	}
 	
+	public void calcBranchSetting( Page<Device> pages) {
+		List<Device>devices = pages.getContent();
+		if(devices == null || devices.size() == 0) {
+			return;
+		}
+		for(Device d : devices) {			
+			List<DeviceSetting>settings  = d.getSettings();
+			if(settings == null || settings.size() == 0)continue;			
+			for(DeviceSetting setting: settings) {				
+				d.branchSetting[setting.getBranch()] = 1;
+			}			
+		}
+	}
+	
 	public Page<Device> searchDevice(final SearchDevice device) {
 		
 		String userName = null;
@@ -191,9 +205,9 @@ public class DeviceService {
 	
 	
 	//device setting
-	public List<DeviceSetting> getByDeviceNo(String deviceNo){
+	public List<DeviceSetting> getByDeviceNo(String deviceNo, int branch){
 		
-		return deviceSettingDao.findByDeviceNo(deviceNo);
+		return deviceSettingDao.findByDeviceNoAndBranch(deviceNo, branch);
 	}
 	
 	private int getbcdTime(long t) {
@@ -208,66 +222,60 @@ public class DeviceService {
 		return ((h << 8) | m) << 8 ;
 		
 	}
-	public void addDeviceSetting(DeviceSettingDomain settingDomain) {
+	
+	public boolean addDeviceSetting(DeviceSettingDomain settingDomain) {
 		
 		User user= getCurrentUser();
 		String userName = user == null?null:user.getName();
-		String groupName = user == null?null:user.getGroupName();		
+		String groupName = user == null?null:user.getGroupName();
 		
-		String[]ids = settingDomain.getIds();
-		DeviceSetting[]settings = settingDomain.getSettings();
+		int[] value = new int[8];
+		for(int j = 0; j < 8; j++)
+			value[j] = -1;		
 		
-		for(String id : ids)
-			deviceSettingDao.deleteByDeviceNo(id);	
+		int idx = 0;		
+		for(DeviceSetting setting : settingDomain.getSettings()) {
+			value[idx++] = getbcdTime(setting.getOffTime());
+			value[idx++] = getbcdTime(setting.getOnTime());
+		}		
 		
-		int[][] value = new int[5][8];
-		int[] idx = new int[5];
-		for(int i = 1; i <= 4; i++) {
-			for(int j = 0; j < 8; j++)
-				value[i][j] = -1;
+		List<Integer>list =new ArrayList<Integer>();		
+		for(int i = 0; i < value.length; i++)
+		{
+			list.add(value[i]);			
 		}
 		
+		Integer[] values = new Integer[list.size()];
+		list.toArray(values);
 		
-		for(DeviceSetting setting : settings) {		
+		boolean result= airService.setAutoOffOn(new AutoOnOff(settingDomain.getId(), settingDomain.getBranch(), values), userName, groupName);
+					
+		if(result) {
+			String id = settingDomain.getId();
+			Device d = deviceDao.findByDeviceNo(id);			
+			if(d == null)
+				return result;
 			
-			value[setting.getBranch()][idx[setting.getBranch()]++] = getbcdTime(setting.getOffTime());
-			value[setting.getBranch()][idx[setting.getBranch()]++] = getbcdTime(setting.getOnTime());
-			
-			for(String id : ids) {
-				Device d = deviceDao.findByDeviceNo(id);
-				if(d == null)continue;
+			deviceSettingDao.deleteByDeviceNoAndBranch(settingDomain.getId(),settingDomain.getBranch());
+			DeviceSetting[]settings = settingDomain.getSettings();
+			for(DeviceSetting setting : settings) {					
 				DeviceSetting ds=new DeviceSetting();
 				ds.setDeviceName(d.getDeviceName());
 				ds.setDeviceNo(d.getDeviceNo());
 				ds.setOffTime(setting.getOffTime());
 				ds.setOnTime(setting.getOnTime());
 				ds.setBranch(setting.getBranch());
-				deviceSettingDao.save(ds);
+				deviceSettingDao.save(ds);			
 			}
 		}
 		
-		for(int i = 1; i <= 4; i++) {
-			if(value[i][0] == -1 )continue;	//on valid data for this branch
-			
-			List<Integer>list =new ArrayList<Integer>();
-			int count=0;
-			while(value[i][count] != -1) {
-				list.add(value[i][count]);
-				count++;
-			}
-			Integer[] values = new Integer[list.size()];
-			list.toArray(values);
-			
-			for(String id : ids) {
-				airService.setAutoOffOn(new AutoOnOff(id, i, values), userName, groupName);
-			}
-		}		
+		return result;
 	}
 	
-	public void removeDeviceSetting(DeviceSetting setting) {
-		
-		deviceSettingDao.deleteById(setting.getId());
-	}
+//	public void removeDeviceSetting(DeviceSetting setting) {
+//		
+//		deviceSettingDao.deleteById(setting.getId());
+//	}
 	
 	public boolean importDeviceFromFile(MultipartFile file, String userName) {
 		

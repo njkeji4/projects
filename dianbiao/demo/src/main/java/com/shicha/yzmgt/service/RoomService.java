@@ -19,10 +19,13 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import com.shicha.yzmgt.bean.Device;
 import com.shicha.yzmgt.bean.User;
 import com.shicha.yzmgt.bean.jifang.Room;
 import com.shicha.yzmgt.dao.IRoomDao;
 import com.shicha.yzmgt.dao.IUserDao;
+import com.shicha.yzmgt.util.Baidu;
 
 
 @Service
@@ -36,6 +39,23 @@ public class RoomService {
 	@Autowired
 	IUserDao	userDao;
 	
+	
+	public void calcStatic(Page<Room> page) {
+		
+		List<Room> rooms = page.getContent();
+		for(Room r : rooms) {
+			
+			List<Device> devices = r.getDevices();
+			r.setDeviceCount(devices.size());
+			int online = 0, offline=0;
+			for(Device d : devices) {
+				if(d.getStatus() == Device.device_status_offline) offline++;
+				if(d.getStatus() == Device.device_status_online) online++;
+			}
+			r.setOnDeviceCount(online);
+			r.setOffDeviceCount(offline);
+		}
+	}
 	
 	public Page<Room> searchDevice(final Room room) {
 		
@@ -87,6 +107,8 @@ public class RoomService {
 		}
 		
 		room.setCreateTime(System.currentTimeMillis());
+		room.setLatlong(Baidu.getCoordinate(room.getAddress()));
+		
 		roomDao.save(room);
 	}
 	

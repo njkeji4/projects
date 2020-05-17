@@ -18,33 +18,56 @@ public class DeviceStat {
 	@GeneratedValue(generator="system-uuid")
 	String id;
 	
+	String roomName;
+	String roomId;
+	
 	String deviceName;
 	String deviceNo;
 	String groupName;
 	
-	long statDate;
 	double energy;
-	long ontime;
 	
-	long month;
+	double aEnergy;
+	double bEnergy;
+	double cEnergy;
+	double dEnergy;
+	
+	long aOntime;
+	long bOntime;
+	long cOntime;
+	long dOntime;
+	
+	long statDate;
+	
 	
 	public DeviceStat() {}
 	
-	public DeviceStat(double energy, long ontime, long statDate) {
-		this.energy = energy;
-		this.ontime = ontime;
-		this.statDate = statDate;
-	}
 	
-	public DeviceStat(String deviceNo, long statDate, double energy, long ontime, String deviceName, String groupName) {
-		this.deviceNo = deviceNo;
-		this.statDate = statDate;
-		this.energy = energy;
-		this.ontime = ontime;
+	public DeviceStat(
+			String deviceNo, String deviceName, 
+			String groupName, String roomName, String roomId, 
+			long statDate, 
+			double energy, double a, double b, double c, double d, 
+			long aOntime, long bOntime, long cOntime, long dOntime ) {
+		
 		this.deviceName = deviceName;
 		this.groupName = groupName;		
+		this.deviceNo = deviceNo;
+		this.roomName = roomName;
+		this.roomId = roomId;
 		
-		this.month = caclMonth(statDate);
+		this.statDate = statDate;		
+		
+		this.energy = (double)Math.round(energy * 100) /100;
+		this.aEnergy = (double)Math.round(a * 100) /100;
+		this.bEnergy = (double)Math.round(b * 100) /100;
+		this.cEnergy = (double)Math.round(c * 100) /100;
+		this.dEnergy = (double)Math.round(d * 100) /100;
+		
+		this.aOntime = aOntime;
+		this.bOntime = bOntime;
+		this.cOntime = cOntime;
+		this.dOntime = dOntime;		
 	}
 	
 	public static long caclMonth(long date) {
@@ -60,69 +83,164 @@ public class DeviceStat {
 		return c.getTimeInMillis();
 		
 	}
-	
+
+
 	public String getId() {
 		return id;
 	}
+
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getDeviceNo() {
-		return deviceNo;
+
+	public String getRoomName() {
+		return roomName;
 	}
 
-	public void setDeviceNo(String deviceNo) {
-		this.deviceNo = deviceNo;
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
-	public long getStatDate() {
-		return statDate;
+
+	public String getRoomId() {
+		return roomId;
 	}
 
-	public void setStatDate(long statDate) {
-		this.statDate = statDate;
+
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
 	}
 
-	public double getEnergy() {
-		return energy;
-	}
-
-	public void setEnergy(double energy) {
-		this.energy = energy;
-	}
-
-	public long getOntime() {
-		return ontime;
-	}
-
-	public void setOntime(long ontime) {
-		this.ontime = ontime;
-	}
 
 	public String getDeviceName() {
 		return deviceName;
 	}
 
+
 	public void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
 	}
+
+
+	public String getDeviceNo() {
+		return deviceNo;
+	}
+
+
+	public void setDeviceNo(String deviceNo) {
+		this.deviceNo = deviceNo;
+	}
+
 
 	public String getGroupName() {
 		return groupName;
 	}
 
+
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
 
-	public long getMonth() {
-		return month;
+
+	public double getEnergy() {
+		return energy;
 	}
 
-	public void setMonth(long month) {
-		this.month = month;
+
+	public void setEnergy(double energy) {
+		this.energy = energy;
 	}
-	
+
+
+	public double getaEnergy() {
+		return aEnergy;
+	}
+
+
+	public void setaEnergy(double aEnergy) {
+		this.aEnergy = aEnergy;
+	}
+
+
+	public double getbEnergy() {
+		return bEnergy;
+	}
+
+
+	public void setbEnergy(double bEnergy) {
+		this.bEnergy = bEnergy;
+	}
+
+
+	public double getcEnergy() {
+		return cEnergy;
+	}
+
+
+	public void setcEnergy(double cEnergy) {
+		this.cEnergy = cEnergy;
+	}
+
+
+	public double getdEnergy() {
+		return dEnergy;
+	}
+
+
+	public void setdEnergy(double dEnergy) {
+		this.dEnergy = dEnergy;
+	}
+
+
+	public long getaOntime() {
+		return aOntime;
+	}
+
+
+	public void setaOntime(long aOntime) {
+		this.aOntime = aOntime;
+	}
+
+
+	public long getbOntime() {
+		return bOntime;
+	}
+
+
+	public void setbOntime(long bOntime) {
+		this.bOntime = bOntime;
+	}
+
+
+	public long getcOntime() {
+		return cOntime;
+	}
+
+
+	public void setcOntime(long cOntime) {
+		this.cOntime = cOntime;
+	}
+
+
+	public long getdOntime() {
+		return dOntime;
+	}
+
+
+	public void setdOntime(long dOntime) {
+		this.dOntime = dOntime;
+	}
+
+
+	public long getStatDate() {
+		return statDate;
+	}
+
+
+	public void setStatDate(long statDate) {
+		this.statDate = statDate;
+	}	
 }

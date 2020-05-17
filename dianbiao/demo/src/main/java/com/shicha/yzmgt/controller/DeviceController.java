@@ -54,6 +54,8 @@ public class DeviceController {
 		
 		Page<Device>devices = deviceService.searchDevice(search);
 		
+		deviceService.calcBranchSetting(devices);
+		
 		return new APIResult(0, "", devices);
 	}
 	
@@ -120,22 +122,22 @@ public class DeviceController {
 		return new APIResult(0,"命令已经发送");
 	}
 	
-	@RequestMapping(value="/setting/del", method=RequestMethod.POST)
-	public APIResult delSetting(
-			@RequestBody DeviceSetting setting,
-			HttpServletRequest req, HttpServletResponse response) throws IOException{
-		
-		deviceService.removeDeviceSetting(setting);
-		
-		return new APIResult(0);
-	}
+//	@RequestMapping(value="/setting/del", method=RequestMethod.POST)
+//	public APIResult delSetting(
+//			@RequestBody DeviceSetting setting,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//		
+//		//deviceService.removeDeviceSetting(setting);
+//		
+//		return new APIResult(0);
+//	}
 	
 	@RequestMapping(value="/setting/get", method=RequestMethod.POST)
 	public List<DeviceSetting> getSetting(
 			@RequestBody DeviceSetting setting,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 		
-		return deviceService.getByDeviceNo(setting.getDeviceNo());
+		return deviceService.getByDeviceNo(setting.getDeviceNo(), setting.getBranch());
 	}
 	
 	@RequestMapping(value="/upload", method=RequestMethod.POST)

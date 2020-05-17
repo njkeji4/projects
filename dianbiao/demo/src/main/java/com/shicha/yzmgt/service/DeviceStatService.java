@@ -138,9 +138,9 @@ public class DeviceStatService {
 			 
 			 tops = deviceDao.top10Devices();
 			 
-			 monthStat = statDao.last12Month(System.currentTimeMillis() - 365l * 24 * 3600 * 1000);
+			 //monthStat = statDao.last12Month(System.currentTimeMillis() - 365l * 24 * 3600 * 1000);
 			 
-			 dayStat = statDao.getStatByMonth(DeviceStat.caclMonth(System.currentTimeMillis()));
+			 //dayStat = statDao.getStatByMonth(DeviceStat.caclMonth(System.currentTimeMillis()));
 			 
 		}else {
 			online = deviceDao.getCountByStatus(0,user.getGroupName());
@@ -150,9 +150,9 @@ public class DeviceStatService {
 			
 			tops = deviceDao.top10Devices(user.getGroupName());
 			
-			monthStat = statDao.last12Month(user.getGroupName(), System.currentTimeMillis() - 365l * 24 * 3600 * 1000);
+			//monthStat = statDao.last12Month(user.getGroupName(), System.currentTimeMillis() - 365l * 24 * 3600 * 1000);
 			
-			dayStat = statDao.getStatByMonth(user.getGroupName(),DeviceStat.caclMonth(System.currentTimeMillis()));
+			//dayStat = statDao.getStatByMonth(user.getGroupName(),DeviceStat.caclMonth(System.currentTimeMillis()));
 		
 		}
 		
@@ -179,11 +179,11 @@ public class DeviceStatService {
 		
 		if(user.getRole().equals(User.ROLE_ADMIN)) {
 			
-			 dayStat = statDao.getStatByMonth(yearmonth);
+			// dayStat = statDao.getStatByMonth(yearmonth);
 			 
 		}else {
 			
-			dayStat = statDao.getStatByMonth(user.getGroupName(),yearmonth);
+			//dayStat = statDao.getStatByMonth(user.getGroupName(),yearmonth);
 		
 		}
 		

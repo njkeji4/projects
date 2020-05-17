@@ -46,6 +46,8 @@ public class RoomController {
 		
 		Page<Room>rooms = roomService.searchDevice(room);
 		
+		roomService.calcStatic(rooms);
+		
 		return new APIResult(0, "", rooms);
 	}
 	

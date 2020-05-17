@@ -60,7 +60,7 @@ public class DeviceScanTask {
 	
 	
 	//统计任务
-	@Scheduled(cron = "0 0 0 * * ?")
+	@Scheduled(cron = "0 0 0 * * ?")	
 	public void doStatis() {		
 		try {
 			
@@ -74,15 +74,41 @@ public class DeviceScanTask {
 			}
 			for(Device d : list) {				
 				
-				long todayOnTime = d.getTodayOnTime() + (d.getaState() == 0? (System.currentTimeMillis() - d.getOnTime())/60000 : 0);
-				todayOnTime =  todayOnTime / 60;
-				DeviceStat stat = new DeviceStat(d.getDeviceNo(), yesterday, 
-						d.getTodayEnergy(),todayOnTime, d.getDeviceName(), d.getGroupName());					
+				long aon = d.getAtodayOnTime() + (d.getaState() == 0? (System.currentTimeMillis() - d.getAonTime())/60000 : 0);
+				aon =  aon / 60;
 				
-				d.setTotalOnTime(d.getTotalOnTime() + todayOnTime);
+				long bon = d.getBtodayOnTime() + (d.getbState() == 0? (System.currentTimeMillis() - d.getBonTime())/60000 : 0);
+				bon =  bon / 60;
+				
+				long con = d.getCtodayOnTime() + (d.getcState() == 0? (System.currentTimeMillis() - d.getConTime())/60000 : 0);
+				con =  con / 60;
+				
+				long don = d.getDtodayOnTime() + (d.getdState() == 0? (System.currentTimeMillis() - d.getDonTime())/60000 : 0);
+				don =  don / 60;
+				
+				DeviceStat stat = new DeviceStat(
+						d.getDeviceNo(), d.getDeviceName(),
+						d.getGroupName(),d.getRoomName(), d.getRoomId(),
+						yesterday, 
+						d.getAllEnergy() - d.getLastEnergy(), 
+						d.getaEnergy() - d.getAlastEnergy(),
+						d.getbEnergy()- d.getBlastEnergy(),
+						d.getcEnergy()- d.getClastEnergy(),
+						d.getdEnergy() - d.getDlastEnergy(),
+						aon, bon, con, don);	
+				
 				d.setLastEnergy(d.getAllEnergy());
-				d.setTodayOnTime(0);
-				d.setOnTime(System.currentTimeMillis());				
+				d.setAlastEnergy(d.getaEnergy());
+				d.setBlastEnergy(d.getbEnergy());
+				d.setClastEnergy(d.getcEnergy());
+				d.setDlastEnergy(d.getdEnergy());				
+				
+				d.setAtodayOnTime(0);d.setBtodayOnTime(0);
+				d.setCtodayOnTime(0);d.setDtodayOnTime(0);
+				d.setAonTime(System.currentTimeMillis());
+				d.setBonTime(System.currentTimeMillis());		
+				d.setConTime(System.currentTimeMillis());		
+				d.setDonTime(System.currentTimeMillis());		
 				
 				deviceStatDao.save(stat);
 				deviceDao.save(d);
