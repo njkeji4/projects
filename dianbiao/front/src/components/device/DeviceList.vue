@@ -1,14 +1,12 @@
 <template>
 	<div class="main-content" style="padding:3px;">
-		<el-row :gutter=20 class="toolbar searchparam">			
-			<el-col  :span=7 class="search-action-wrap" style="margin-bottom:10px;">
+		<el-row :gutter=10 class="toolbar searchparam">			
+			<el-col  :span=5 class="search-action-wrap" >
 				<div style="float:left">		
 					<el-button size="small" @click="addDevice">增加设备</el-button>
 					<!--el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
 					<el-button size="small" @click="onDevice" :disabled="this.sels.length === 0" :loading="actionLoading">合闸</el-button-->
 					<el-button size="small" @click="batchRemove" :disabled="this.sels.length === 0">删除设备</el-button>
-					<el-button size="small" @click="settingDevice" :disabled="this.sels.length == 0">设置自动拉合闸时间</el-button>			
-						
 				</div>
 			</el-col>
 			<el-col :span=10 class="paramleft">
@@ -74,34 +72,55 @@
 								 :active-value=0
 								 :inactive-value=1
 								 @change="onoffDevice($event,scope.row,1)"
-								active-color="#13ce66" inactive-color="#ff4949" />
+								active-color="#13ce66" inactive-color="#ff4949" 
+								style="float:left;"/>
+
+						<el-button icon="el-icon-alarm-clock"   type="primary" circle
+								class="branchsetting"
+								v-bind:class="scope.row.branchSetting[1] === 1 ? 'hassetting':''"															
+								@click="settingDevice(scope.row,1)"></el-button>
 					</template>
 				</el-table-column>
-					<el-table-column  sortable="custom" prop="bState" label="2路开关" width="100">
+					<el-table-column  sortable="custom" prop="bState" label="2路开关" width="110">
 					<template slot-scope="scope">						
 						<el-switch v-model="scope.row.bState"
 								 :active-value=0
 								 :inactive-value=1
 								  @change="onoffDevice($event,scope.row,2)"
-								active-color="#13ce66" inactive-color="#ff4949" />	
+								active-color="#13ce66" inactive-color="#ff4949" />
+
+							<el-button icon="el-icon-alarm-clock"   type="primary" circle
+								class="branchsetting"
+								v-bind:class="scope.row.branchSetting[2] === 1 ? 'hassetting':''"							
+								@click="settingDevice(scope.row,2)"></el-button>
 					</template>
 				</el-table-column>
-					<el-table-column  sortable="custom" prop="cState" label="3路开关" width="100">
+					<el-table-column  sortable="custom" prop="cState" label="3路开关" width="110">
 					<template slot-scope="scope">						
 						<el-switch v-model="scope.row.cState"
 								 :active-value=0
 								 :inactive-value=1
 								  @change="onoffDevice($event,scope.row,3)"
-								active-color="#13ce66" inactive-color="#ff4949" />				
+								active-color="#13ce66" inactive-color="#ff4949" />
+
+							<el-button icon="el-icon-alarm-clock"   type="primary" circle
+								class="branchsetting"
+								v-bind:class="scope.row.branchSetting[3] === 1 ? 'hassetting':''"								
+								@click="settingDevice(scope.row,3)"></el-button>
 					</template>
 				</el-table-column>
-					<el-table-column  sortable="custom" prop="dState" label="4路开关" width="100">
+					<el-table-column  sortable="custom" prop="dState" label="4路开关" width="110">
 					<template slot-scope="scope">						
 						<el-switch v-model="scope.row.dState"
 								:active-value=0
 								 :inactive-value=1
 								@change="onoffDevice($event,scope.row,4)"
-								active-color="#13ce66" inactive-color="#ff4949" />				
+								active-color="#13ce66" inactive-color="#ff4949" />		
+								
+								<el-button icon="el-icon-alarm-clock"   type="primary" circle
+								class="branchsetting"
+								v-bind:class="scope.row.branchSetting[4] === 1 ? 'hassetting':''"						
+								@click="settingDevice(scope.row,4)"></el-button>
 					</template>
 				</el-table-column>
 				
@@ -343,14 +362,19 @@
 
 			},
 
-			settingDevice(){
-				var row;
-				if(this.sels && this.sels.length > 0) {
-					row = this.sels[0];
+			branchSetting(row,branch){
+				if(row.branchSetting[branch] === 1){
+					return 'hassetting';
 				}
+				return 'nosetting';
+			},
+			settingDevice(row,branch){
+				console.log(row.branchSetting + "---"+branch);
+				
 				openDeviceEditDlg({
 					data: {
-						deviceInfo: this.sels
+						deviceInfo: row,
+						branch:branch
 					}
 				}).then((data) => {
 					
@@ -464,14 +488,10 @@
 	}
 </script>
 
-<style scoped lang="scss">
-
-</style>
 
 <style lang="scss">
 	.el-table th,
-	.el-table__fixed-header-wrapper thead div,
-	,
+	.el-table__fixed-header-wrapper thead div,	
 	.el-table__header-wrapper thead div {
 		background-color: #177fd8;
 		color: #fff;
@@ -484,26 +504,6 @@
 	.el-table .sort-caret.descending {
 		border-top: 5px solid #fff;
 		border-top-color: #fff !important;
-	}
-	
-	.searchparam {
-		.el-button {
-			border-radius: 6px;
-		}
-		@media only screen and (min-width: 1470px) {
-			.paramleft {
-				width: 75%;
-			}
-			
-		}
-		@media only screen and (max-width: 1470px) {
-			.paramleft {
-				width: 83%;
-			}
-			.search-action-wrap {
-				width: 100%;
-			}
-		}
 	}
 	
 	.add-device-form {
@@ -544,4 +544,16 @@
 			color: #333;
 		}
 	}
+	.branchsetting{
+		background-color:transparent !important;;
+		border:none;
+		padding:0px !important;
+		font-size:20px;
+		float:right;
+		color:grey;
+	}
+	.hassetting{
+		color:green !important;
+	}
+	
 </style>

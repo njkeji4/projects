@@ -5,19 +5,21 @@
 		</el-row>
 
 		<section class="grid-content">
-			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table"			  
-			 @sort-change="handleSortChange"
-			  class="cmcc-cell-nowrap">
+			<el-table :data="devices" resizable border highlight-current-row stripe 
+				v-loading="listLoading" ref="table"			  
+				@sort-change="handleSortChange"
+				class="cmcc-cell-nowrap">
 				
 				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>				
 				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>
-				<el-table-column  prop="cmdName" label="命令" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="cmdName" label="命令" width="150" ></el-table-column>
+				<el-table-column  prop="cmdContent" label="内容" width="150" ></el-table-column>
 				<el-table-column  prop="status" label="执行状态" width="150" sortable="custom">
 					<template slot-scope="scope">
 						{{scope.row.status | statusFormt }}
 					</template></el-table-column>
 				</el-table-column>
-				<el-table-column  prop="retMessage" label="返回消息" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="retMessage" label="返回消息" width="150"></el-table-column>
 				<el-table-column  prop="cmdTime" label="执行时间" width="160" sortable="custom">
 					<template slot-scope="scope">
 						{{scope.row.cmdTime | dateFormat('yyyy-MM-dd hh:mm:ss') }}
@@ -150,15 +152,15 @@
 						this.total = jsonData.data.total;
 						this.devices = jsonData.data.content;
 						this.total = jsonData.data.totalElements;
-						this.listLoading = false;
 					} else {
 						this.$message({
 							messsage: `获取设备命令失败:${data.msg}`,
 							type: 'error'
 						})
 					}
+					this.listLoading = false;
 				});
-				this.listLoading = false;
+				
 			},
 		
 			// context menu

@@ -9,6 +9,7 @@
 			 @sort-change="handleSortChange"  max-height="1000"
 			  class="cmcc-cell-nowrap">
 				
+				<el-table-column  sortable="custom" prop="roomName" label="机房" width="200"></el-table-column>				
 				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>				
 				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>				
 				<el-table-column  prop="statDate" label="统计日期" width="200" sortable="custom">
@@ -16,8 +17,16 @@
 						{{scope.row.statDate | dateFormat('yyyy-MM-dd') }}
 					</template></el-table-column>
 				</el-table-column>
-				<el-table-column  prop="energy" label="电量" width="150" sortable="custom"></el-table-column>
-				<el-table-column  prop="ontime" label="合闸时长(小时)"  sortable="custom"></el-table-column>	
+
+				<el-table-column  prop="energy" label="总电量" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="aEnergy" label="1路电量" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="bEnergy" label="2路电量" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="cEnergy" label="3路电量" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="dEnergy" label="4路电量" width="150" sortable="custom"></el-table-column>
+				<el-table-column  prop="aOntime" label="1路合闸时长(小时)"  width="150" ></el-table-column>	
+				<el-table-column  prop="bOntime" label="2路合闸时长(小时)"  width="150"></el-table-column>
+				<el-table-column  prop="cOntime" label="3路合闸时长(小时)"  width="150"></el-table-column>
+				<el-table-column  prop="dOntime" label="4路合闸时长(小时)" width="150" ></el-table-column>
 			
 			</el-table>
 		</section>

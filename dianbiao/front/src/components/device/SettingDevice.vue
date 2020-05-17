@@ -14,12 +14,12 @@
                             <el-time-picker  v-model="onTime" placeholder="合闸时间" style="margin-left:10px;">
                             </el-time-picker >    
 
-                            <el-select v-model="branch" placeholder="选择一路" 
+                            <el-select v-model="branch" disabled placeholder="选择一路" 
                                     style="margin-left:10px;width:100px;">
-                                <el-option  :key="1" :label="1" :value="1"/>
-                                <el-option  :key="2" :label="2" :value="2"/>
-                                <el-option  :key="3" :label="3" :value="3"/>
-                                <el-option  :key="4" :label="4" :value="4"/>                                
+                                <el-option  :key="1" label="直流1路" :value="1"/>
+                                <el-option  :key="2" label="直流2路" :value="2"/>
+                                <el-option  :key="3" label="直流3路" :value="3"/>
+                                <el-option  :key="4" label="直流4路" :value="4"/>                                
                             </el-select>                
                     
                     <el-button style="margin-left:10px;" size="small" type="primary" @click="addOffOnTime" :loading="batchConfigLoading">增加</el-button>
@@ -78,13 +78,7 @@ import Filters from '../../common/js/filters';
 
 export default {
     data: function() {
-        var nameCheck = (rule, value, callback) => { 
-                        if(value === this.deviceInfo.name){                            
-                            callback(new Error("输入不同的设备名称"));
-                        }else{
-                            callback();
-                        }
-                    };
+       
         return {          
            modalVisible: true,			
            batchConfigLoading: false,           
@@ -92,7 +86,7 @@ export default {
            devices:[],           
            offTime:'',
            onTime:'',
-           branch:1,
+           //branch:1,
            sels: [], //列表选中列
            listLoading:false,
            batchEditForm:{
@@ -116,7 +110,7 @@ export default {
 		
 	},
     created() {                
-        this.title = `设备编号: ${this.deviceInfo[0].deviceNo} 等`; 
+        this.title = `设备编号: ${this.deviceInfo.deviceNo}`; 
     },
 
     filters: {
@@ -124,8 +118,7 @@ export default {
 			scoreFormat:(v,f) => {return parseFloat(v).toFixed(2);}
 	},
 
-    mounted(){
-        console.log("getsetting.....");
+    mounted(){       
         this.getSetting();
     },
     methods: {
@@ -148,25 +141,21 @@ export default {
                 this.$message.error('拉合闸时间不能为空!');  
                 return;
             }
-            if(this.branch < 1 || this.branch > 4){
-                this.$message.error('从4路中选择一路');  
-                return;
-            }
             
             var id=this.devices.length+1;
             this.devices.push( {
                     offTime:Date.parse(this.offTime), 
                     onTime:Date.parse(this.onTime),  
                     branch:this.branch,
-                    deviceNo:this.deviceInfo[0].deviceNo,
-                    deviceName:this.deviceInfo[0].deviceName,
+                    deviceNo:this.deviceInfo.deviceNo,
+                    deviceName:this.deviceInfo.deviceName,
                     id:id
                 });
             
         },
 
         getSetting(){
-             AdminAPI.getDeviceSetting({deviceNo:this.deviceInfo[0].deviceNo}).then(({
+             AdminAPI.getDeviceSetting({deviceNo:this.deviceInfo.deviceNo, branch:this.branch}).then(({
 					data: jsonData
 				}) => {
 					if(jsonData !== null) {
@@ -187,7 +176,7 @@ export default {
 				if(valid) {		
                   
 					AdminAPI.addDeviceSetting(                            
-                                {ids:this.deviceInfo.map(item=>item.deviceNo),settings:this.devices}                           
+                                {id:this.deviceInfo.deviceNo, branch:this.branch, settings:this.devices}                           
                     ).then(({data}) => {
                         this.listLoading=false;
 						if(data.status === 0) {
