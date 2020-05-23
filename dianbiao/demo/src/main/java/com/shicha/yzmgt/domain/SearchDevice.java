@@ -9,6 +9,8 @@ public class SearchDevice {
 	Integer status;
 	Integer switchStat;
 	
+	int deviceType;
+	
 	Integer page = 0;
 	Integer size = 10;
 	String sort="deviceNo";
@@ -96,8 +98,13 @@ public class SearchDevice {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	
-	
-	
 
+	public int getDeviceType() {
+		return deviceType;
+	}
+
+	public void setDeviceType(int deviceType) {
+		this.deviceType = deviceType;
+	}
+	
 }

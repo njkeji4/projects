@@ -124,6 +124,10 @@ public class DeviceService {
 			public Predicate toPredicate(Root<Device> root, CriteriaQuery<?> criteria, CriteriaBuilder builder) {
 				List<Predicate> predicatesList = new ArrayList<>();
 				
+				predicatesList.add(builder.and(
+						builder.equal(root.get("deviceType"), device.getDeviceType())
+						));
+				
 				if(user != null && !user.getRole().equals(User.ROLE_ADMIN)) {						
 					predicatesList.add(builder.and(
 							builder.equal(root.get("groupName"), user.getGroupName())

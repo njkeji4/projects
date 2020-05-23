@@ -17,6 +17,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.shicha.yzmgt.domain.MeterStatus;
 
+/**
+ * 直流电表字段定义  DC
+ * 
+ * @author 
+ *
+ */
 @Entity(name="device")
 @Table(indexes={
 			@Index(name="deviceNo_Index",columnList="deviceNo")
@@ -30,10 +36,25 @@ public class Device {
 	public static int device_switch_open = 1;	//其他值是拉闸状态
 	
 	
+	public static int device_type_dc = 1;
+	public static int device_type_ac1 = 2;
+	public static int device_type_ac3 = 3;
+	
+	
 	@Id
-	String deviceNo;
+	String deviceNo;	
+	
 	
 	String deviceName;
+	String userName;
+	String groupName;		
+	String cmdId;		//一个设备一次只能执行一条命令，必须等待返回或者超时
+	Long cmdTime;		//发送命令时间	
+	String roomId;
+	String roomName;
+	
+	@Column(nullable=false, columnDefinition="INT default 1")
+	int deviceType = 1;
 	
 	@Column(nullable=false, columnDefinition="INT default 1")
 	Integer status = 1;		//1 offline, 0 online	
@@ -43,12 +64,6 @@ public class Device {
 	
 	@Column(nullable=true, columnDefinition="BIGINT default 0")
 	Long lastDataTime = 0l;
-	
-	String userName;
-	String groupName;	
-	
-	String cmdId;		//一个设备一次只能执行一条命令，必须等待返回或者超时
-	Long cmdTime;		//发送命令时间	
 	
 	double lastEnergy = 0;	
 	double alastEnergy = 0;
@@ -67,9 +82,6 @@ public class Device {
 	
 	long donTime = 0;
 	long dtodayOnTime = 0;	
-	
-	String roomId;
-	String roomName;
 	
 	//////data field
 	@Column(nullable=false, columnDefinition="Double default 0")
@@ -93,9 +105,7 @@ public class Device {
 	double cvol;
 	@Column(nullable=false, columnDefinition="Double default 0")
 	double dvol;
-	
-	
-	
+		
 	@Column(nullable=false, columnDefinition="Double default 0")
 	double acur;
 	@Column(nullable=false, columnDefinition="Double default 0")
@@ -104,8 +114,7 @@ public class Device {
 	double ccur;
 	@Column(nullable=false, columnDefinition="Double default 0")
 	double dcur;
-	
-	
+		
 	@Column(nullable=false, columnDefinition="INT default 1")
     int aState = 1;//":1,     #开关状态： 0-合闸， 其他--拉闸状态  
 	@Column(nullable=false, columnDefinition="INT default 1")
@@ -289,17 +298,9 @@ public class Device {
 		this.lastEnergy = lastEnergy;
 	}
 
-
-	
-
-
-	
-
-
 	public double getAllEnergy() {
 		return allEnergy;
 	}
-
 
 	public void setAllEnergy(double allEnergy) {
 		this.allEnergy = allEnergy;
@@ -623,6 +624,14 @@ public class Device {
 	public void setSettings(List<DeviceSetting> settings) {
 		this.settings = settings;
 	}
-	
-	
+
+
+	public int getDeviceType() {
+		return deviceType;
+	}
+
+
+	public void setDeviceType(int deviceType) {
+		this.deviceType = deviceType;
+	}	
 }

@@ -22,7 +22,7 @@ public class UserCmd {
 	public static int cmd_status_ok = 0;
 	public static int cmd_status_fail = 1;
 	
-	public static String[] cmd_name = {"获取电表信息","拉闸", "合闸", "获取拉合闸时间","读取阈值","读取上报周期","设置阈值","设置上报周期","设置拉合闸时间"};
+	public static String[] cmd_name = {"获取电表信息","拉闸", "合闸", "获取拉合闸时间","读取阈值","读取上报周期","设置阈值","设置上报周期","设置拉合闸时间","拉合闸状态变化"};
 	
 	
 	@Id
