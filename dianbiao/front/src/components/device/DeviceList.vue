@@ -1,8 +1,17 @@
 <template>
 	<div class="main-content" style="padding:3px;">
 		<el-row :gutter=10 class="toolbar searchparam">			
-			<el-col  :span=5 class="search-action-wrap" >
-				<div style="float:left">		
+			<el-col  :span=8 class="search-action-wrap" >
+				<div style="float:left">	
+				 
+				 <el-select v-model="deviceType" size="small" style="margin-right:10px;" @change="changeType">
+					<el-option
+						v-for="item in deviceTypes"
+						:key="item.value"
+						:label="item.label"
+						:value="item.value">
+					</el-option>
+				</el-select>	
 					<el-button size="small" @click="addDevice">增加设备</el-button>
 					<!--el-button size="small" @click="offDevice" :disabled="this.sels.length === 0" :loading="actionLoading">拉闸</el-button>
 					<el-button size="small" @click="onDevice" :disabled="this.sels.length === 0" :loading="actionLoading">合闸</el-button-->
@@ -44,108 +53,26 @@
 			
 		</el-row>
 
-		<section class="grid-content">
-			<el-table :data="devices" resizable border highlight-current-row stripe v-loading="listLoading" ref="table" 
+		<DeviceDC v-if="deviceType === 1" :devices="devices" v-loading="listLoading"
+		 	 @selection-change="handleSelectionChange" 
+			 @sort-change="handleSortChange"
+			 @onoffDevice="onoffDevice"
+			 @settingDevice="settingDevice">
+		</DeviceDC>
+
+		<DeviceAC1 v-if="deviceType === 2" :devices="devices" v-loading="listLoading"
 			 @selection-change="handleSelectionChange" 
 			 @sort-change="handleSortChange"
-			  class="cmcc-cell-nowrap">
+			 @onoffDevice="onoffDevice"
+			 @settingDevice="settingDevice">
+		</DeviceAC1>
 
-				<el-table-column header-align="center"  type="selection">				
-				</el-table-column>
-				
-				<el-table-column  sortable="custom" prop="roomName" label="机房" width="200"></el-table-column>
-				
-
-				<el-table-column  sortable="custom" prop="deviceName" label="设备名称" width="200"></el-table-column>
-				
-				<el-table-column  prop="deviceNo" label="设备编号" width="150" sortable="custom"></el-table-column>				
-						
-				<el-table-column  prop="status" label="设备状态" width="120" sortable="custom">
-					<template slot-scope="scope">						
-						<el-tag :type="scope.row.status == '0' ? 'success' : 'danger'" close-transition>{{scope.row.status == '0'?'在线':'离线'}}</el-tag>					
-					</template>
-				</el-table-column>
-
-				<el-table-column  sortable="custom" prop="aState" label="1路开关" width="100">
-					<template slot-scope="scope">
-						<el-switch v-model="scope.row.aState"
-								 :active-value=0
-								 :inactive-value=1
-								 @change="onoffDevice($event,scope.row,1)"
-								active-color="#13ce66" inactive-color="#ff4949" 
-								style="float:left;"/>
-
-						<el-button icon="el-icon-alarm-clock"   type="primary" circle
-								class="branchsetting"
-								v-bind:class="scope.row.branchSetting[1] === 1 ? 'hassetting':''"															
-								@click="settingDevice(scope.row,1)"></el-button>
-					</template>
-				</el-table-column>
-					<el-table-column  sortable="custom" prop="bState" label="2路开关" width="110">
-					<template slot-scope="scope">						
-						<el-switch v-model="scope.row.bState"
-								 :active-value=0
-								 :inactive-value=1
-								  @change="onoffDevice($event,scope.row,2)"
-								active-color="#13ce66" inactive-color="#ff4949" />
-
-							<el-button icon="el-icon-alarm-clock"   type="primary" circle
-								class="branchsetting"
-								v-bind:class="scope.row.branchSetting[2] === 1 ? 'hassetting':''"							
-								@click="settingDevice(scope.row,2)"></el-button>
-					</template>
-				</el-table-column>
-					<el-table-column  sortable="custom" prop="cState" label="3路开关" width="110">
-					<template slot-scope="scope">						
-						<el-switch v-model="scope.row.cState"
-								 :active-value=0
-								 :inactive-value=1
-								  @change="onoffDevice($event,scope.row,3)"
-								active-color="#13ce66" inactive-color="#ff4949" />
-
-							<el-button icon="el-icon-alarm-clock"   type="primary" circle
-								class="branchsetting"
-								v-bind:class="scope.row.branchSetting[3] === 1 ? 'hassetting':''"								
-								@click="settingDevice(scope.row,3)"></el-button>
-					</template>
-				</el-table-column>
-					<el-table-column  sortable="custom" prop="dState" label="4路开关" width="110">
-					<template slot-scope="scope">						
-						<el-switch v-model="scope.row.dState"
-								:active-value=0
-								 :inactive-value=1
-								@change="onoffDevice($event,scope.row,4)"
-								active-color="#13ce66" inactive-color="#ff4949" />		
-								
-								<el-button icon="el-icon-alarm-clock"   type="primary" circle
-								class="branchsetting"
-								v-bind:class="scope.row.branchSetting[4] === 1 ? 'hassetting':''"						
-								@click="settingDevice(scope.row,4)"></el-button>
-					</template>
-				</el-table-column>
-				
-				
-				<el-table-column  sortable="custom" prop="allEnergy" label="总电量(KW)" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="aEnergy" label="1路电量(KW)" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="bEnergy" label="2路电量(KW)" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="cEnergy" label="3路电量(KW)" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="dEnergy" label="4路电量(KW)" width="150"></el-table-column>
-			
-				<el-table-column  sortable="custom" prop="avol" label="电压" width="150"></el-table-column>
-				<!--el-table-column  sortable="custom" prop="bvol" label="2路电压" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="cvol" label="3路电压" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="dvol" label="4路电压" width="150"></el-table-column-->
-			
-				
-				<el-table-column  sortable="custom" prop="acur" label="1路电流" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="bcur" label="2路电流" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="ccur" label="3路电流" width="150"></el-table-column>
-				<el-table-column  sortable="custom" prop="dcur" label="4路电流" width="150"></el-table-column>
-			
-				
-			
-			</el-table>
-		</section>
+		<DeviceAC3 v-if="deviceType === 3" :devices="devices" v-loading="listLoading"
+		 	 @selection-change="handleSelectionChange" 
+			 @sort-change="handleSortChange"
+			 @onoffDevice="onoffDevice"
+			 @settingDevice="settingDevice">
+		</DeviceAC3>
 
 		<el-col class="toolbar">			
 			<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" 
@@ -169,13 +96,24 @@
 	import AddDeviceDlg from './AddDevice';
 	import DeviceUpload from './DeviceUpload.vue';
 
+	import DeviceDC from './DeviceDC.vue';
+	import DeviceAC1 from './DeviceAc1.vue';
+	import DeviceAC3 from './DeviceAc3.vue';
+
 	const openDeviceEditDlg = openModal(DeviceEditDlg);
 	const openAddDeviceDlg = openModal(AddDeviceDlg);
 	const openImportDeviceDlg = openModal(DeviceUpload);
 
 	export default {
+		components: {
+		     DeviceDC,
+			 DeviceAC1,
+			 DeviceAC3
+	    },
 		data() {
 			return {
+				deviceType:1,
+				deviceTypes:[{value:1,label:'直流4路'},{value:2,label:'单相交流'},{value:3,label:'三相交流'}],
 				testvalue:1,			
 				searchForm: { 
 					deviceName:'',					
@@ -227,6 +165,10 @@
 			}
 		},		
 		methods: {		
+
+			changeType(val){				
+				this.searchDevice();
+			},
 
 			handleSortChange(col){		
 				if(col.prop == null)
@@ -393,12 +335,15 @@
 				this.getDeviceList();
 			},
 			getDeviceList() {
+				
+				console.log("get devicelist:"+this.deviceType);
 
 				var searchParams = _.omitBy(this.searchForm, (item) => item == "" || _.isNil(item));
 				searchParams.page = this.page - 1;
 				searchParams.size = this.pageSize;
 				searchParams.sort=this.sort;//"deviceNo";
 				searchParams.order=this.order;//"asc";
+				searchParams.deviceType = this.deviceType;
 				
 				this.listLoading = true;
 				AdminAPI.searchDevice(searchParams).then(({

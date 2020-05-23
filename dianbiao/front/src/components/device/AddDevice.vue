@@ -5,7 +5,7 @@
          
 		<el-form :model="batchEditForm" label-width="7em" :rules="batchEditFormRules" ref="batchEditForm">			
 			 <el-form-item label="选择机房" prop="roomName">
-                <el-select v-model="batchEditForm.roomId" placeholder="请选择机房">
+                <el-select v-model="batchEditForm.roomId" placeholder="请选择机房" style="width:270px !important;">
                     <el-option
                         v-for="item in rooms"
                         :key="item.id"
@@ -16,11 +16,21 @@
             </el-form-item>
 
             <el-form-item label="设备名字" prop="deviceName">
-				<el-input type="text" v-model="batchEditForm.deviceName" size="small" ></el-input>
+				<el-input type="text" v-model="batchEditForm.deviceName" size="small"  style="width:270px !important;"></el-input>
 			</el-form-item>
             <el-form-item label="设备编号" prop="deviceNo">
-				<el-input type="text" v-model="batchEditForm.deviceNo" size="small" ></el-input>
+				<el-input type="text" v-model="batchEditForm.deviceNo" size="small"  style="width:270px !important;"></el-input>
 			</el-form-item>
+            <el-form-item label="设备类型" prop="deviceNo">
+                <el-select v-model="deviceType"  style="width:270px !important;">
+                        <el-option
+                            v-for="item in deviceTypes"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
+                </el-select>	
+            </el-form-item>
 		</el-form>
 		<div slot="footer" class="dialog-footer">
 			<el-button size="small" @click="modalVisible = false">取消</el-button>
@@ -35,7 +45,9 @@ import { AdminAPI,RoomAPI } from '../../api';
 
 export default {
     data: function() {
-        return {      
+        return {   
+           	deviceType:1,
+			deviceTypes:[{value:1,label:'直流4路'},{value:2,label:'单相交流'},{value:3,label:'三相交流'}], 
            rooms:[],    
            modalVisible: true,			
            batchConfigLoading: false,           
@@ -90,7 +102,8 @@ export default {
                         {
                             deviceName:this.batchEditForm.deviceName,
                             deviceNo:this.batchEditForm.deviceNo,
-                            roomId:this.batchEditForm.roomId
+                            roomId:this.batchEditForm.roomId,
+                            deviceType:this.deviceType
                         }
                     ).then(({data}) => {
 						if(data.status === 0) {

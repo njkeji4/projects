@@ -1,12 +1,11 @@
 import Utils from './util';
 
 const dateFormat = (v, format = 'hh:mm:ss') => {
-    if(isNaN(v)) {
+   
+    if(isNaN(v) || v === null || v === 0) {
         return '';
     }
-    if(v == 0){
-        return '';
-    }
+  
     var d;
     try {
         d = new Date(v);

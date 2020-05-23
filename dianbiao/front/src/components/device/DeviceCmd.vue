@@ -1,8 +1,19 @@
 <template>
 	<div class="main-content" style="padding:3px;">
-		<el-row :gutter=20 class="toolbar searchparam">
-			
-		</el-row>
+		<div style="text-align:left;">
+				<el-form :inline="true" size="small" :model="searchForm" ref="searchForm">
+					
+					<el-form-item label="" prop="deviceName">
+						<el-input size="small" v-model="searchForm.deviceName" placeholder="设备名称"></el-input>
+					</el-form-item>
+					<el-form-item label="" prop="deviceNo">
+						<el-input size="small" v-model="searchForm.deviceNo" placeholder="设备编号"></el-input>
+					</el-form-item>
+
+					<el-button size="small" @click="searchDevice">查询</el-button>
+					
+				</el-form>
+		</div>
 
 		<section class="grid-content">
 			<el-table :data="devices" resizable border highlight-current-row stripe 
@@ -26,7 +37,7 @@
 					</template></el-table-column>
 				<el-table-column  prop="retTime" label="完成时间" width="160" sortable="custom">
 					<template slot-scope="scope">
-						{{scope.row.retTime | dateFormat('yyyy-MM-dd hh:mm:ss') }}
+						{{scope.row.retTime  | dateFormat('yyyy-MM-dd hh:mm:ss') }}
 					</template></el-table-column>				
 					
 			
@@ -194,9 +205,6 @@
 	}
 </script>
 
-<style scoped lang="scss">
-
-</style>
 
 <style lang="scss">
 	.el-table th,
@@ -214,28 +222,7 @@
 	.el-table .sort-caret.descending {
 		border-top: 5px solid #fff;
 		border-top-color: #fff !important;
-	}
-	
-	.searchparam {
-		.el-button {
-			border-radius: 6px;
-		}
-		@media only screen and (min-width: 1470px) {
-			.paramleft {
-				width: 75%;
-			}
-			
-		}
-		@media only screen and (max-width: 1470px) {
-			.paramleft {
-				width: 83%;
-			}
-			.search-action-wrap {
-				width: 100%;
-			}
-		}
-	}
-	
+	}	
 	.add-device-form {
 		.el-input,
 		.el-select {

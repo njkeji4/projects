@@ -42,6 +42,8 @@ import Mapoption from '../conf/baidumap';
 
 import Stat from './stat';
 
+import { AdminAPI, RoomAPI } from '../../api';
+
 export default {
 
   components: {
@@ -61,17 +63,17 @@ export default {
   },
  
   methods:{   
-    controlPannel(){
-         this.$router.push({
-                    path: '/device'
-                  });
-    } ,
-    nav(path) {	
-		this.$router.push(path);
-	},
+        controlPannel(){
+            this.$router.push({
+                        path: '/device'
+                    });
+        } ,
+        nav(path) {	
+            this.$router.push(path);
+        },
    
-      getMonthDays(yearmonth){
-        AdminAPI.getOverviewMonthdays(yearmonth).then(({data}) => {
+        getMonthDays(yearmonth){
+            AdminAPI.getOverviewMonthdays(yearmonth).then(({data}) => {
                     if(data.status === 0){                        
                         this.days = data.data.days;
                         let lineoption = this.lines();           
@@ -91,9 +93,9 @@ export default {
 					this.$message.error('Error:'+ err);
 
 				});
-      },
+        },
 
-      loadMap(_this){
+      loadMap(_this, rooms){
           var map = new BMapGL.Map("allmap");    // 创建Map实例
             map.setMapStyleV2({styleJson:Mapoption.styleJson});
          
@@ -104,16 +106,19 @@ export default {
                             new BMapGL.Size(48, 48)
                             );
 
-            var point = new BMapGL.Point(107.111924,29.157861);
-            var marker = new BMapGL.Marker(point, {icon:myIcon});
-            map.addOverlay(marker);
-            
-			 
-            //marker.setTitle("example");
-            marker.addEventListener("click", function(evt) {   
-                  _this.nav("/path");
-            });
+            for(var i in rooms){
+                var p = rooms[i].latlong.split(",");
+                if(p.length != 2)continue;
+                var point = new BMapGL.Point(p[0],p[1]);  //107.111924,29.157861
+                var marker = new BMapGL.Marker(point, {icon:myIcon});
+                map.addOverlay(marker);
 
+                 marker.addEventListener("click", function(evt) {   
+                    _this.nav("/path");
+                });
+            }
+
+            //marker.setTitle("example");
            /* marker.addEventListener("mouseover", function(evt) {   
                    var pwin = document.getElementById("mappopwin");
                    pwin.style.display='block';
@@ -125,17 +130,39 @@ export default {
                    pwin.style.display='none';
                 });*/
 
-            map.centerAndZoom(new BMapGL.Point(107.111924,29.157861), 19);  // 初始化地图,设置中心点坐标和地图级别
+            map.centerAndZoom(new BMapGL.Point(107.111924,29.157861), 6);  // 初始化地图,设置中心点坐标和地图级别
             //map.centerAndZoom("nanjing",19);
             map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-            map.setHeading(64.5);
-            map.setTilt(50);
+            //map.setHeading(64.5);
+            //map.setTilt(50);
 
-      }
+      },
+      getRoomList() {
+
+				var searchParams = {};//_.omitBy(this.searchForm, (item) => item == "" || _.isNil(item));
+				searchParams.page = 0;
+				searchParams.size = 1000;				
+				
+				RoomAPI.search(searchParams).then(({
+					data: jsonData
+				}) => {
+					if(jsonData.status === 0) {						
+						this.rooms = jsonData.data.content;
+                        var _this = this;
+                         this.loadMap(_this, this.rooms);   
+					} else {
+						this.$message({
+							messsage: `获取机房列表失败:${data.msg}`,
+							type: 'error'
+						})
+					}
+				});
+	},
   },
   mounted() {   
-    var _this = this;
-    this.loadMap(_this);   
+    //var _this = this;
+    this.getRoomList();
+   
   }
 }
 </script>
