@@ -11,8 +11,10 @@ public class Command {
 //	public static int ON = 2;
 //	public static int WRITE_METER = 8;	//write ok
 	
+	public static final int READ_DC = 99;
 	public static final int READ_METER = 100;
 	public static final int READ_METER3 = 200;		//三相表
+	
 	public static final int READ_TIME = 101;
 	public static final int READ_DATE = 102;
 	
@@ -33,8 +35,9 @@ public class Command {
 	public static final Map<String,Integer> map = new HashMap<String,Integer>() ;	
 	static {
 		
-	       map.put("04601001",READ_METER) ;	//单相集抄	       
+	       map.put("04601207",READ_DC) ;	//单相集抄	       
 	       map.put("04601206",READ_METER3) ; //三相集抄
+	       map.put("04601001",READ_METER) ;	//单相集抄	   
 	       
 	       map.put("04000101",READ_DATE) ; //
 	       map.put("04000102",READ_TIME) ; //

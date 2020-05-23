@@ -1,5 +1,7 @@
 package com.shicha.dianbiao.demon.domain;
 
+import com.shicha.dianbiao.demon.netty.Device;
+
 public class MeterData extends Meter{
 
 	public MeterData() {}
@@ -7,15 +9,71 @@ public class MeterData extends Meter{
 	public MeterData(byte[] buf, int type, String deviceNo) {	
 		this.deviceNo = deviceNo;
 		try {
-			parse(buf);
+			
+			if(type == Device.DEVICE_DC)
+				parseDC(buf);
+			if(type == Device.DEVICE_AC1)
+				parseSingle(buf);
+			if(type == Device.DEVICE_AC3)
+				parseTriple(buf);
+			
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
-	}	
+	}
 	
-	//68 043493210244 68 91 3c 39459337 
-	//33333333 333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
-	public void parse(byte[] buf){
+	//6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
+	public void parseSingle(byte[]  buf) {
+		int start = 14;	
+	    
+	    double groupactionEnergy = parseDouble(buf, start, 4, 2);	 start+=4;			
+	    allEnergy = parseDouble(buf, start, 4, 2); start+=4;		
+	    double reactionEnergy = parseDouble(buf, start, 4, 2);	 start+=4;
+		
+		avol = parseDouble(buf, start, 2, 1);	 start+=2;
+		acur = parseDouble(buf, start, 3, 3);	 start+=3;
+		double aactionPower= parseDouble(buf, start, 3, 4);	 start+=3;
+		
+		double freq = parseDouble(buf, start, 2, 2);	 start+=2;
+		double factor = parseDouble(buf, start, 2, 3);	 start+=2;
+		switchStat = parseInt(buf,start,1);
+	}
+	
+	//6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316 
+	//
+	public void parseTriple(byte[] buf){
+		int start = 14;
+		allEnergy = parseDouble(buf, start, 4, 2);	 start+=4;			
+		double allJianEnvery = parseDouble(buf, start, 4, 2); start+=4;		
+		double allFengEnvery = parseDouble(buf, start, 4, 2);	 start+=4;
+		double allPingEnvery =parseDouble(buf, start, 4, 2);	 start+=4;
+		double allGuEnvery =parseDouble(buf, start, 4, 2);	 start+=4;
+		
+		avol = parseDouble(buf, start, 2, 1);	 start+=2;
+		bvol = parseDouble(buf, start, 2, 1);	 start+=2;
+		cvol = parseDouble(buf, start, 2, 1);	 start+=2;
+		
+		acur = parseDouble(buf, start, 3, 3);	 start+=3;
+		bcur = parseDouble(buf, start, 3, 3);	 start+=3;
+		ccur = parseDouble(buf, start, 3, 3);	 start+=3;
+		
+		double _allEnergy= parseDouble(buf, start, 3, 4);	 start+=3;
+		aEnergy= parseDouble(buf, start, 3, 4);	 start+=3;
+		bEnergy= parseDouble(buf, start, 3, 4);	 start+=3;
+		cEnergy= parseDouble(buf, start, 3, 4);	 start+=3;
+		
+		double factor = parseDouble(buf, start, 2, 3);	 start+=2;
+		double afactor = parseDouble(buf, start, 2, 3);	 start+=2;
+		double bfactor = parseDouble(buf, start, 2, 3);	 start+=2;
+		double cfactor = parseDouble(buf, start, 2, 3);	 start+=2;
+		
+		
+		switchStat = parseInt(buf,start,1);
+		
+	}
+	
+	//6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
+	public void parseDC(byte[] buf){
 		int start = 14;
 		allEnergy = parseDouble(buf, start, 4, 2);	 start+=4;			
 		aEnergy = parseDouble(buf, start, 4, 2); start+=4;		
@@ -34,7 +92,8 @@ public class MeterData extends Meter{
 		ccur = parseDouble(buf, start, 3, 3);	 start+=3;
 		dcur = parseDouble(buf, start, 3, 3);	 start+=3;		
 		
-		switchStat = parseInt(buf,start,1);
+		int tmp = buf[start] - 0x33;
+		switchStat = tmp;//buf[start];//parseInt(buf,start,1);
 		
 	}
 	

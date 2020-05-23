@@ -20,17 +20,15 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 
 	private static final Logger log = LoggerFactory.getLogger(DeviceMessageDecoder.class);
 	
-	private static byte[] reg = {0x66,(byte)0xaa,0x66,(byte)0xaa};
-	private static byte[] reg2 = {0x66,(byte)0xbb,0x66,(byte)0xbb};
+	private static byte[] AC1_HEAD = {0x55,(byte)0xaa,0x55,(byte)0xaa};	//AC1
+	private static byte[] AC3_HEAD = {0x66,(byte)0xaa,0x66,(byte)0xaa};  //AC3
+	private static byte[] DC_HEAD = {0x66,(byte)0xbb,0x66,(byte)0xbb}; //DC	
 	
-	
-	//public DeviceMessageDecoder(){}
+	INotifyHost notifyhost;
 	
 	public DeviceMessageDecoder(INotifyHost notifyhost){
 		this.notifyhost = notifyhost;
 	}
-	
-	INotifyHost notifyhost;
 	
 	public String getAddr(byte[] bytes, int start) {
 		if(bytes.length < start+6 ) {			
@@ -49,28 +47,41 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		return addr;
 	}
 	
-	@Override
-	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-				
-		if (in.readableBytes() < 4) {
-            return; 
-        }
+	//根据抄表消息来确定表的类型：直流，单相，三相
+	public static int deviceType(int periodcmd){
+
+		if(periodcmd == Command.READ_DC) {			
+			return Device.DEVICE_DC;
+		}
+		if(periodcmd == Command.READ_METER) {
+			return Device.DEVICE_AC1;		
+		}
+		
+		return Device.DEVICE_AC3;
+	}
+	
+	private boolean isHeartBeatOrLoginMessage(ChannelHandlerContext ctx, ByteBuf in) {
+		
 		in.markReaderIndex();
 		
 		ByteBuf head = in.readBytes(4);
 		
-		//heart beat or login message
-		if(head.compareTo(Unpooled.copiedBuffer(reg)) == 0 || 
-				head.compareTo(Unpooled.copiedBuffer(reg2)) == 0 ) {	
+		if(
+				head.compareTo(Unpooled.copiedBuffer(AC1_HEAD)) == 0  
+				||head.compareTo(Unpooled.copiedBuffer(AC3_HEAD)) == 0 
+				|| head.compareTo(Unpooled.copiedBuffer(DC_HEAD)) == 0 ) {	
 			
 			if(in.readableBytes() < 9) {
 				in.resetReaderIndex();
-				return;
+				return true;
 			}
 			
-			int type = 0;
-			if(head.compareTo(Unpooled.copiedBuffer(reg2)) == 0 ) {
-				type = 1;
+			int type = Device.DEVICE_DC;
+			if(head.compareTo(Unpooled.copiedBuffer(AC3_HEAD)) == 0 ) {
+				type = Device.DEVICE_AC3;
+			}
+			if(head.compareTo(Unpooled.copiedBuffer(AC1_HEAD)) == 0 ) {
+				type = Device.DEVICE_AC1;
 			}
 			
 			ByteBuf content = in.readBytes(9);			
@@ -81,8 +92,6 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			content.release();
 			
 			String addr = getAddr(response, 6);  
-			
-			//if(addr.equals("440221933405"))type=1;  //only for xinjiang testing
 			
 			if(response[5] == 1) { //login
 				Device.add(ctx, 0, addr, type);
@@ -98,33 +107,33 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 					Device.add(ctx, 1, addr, type);
 				}
 				
-				try{
-				
-					notifyhost.postHeartBeat(addr);
-					
-					}catch(Exception ex) {
+				try{				
+					notifyhost.postHeartBeat(addr);					
+				}catch(Exception ex) {
 					ex.printStackTrace();
 				}
 			}
 			
 			ctx.writeAndFlush(Unpooled.copiedBuffer(response));	
 			
-			return;			
+			return true;
 		}
 		
-		//receive response message from device
-		
-		//reset the first 4		
 		in.resetReaderIndex();
 		
-		in.markReaderIndex();
+		return false;
+	}	
+	
+	private void otherMessage(ChannelHandlerContext ctx, ByteBuf in) {
+		in.markReaderIndex();		
 		
 		int count = 0;
-		while(in.readByte() != 0x68) {
-			count++;
+		while(in.readByte() != 0x68) {		
+			count++;			
 		}
+		//log.info("before 0x68:"+count);
 		
-		//response started: addr + 68 + c
+		//response started: addr(6) + 68 + c
 		if(in.readableBytes() < CmdRes.headLength - 1) {
 			in.resetReaderIndex();			
 			return;
@@ -156,15 +165,33 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 			Device d = Device.getDevice(res.getAddr());
 			
 			//抄表上报消息
-			if(res.getCmdCode() == Command.READ_METER || res.getCmdCode() == Command.READ_METER3) {
+			if(res.getCmdCode() == Command.READ_METER || 
+					res.getCmdCode() == Command.READ_METER3 ||
+					res.getCmdCode() == Command.READ_DC) {
+				
+				if(Device.getDevice(res.getAddr()) == null) {
+					Device.add(ctx, 1, res.getAddr(), deviceType(res.getCmdCode()));
+					d = Device.getDevice(res.getAddr());
+				}
 				
 				Device.setDeviceStatus(res.getAddr(), 1);
+				
 				if(d != null) {
-					d.setType(res.getCmdCode() == Command.READ_METER ? 0 : 1);			
+					d.setType( deviceType(res.getCmdCode()));	
 				}else{
 					log.warn("get period messsage,but device is null:"+ res.getAddr());
 				}
-				notifyhost.postPeriod((MeterData)res.getData());
+				
+				try{
+					notifyhost.postPeriod((MeterData)res.getData());
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+				
+				//return heartbeat message
+				byte[] response = new byte[] {0x66,(byte)0xbb,0x66,(byte)0xbb,0x68,0x02,0,0,0,0,0,0,0x16};
+				ctx.writeAndFlush(Unpooled.copiedBuffer(response));	
+				
 				return;
 			}
 			
@@ -181,87 +208,44 @@ public class DeviceMessageDecoder extends  ByteToMessageDecoder {
 		}catch(Exception ex) {
 			ex.printStackTrace();			
 		}
-		
 	}
 	
-	/*
-	//buf:addr+68+c+....
-	private void handleReponse(ByteBuf buf) {
+	@Override
+	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+				
+		if (in.readableBytes() < 4) {
+            return; 
+        }
 		
-		//System.out.println(Utils.current() + " response: 68" + Utils.byte2str(buf) );
-		
-		if(buf.readableBytes() == 0) {
-			return;
+		if(isHeartBeatOrLoginMessage(ctx, in)) {
+			return ;
 		}
 		
-		byte[] content = new byte[buf.readableBytes()];
-		buf.readBytes(content);
+		otherMessage(ctx, in);
 		
-		String addr = getAddr2(content, 0);
-		if(!addr.equals("440221933404")) {
-			return;
-		}
-		
-		System.out.println(Utils.current() + " response: 68" + Utils.byte2str(content) );
-		
-		int command = content[7] & 0xff;
-		if(command == 0x91) {//query ok
-			App.cmdresok[0]++;
-			System.out.println(Utils.current() + addr+ " query ok:"+App.cmdresok[0]);
-		}
-		
-		if(command == 0xD1) {//query fail
-			App.cmdresfail[0]++;
-			System.out.println(Utils.current() + "  " + addr+ " query fail:"+App.cmdresfail[0]);
-		}
-		
-		if(command == 0x9c) {//switch on or off ok
-			App.cmdresok[1]++;
-			System.out.println(Utils.current() + addr+ " switch  ok:" + App.cmdresok[1]);
-		}
-		
-		if(command == 0xdc) {//switch on or off fail
-			App.cmdresfail[1]++;
-			System.out.println(Utils.current() + " switch  fail:" + App.cmdresfail[1]);
-		}
-		
-	}*/
+	}	
 	
-	
-	 @Override
-	    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-	       
-
-	        log.info("--- A New Client ---");
-	        
-
-	    }
+	@Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        log.info("--- A New Client ---");
+    }
 	 
-	 @Override
-	    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		  
-		 String addr = Device.remove(ctx);
-		 
-		 //String addr = Device.reApp.get(ctx);
-		 
-		 log.warn("---disconnect  ---"+addr);
-		  
-		  //App.remove(ctx);
-		  //App.remove(addr);
-		  
-		  //App.ctxstatus.remove(ctx);
-		  
-		  ctx.close();
-		  
-		  ctx = null;
-	     
-	    }	
+	@Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+	  
+	 String addr = Device.remove(ctx);
+	 
+	 log.warn("---disconnect  ---"+addr);
+	 
+	 ctx.close();
+	  
+	 ctx = null;
+     
+    }	
 	
 	@Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        //cause.printStackTrace();
-        
-
+		
         String addr = Device.remove(ctx);
 		 
         log.error("---exceptionCaught  ---"+addr);

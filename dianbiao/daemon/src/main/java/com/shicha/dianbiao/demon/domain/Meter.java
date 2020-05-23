@@ -1,6 +1,8 @@
 package com.shicha.dianbiao.demon.domain;
 
 import com.shicha.dianbiao.demon.netty.CmdRes;
+import com.shicha.dianbiao.demon.netty.Device;
+import com.shicha.dianbiao.demon.netty.DeviceMessageDecoder;
 
 public class Meter {
 
@@ -8,8 +10,13 @@ public class Meter {
 		
 		switch(cmdCode) {
 			case Command.READ_METER:
+				res.setData(new MeterData(buf, Device.DEVICE_AC1, addr));
+				break;
 			case Command.READ_METER3:
-				res.setData(new MeterData(buf, cmdCode == Command.READ_METER ? 0 : 1, addr));
+				res.setData(new MeterData(buf, Device.DEVICE_AC3, addr));
+				break;
+			case Command.READ_DC:
+				res.setData(new MeterData(buf, Device.DEVICE_DC, addr));
 				break;
 				
 			case Command.READ_DATE:

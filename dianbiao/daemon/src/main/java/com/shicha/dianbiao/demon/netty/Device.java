@@ -16,6 +16,10 @@ import io.netty.channel.ChannelHandlerContext;
 public class Device {
 
 	private static final Logger log = LoggerFactory.getLogger(Device.class);
+	
+	public static int DEVICE_DC = 1;
+	public static int DEVICE_AC1 = 2;
+	public static int DEVICE_AC3 = 3;
 
 	private static HashMap<String, Device>map = new HashMap<String, Device>();
 	private static HashMap<ChannelHandlerContext, String>ctxmap = new HashMap<ChannelHandlerContext, String>();
@@ -321,4 +325,5 @@ public class Device {
 	public void setBusy(boolean busy) {
 		this.busy = busy;
 	}	
+	
 }
