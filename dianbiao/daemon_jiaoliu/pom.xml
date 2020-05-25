@@ -38,24 +38,13 @@
 		<dependency>
             <groupId>org.springframework.cloud</groupId>
     		<artifactId>spring-cloud-starter-openfeign</artifactId>
-    	</dependency>
-    	
-    	<dependency>
-		  <groupId>modbus4j</groupId>
-		  <artifactId>modbus4j</artifactId>
-		  <version>3.0.6</version>
-		  <scope>system</scope>
-		  <systemPath>${project.basedir}/libs/modbus4j-3.0.6-SNAPSHOT.jar</systemPath>
-		</dependency>
-
+    		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-
 	</dependencies>
 
 	<dependencyManagement>
@@ -75,9 +64,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-				   <includeSystemScope>true</includeSystemScope>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

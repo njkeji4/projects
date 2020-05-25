@@ -1,0 +1,6 @@
+2019-12-19 22:41:29.566  INFO 203112 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2019-12-19 22:41:29.933  INFO 203112 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=4ea18096-3bc2-3327-bb66-4f1df597e819
+2019-12-19 22:41:29.941  INFO 203112 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$b39e3181] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-19 22:41:30.875  INFO 203112 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 3.481 seconds (JVM running for 4.114)
+2019-12-19 22:41:30.878  INFO 203112 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2019-12-19 22:41:32.075  INFO 203112 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302

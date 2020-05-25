@@ -190,7 +190,11 @@
 			},
 			
 			addDevice() {
-				openAddDeviceDlg().then((data) => {
+				openAddDeviceDlg({
+					data: {
+						deviceType: this.deviceType
+					}
+				}).then((data) => {
 					
 					if(data !== undefined){
 						this.getDeviceList();

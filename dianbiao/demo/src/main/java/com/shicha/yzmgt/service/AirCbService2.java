@@ -171,43 +171,44 @@ public class AirCbService2 {
 			cmdService.newCmd(new UserCmd(cmd,"1路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
 		}
 		
-		/////b
-		if(preb == 0 && d.getbState() != 0) {
-			d.setBtodayOnTime(d.getBtodayOnTime() + (System.currentTimeMillis() - d.getBonTime()) / 3600000 );			
-			cmdService.newCmd(new UserCmd(cmd,"2路-拉闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+		if(d.getDeviceType() == Device.device_type_dc) {
+			/////b
+			if(preb == 0 && d.getbState() != 0) {
+				d.setBtodayOnTime(d.getBtodayOnTime() + (System.currentTimeMillis() - d.getBonTime()) / 3600000 );			
+				cmdService.newCmd(new UserCmd(cmd,"2路-拉闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+			}
+			//拉闸--》合闸，更新合闸时间
+			if(preb != 0 && d.getbState() == 0) {			
+				d.setBonTime(System.currentTimeMillis());
+				cmdService.newCmd(new UserCmd(cmd,"2路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+			}		
+			
+			/////c
+			if(prec == 0 && d.getcState() != 0) {
+				d.setCtodayOnTime(d.getCtodayOnTime() + (System.currentTimeMillis() - d.getConTime()) / 3600000 );			
+				cmdService.newCmd(new UserCmd(cmd,"3路-拉闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+			}
+			//拉闸--》合闸，更新合闸时间
+			if(prec != 0 && d.getcState() == 0) {			
+				d.setConTime(System.currentTimeMillis());
+				cmdService.newCmd(new UserCmd(cmd,"3路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+			}		
+			
+			/////d
+			if(pred == 0 && d.getdState() != 0) {			
+				d.setDtodayOnTime(d.getDtodayOnTime() + (System.currentTimeMillis() - d.getDonTime()) / 3600000 );			
+				cmdService.newCmd(new UserCmd(cmd,"4路-拉闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+			}
+			//拉闸--》合闸，更新合闸时间
+			if(pred != 0 && d.getdState() == 0) {			
+				d.setDonTime(System.currentTimeMillis());
+				cmdService.newCmd(new UserCmd(cmd,"4路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
+			}		
 		}
-		//拉闸--》合闸，更新合闸时间
-		if(preb != 0 && d.getbState() == 0) {			
-			d.setBonTime(System.currentTimeMillis());
-			cmdService.newCmd(new UserCmd(cmd,"2路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
-		}		
-		
-		/////c
-		if(prec == 0 && d.getcState() != 0) {
-			d.setCtodayOnTime(d.getCtodayOnTime() + (System.currentTimeMillis() - d.getConTime()) / 3600000 );			
-			cmdService.newCmd(new UserCmd(cmd,"3路-拉闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
-		}
-		//拉闸--》合闸，更新合闸时间
-		if(prec != 0 && d.getcState() == 0) {			
-			d.setConTime(System.currentTimeMillis());
-			cmdService.newCmd(new UserCmd(cmd,"3路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
-		}		
-		
-		/////d
-		if(pred == 0 && d.getdState() != 0) {			
-			d.setDtodayOnTime(d.getDtodayOnTime() + (System.currentTimeMillis() - d.getDonTime()) / 3600000 );			
-			cmdService.newCmd(new UserCmd(cmd,"4路-拉闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
-		}
-		//拉闸--》合闸，更新合闸时间
-		if(pred != 0 && d.getdState() == 0) {			
-			d.setDonTime(System.currentTimeMillis());
-			cmdService.newCmd(new UserCmd(cmd,"4路-合闸" ,d.getDeviceNo(), d.getDeviceName(), null, null, UserCmd.cmd_status_ok));			
-		}		
 		
 		d.setStatus(Device.device_status_online);
-		d.setLastHeartBeatTime(System.currentTimeMillis());
+		d.setLastHeartBeatTime(System.currentTimeMillis());		
 		
-		log.info("a b c d state ="+d.getaState() + "," + d.getbState() + ", " + d.getcState() + "," + d.getdState());
 		deviceDao.save(d);		
 	}
 	

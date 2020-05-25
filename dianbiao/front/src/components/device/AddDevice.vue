@@ -21,16 +21,7 @@
             <el-form-item label="设备编号" prop="deviceNo">
 				<el-input type="text" v-model="batchEditForm.deviceNo" size="small"  style="width:270px !important;"></el-input>
 			</el-form-item>
-            <el-form-item label="设备类型" prop="deviceNo">
-                <el-select v-model="deviceType"  style="width:270px !important;">
-                        <el-option
-                            v-for="item in deviceTypes"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value">
-                        </el-option>
-                </el-select>	
-            </el-form-item>
+            
 		</el-form>
 		<div slot="footer" class="dialog-footer">
 			<el-button size="small" @click="modalVisible = false">取消</el-button>
@@ -46,8 +37,8 @@ import { AdminAPI,RoomAPI } from '../../api';
 export default {
     data: function() {
         return {   
-           	deviceType:1,
-			deviceTypes:[{value:1,label:'直流4路'},{value:2,label:'单相交流'},{value:3,label:'三相交流'}], 
+           //	deviceType:1,
+			deviceTypes:['直流4路','单相交流','三相交流'], 
            rooms:[],    
            modalVisible: true,			
            batchConfigLoading: false,           
@@ -70,6 +61,7 @@ export default {
 	computed: {
 	},
     created() {
+        this.title += " - " + this.deviceTypes[this.deviceType - 1];
     },
     mounted(){
         this.getAllRooms();

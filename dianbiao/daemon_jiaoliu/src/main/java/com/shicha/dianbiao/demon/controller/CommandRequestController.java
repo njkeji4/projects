@@ -65,45 +65,99 @@ public class CommandRequestController {
 			}
 		
 			return waitResult(cmd.getAddr());
-	}	
+	}
+	
+//	@RequestMapping(value="/get/time", method=RequestMethod.POST)
+//	public APIResult getTime(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readTime(addr);			
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+//	
+//	@RequestMapping(value="/get/date", method=RequestMethod.POST)
+//	public APIResult getDate(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readDate(addr);		
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+//	
+//	@RequestMapping(value="/get/period", method=RequestMethod.POST)
+//	public APIResult readPeriod(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readPeriod(addr);			
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+//	
+//	@RequestMapping(value="/get/autoonoff", method=RequestMethod.POST)
+//	public APIResult getAutoOnOff(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.readAutoOnOff(addr);
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//			
+//			return waitResult(addr);
+//			
+//	}
+	
+//	@RequestMapping(value="/set/period", method=RequestMethod.POST)
+//	public APIResult setPeriod(
+//			@RequestBody String addr,
+//			HttpServletRequest req, HttpServletResponse response) throws IOException{
+//			
+//			int ret = Device.switchOnCmd(addr);			
+//			if(ret != 0) {
+//				return new APIResult(ret,MESSAGES[ret]);
+//			}
+//		
+//			return waitResult(addr);
+//	}
+	
 	
 	@RequestMapping(value="/on", method=RequestMethod.POST)
 	public APIResult devcieon(
-			@RequestBody AutoOnOff cmd,
+			@RequestBody String addr,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			Device d = Device.getDevice(cmd.getAddr());
-			int ret=0;
-			if(d != null && d.getType() == Device.DEVICE_DC) {
-				ret = Device.switchOnCmd(cmd.getAddr(), cmd.getBranch());	
-			}else {
-				ret = Device.switchOnCmd(cmd.getAddr());
-			}
-			
+			int ret = Device.switchOnCmd(addr);			
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
-			return waitResult(cmd.getAddr());
+			return waitResult(addr);
 	}
 	
 	@RequestMapping(value="/off", method=RequestMethod.POST)
 	public APIResult deviceOff(
-			@RequestBody AutoOnOff cmd,
+			@RequestBody String addr,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			Device d = Device.getDevice(cmd.getAddr());
-			int ret=0;
-			if(d != null && d.getType() == Device.DEVICE_DC) {
-				ret = Device.switchOffCmd(cmd.getAddr(),cmd.getBranch());
-			}else {
-				ret = Device.switchOffCmd(cmd.getAddr());
-			}
+			int ret = Device.switchOffCmd(addr);
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}
 		
-			return waitResult(cmd.getAddr());
+			return waitResult(addr);
 	}
 	
 	@RequestMapping(value="/autoonoff", method=RequestMethod.POST)
@@ -111,13 +165,7 @@ public class CommandRequestController {
 			@RequestBody AutoOnOff setting,
 			HttpServletRequest req, HttpServletResponse response) throws IOException{
 			
-			Device d = Device.getDevice(setting.getAddr());
-			int ret=0;
-			if(d != null && d.getType() == Device.DEVICE_DC) {
-				ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes(),setting.getBranch());
-			}else {
-				ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes());
-			}
+			int ret = Device.setAutoSwitchOnOff(setting.getAddr(), setting.getTimes());
 			if(ret != 0) {
 				return new APIResult(ret,MESSAGES[ret]);
 			}

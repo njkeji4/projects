@@ -16,10 +16,6 @@ import io.netty.channel.ChannelHandlerContext;
 public class Device {
 
 	private static final Logger log = LoggerFactory.getLogger(Device.class);
-	
-	public static int DEVICE_DC = 1;
-	public static int DEVICE_AC1 = 2;
-	public static int DEVICE_AC3 = 3;
 
 	private static HashMap<String, Device>map = new HashMap<String, Device>();
 	private static HashMap<ChannelHandlerContext, String>ctxmap = new HashMap<ChannelHandlerContext, String>();
@@ -107,7 +103,55 @@ public class Device {
 		return writeCmd(addr, code, buf);
 	}
 	
-	//for AC
+	/*
+	//read data
+	public static int readMeter(String addr) {
+		
+		int type = 1;
+		if(map.get(addr) != null)
+			type = map.get(addr).getType();
+		
+		byte[] code = {0x04, 0x60, 0x10, 0x01};
+		if(type == 1) {
+			code = new byte[]{0x04, 0x60, 0x12, 0x06};
+		}
+		
+		return readCmd(addr, code);
+	}
+	
+	public static int readDate(String addr) {
+		byte[] code = {0x04, 0x00, 0x01, 0x01};
+		
+		return readCmd(addr, code);
+	}
+	
+	public static int readTime(String addr) {
+		byte[] code = {0x04, 0x00, 0x01, 0x02};
+		
+		return readCmd(addr, code);
+	}	
+	
+	public static int readAutoOnOff(String addr) {
+		byte[] code = {0x04, 0x02, 0x00, 0x01};
+		
+		return readCmd(addr, code);
+	}
+	
+	public static int readPeriod(String addr) {
+		byte[] code = {0x04, 0x04, 0x04, 0x00};
+		
+		int type = 1;
+		if(map.get(addr) != null)
+			type = map.get(addr).getType();		
+		
+		if(type == 1) {
+			code = new byte[]{0x04, 0x00, 0x01, 0x0d};
+		}
+		
+		return readCmd(addr, code);
+	}
+	*/
+	
 	public static int switchOffCmd(String addr) {
 		byte[] buff = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,
 				(byte)0x1C ,(byte)0x10 ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x4D ,(byte)0x33 ,(byte)0x46 ,(byte)0x59 ,(byte)0x42 ,(byte)0x45 ,(byte)0x3F ,(byte)0x16 ,(byte)0xC3 ,(byte)0x16};
@@ -115,38 +159,10 @@ public class Device {
 		return cmd(addr,buff);
 	}
 	
-	//for AC
 	public static int switchOnCmd(String addr) {
 		byte[] buff = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,
 				(byte)0x1C ,(byte)0x10 ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x4F ,(byte)0x33 ,(byte)0x41 ,(byte)0x5A ,(byte)0x42 ,(byte)0x45 ,(byte)0x3F ,(byte)0x16 ,(byte)0xC1 ,(byte)0x16};
 		
-		
-		return cmd(addr,buff);
-	}
-		
-	//for DC  flag=0关掉所有，1-关掉第一路。。。。4关掉第四路
-	public static int switchOffCmd(String addr, int flag) {
-		byte[] buff = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,(byte)0x68 ,
-				(byte)0x1C ,(byte)0x10 ,(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x4D ,(byte)0x33 ,(byte)0x46 ,(byte)0x59 ,(byte)0x42 ,(byte)0x45 ,(byte)0x3F ,(byte)0x16 ,(byte)0xC3 ,(byte)0x16};
-		
-		
-		buff[22] = (byte)(0x4d + (flag << 4));
-		
-		return cmd(addr,buff);
-	}	
-	
-	//for DC flag=0关掉所有，1-关掉第一路。。。。4关掉第四路
-	public static int switchOnCmd(String addr, int flag) {
-		byte[] buff = {(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0xFE ,(byte)0x68 ,
-				(byte)0x04 ,(byte)0x34 ,(byte)0x93 ,(byte)0x21 ,(byte)0x02 ,(byte)0x44 ,
-				(byte)0x68 ,
-				(byte)0x1C ,(byte)0x10 ,
-				(byte)0x35 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,
-				(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,
-				(byte)0x4F ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x33 ,(byte)0x34 ,(byte)0x34 ,(byte)0x54 ,
-				(byte)0xC1 ,(byte)0x16};
-		
-		buff[22] = (byte)(0x4f + (flag << 4));		
 		
 		return cmd(addr,buff);
 	}
@@ -165,42 +181,6 @@ public class Device {
 		}
 		
 		byte[]dataid= {0x04,0x02,0x0,0x01};
-		
-		byte[]data = new byte[24];
-		int idx = 0;
-		for(int i = 0; i < 8; i++) {
-			int second = times[i] & 0xff;
-			int minute = (times[i] &0xff00) >> 8;
-			int hour = (times[i] & 0xff0000) >> 16;
-			
-			//bcd
-			hour = hour / 10 * 16 + hour % 10; 
-			minute = minute / 10 * 16 + minute % 10;
-			second = second / 10 * 16 + second % 10;
-			
-			data[idx++] = (byte)(0x33 + second);
-			data[idx++] = (byte)(0x33 + minute);
-			data[idx++] = (byte)(0x33 + hour);			
-		}	
-		
-		return writeCmd(addr, dataid, data);
-	}	
-	
-	public static int setAutoSwitchOnOff(String addr, int[]offon, int branch) {//off on off on off on off on
-		
-		//fill to 8 bytes
-		int[] times = new int[8];
-		for(int i = 0; i < offon.length; i++)
-			times[i] = offon[i];
-		
-		if(offon.length < 8) {
-			for(int i = offon.length; i < 8; i++) {
-				times[i] = 0;//0x636363;
-			}
-		}
-		
-		byte[]dataid= {0x04,0x02,0x0,0x01};
-		dataid[3] = (byte)(0x01 + branch);
 		
 		byte[]data = new byte[24];
 		int idx = 0;
@@ -377,5 +357,4 @@ public class Device {
 	public void setBusy(boolean busy) {
 		this.busy = busy;
 	}	
-	
 }

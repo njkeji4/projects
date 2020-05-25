@@ -1,137 +1,587 @@
-2020-05-23 21:18:53.607  INFO 7232 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
-2020-05-23 21:18:54.219  INFO 7232 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
-2020-05-23 21:18:54.250  INFO 7232 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 21:18:54.331  INFO 7232 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$9ded82dd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 21:18:54.612  INFO 7232 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
-2020-05-23 21:18:54.635  INFO 7232 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-23 21:18:54.635  INFO 7232 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2020-05-23 21:18:54.642  INFO 7232 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
-2020-05-23 21:18:54.771  INFO 7232 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-23 21:18:54.772  INFO 7232 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1145 ms
-2020-05-23 21:18:55.043  WARN 7232 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2020-05-23 21:18:55.045  WARN 7232 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 21:18:55.045  INFO 7232 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 21:18:55.049  WARN 7232 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 21:18:55.049  INFO 7232 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 21:18:55.216  INFO 7232 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-23 21:18:55.378  INFO 7232 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-23 21:18:55.944  INFO 7232 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
-2020-05-23 21:18:56.354  INFO 7232 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.428 seconds (JVM running for 5.255)
-2020-05-23 21:18:56.356  INFO 7232 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
-2020-05-23 21:18:57.306  INFO 7232 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
-2020-05-23 21:19:20.912  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
-2020-05-23 21:20:10.436  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:20:51.428  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:20:57.529  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:21:35.817  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 heartbeat
-2020-05-23 21:21:43.729  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 heartbeat
-2020-05-23 21:21:50.260  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 heartbeat
-2020-05-23 21:23:16.024  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:17.588  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:18.201  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:18.698  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:19.087  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:19.491  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:19.855  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:20.203  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:20.535  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:20.874  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:21.183  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:25.291  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:25.859  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:26.246  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:26.620  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:27.000  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:23:27.389  INFO 7232 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
-2020-05-23 21:56:40.446  INFO 1640 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
-2020-05-23 21:56:40.973  INFO 1640 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
-2020-05-23 21:56:41.004  INFO 1640 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 21:56:41.081  INFO 1640 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$973d1b6f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 21:56:41.373  INFO 1640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
-2020-05-23 21:56:41.396  INFO 1640 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-23 21:56:41.397  INFO 1640 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2020-05-23 21:56:41.404  INFO 1640 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
-2020-05-23 21:56:41.613  INFO 1640 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-23 21:56:41.613  INFO 1640 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1153 ms
-2020-05-23 21:56:41.902  WARN 1640 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2020-05-23 21:56:41.904  WARN 1640 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 21:56:41.905  INFO 1640 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 21:56:41.909  WARN 1640 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 21:56:41.909  INFO 1640 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 21:56:42.082  INFO 1640 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-23 21:56:42.245  INFO 1640 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-23 21:56:42.824  INFO 1640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
-2020-05-23 21:56:43.226  INFO 1640 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.471 seconds (JVM running for 5.342)
-2020-05-23 21:56:43.227  INFO 1640 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
-2020-05-23 21:56:43.824  INFO 1640 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
-2020-05-23 21:56:46.128  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
-2020-05-23 21:57:15.664  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : before 0x68:0
-2020-05-23 21:57:15.665  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 21:57:15.667  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221914744 got response: 6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 21:57:32.862  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : before 0x68:0
-2020-05-23 21:57:32.862  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 21:57:32.862  INFO 1640 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221914744 got response: 6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 22:02:27.783  INFO 1640 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2020-05-23 22:02:27.787  INFO 1640 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-23 22:02:27.788  INFO 1640 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-23 22:02:27.992  INFO 1640 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2020-05-23 22:19:18.755  INFO 3708 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
-2020-05-23 22:19:19.302  INFO 3708 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
-2020-05-23 22:19:19.346  INFO 3708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 22:19:19.435  INFO 3708 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$feb0eabb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 22:19:19.720  INFO 3708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
-2020-05-23 22:19:19.741  INFO 3708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-23 22:19:19.741  INFO 3708 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2020-05-23 22:19:19.748  INFO 3708 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
-2020-05-23 22:19:19.874  INFO 3708 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-23 22:19:19.874  INFO 3708 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1104 ms
-2020-05-23 22:19:20.159  WARN 3708 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2020-05-23 22:19:20.166  WARN 3708 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 22:19:20.167  INFO 3708 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 22:19:20.171  WARN 3708 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 22:19:20.171  INFO 3708 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 22:19:20.338  INFO 3708 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-23 22:19:20.496  INFO 3708 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-23 22:19:21.051  INFO 3708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
-2020-05-23 22:19:21.451  INFO 3708 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.342 seconds (JVM running for 5.189)
-2020-05-23 22:19:21.452  INFO 3708 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
-2020-05-23 22:19:22.085  INFO 3708 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
-2020-05-23 22:19:36.497  INFO 3708 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
-2020-05-23 22:19:41.528  INFO 3708 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
-2020-05-23 22:19:41.529  INFO 3708 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 got response: 6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
-2020-05-23 22:20:11.359  INFO 3708 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
-2020-05-23 22:20:42.154  INFO 3708 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 got response: 6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
-2020-05-23 22:24:26.081  INFO 10360 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
-2020-05-23 22:24:26.609  INFO 10360 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
-2020-05-23 22:24:26.638  INFO 10360 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 22:24:26.717  INFO 10360 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$8ac2a404] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-05-23 22:24:26.996  INFO 10360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
-2020-05-23 22:24:27.018  INFO 10360 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-23 22:24:27.018  INFO 10360 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2020-05-23 22:24:27.024  INFO 10360 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
-2020-05-23 22:24:27.156  INFO 10360 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-23 22:24:27.156  INFO 10360 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1060 ms
-2020-05-23 22:24:27.529  WARN 10360 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
-2020-05-23 22:24:27.532  WARN 10360 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 22:24:27.532  INFO 10360 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 22:24:27.536  WARN 10360 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-05-23 22:24:27.537  INFO 10360 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-05-23 22:24:27.718  INFO 10360 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-23 22:24:27.885  INFO 10360 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-23 22:24:28.518  INFO 10360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
-2020-05-23 22:24:28.928  INFO 10360 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.449 seconds (JVM running for 5.344)
-2020-05-23 22:24:28.930  INFO 10360 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
-2020-05-23 22:24:29.533  INFO 10360 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
-2020-05-23 22:25:20.435  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
-2020-05-23 22:25:23.449  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
-2020-05-23 22:25:32.120  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 got response: 6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
-2020-05-23 22:26:04.365  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
-2020-05-23 22:26:04.366  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221933404 got response: 6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
-2020-05-23 22:26:14.649  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 22:26:14.650  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221914744 got response: 6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 22:26:41.411  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 22:26:41.411  INFO 10360 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221914744 got response: 6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
-2020-05-23 22:27:24.867  INFO 10360 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2020-05-23 22:27:24.870  INFO 10360 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-23 22:27:24.871  INFO 10360 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-23 22:27:25.076  INFO 10360 --- [RMI TCP Connection(2)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:43:29.567  INFO 2324 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:43:30.283  INFO 2324 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:43:30.331  INFO 2324 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:43:30.456  INFO 2324 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$d36ea85] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:43:31.103  INFO 2324 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:43:31.143  INFO 2324 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:43:31.144  INFO 2324 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:43:31.162  INFO 2324 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:43:31.531  INFO 2324 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:43:31.532  INFO 2324 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1932 ms
+2020-05-25 19:43:31.801  WARN 2324 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:43:31.807  INFO 2324 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:43:31.822  INFO 2324 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:43:31.830 ERROR 2324 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:44:59.952  INFO 9788 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:45:00.648  INFO 9788 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:45:00.691  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:45:00.815  INFO 9788 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$6334020b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:45:01.422  INFO 9788 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:45:01.466  INFO 9788 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:45:01.467  INFO 9788 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:45:01.485  INFO 9788 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:45:01.607  INFO 9788 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:45:01.607  INFO 9788 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1627 ms
+2020-05-25 19:45:01.893  WARN 9788 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:45:01.897  INFO 9788 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:45:01.911  INFO 9788 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:45:01.921 ERROR 9788 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:47:41.221  INFO 12156 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:47:41.914  INFO 12156 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:47:41.968  INFO 12156 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:47:42.110  INFO 12156 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$3482272e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:47:42.700  INFO 12156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:47:42.742  INFO 12156 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:47:42.742  INFO 12156 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:47:42.759  INFO 12156 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:47:42.862  INFO 12156 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:47:42.862  INFO 12156 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1613 ms
+2020-05-25 19:47:43.140  WARN 12156 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:47:43.145  INFO 12156 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:47:43.160  INFO 12156 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:47:43.170 ERROR 12156 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:48:40.190  INFO 13856 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:48:40.880  INFO 13856 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:48:40.921  INFO 13856 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:48:41.056  INFO 13856 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e95cc1b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:48:41.652  INFO 13856 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:48:41.688  INFO 13856 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:48:41.689  INFO 13856 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:48:41.705  INFO 13856 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:48:41.818  INFO 13856 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:48:41.819  INFO 13856 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1596 ms
+2020-05-25 19:48:42.087  WARN 13856 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:48:42.091  INFO 13856 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:48:42.106  INFO 13856 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:48:42.117 ERROR 13856 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:54:56.309  INFO 14212 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:54:57.010  INFO 14212 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:54:57.065  INFO 14212 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:54:57.198  INFO 14212 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$5be34633] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:54:57.786  INFO 14212 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:54:57.825  INFO 14212 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:54:57.826  INFO 14212 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:54:57.844  INFO 14212 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:54:57.951  INFO 14212 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:54:57.952  INFO 14212 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1619 ms
+2020-05-25 19:54:58.351  WARN 14212 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:54:58.355  INFO 14212 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:54:58.370  INFO 14212 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:54:58.378 ERROR 14212 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:55:46.364  INFO 8632 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:55:47.092  INFO 8632 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:55:47.140  INFO 8632 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:55:47.285  INFO 8632 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e09378cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:55:47.915  INFO 8632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:55:47.952  INFO 8632 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:55:47.953  INFO 8632 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:55:47.969  INFO 8632 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:55:48.132  INFO 8632 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:55:48.135  INFO 8632 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1740 ms
+2020-05-25 19:55:48.252  WARN 8632 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:55:48.256  INFO 8632 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:55:48.273  INFO 8632 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:55:48.287 ERROR 8632 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:56:15.718  INFO 14060 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:56:16.306  INFO 14060 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
+2020-05-25 19:56:16.332  INFO 14060 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:56:16.393  INFO 14060 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$69797ab5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:56:16.738  INFO 14060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:56:16.767  INFO 14060 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:56:16.767  INFO 14060 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:56:16.775  INFO 14060 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-05-25 19:56:16.940  INFO 14060 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:56:16.940  INFO 14060 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1206 ms
+2020-05-25 19:56:17.213  WARN 14060 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-05-25 19:56:17.216  WARN 14060 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 19:56:17.217  INFO 14060 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 19:56:17.222  WARN 14060 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 19:56:17.223  INFO 14060 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 19:56:17.426  INFO 14060 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:56:17.595  INFO 14060 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-25 19:56:18.155  INFO 14060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-05-25 19:56:18.569  INFO 14060 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 5.098 seconds (JVM running for 10.352)
+2020-05-25 19:56:18.571  INFO 14060 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-05-25 19:56:19.275  INFO 14060 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-05-25 19:56:22.210  INFO 14060 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-05-25 19:56:22.213  INFO 14060 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-25 19:56:22.213  INFO 14060 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:56:22.511  INFO 14060 --- [RMI TCP Connection(6)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:57:05.692  INFO 8912 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:57:06.193  INFO 8912 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
+2020-05-25 19:57:06.219  INFO 8912 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:57:06.284  INFO 8912 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$8e6864d4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:57:06.596  INFO 8912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:57:06.616  INFO 8912 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:57:06.616  INFO 8912 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:57:06.623  INFO 8912 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-05-25 19:57:06.741  INFO 8912 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:57:06.741  INFO 8912 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1034 ms
+2020-05-25 19:57:07.012  WARN 8912 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-05-25 19:57:07.016  WARN 8912 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 19:57:07.016  INFO 8912 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 19:57:07.021  WARN 8912 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 19:57:07.021  INFO 8912 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 19:57:07.184  INFO 8912 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:57:07.336  INFO 8912 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-25 19:57:07.934  INFO 8912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-05-25 19:57:08.396  INFO 8912 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.333 seconds (JVM running for 5.171)
+2020-05-25 19:57:08.397  INFO 8912 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-05-25 19:57:09.114  INFO 8912 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-05-25 19:57:11.850  INFO 8912 --- [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-05-25 19:57:11.851  INFO 8912 --- [RMI TCP Connection(8)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-25 19:57:11.852  INFO 8912 --- [RMI TCP Connection(8)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:57:12.066  INFO 8912 --- [RMI TCP Connection(8)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:57:50.251  INFO 10548 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:57:50.940  INFO 10548 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 19:57:50.990  INFO 10548 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:57:51.127  INFO 10548 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$42177e62] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:57:51.720  INFO 10548 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:57:51.755  INFO 10548 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:57:51.756  INFO 10548 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:57:51.770  INFO 10548 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 19:57:51.883  INFO 10548 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:57:51.884  INFO 10548 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1605 ms
+2020-05-25 19:57:51.974  WARN 10548 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+2020-05-25 19:57:51.977  INFO 10548 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 19:57:51.992  INFO 10548 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-05-25 19:57:52.007 ERROR 10548 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'modbusRequestController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1236) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1151) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:538) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:498) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:846) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:863) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546) ~[spring-context-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:142) ~[spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1260) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1248) [spring-boot-2.1.2.RELEASE.jar!/:2.1.2.RELEASE]
+	at com.shicha.dianbiao.demon.DaemonApplication.main(DaemonApplication.java:16) [classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_144]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.shicha.dianbiao.demon.controller.ModbusRequestController] from ClassLoader [org.springframework.boot.loader.LaunchedURLClassLoader@31cefde0]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:686) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:583) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:568) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:248) ~[spring-beans-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 26 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/serotonin/modbus4j/msg/ModbusRequest
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[na:1.8.0_144]
+	at java.lang.Class.privateGetDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.Class.getDeclaredMethods(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:668) ~[spring-core-5.1.4.RELEASE.jar!/:5.1.4.RELEASE]
+	... 29 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.serotonin.modbus4j.msg.ModbusRequest
+	at java.net.URLClassLoader.findClass(Unknown Source) ~[na:1.8.0_144]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[daemon-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[na:1.8.0_144]
+	... 33 common frames omitted
+
+2020-05-25 19:58:09.983  INFO 7716 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 19:58:10.481  INFO 7716 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
+2020-05-25 19:58:10.510  INFO 7716 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:58:10.583  INFO 7716 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$93ed79aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 19:58:10.862  INFO 7716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 19:58:10.885  INFO 7716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 19:58:10.885  INFO 7716 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 19:58:10.893  INFO 7716 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-05-25 19:58:11.020  INFO 7716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 19:58:11.020  INFO 7716 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1020 ms
+2020-05-25 19:58:11.293  WARN 7716 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-05-25 19:58:11.297  WARN 7716 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 19:58:11.298  INFO 7716 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 19:58:11.305  WARN 7716 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 19:58:11.306  INFO 7716 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 19:58:11.485  INFO 7716 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:58:11.638  INFO 7716 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-25 19:58:12.215  INFO 7716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-05-25 19:58:12.614  INFO 7716 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.315 seconds (JVM running for 5.27)
+2020-05-25 19:58:12.616  INFO 7716 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-05-25 19:58:13.234  INFO 7716 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-05-25 19:59:24.073  INFO 7716 --- [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-05-25 19:59:24.075  INFO 7716 --- [RMI TCP Connection(8)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-25 19:59:24.075  INFO 7716 --- [RMI TCP Connection(8)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-25 19:59:24.274  INFO 7716 --- [RMI TCP Connection(8)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 20:01:38.627  INFO 14240 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 20:01:39.141  INFO 14240 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f20f99e8-1d8f-382e-895f-759676fb334e
+2020-05-25 20:01:39.168  INFO 14240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 20:01:39.243  INFO 14240 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$82d26611] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 20:01:39.539  INFO 14240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 20:01:39.574  INFO 14240 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 20:01:39.575  INFO 14240 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 20:01:39.582  INFO 14240 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jre1.8.0_144\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_144/bin/server;C:/Program Files/Java/jre1.8.0_144/bin;C:/Program Files/Java/jre1.8.0_144/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;E:\dev\sts-bundle\sts-3.9.7.RELEASE;;.]
+2020-05-25 20:01:39.695  INFO 14240 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 20:01:39.695  INFO 14240 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1050 ms
+2020-05-25 20:01:39.962  WARN 14240 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-05-25 20:01:39.966  WARN 14240 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 20:01:39.966  INFO 14240 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 20:01:39.971  WARN 14240 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 20:01:39.971  INFO 14240 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 20:01:40.168  INFO 14240 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-25 20:01:40.331  INFO 14240 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-25 20:01:40.886  INFO 14240 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-05-25 20:01:41.276  INFO 14240 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 4.269 seconds (JVM running for 5.092)
+2020-05-25 20:01:41.278  INFO 14240 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-05-25 20:01:41.898  INFO 14240 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-05-25 20:01:43.721  INFO 14240 --- [RMI TCP Connection(6)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-05-25 20:01:43.723  INFO 14240 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-25 20:01:43.724  INFO 14240 --- [RMI TCP Connection(6)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-25 20:01:43.946  INFO 14240 --- [RMI TCP Connection(6)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-05-25 20:04:44.838  INFO 1468 --- [main] c.s.dianbiao.demon.DaemonApplication     : No active profile set, falling back to default profiles: default
+2020-05-25 20:04:45.541  INFO 1468 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=f60c9a55-accd-32f3-8044-14c3df3102ad
+2020-05-25 20:04:45.591  INFO 1468 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'com.shicha.dianbiao.demon.controller.INotifyHost' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 20:04:45.724  INFO 1468 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7c101141] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-25 20:04:46.304  INFO 1468 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8303 (http)
+2020-05-25 20:04:46.339  INFO 1468 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-25 20:04:46.340  INFO 1468 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2020-05-25 20:04:46.354  INFO 1468 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;E:\dev\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files\Common Files\Autodesk Shared\;C:\Users\test\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\MySQL\MySQL Server 5.6\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Users\test\AppData\Roaming\npm;.]
+2020-05-25 20:04:46.472  INFO 1468 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-25 20:04:46.473  INFO 1468 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1600 ms
+2020-05-25 20:04:46.754  WARN 1468 --- [main] o.s.c.n.a.ArchaiusAutoConfiguration      : No spring.application.name found, defaulting to 'application'
+2020-05-25 20:04:46.759  WARN 1468 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 20:04:46.760  INFO 1468 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 20:04:46.773  WARN 1468 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-05-25 20:04:46.774  INFO 1468 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-05-25 20:04:47.100  INFO 1468 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-25 20:04:47.324  INFO 1468 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-25 20:04:47.893  INFO 1468 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8303 (http) with context path ''
+2020-05-25 20:04:48.278  INFO 1468 --- [main] c.s.dianbiao.demon.DaemonApplication     : Started DaemonApplication in 5.513 seconds (JVM running for 6.06)
+2020-05-25 20:04:48.280  INFO 1468 --- [main] com.shicha.dianbiao.demon.netty.Serv     : start server
+2020-05-25 20:04:48.767  INFO 1468 --- [main] com.shicha.dianbiao.demon.netty.Serv     : server is ready at:8302
+2020-05-25 20:34:37.940  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : --- A New Client ---
+2020-05-25 20:35:05.398  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 login
+2020-05-25 20:35:48.913  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 heartbeat
+2020-05-25 20:36:44.101  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000111heartbeat
+2020-05-25 20:37:17.913  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000111 heartbeat
+2020-05-25 20:37:45.285  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
+2020-05-25 20:37:45.287  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 000000000018 got response: 6818000000000068911d344393378373353383733533333333339555743533bb37333383c83b33de16
+2020-05-25 20:38:32.428  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
+2020-05-25 20:38:32.429  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221933404 got response: 6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
+2020-05-25 20:38:54.370  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
+2020-05-25 20:38:54.371  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221933404 got response: 6804349321024468913c3945933733333333333333333333333333333333333333333333333385553333333333333333333333333333333333333333333343334333433343430316
+2020-05-25 20:39:58.081  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
+2020-05-25 20:39:58.081  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221914744 got response: 6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
+2020-05-25 20:40:20.424  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : receive message:6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
+2020-05-25 20:40:20.425  INFO 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : 440221914744 got response: 6844479121024468912d3a459337334b33333b333333b83333337438333399443333ac37ac37a537a537333333333333cb343399363336d216
+2020-05-25 20:41:41.944  WARN 1468 --- [nioEventLoopGroup-3-1] c.s.d.demon.netty.DeviceMessageDecoder   : ---disconnect  ---440221914744
+2020-05-25 20:41:48.684  INFO 1468 --- [Thread-6] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-25 20:41:48.687  INFO 1468 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
